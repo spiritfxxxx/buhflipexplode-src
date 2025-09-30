@@ -607,7 +607,7 @@ input:checked + #st {
   height: 28px;
 }
 #c-btn img:hover {
-  content: url("/chart-hover.webp");
+  content: url("chart-hover.webp");
 }
 
 /* chart button stays at top right when chart is open */
@@ -620,7 +620,7 @@ input:checked + #st {
   cursor: pointer;
 }
 #open-c-btn img:hover {
-  content: url("/chart-hover.webp");
+  content: url("chart-hover.webp");
 }
 
 /* top bar + close + nav + download buttons */
@@ -666,7 +666,7 @@ input:checked + #st {
   cursor: pointer;
 }
 #c-download-btn img:hover {
-  content: url("/dowload-hover.webp");
+  content: url("download-hover.webp");
 }
 
 /* graph container */
@@ -800,12 +800,10 @@ input:checked + #st {
 /* importing font and mobile support */
 @font-face {
   font-family: 'Inconsolata';
-  src: url('/Inconsolata-Regular.ttf') format('truetype');
-}
-@media (max-width: 1000px) {
-  #mb-nf { margin-top: 30vh; }
+  src: url('Inconsolata-Regular.ttf') format('truetype');
 }
 @media (max-width: 800px) {
+  #mb-nf { margin-top: 30vh; }
   .vg-c { width: 150px; }
   #c-x-bar { width: 100vw; }
   #c { width: 100%; }

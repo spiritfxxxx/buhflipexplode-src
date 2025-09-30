@@ -18,8 +18,8 @@ let menuIsOpen = false, versionSelectorIsOpen = false, chartIsOpen = false;
 
 /* load main page data from .json files, and display */
 async function loadShiyuPage() {
-  versionData = await (await fetch("shiyu-assets/shiyu-versions.json")).json();
-  enemyData = await (await fetch("shiyu-assets/shiyu-enemies.json")).json();
+  versionData = await (await fetch("shiyu-versions.json")).json();
+  enemyData = await (await fetch("shiyu-enemies.json")).json();
   versionIDs = Object.keys(versionData);
   hpData = await buildHPData(versionIDs, enemyData);
   loadSavedState();
@@ -155,7 +155,7 @@ function showEnemies() {
         let eMods = currEnemyData.mods;
         let showEnemySpoilers = spoilersToggle.checked || !eTags.includes("spoiler");
         let eName = showEnemySpoilers ? currEnemyData.name : "SPOILER ENEMY";
-        let eImg = showEnemySpoilers ? `shiyu-assets/shiyu-images/${currEnemyData.image}.webp` : `shiyu-assets/shiyu-images/doppelganger-i.webp`;
+        let eImg = showEnemySpoilers ? `shiyu-images/${currEnemyData.image}.webp` : `shiyu-images/doppelganger-i.webp`;
 
         /* define current enemy's various stats */
         let eHP = currEnemy.hp;

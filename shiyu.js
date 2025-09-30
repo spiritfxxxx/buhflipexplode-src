@@ -244,7 +244,7 @@ function showEnemies() {
   /* add raw + aoe + alt HP display */
   document.getElementById("n-hp-raw").innerHTML = numberFormat(hpData[nodeNum - 1][0][versionNum - 1]);
   document.getElementById("n-hp-aoe").innerHTML = numberFormat(hpData[nodeNum - 1][1][versionNum - 1]);
-  document.getElementById("n-hp-alt").innerHTML = numberFormat(hpData[nodeNum - 1][2][versionNum - 1]);
+  document.getElementById("n-hp-alt").innerHTML = hpData[nodeNum - 1][2][versionNum - 1] ? numberFormat(hpData[nodeNum - 1][2][versionNum - 1]) : numberFormat(hpData[nodeNum - 1][1][versionNum - 1]);
 
   /* save current page + settings */
   saveProgress();

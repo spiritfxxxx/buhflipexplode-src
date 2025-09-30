@@ -89,6 +89,7 @@ body.no-scroll {
 #b {
   margin: 25px 15px;
   gap: 15px;
+  min-height: 330px;
   display: flex;
 }
 #b1, #b2, #b3 {
@@ -254,10 +255,11 @@ body.no-scroll {
 
 /* enemy stage info */
 .esd {
-  margin-top: 120px;
-  height: 475px;
+  margin-top: 140px;
+  min-height: 480px;
   gap: 10px;
   padding: 20px;
+  margin-bottom: 15px;
   line-height: 2.0;
   border-radius: 4px;
   background-color: #27363e;
@@ -590,7 +592,7 @@ input:checked + #st {
   height: 28px;
 }
 #c-btn img:hover {
-  content: url("/chart-hover.webp");
+  content: url("chart-hover.webp");
 }
 
 /* chart button stays at top right when chart is open */
@@ -603,7 +605,7 @@ input:checked + #st {
   cursor: pointer;
 }
 #open-c-btn img:hover {
-  content: url("/chart-hover.webp");
+  content: url("chart-hover.webp");
 }
 
 /* top bar + close + nav + download buttons */
@@ -649,7 +651,7 @@ input:checked + #st {
   cursor: pointer;
 }
 #c-download-btn img:hover {
-  content: url("/dowload-hover.webp");
+  content: url("download-hover.webp");
 }
 
 /* graph container */
@@ -778,17 +780,22 @@ input:checked + #st {
 /* importing font and mobile support */
 @font-face {
   font-family: 'Inconsolata';
-  src: url('/Inconsolata-Regular.ttf') format('truetype');
+  src: url('Inconsolata-Regular.ttf') format('truetype');
+}
+@media (max-width: 1300px) {
+  #b { min-height: 390px; }
+  .esd { min-height: 675px; }
 }
 @media (max-width: 1000px) {
-  #mb-nf { margin-top: 30vh; }
   #b { flex-direction: column; }
   #v-hp { flex-direction: column; }
+  #b, .esd { min-height: 0px; }
   #v-hp-alt { margin-top: 15px; }
   #s { flex-direction: column; }
   #s2, #s3 { margin-top: 20px; }
 }
 @media (max-width: 800px) {
+  #mb-nf { margin-top: 30vh; }
   .vg-c { width: 150px; }
   #c-x-bar { width: 100vw; }
   #c { width: 100%; }

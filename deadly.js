@@ -14,9 +14,9 @@ let menuIsOpen = false, versionSelectorIsOpen = false, chartIsOpen = false;
 
 /* load main page data from .json files, and display */
 async function loadDeadlyPage() {
-  versionData = await (await fetch("/deadly-assets/deadly-versions.json")).json();
-  enemyData = await (await fetch("/deadly-assets/deadly-enemies.json")).json();
-  buffDescs = await (await fetch("/deadly-assets/deadly-buffs.json")).json();
+  versionData = await (await fetch("deadly-assets/deadly-versions.json")).json();
+  enemyData = await (await fetch("deadly-assets/deadly-enemies.json")).json();
+  buffDescs = await (await fetch("deadly-assets/deadly-buffs.json")).json();
   versionIDs = Object.keys(versionData);
   hpData = await buildHPData(versionIDs, enemyData);
   loadSavedState();
@@ -62,7 +62,7 @@ async function showVersion() {
   document.getElementById("v-name").innerHTML = currVersionData.versionName;
   document.getElementById("v-time").innerHTML = currVersionData.versionTime;
   for (let buff = 1; buff <= 3; ++buff) {
-    document.getElementById(`b-img${buff}`).src = `/deadly-assets/deadly-buffs/${buffNames[buff - 1].toLowerCase().replace(" ", "-")}.webp`;
+    document.getElementById(`b-img${buff}`).src = `deadly-assets/deadly-buffs/${buffNames[buff - 1].toLowerCase().replace(" ", "-")}.webp`;
     document.getElementById(`b-name${buff}`).innerHTML = buffNames[buff - 1];
     document.getElementById(`b-desc${buff}`).innerHTML = buffDescs[buffNames[buff - 1]];
   }
@@ -101,7 +101,7 @@ function showEnemies() {
     let eMods = currEnemyData.mods;
     let showEnemySpoilers = spoilersToggle.checked || !eTags.includes("spoiler");
     let eName = showEnemySpoilers ? currEnemyData.name : "SPOILER BOSS";
-    let eImg = showEnemySpoilers ? `/deadly-assets/deadly-images/${currEnemyData.image}.webp` : `/deadly-assets/deadly-images/doppelganger-i.webp`;
+    let eImg = showEnemySpoilers ? `deadly-assets/deadly-images/${currEnemyData.image}.webp` : `deadly-assets/deadly-images/doppelganger-i.webp`;
 
     /* define current enemy's various stats */
     let eHP = currEnemy.hp;
@@ -174,6 +174,7 @@ function showEnemies() {
     stageDesc.className = "esd";
     stageDesc.innerHTML = `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}
                            ${(currEnemyType == 1 || (currEnemyType == 0 && currEnemyID == "14403" && versionNum == 4)) ? `<br><br>${currEnemyData.misc}` : ``}`;
+    if (eTags.includes("spoiler") && !spoilersToggle.checked) stageDesc.innerHTML = `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}`;
     side.appendChild(stageDesc);
   }
 
@@ -199,16 +200,16 @@ function generateWR(mult, wr) {
   weakImg2.className = "wk";
   resImg1.className = "res";
   resImg2.className = "res";
-  weakImg1.src = "/elements/none.webp";
-  weakImg2.src = "/elements/none.webp";
-  resImg1.src = "/elements/none.webp";
-  resImg2.src = "/elements/none.webp";
+  weakImg1.src = "elements/none.webp";
+  weakImg2.src = "elements/none.webp";
+  resImg1.src = "elements/none.webp";
+  resImg2.src = "elements/none.webp";
   let wkCnt = 0, resCnt = 0;
   for (let i = 0; i < 5; ++i) {
-    if (mult[i] < 1 && wkCnt == 0) { weakImg1.src = `/elements/${elementsData[i]}.webp`; ++wkCnt;}
-    else if (mult[i] < 1 && wkCnt == 1) weakImg2.src = `/elements/${elementsData[i]}.webp`;
-    else if (mult[i] > 1 && resCnt == 0) { resImg1.src = `/elements/${elementsData[i]}.webp`; ++resCnt; }
-    else if (mult[i] > 1 && resCnt == 1) resImg2.src = `/elements/${elementsData[i]}.webp`;
+    if (mult[i] < 1 && wkCnt == 0) { weakImg1.src = `elements/${elementsData[i]}.webp`; ++wkCnt;}
+    else if (mult[i] < 1 && wkCnt == 1) weakImg2.src = `elements/${elementsData[i]}.webp`;
+    else if (mult[i] > 1 && resCnt == 0) { resImg1.src = `elements/${elementsData[i]}.webp`; ++resCnt; }
+    else if (mult[i] > 1 && resCnt == 1) resImg2.src = `elements/${elementsData[i]}.webp`;
   }
   wr.appendChild(weakImg1);
   wr.appendChild(weakImg2);

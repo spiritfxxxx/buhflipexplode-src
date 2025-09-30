@@ -1,0 +1,359 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inconsolata', monospace;
+  background-color: #111111;
+  color: #ffffff;
+  text-align: center;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+h3, p {
+  margin: 0;
+  line-height: 2.0;
+}
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ ABOUT ME TEXT BOXES ------------------------------------------------------------------ */
+
+#t {
+  max-width: 100%;
+  max-height: 1500vh;
+  margin: 0vh 2.5vw;
+  padding: 15px;
+  background-color: #27363e;
+  border: 1px solid #27363e;
+  border-radius: 4px;
+}
+.title {
+  color: #f29e38;
+  text-decoration: underline;
+  font-size: 24px;
+}
+.text {
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+}
+.text img {
+  vertical-align: middle;
+}
+.small-image {
+  max-width: 47.5%;
+  height: auto;
+  display: inline-block;
+}
+.large-image {
+  max-width: 80%;
+  height: auto;
+  display: inline-block;
+}
+
+/* ------------------------------------------------------------------ NAVIGATION BUTTONS ------------------------------------------------------------------ */
+
+nav {
+  padding: 30px;
+  gap: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+a.link {
+  margin-left: 2px;
+  margin-right: 2px;
+  color: #b2cee7;
+}
+a.btn{
+  padding: 10px 20px;
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+  border: 2px solid #b2cee7;
+  border-radius: 8px;
+  user-select: none;
+}
+a.btn:hover {
+  color: #000000;
+  background-color: #b2cee7;
+  transition: all 0.1s ease-in-out;
+}
+
+/* ------------------------------------------------------------------ MENU BUTTON + BAR ------------------------------------------------------------------ */
+
+/* menu button stays at top left, moves away when scroll */
+/* fixed menu button when bar is open */
+#mb-btn, #open-mb-btn {
+  top: 7px;
+  left: 11px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+#mb-btn {
+  z-index: 1100;
+  position: absolute;
+}
+#open-mb-btn {
+  z-index: 1104;
+  position: relative;
+  display: none;
+}
+#mb-btn:hover, #open-mb-btn:hover{
+  color: #b2cee7;
+  transition: all 0.1s ease-in-out;
+}
+
+/* menu bar on the side when opened */
+#mb {
+  z-index: 1102;
+  width: 250px;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  background-color: #222222;
+  display: none;
+  user-select: none;
+}
+#mb-bar {
+  z-index: 1103;
+  height: 50px;
+  display: flex;
+  border-bottom: 2.5px solid #444444;
+}
+#mb-c {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  height: calc(100% - 51px);
+}
+
+/* menu bar navigation buttons to other pages */
+#mb a {
+  padding: 15px 15px;
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+}
+#mb a:hover {
+  color: #b2cee7;
+}
+
+/* menu bar number format changer */
+#mb-nf {
+  margin-top: auto;
+  padding: 0px 15px;
+  gap: 10px;
+  width: 220px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+}
+#mb-nfb {
+  display: flex;
+  gap: 10px;
+}
+/* number format changer buttons */
+.nfb {
+  padding: 4px 6px;
+  font-family: 'Inconsolata', monospace;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #222222;
+  border: 1px solid #b2cee7;
+  border-radius: 4px;
+  flex: 1;
+  cursor: pointer;
+  justify-content: space-between;
+  user-select: none;
+}
+.nfb:hover {
+  border-color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
+  transition: all 0.1s ease-in-out;
+}
+.nfb.selected {
+  font-weight: bold;
+  text-decoration: underline;
+  background-color: #b2cee7;
+  color: #000000;
+  transition: all 0.1s ease-in-out;
+}
+/* example number for testing purposes */
+#ex-num {
+  color: #ff5555;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* menu bar toggles */
+#mb-t {
+  width: 200px;
+  padding: 20px 25px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+/* menu bar setting */
+#mb-stg {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* menu bar leaks toggle */
+#mb-lt {
+  top: 3px;
+  width: 44px;
+  height: 22px;
+  position: relative;
+}
+#lt {
+  inset: 0px;
+  position: absolute;
+  background-color: #444444;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+#lt:before {
+  left: 2px;
+  bottom: 2px;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  content: "";
+  background-color: #ffffff;
+  border-radius: 10px;
+  transition: 0.1s;
+}
+input:checked + #lt:before {
+  transform: translateX(22px);
+}
+input:checked + #lt {
+  background-color: #b2cee7;
+}
+
+/* menu bar spoilers toggle */
+#mb-st {
+  top: 3px;
+  width: 44px;
+  height: 22px;
+  position: relative;
+}
+#st {
+  inset: 0px;
+  position: absolute;
+  background-color: #444444;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+#st:before {
+  left: 2px;
+  bottom: 2px;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  content: "";
+  background-color: #ffffff;
+  border-radius: 10px;
+  transition: 0.1s;
+}
+input:checked + #st:before {
+  transform: translateX(22px);
+}
+input:checked + #st {
+  background-color: #b2cee7;
+}
+
+/* out-of-menu-bar screen darken overlay */
+#mb-o {
+  z-index: 1101;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: #000000;
+  opacity: 0.5;
+  display: none;
+}
+
+/* -------------------------------------------------------------------- MISC TOOLTIPS -------------------------------------------------------------------- */
+
+/* menu, buff hp, special enemy hp, misc stats tooltips */
+.tt-menu {
+  margin-left: 8px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* tooltip placements */
+/* menu: top, buff: side, star: top, stat: bottom */
+.tt-menu .tt-text {
+  z-index: 1000;
+  padding: 10px;
+  width: 120px;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  text-align: center;
+  font-size: 12px;
+  background-color: #444444;
+  color: #ffffff;
+  border-radius: 4px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+  line-height: 1.5;
+}
+.tt-menu:hover {
+  color: #b2cee7;
+}
+.tt-menu:hover .tt-text {
+  color: #ffffff;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* tooltip arrow placements */
+.tt-menu .tt-text::after {
+  content: "";
+  top: 97.5%;
+  left: 50%;
+  position: absolute;
+  border-color: #444444 transparent transparent transparent;
+  border-width: 7.5px;
+  transform: translateX(-50%);
+  border-style: solid;
+}
+
+/* ---------------------------------------------------------------------- VERY MISC ---------------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('/Inconsolata-Regular.ttf') format('truetype');
+}
+@media (max-width: 1000px) {
+  #mb-nf { margin-top: 30vh; }
+}
+@media (max-width: 500px) {
+  .small-image, .large-image { max-width: 80vw; }
+}

@@ -151,7 +151,7 @@
             "versionTime":"xx/xx/2025 - xx/xx/2025",
             "versionAnomMult": 110,
             "buffNames": ["Pinnacle", "Dream Delusion", "Combined Attack"],
-            "versionEnemies": [ {"id": "20400", "type": 1, "hp": 118781936}, {"id": "22400", "type": 1, "hp": 109630345}, {"id": "15400", "type": 1, "hp": 152239314} ]
+            "versionEnemies": [ {"id": "20400", "type": 1, "hp": 114213400}, {"id": "22400", "type": 1, "hp": 109630345}, {"id": "15400", "type": 1, "hp": 136567620} ]
           },
 
   "2.3.2":{ "versionName":"2.3 Phase 2",
@@ -165,6 +165,6 @@
             "versionTime":"xx/xx/2025 - xx/xx/2025",
             "versionAnomMult": 110,
             "buffNames": ["Interrupt", "Gathering Point", "Raging Waves"],
-            "versionEnemies": [ {"id": "23400", "type": 1, "hp": 120421465}, {"id": "14403", "type": 1, "hp": 112657976}, {"id": "20400", "type": 1, "hp": 118781936} ]
+            "versionEnemies": [ {"id": "23400", "type": 1, "hp": 120421465}, {"id": "14403", "type": 1, "hp": 112657976}, {"id": "20400", "type": 1, "hp": 114213400} ]
           }
 }

@@ -1,9 +1,9 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
 let buhImg = document.getElementById("buh");
-let buh = "index-assets/buh.webp";
-let buhFlip = "index-assets/buhFlip.webp";
-let buhFlipExplode = "index-assets/buhFlipExplode.webp";
+let buh = "buh.webp";
+let buhFlip = "buhFlip.webp";
+let buhFlipExplode = "buhFlipExplode.webp";
 let canClick = true;
 
 /* pause buh after flipping/exploding (he is tired) */

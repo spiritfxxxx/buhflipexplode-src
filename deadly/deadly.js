@@ -3,7 +3,7 @@
 var versionNum, chartScoreNum, currNumberFormat;
 var buffNames, buffDescs, versionAnomMult, versionEnemies;
 
-let cntNoLeaks = 20;
+let cntNoLeaks = 21;
 let versionData = null, enemyData = null, hpChart = null;
 let versionIDs = [], hpData = [];
 let elementsData = ["ice", "fire", "electric", "ether", "physical"];
@@ -246,11 +246,11 @@ function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
 /* load last saved page location + settings */
 /* !!!!!!!!!!!!!!!!!! DEFAULT TO LATEST DA !!!!!!!!!!!!!!!!!! */
 function loadSavedState() {
-  versionNum = parseInt(localStorage.getItem("lastDAVersion") || `${cntNoLeaks}`);
-  chartScoreNum = localStorage.getItem("lastDAChartScore") || "60k";
-  currNumberFormat = localStorage.getItem("numberFormat") || "period";
   if (localStorage.getItem("leaksEnabled") == "true") leaksToggle.checked = true;
   if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
+  versionNum = leaksToggle.checked ? parseInt(localStorage.getItem("lastDAVersion") || `${cntNoLeaks}`) : cntNoLeaks;
+  chartScoreNum = localStorage.getItem("lastDAChartScore") || "60k";
+  currNumberFormat = localStorage.getItem("numberFormat") || "period";
 }
 
 /* save current page location + settings */

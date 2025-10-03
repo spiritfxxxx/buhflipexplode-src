@@ -72,10 +72,7 @@ function numberFormat(num) {
 
 /* enables/disables leaks/spoilers slider + access */
 leaksToggle.addEventListener("change", () => {
-  if (!leaksToggle.checked) {
-    spoilersToggle.checked = false;
-    if (versionNum > cntNoLeaks) versionNum = cntNoLeaks;
-  }
+  if (!leaksToggle.checked) spoilersToggle.checked = false;
   saveProgress();
 });
 spoilersToggle.addEventListener("change", () => {

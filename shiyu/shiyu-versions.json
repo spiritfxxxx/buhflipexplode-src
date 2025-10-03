@@ -3,7 +3,7 @@
             "versionTime":"04/07/2024 - 01/08/2024",
             "versionDazeMult": 100,
             "buffName":"Bullying Tactics",
-            "buffDesc":"· When there are normal enemies on the battlefield, Agents deal <span style='color:#ad2b00;font-weight:bold;'>25%</span> less DMG to elite and boss enemies and <span style='color:#2bad00;font-weight:bold;'>50%</span> more DMG to normal enemies.<br>· Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>. <span style='font-weight:bold;'>Basic Attack</span> and <span style='font-weight:bold;'>Dash Attack</span> DMG increase by <span style='color:#2bad00;font-weight:bold;'>50%</span>.",
+            "buffDesc":"• When there are normal enemies on the battlefield, Agents deal <span style='color:#ad2b00;font-weight:bold;'>25%</span> less DMG to elite and boss enemies and <span style='color:#2bad00;font-weight:bold;'>50%</span> more DMG to normal enemies.<br>• Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>. <span style='font-weight:bold;'>Basic Attack</span> and <span style='font-weight:bold;'>Dash Attack</span> DMG increase by <span style='color:#2bad00;font-weight:bold;'>50%</span>.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -91,7 +91,7 @@
             "versionTime":"01/08/2024 - 16/08/2024",
             "versionDazeMult": 115,
             "buffName":"Daze Tactics",
-            "buffDesc":"· Agents deal <span style='color:#ad2b00;font-weight:bold;'>20%</span> less DMG and <span style='color:#2bad00;font-weight:bold;'>50%</span> more <span style='color:#ffe599;font-weight:bold;'>Daze</span> to <span style='color:#ffe599;font-weight:bold;'>non-Stunned</span> enemies. Enemies are <span style='color:#ffe599;font-weight:bold;'>Stunned</span> for <span style='color:#2bad00;font-weight:bold;'>20%</span> longer.<br>· Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
+            "buffDesc":"• Agents deal <span style='color:#ad2b00;font-weight:bold;'>20%</span> less DMG and <span style='color:#2bad00;font-weight:bold;'>50%</span> more <span style='color:#ffe599;font-weight:bold;'>Daze</span> to <span style='color:#ffe599;font-weight:bold;'>non-Stunned</span> enemies. Enemies are <span style='color:#ffe599;font-weight:bold;'>Stunned</span> for <span style='color:#2bad00;font-weight:bold;'>20%</span> longer.<br>• Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -186,7 +186,7 @@
             "versionTime":"16/08/2024 - 01/09/2024",
             "versionDazeMult": 115,
             "buffName":"Precise Synergy",
-            "buffDesc":"· <span style='font-weight:bold;'>Basic Attacks</span> deal <span style='color:#2bad00;font-weight:bold;'>15%</span> increased <span style='color:#ffe599;font-weight:bold;'>Daze</span>, and <span style='font-weight:bold;'>Chain Attack</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>100%</span>.<br>· Agents additionally deal <span style='color:#2bad00;font-weight:bold;'>50%</span> increased DMG to <span style='color:#ffe599;font-weight:bold;'>Stunned</span> enemies.",
+            "buffDesc":"• <span style='font-weight:bold;'>Basic Attacks</span> deal <span style='color:#2bad00;font-weight:bold;'>15%</span> increased <span style='color:#ffe599;font-weight:bold;'>Daze</span>, and <span style='font-weight:bold;'>Chain Attack</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>100%</span>.<br>• Agents additionally deal <span style='color:#2bad00;font-weight:bold;'>50%</span> increased DMG to <span style='color:#ffe599;font-weight:bold;'>Stunned</span> enemies.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -282,7 +282,7 @@
             "versionTime":"01/09/2024 - 16/09/2024",
             "versionDazeMult": 100,
             "buffName":"Irresistible Force",
-            "buffDesc":"· When an enemy is <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, all squad members gain 2 stacks of <span style='font-weight:bold;'>Fervor</span>, and when an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> is triggered, all squad members gain 1 stack of <span style='font-weight:bold;'>Fervor</span>. <span style='font-weight:bold;'>Fervor</span> lasts for 20s and stacks up to 3 times. The duration of each stack is calculated separately.<br>· For each stack of <span style='font-weight:bold;'>Fervor</span>, Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>10%</span> and <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> increases by <span style='color:#2bad00;font-weight:bold;'>10</span>.",
+            "buffDesc":"• When an enemy is <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, all squad members gain 2 stacks of <span style='font-weight:bold;'>Fervor</span>, and when an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> is triggered, all squad members gain 1 stack of <span style='font-weight:bold;'>Fervor</span>. <span style='font-weight:bold;'>Fervor</span> lasts for 20s and stacks up to 3 times. The duration of each stack is calculated separately.<br>• For each stack of <span style='font-weight:bold;'>Fervor</span>, Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>10%</span> and <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> increases by <span style='color:#2bad00;font-weight:bold;'>10</span>.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -379,7 +379,7 @@
             "versionTime":"16/09/2024 - 01/10/2024",
             "versionDazeMult": 100,
             "buffName":"Global Rollout",
-            "buffDesc":"· Increases Agent ATK by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> by <span style='color:#2bad00;font-weight:bold;'>30%</span>.",
+            "buffDesc":"• Increases Agent ATK by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> by <span style='color:#2bad00;font-weight:bold;'>30%</span>.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -475,7 +475,7 @@
             "versionTime":"01/10/2024 - 16/10/2024",
             "versionDazeMult": 100,
             "buffName":"Close Quarters Combat",
-            "buffDesc":"· Increases Agent ATK by <span style='color:#2bad00;font-weight:bold;'>20%</span> and DMG taken by <span style='color:#ad2b00;font-weight:bold;'>20%</span>.<br>· Obtaining a Shield grants all squad members <span style='color:#2bad00;font-weight:bold;'>10</span> Energy, and an additional <span style='color:#2bad00;font-weight:bold;'>20%</span> ATK, lasting 20s. Can be triggered once every 20s.",
+            "buffDesc":"• Increases Agent ATK by <span style='color:#2bad00;font-weight:bold;'>20%</span> and DMG taken by <span style='color:#ad2b00;font-weight:bold;'>20%</span>.<br>• Obtaining a Shield grants all squad members <span style='color:#2bad00;font-weight:bold;'>10</span> Energy, and an additional <span style='color:#2bad00;font-weight:bold;'>20%</span> ATK, lasting 20s. Can be triggered once every 20s.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -573,7 +573,7 @@
             "versionTime":"16/10/2024 - 01/11/2024",
             "versionDazeMult": 100,
             "buffName":"Unyielding Momentum",
-            "buffDesc":"· While Shielded, Agent <span style='color:#7e50bb;font-weight:bold;'>Anomaly Buildup Rate</span> is increased by <span style='color:#2bad00;font-weight:bold;'>25%</span>.<br>· Agents deal <span style='color:#2bad00;font-weight:bold;'>35%</span> more DMG to enemies that are suffering an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span>.",
+            "buffDesc":"• While Shielded, Agent <span style='color:#7e50bb;font-weight:bold;'>Anomaly Buildup Rate</span> is increased by <span style='color:#2bad00;font-weight:bold;'>25%</span>.<br>• Agents deal <span style='color:#2bad00;font-weight:bold;'>35%</span> more DMG to enemies that are suffering an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span>.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -671,7 +671,7 @@
             "versionTime":"01/11/2024 - 16/11/2024",
             "versionDazeMult": 120,
             "buffName":"Lightning Speed",
-            "buffDesc":"· Agent DMG is increased by <span style='color:#2bad00;font-weight:bold;'>25%</span>.<br>· When inflicting <span style='color:#ff5521;font-weight:bold;'>Burn</span> or <span style='color:#2eb6ff;font-weight:bold;'>Shock</span> on enemies, Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 15s. When the effect is triggered, the enemy immediately gains <span style='color:#2bad00;font-weight:bold;'>20%</span> <span style='color:#ffe599;font-weight:bold;'>Daze</span> if the enemy is not <span style='color:#ffe599;font-weight:bold;'>Stunned</span>.",
+            "buffDesc":"• Agent DMG is increased by <span style='color:#2bad00;font-weight:bold;'>25%</span>.<br>• When inflicting <span style='color:#ff5521;font-weight:bold;'>Burn</span> or <span style='color:#2eb6ff;font-weight:bold;'>Shock</span> on enemies, Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 15s. When the effect is triggered, the enemy immediately gains <span style='color:#2bad00;font-weight:bold;'>20%</span> <span style='color:#ffe599;font-weight:bold;'>Daze</span> if the enemy is not <span style='color:#ffe599;font-weight:bold;'>Stunned</span>.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -769,7 +769,7 @@
             "versionTime":"16/11/2024 - 01/12/2024",
             "versionDazeMult": 100,
             "buffName":"Whirling Currents",
-            "buffDesc":"· <span style='font-weight:bold;'>Assist Attack</span>, <span style='font-weight:bold;'>EX Special Attack</span>, and <span style='font-weight:bold;'>Ultimate</span> <span style='color:#7e50bb;font-weight:bold;'>Anomaly Buildup</span> increases by <span style='color:#2bad00;font-weight:bold;'>30%</span> and DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>· When triggering <span style='color:#7e50bb;font-weight:bold;'>Disorder</span>, generate <span style='color:#2bad00;font-weight:bold;'>400</span> Decibels, and reduce the target's <span style='color:#5555ff;font-weight:bold;'>DEF</span> by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 20s. The Decibel gain effect can trigger once every 10s.",
+            "buffDesc":"• <span style='font-weight:bold;'>Assist Attack</span>, <span style='font-weight:bold;'>EX Special Attack</span>, and <span style='font-weight:bold;'>Ultimate</span> <span style='color:#7e50bb;font-weight:bold;'>Anomaly Buildup</span> increases by <span style='color:#2bad00;font-weight:bold;'>30%</span> and DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When triggering <span style='color:#7e50bb;font-weight:bold;'>Disorder</span>, generate <span style='color:#2bad00;font-weight:bold;'>400</span> Decibels, and reduce the target's <span style='color:#5555ff;font-weight:bold;'>DEF</span> by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 20s. The Decibel gain effect can trigger once every 10s.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -866,7 +866,7 @@
             "versionTime":"01/12/2024 - 17/12/2024",
             "versionDazeMult": 120,
             "buffName":"Surging Starflow",
-            "buffDesc":"· Agent  <span style='color:#ffe599;font-weight:bold;'>Impact</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>. Upon <span style='color:#ffe599;font-weight:bold;'>Stunning</span> an enemy, all squad members recover <span style='color:#2bad00;font-weight:bold;'>20</span> Energy and have their ATK increased by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 20s. This Energy gain effect can trigger once every 15s.<br>· Upon <span style='color:#ffe599;font-weight:bold;'>Stunning</span> an enemy, its <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> increases over time by <span style='color:#2bad00;font-weight:bold;'>10%</span> per second, up to a maximum increase of <span style='color:#2bad00;font-weight:bold;'>60%</span>.",
+            "buffDesc":"• Agent <span style='color:#ffe599;font-weight:bold;'>Impact</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>. Upon <span style='color:#ffe599;font-weight:bold;'>Stunning</span> an enemy, all squad members recover <span style='color:#2bad00;font-weight:bold;'>20</span> Energy and have their ATK increased by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 20s. This Energy gain effect can trigger once every 15s.<br>• Upon <span style='color:#ffe599;font-weight:bold;'>Stunning</span> an enemy, its <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> increases over time by <span style='color:#2bad00;font-weight:bold;'>10%</span> per second, up to a maximum increase of <span style='color:#2bad00;font-weight:bold;'>60%</span>.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -964,7 +964,7 @@
             "versionTime":"17/12/2024 - 03/01/2025",
             "versionDazeMult": 100,
             "buffName":"Anomaly Impact",
-            "buffDesc":"· Increases Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric Anomaly Buildup Rate</span> and <span style='color:#98eff0;font-weight:bold;'>Ice Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>25%</span>.<br>· When inflicting an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on an enemy, increases all squad members' CRIT DMG by <span style='color:#2bad00;font-weight:bold;'>20%</span> and <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> by <span style='color:#2bad00;font-weight:bold;'>20%</span>. Stacks up to three times and lasts for 30s. The duration of each stack is calculated separately.",
+            "buffDesc":"• Increases Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric Anomaly Buildup Rate</span> and <span style='color:#98eff0;font-weight:bold;'>Ice Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>25%</span>.<br>• When inflicting an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on an enemy, increases all squad members' CRIT DMG by <span style='color:#2bad00;font-weight:bold;'>20%</span> and <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> by <span style='color:#2bad00;font-weight:bold;'>20%</span>. Stacks up to three times and lasts for 30s. The duration of each stack is calculated separately.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -1061,7 +1061,7 @@
             "versionTime":"03/01/2025 - 17/01/2025",
             "versionDazeMult": 100,
             "buffName":"Explosive Assault",
-            "buffDesc":"· Increases Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>· When attacking an enemy in suffering an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span>, increases Agent's CRIT Rate by <span style='color:#2bad00;font-weight:bold;'>20%</span> and CRIT DMG by <span style='color:#2bad00;font-weight:bold;'>40%</span>.",
+            "buffDesc":"• Increases Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When attacking an enemy in suffering an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span>, increases Agent's CRIT Rate by <span style='color:#2bad00;font-weight:bold;'>20%</span> and CRIT DMG by <span style='color:#2bad00;font-weight:bold;'>40%</span>.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -1159,7 +1159,7 @@
             "versionTime":"17/01/2025 - 31/01/2025",
             "versionDazeMult": 100,
             "buffName":"Specialized Assist",
-            "buffDesc":"· Increases Agent <span style='color:#7e50bb;font-weight:bold;'>Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>25%</span>.<br>· When a <span style='font-weight:bold;'>Support</span> Agent uses an <span style='font-weight:bold;'>EX Special Attack</span>, <span style='font-weight:bold;'>Chain Attack</span>, or <span style='font-weight:bold;'>Ultimate</span>, increases all squad members' ATK by <span style='color:#2bad00;font-weight:bold;'>15%</span> and <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> by <span style='color:#2bad00;font-weight:bold;'>20</span> for 20s, stacking up to 2 times. The duration of each stack is calculated separately.",
+            "buffDesc":"• Increases Agent <span style='color:#7e50bb;font-weight:bold;'>Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>25%</span>.<br>• When a <span style='font-weight:bold;'>Support</span> Agent uses an <span style='font-weight:bold;'>EX Special Attack</span>, <span style='font-weight:bold;'>Chain Attack</span>, or <span style='font-weight:bold;'>Ultimate</span>, increases all squad members' ATK by <span style='color:#2bad00;font-weight:bold;'>15%</span> and <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> by <span style='color:#2bad00;font-weight:bold;'>20</span> for 20s, stacking up to 2 times. The duration of each stack is calculated separately.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -1257,7 +1257,7 @@
             "versionTime":"31/01/2025 - 14/02/2025",
             "versionDazeMult": 100,
             "buffName":"Critical Aid",
-            "buffDesc":"· The Agent's CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>· Every time the Agent casts <span style='font-weight:bold;'>Quick Assist</span>, all squad members' ATK increases by <span style='color:#2bad00;font-weight:bold;'>10%</span>, stacking up to 4 times and lasting 15s. Repeated triggers reset the duration.",
+            "buffDesc":"• The Agent's CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• Every time the Agent casts <span style='font-weight:bold;'>Quick Assist</span>, all squad members' ATK increases by <span style='color:#2bad00;font-weight:bold;'>10%</span>, stacking up to 4 times and lasting 15s. Repeated triggers reset the duration.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -1353,7 +1353,7 @@
             "versionTime":"14/02/2025 - 28/02/2025",
             "versionDazeMult": 100,
             "buffName":"Ice-Fire Synergy",
-            "buffDesc":"· The Agent's <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>· <span style='font-weight:bold;'>Chain Attack</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>. With every trigger of <span style='font-weight:bold;'>Chain Attack</span>, the Agent recovers <span style='color:#2bad00;font-weight:bold;'>10</span> Energy.",
+            "buffDesc":"• The Agent's <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• <span style='font-weight:bold;'>Chain Attack</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>. With every trigger of <span style='font-weight:bold;'>Chain Attack</span>, the Agent recovers <span style='color:#2bad00;font-weight:bold;'>10</span> Energy.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -1450,7 +1450,7 @@
             "versionTime":"28/02/2025 - 14/03/2025",
             "versionDazeMult": 100,
             "buffName":"Frightening Strike",
-            "buffDesc":"· The Agent's  <span style='color:#ffe599;font-weight:bold;'>Impact</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>· When the Agent's <span style='font-weight:bold;'>Chain Attack</span> hits the enemy, <span style='color:#5555ff;font-weight:bold;'>DEF</span> decreases by <span style='color:#2bad00;font-weight:bold;'>25%</span>, lasting 10s. Repeated triggers reset the duration.",
+            "buffDesc":"• The Agent's <span style='color:#ffe599;font-weight:bold;'>Impact</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• When the Agent's <span style='font-weight:bold;'>Chain Attack</span> hits the enemy, <span style='color:#5555ff;font-weight:bold;'>DEF</span> decreases by <span style='color:#2bad00;font-weight:bold;'>25%</span>, lasting 10s. Repeated triggers reset the duration.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -1547,7 +1547,7 @@
             "versionTime":"14/03/2025 - 28/03/2025",
             "versionDazeMult": 100,
             "buffName":"Chasing Fire and Thunder",
-            "buffDesc":"· Agent <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> and <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> are increased by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>· When an Agent hits an enemy with an <span style='font-weight:bold;'>Aftershock</span> or <span style='color:#ffe599;font-weight:bold;'>Stuns</span> an enemy, all squad members' CRIT Rate is increased by <span style='color:#2bad00;font-weight:bold;'>15%</span>, and CRIT DMG is increased by <span style='color:#2bad00;font-weight:bold;'>30%</span>, lasting for 15s. Repeated triggers reset the duration.",
+            "buffDesc":"• Agent <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> and <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> are increased by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When an Agent hits an enemy with an <span style='font-weight:bold;'>Aftershock</span> or <span style='color:#ffe599;font-weight:bold;'>Stuns</span> an enemy, all squad members' CRIT Rate is increased by <span style='color:#2bad00;font-weight:bold;'>15%</span>, and CRIT DMG is increased by <span style='color:#2bad00;font-weight:bold;'>30%</span>, lasting for 15s. Repeated triggers reset the duration.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -1645,7 +1645,7 @@
             "versionTime":"28/03/2025 - 11/04/2025",
             "versionDazeMult": 100,
             "buffName":"United in Spirit",
-            "buffDesc":"· Enemy <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> is increased by <span style='color:#2bad00;font-weight:bold;'>30%</span>.<br>· When an Agent's <span style='font-weight:bold;'>Aftershock</span> hits an enemy, the enemy's <span style='color:#ff5521;font-weight:bold;'>Fire RES</span> and <span style='color:#2eb6ff;font-weight:bold;'>Electric RES</span> are reduced by <span style='color:#2bad00;font-weight:bold;'>20%</span>, lasting for 15s. Repeated triggers reset the duration.",
+            "buffDesc":"• Enemy <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> is increased by <span style='color:#2bad00;font-weight:bold;'>30%</span>.<br>• When an Agent's <span style='font-weight:bold;'>Aftershock</span> hits an enemy, the enemy's <span style='color:#ff5521;font-weight:bold;'>Fire RES</span> and <span style='color:#2eb6ff;font-weight:bold;'>Electric RES</span> are reduced by <span style='color:#2bad00;font-weight:bold;'>20%</span>, lasting for 15s. Repeated triggers reset the duration.",
             "versionEnemies": {
               "nodes":[
                 { "sides":[
@@ -1742,7 +1742,7 @@
             "versionTime":"11/04/2025 - 25/04/2025",
             "versionDazeMult": 100,
             "buffName":"Oppressive Shackles",
-            "buffDesc":"· The damage dealt by <span style='font-weight:bold;'>Aftershocks</span> and <span style='font-weight:bold;'>EX Special Attacks</span> is increased by <span style='color:#2bad00;font-weight:bold;'>25%</span>, and <span style='color:#ffe599;font-weight:bold;'>Daze</span> is increased by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>· After the enemy is <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, their <span style='color:#ffe599;font-weight:bold;'>Stun</span> recovery speed is reduced by <span style='color:#2bad00;font-weight:bold;'>15%</span>, and the <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> dealt by Agents is increased by <span style='color:#2bad00;font-weight:bold;'>40%</span>.",
+            "buffDesc":"• The damage dealt by <span style='font-weight:bold;'>Aftershocks</span> and <span style='font-weight:bold;'>EX Special Attacks</span> is increased by <span style='color:#2bad00;font-weight:bold;'>25%</span>, and <span style='color:#ffe599;font-weight:bold;'>Daze</span> is increased by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• After the enemy is <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, their <span style='color:#ffe599;font-weight:bold;'>Stun</span> recovery speed is reduced by <span style='color:#2bad00;font-weight:bold;'>15%</span>, and the <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> dealt by Agents is increased by <span style='color:#2bad00;font-weight:bold;'>40%</span>.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -1839,7 +1839,7 @@
             "versionTime":"25/04/2025 - 09/05/2025",
             "versionDazeMult": 100,
             "buffName":"The Sound of Change",
-            "buffDesc":"· Agent <span style='color:#fe437e;font-weight:bold;'>Ether Anomaly Buildup Rate</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical Anomaly Buildup Rate</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>· After <span style='color:#ffe599;font-weight:bold;'>Stunning</span> or inflicting an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on an enemy, the Agent generates <span style='color:#2bad00;font-weight:bold;'>20</span> Energy. The Energy Generation effect can trigger once every 20s and all squad members' ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 15s. Repeated triggers reset the duration.",
+            "buffDesc":"• Agent <span style='color:#fe437e;font-weight:bold;'>Ether Anomaly Buildup Rate</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical Anomaly Buildup Rate</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• After <span style='color:#ffe599;font-weight:bold;'>Stunning</span> or inflicting an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on an enemy, the Agent generates <span style='color:#2bad00;font-weight:bold;'>20</span> Energy. The Energy Generation effect can trigger once every 20s and all squad members' ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 15s. Repeated triggers reset the duration.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -1936,7 +1936,7 @@
             "versionTime":"09/05/2025 - 23/05/2025",
             "versionDazeMult": 100,
             "buffName":"Majestic Frost",
-            "buffDesc":"· <span style='font-weight:bold;'>EX Special Attack</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>· After <span style='color:#ffe599;font-weight:bold;'>Stunning</span> or inflicting an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on an enemy, all squad members' <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>35%</span> for 15s. Repeated triggers reset the duration.",
+            "buffDesc":"• <span style='font-weight:bold;'>EX Special Attack</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• After <span style='color:#ffe599;font-weight:bold;'>Stunning</span> or inflicting an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on an enemy, all squad members' <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>35%</span> for 15s. Repeated triggers reset the duration.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -2030,7 +2030,7 @@
             "versionTime":"23/05/2025 - 06/06/2025",
             "versionDazeMult": 100,
             "buffName":"Mountain Strike",
-            "buffDesc":"· Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>10%</span>, and enemy <span style='color:#ffe599;font-weight:bold;'>Stun</span> recovery speed is reduced by <span style='color:#2bad00;font-weight:bold;'>10%</span>. When inflicting an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on the enemy, if the enemy is not <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, <span style='color:#2bad00;font-weight:bold;'>10%</span> <span style='color:#ffe599;font-weight:bold;'>Daze</span> will be directly accumulated.<br>· Agents with the <span style='font-weight:bold;'>Attack</span> specialty deal <span style='color:#2bad00;font-weight:bold;'>30%</span> more damage to enemies with <span style='font-weight:bold;'>Ultimate</span> and <span style='font-weight:bold;'>EX Special Attacks</span>, and if the enemy is <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, the attack's CRIT DMG is further increased by <span style='color:#2bad00;font-weight:bold;'>60%</span>.",
+            "buffDesc":"• Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>10%</span>, and enemy <span style='color:#ffe599;font-weight:bold;'>Stun</span> recovery speed is reduced by <span style='color:#2bad00;font-weight:bold;'>10%</span>. When inflicting an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on the enemy, if the enemy is not <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, <span style='color:#2bad00;font-weight:bold;'>10%</span> <span style='color:#ffe599;font-weight:bold;'>Daze</span> will be directly accumulated.<br>• Agents with the <span style='font-weight:bold;'>Attack</span> specialty deal <span style='color:#2bad00;font-weight:bold;'>30%</span> more damage to enemies with <span style='font-weight:bold;'>Ultimate</span> and <span style='font-weight:bold;'>EX Special Attacks</span>, and if the enemy is <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, the attack's CRIT DMG is further increased by <span style='color:#2bad00;font-weight:bold;'>60%</span>.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -2126,7 +2126,7 @@
             "versionTime":"06/06/2025 - 20/06/2025",
             "versionDazeMult": 100,
             "buffName":"Frosty Lance, Phantom Thorn",
-            "buffDesc":"· Agent Max HP increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>· When an Agent activates <span style='font-weight:bold;'>Quick Assist</span> or <span style='font-weight:bold;'>Ultimate</span>, their <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, lasting 20s, repeated triggers reset the duration.",
+            "buffDesc":"• Agent Max HP increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When an Agent activates <span style='font-weight:bold;'>Quick Assist</span> or <span style='font-weight:bold;'>Ultimate</span>, their <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, lasting 20s, repeated triggers reset the duration.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -2219,7 +2219,7 @@
             "versionTime":"20/06/2025 - 04/07/2025",
             "versionDazeMult": 100,
             "buffName":"Tiger's Roaring Gale",
-            "buffDesc":"· Agent <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, Energy and Adrenaline Generation Rate increase by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>· When enemies are <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, the whole squad recovers <span style='color:#2bad00;font-weight:bold;'>600</span> Decibels, and their <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> and <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 20s. The Decibel generation effect can trigger once every 20 seconds.",
+            "buffDesc":"• Agent <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, Energy and Adrenaline Generation Rate increase by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• When enemies are <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, the whole squad recovers <span style='color:#2bad00;font-weight:bold;'>600</span> Decibels, and their <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> and <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 20s. The Decibel generation effect can trigger once every 20 seconds.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -2329,7 +2329,7 @@
             "versionTime":"04/07/2025 - 18/07/2025",
             "versionDazeMult": 100,
             "buffName":"Blazing and Radiant Strike",
-            "buffDesc":"· Agents' <span style='color:#ffe599;font-weight:bold;'>Daze</span> dealt increases by <span style='color:#2bad00;font-weight:bold;'>10%</span>, <span style='font-weight:bold;'>Ultimate</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>.<br>· When enemies are <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, the whole squad's <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span> and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 25s, repeated triggers reset the duration.",
+            "buffDesc":"• Agents' <span style='color:#ffe599;font-weight:bold;'>Daze</span> dealt increases by <span style='color:#2bad00;font-weight:bold;'>10%</span>, <span style='font-weight:bold;'>Ultimate</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>.<br>• When enemies are <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, the whole squad's <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span> and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 25s, repeated triggers reset the duration.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -2439,7 +2439,7 @@
             "versionTime":"18/07/2025 - 01/08/2025",
             "versionDazeMult": 100,
             "buffName":"Peculiar Bloom",
-            "buffDesc":"· Agent CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> increases by <span style='color:#2bad00;font-weight:bold;'>40</span> points.<br>· After an Agent with <span style='font-weight:bold;'>Support</span> specialty uses their <span style='font-weight:bold;'>EX Special Attack</span> or <span style='font-weight:bold;'>Aftershock</span>, the whole squad's ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> and their <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>30%</span> for 15s. Repeated triggers reset the duration.",
+            "buffDesc":"• Agent CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> increases by <span style='color:#2bad00;font-weight:bold;'>40</span> points.<br>• After an Agent with <span style='font-weight:bold;'>Support</span> specialty uses their <span style='font-weight:bold;'>EX Special Attack</span> or <span style='font-weight:bold;'>Aftershock</span>, the whole squad's ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> and their <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>30%</span> for 15s. Repeated triggers reset the duration.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -2533,7 +2533,7 @@
             "versionTime":"01/08/2025 - 15/08/2025",
             "versionDazeMult": 100,
             "buffName":"Lone Blade's Pride",
-            "buffDesc":"· Enemy <span style='color:#fe437e;font-weight:bold;'>Ether RES</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical RES</span> drop by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>· After using <span style='font-weight:bold;'>EX Special Attack</span> or <span style='font-weight:bold;'>Chain Attack</span>, for Agents, <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 20s. Repeated triggers refresh duration.",
+            "buffDesc":"• Enemy <span style='color:#fe437e;font-weight:bold;'>Ether RES</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical RES</span> drop by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• After using <span style='font-weight:bold;'>EX Special Attack</span> or <span style='font-weight:bold;'>Chain Attack</span>, for Agents, <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 20s. Repeated triggers refresh duration.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -2642,7 +2642,7 @@
             "versionTime":"15/08/2025 - 29/08/2025",
             "versionDazeMult": 100,
             "buffName":"Shock and Thunder",
-            "buffDesc":"· For Agents, <span style='color:#2eb6ff;font-weight:bold;'>Electric Anomaly Buildup Rate</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical Anomaly Buildup Rate</span> increase by <span style='color:#2bad00;font-weight:bold;'>15%</span>, while ATK increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>· When hitting enemies affected by <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span>, Agents ignore <span style='color:#2bad00;font-weight:bold;'>15%</span> of their <span style='color:#5555ff;font-weight:bold;'>DEF</span> and deal <span style='color:#2bad00;font-weight:bold;'>20%</span> bonus DMG.",
+            "buffDesc":"• For Agents, <span style='color:#2eb6ff;font-weight:bold;'>Electric Anomaly Buildup Rate</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical Anomaly Buildup Rate</span> increase by <span style='color:#2bad00;font-weight:bold;'>15%</span>, while ATK increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• When hitting enemies affected by <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span>, Agents ignore <span style='color:#2bad00;font-weight:bold;'>15%</span> of their <span style='color:#5555ff;font-weight:bold;'>DEF</span> and deal <span style='color:#2bad00;font-weight:bold;'>20%</span> bonus DMG.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -2750,7 +2750,7 @@
             "versionTime":"29/08/2025 - 12/09/2025",
             "versionDazeMult": 100,
             "buffName":"Thunderslap",
-            "buffDesc":"· Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>, while <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> increases by <span style='color:#2bad00;font-weight:bold;'>40</span>.<br>· Upon hitting an enemy with a <span style='font-weight:bold;'>Basic Attack</span>, <span style='font-weight:bold;'>EX Special Attack</span>, or <span style='font-weight:bold;'>Ultimate</span>, DMG dealt increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.",
+            "buffDesc":"• Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>, while <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> increases by <span style='color:#2bad00;font-weight:bold;'>40</span>.<br>• Upon hitting an enemy with a <span style='font-weight:bold;'>Basic Attack</span>, <span style='font-weight:bold;'>EX Special Attack</span>, or <span style='font-weight:bold;'>Ultimate</span>, DMG dealt increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -2861,7 +2861,7 @@
             "versionTime":"12/09/2025 - 26/09/2025",
             "versionDazeMult": 100,
             "buffName":"Harmony of Strings",
-            "buffDesc":"· <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> from Agents increase by <span style='color:#2bad00;font-weight:bold;'>30%</span>. Their <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>.<br>· When there are 1/2 Agents with <span style='font-weight:bold;'>Attack</span> specialty in the squad, ATK increases by <span style='color:#2bad00;font-weight:bold;'>10%/25%</span> for all squad members.",
+            "buffDesc":"• <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> from Agents increase by <span style='color:#2bad00;font-weight:bold;'>30%</span>. Their <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>.<br>• When there are 1/2 Agents with <span style='font-weight:bold;'>Attack</span> specialty in the squad, ATK increases by <span style='color:#2bad00;font-weight:bold;'>10%/25%</span> for all squad members.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -2970,7 +2970,7 @@
             "versionTime":"26/09/2025 - 10/10/2025",
             "versionDazeMult": 100,
             "buffName":"Frosty Fire",
-            "buffDesc":"· When there are 1/2 Agents with <span style='font-weight:bold;'>Attack</span> specialty in the squad, Agents ignore <span style='color:#2bad00;font-weight:bold;'>10%/20%</span> of all DMG RES when hitting enemies.<br>· After <span style='font-weight:bold;'>Aftershock</span> hits, Agents' CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>60%</span> for 10s. Repeated triggers refresh the duration.",
+            "buffDesc":"• When there are 1/2 Agents with <span style='font-weight:bold;'>Attack</span> specialty in the squad, Agents ignore <span style='color:#2bad00;font-weight:bold;'>10%/20%</span> of all DMG RES when hitting enemies.<br>• After <span style='font-weight:bold;'>Aftershock</span> hits, Agents' CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>60%</span> for 10s. Repeated triggers refresh the duration.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -3065,7 +3065,7 @@
             "versionTime":"10/10/2025 - 24/10/2025",
             "versionDazeMult": 100,
             "buffName":"Cruising Shark in Red",
-            "buffDesc":"· Agents' <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>. <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>· When <span style='font-weight:bold;'>Aftershock</span> or <span style='font-weight:bold;'>Ultimate</span> hits enemies, Agents with <span style='font-weight:bold;'>Attack</span> or <span style='font-weight:bold;'>Rupture</span> specialty gain <span style='color:#2bad00;font-weight:bold;'>50%</span> CRIT DMG for 15 seconds. Repeated triggers refresh the duration.",
+            "buffDesc":"• Agents' <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>. <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When <span style='font-weight:bold;'>Aftershock</span> or <span style='font-weight:bold;'>Ultimate</span> hits enemies, Agents with <span style='font-weight:bold;'>Attack</span> or <span style='font-weight:bold;'>Rupture</span> specialty gain <span style='color:#2bad00;font-weight:bold;'>50%</span> CRIT DMG for 15 seconds. Repeated triggers refresh the duration.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -3160,7 +3160,7 @@
             "versionTime":"xx/xx/2025 - xx/xx/2025",
             "versionDazeMult": 100,
             "buffName":"TBD",
-            "buffDesc":"· Agent Max HP increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> and <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>· When an Agent with <span style='font-weight:bold;'>Support</span> specialty uses <span style='font-weight:bold;'>EX Special Attack</span>, the whole squad's <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> and ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, lasting 20s, repeated triggers reset the duration.",
+            "buffDesc":"• Agent Max HP increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> and <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When an Agent with <span style='font-weight:bold;'>Support</span> specialty uses <span style='font-weight:bold;'>EX Special Attack</span>, the whole squad's <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> and ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, lasting 20s, repeated triggers reset the duration.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -3211,7 +3211,7 @@
                   },
                   { "sideHPMult": 676.77, "sideElementMult":[1.2, 1.0, 1.0, 0.8, 1.2], "waves":[
                     { "enemies":[ {"id":"10020", "type":1, "hp":386364, "mult": null, "count":2}, {"id":"10021", "type":1, "hp":386364, "mult": null, "count":2} ] },
-                    { "enemies":[ {"id":"23100", "type":1, "hp":2792624, "mult": null, "count":1} ] },
+                    { "enemies":[ {"id":"23102", "type":1, "hp":2792624, "mult": null, "count":1} ] },
                     { "enemies":[ {"id":"10124", "type":1, "hp":2301579, "mult": null, "count":1}, {"id":"10122", "type":1, "hp":2068579, "mult": null, "count":1} ] } ]
                   }]
                 },
@@ -3223,7 +3223,7 @@
                   },
                   { "sideHPMult": 1558.19, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.2], "waves":[
                     { "enemies":[ {"id":"12000", "type":1, "hp":1086133, "mult": null, "count":3}, {"id":"12002", "type":1, "hp":1086133, "mult": null, "count":2} ] },
-                    { "enemies":[ {"id":"23101", "type":1, "hp":10283829, "mult": null, "count":1} ] },
+                    { "enemies":[ {"id":"23103", "type":1, "hp":10283829, "mult": null, "count":1} ] },
                     { "enemies":[ {"id":"10132", "type":1, "hp":5867557, "mult": null, "count":1}, {"id":"10113", "type":1, "hp":5273556, "mult": null, "count":1} ] } ]
                   }]
                 },
@@ -3254,7 +3254,7 @@
             "versionTime":"xx/xx/2025 - xx/xx/2025",
             "versionDazeMult": 100,
             "buffName":"TBD",
-            "buffDesc":"· Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>· While Agents are in an Ether Veil, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span> and <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>. These buffs are removed when exiting Ether Veil.",
+            "buffDesc":"• Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• While Agents are in an Ether Veil, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span> and <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>. These buffs are removed when exiting Ether Veil.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
@@ -3307,7 +3307,7 @@
                   {
                     "sideHPMult": 676.77, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.2], "waves":[
                     { "enemies":[ {"id":"12000", "type":1, "hp":426041, "mult": null, "count":3}, {"id":"12002", "type":1, "hp":426041, "mult": null, "count":2} ] },
-                    { "enemies":[ {"id":"23101", "type":1, "hp":4033883, "mult": null, "count":1} ] },
+                    { "enemies":[ {"id":"23103", "type":1, "hp":4033883, "mult": null, "count":1} ] },
                     { "enemies":[ {"id":"10132", "type":1, "hp":2301579, "mult": null, "count":1}, {"id":"10113", "type":1, "hp":2068579, "mult": null, "count":1} ] }
                     ]
                   },
@@ -3321,7 +3321,7 @@
                 { "sides":[
                   { "sideHPMult": 1558.19, "sideElementMult":[1.2, 1.0, 1.0, 0.8, 1.2], "waves":[
                     { "enemies":[ {"id":"10020", "type":1, "hp":984981, "mult": null, "count":2}, {"id":"10021", "type":1, "hp":984981, "mult": null, "count":2} ] },
-                    { "enemies":[ {"id":"23100", "type":1, "hp":7119408, "mult": null, "count":1} ] },
+                    { "enemies":[ {"id":"23102", "type":1, "hp":7119408, "mult": null, "count":1} ] },
                     { "enemies":[ {"id":"10124", "type":1, "hp":5867557, "mult": null, "count":1}, {"id":"10122", "type":1, "hp":5273556, "mult": null, "count":1} ] }
                     ]
                   },
@@ -3335,7 +3335,7 @@
                 },
                 { "sides":[
                   { "sideHPMult": 1457.21, "sideElementMult":[1.0, 1.0, 1.0, 0.8, 1.2], "waves":[
-                    { "enemies":[ {"id":"23101", "type":0, "hp":9627419, "mult": null, "count":1}, {"id":"23100", "type":0, "hp":6665243, "mult": null, "count":1} ] }
+                    { "enemies":[ {"id":"23103", "type":0, "hp":9627419, "mult": null, "count":1}, {"id":"23102", "type":0, "hp":6665243, "mult": null, "count":1} ] }
                     ]
                   },
                   { "sideHPMult": 1633.84, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
@@ -3362,13 +3362,13 @@
             "versionTime":"xx/xx/2025 - xx/xx/2025",
             "versionDazeMult": 100,
             "buffName":"TBD",
-            "buffDesc":"· <span style='font-weight:bold;'>Stun</span> specialty Agent <span style='color:#ffe599;font-weight:bold;'>Daze</span> dealt increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>· Agent <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>50%</span> when attacking <span style='color:#ffe599;font-weight:bold;'>Stunned</span> enemies.",
+            "buffDesc":"• <span style='font-weight:bold;'>Stun</span> specialty Agent <span style='color:#ffe599;font-weight:bold;'>Daze</span> dealt increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• Agent <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>50%</span> when attacking <span style='color:#ffe599;font-weight:bold;'>Stunned</span> enemies.",
             "versionEnemies": { 
               "nodes":[
                 { "sides":[
                   { "sideHPMult": 458.69, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.2], "waves":[
                     { "enemies":[ {"id":"10002", "type":1, "hp":202350, "mult": null, "count":2}, {"id":"10011", "type":1, "hp":202350, "mult": null, "count":3} ] },
-                    { "enemies":[ {"id":"23101", "type":0, "hp":2039564, "mult": null, "count":1} ] },
+                    { "enemies":[ {"id":"23103", "type":0, "hp":2039564, "mult": null, "count":1} ] },
                     { "enemies":[ {"id":"10113", "type":0, "hp":1045942, "mult": null, "count":1}, {"id":"10117", "type":0, "hp":868056, "mult": null, "count":1} ] }
                     ]
                   },
@@ -3399,7 +3399,7 @@
                   { "sideHPMult": 652.79, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.2], "waves":[
                     { "enemies":[ {"id":"10020", "type":1, "hp":365683, "mult": null, "count":2}, {"id":"10021", "type":1, "hp":365683, "mult": null, "count":2} ] },
                     { "enemies":[ {"id":"10107", "type":1, "hp":1957858, "mult": null, "count":1} ] },
-                    { "enemies":[ {"id":"23100", "type":1, "hp":2643148, "mult": null, "count":1} ] }
+                    { "enemies":[ {"id":"23102", "type":1, "hp":2643148, "mult": null, "count":1} ] }
                     ]
                   },
                   { "sideHPMult": 652.79, "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
@@ -3428,7 +3428,7 @@
                   { "sideHPMult": 1558.19, "sideElementMult":[1.0, 1.0, 1.0, 0.8, 1.2], "waves":[
                     { "enemies":[ {"id":"10020", "type":1, "hp":984981, "mult": null, "count":2}, {"id":"10021", "type":1, "hp":984981, "mult": null, "count":2} ] },
                     { "enemies":[ {"id":"10110", "type":1, "hp":6267145, "mult": null, "count":1} ] },
-                    { "enemies":[ {"id":"23101", "type":0, "hp":9928002, "mult": null, "count":1}, {"id":"23100", "type":0, "hp":6873342, "mult": null, "count":1} ] }
+                    { "enemies":[ {"id":"23103", "type":0, "hp":9928002, "mult": null, "count":1}, {"id":"23102", "type":0, "hp":6873342, "mult": null, "count":1} ] }
                     ]
                   },
                   { "sideHPMult": 1558.19, "sideElementMult":[1.0, 0.8, 1.0, 1.2, 0.8], "waves":[

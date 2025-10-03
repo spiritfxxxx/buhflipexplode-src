@@ -318,12 +318,12 @@ function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
 /* load last saved page location + settings */
 /* !!!!!!!!!!!!!!!!!! DEFAULT TO LATEST SHIYU 7 !!!!!!!!!!!!!!!!!! */
 function loadSavedState() {
-  versionNum = parseInt(localStorage.getItem("lastShiyuVersion") || `${cntNoLeaks}`);
+  if (localStorage.getItem("leaksEnabled") == "true") leaksToggle.checked = true;
+  if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
+  versionNum = leaksToggle.checked ? parseInt(localStorage.getItem("lastShiyuVersion") || `${cntNoLeaks}`) : cntNoLeaks;
   nodeNum = parseInt(localStorage.getItem("lastShiyuNode") || "7");
   chartNodeNum = parseInt(localStorage.getItem("lastShiyuChartNode") || "7");
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
-  if (localStorage.getItem("leaksEnabled") == "true") leaksToggle.checked = true;
-  if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
 }
 
 /* save current page location + settings */

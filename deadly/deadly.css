@@ -214,7 +214,7 @@ body.no-scroll {
 }
 /* enemy hover image */
 .e-hover {
-  max-height: 216px;
+  max-height: 210px;
   display: block;
   position: relative;
 }
@@ -788,9 +788,8 @@ input:checked + #st {
 }
 @media (max-width: 1000px) {
   #b { flex-direction: column; }
-  #v-hp { flex-direction: column; }
+  #v-hp{ width: 60vw; margin: 15px auto; }
   #b, .esd { min-height: 0px; }
-  #v-hp-alt { margin-top: 15px; }
   #s { flex-direction: column; }
   #s2, #s3 { margin-top: 20px; }
 }
@@ -808,4 +807,8 @@ input:checked + #st {
   #da { margin-top: 50px; }
   .tt-v-hp .tt-text { top: -300%; left: 50%; width: 120px; height: 37.5px; }
   .tt-v-hp .tt-text::after { top: 100%; left: 50%; border-color: #444444 transparent transparent transparent; }
+}
+@media (max-width:300px){
+  #v-hp{ width: 45vw; flex-direction: column; }
+  #v-hp-alt{ margin-top: 15px; }
 }

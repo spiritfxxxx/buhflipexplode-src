@@ -204,7 +204,7 @@ body.no-scroll {
   flex-direction: column;
 }
 .w-e {
-  padding: 5px;
+  padding: 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -754,7 +754,7 @@ input:checked + #st {
 .tt-e-hp .tt-text{
   white-space: nowrap;
   width: auto;
-  bottom: 110%;
+  bottom: 100%;
   left: 50%;
 }
 .tt-n-hp .tt-text {
@@ -807,6 +807,7 @@ input:checked + #st {
   .vg-c { width: 150px; }
   #c-x-bar { width: 100vw; }
   #c { width: 100%; }
+  .w-e { row-gap: 15px; }
 }
 @media (max-width: 500px) {
   .vg-c { width: 250px; }

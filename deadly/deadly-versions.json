@@ -1,7 +1,7 @@
 {
 
   "1.4.1":{ "versionName":"1.4 Phase 1",
-            "versionTime":"20/12/24 - 10/01/25",
+            "versionTime":"20/12/2024 - 10/01/2025",
             "versionAnomMult": 100,
             "buffNames": ["Spirit Break", "Swift Resolution", "Interrupt"],
             "versionEnemies": [ {"id": "14402", "type": 0, "hp": 76362803}, {"id": "12400", "type": 0, "hp": 58395085}, {"id": "14400", "type": 1, "hp": 58049652} ]
@@ -148,21 +148,21 @@
           },
 
   "2.3.1":{ "versionName":"2.3 Phase 1",
-            "versionTime":"xx/xx/2025 - xx/xx/2025",
+            "versionTime":"17/10/2025 - 31/10/2025",
             "versionAnomMult": 110,
             "buffNames": ["Pinnacle", "Dream Delusion", "Combined Attack"],
             "versionEnemies": [ {"id": "20400", "type": 1, "hp": 114213400}, {"id": "22400", "type": 1, "hp": 109630345}, {"id": "15400", "type": 1, "hp": 136567620} ]
           },
 
   "2.3.2":{ "versionName":"2.3 Phase 2",
-            "versionTime":"xx/xx/2025 - xx/xx/2025",
+            "versionTime":"31/10/2025 - 14/11/2025",
             "versionAnomMult": 110,
             "buffNames": ["Pinnacle", "Dream Delusion", "Combined Attack"],
             "versionEnemies": [ {"id": "23400", "type": 1, "hp": 120421465}, {"id": "21400", "type": 1, "hp": 134639458}, {"id": "22400", "type": 1, "hp": 109630345} ]
           },
 
   "2.3.3":{ "versionName":"2.3 Phase 3",
-            "versionTime":"xx/xx/2025 - xx/xx/2025",
+            "versionTime":"14/11/2025 - 28/11/2025",
             "versionAnomMult": 110,
             "buffNames": ["Interrupt", "Gathering Point", "Raging Waves"],
             "versionEnemies": [ {"id": "23400", "type": 1, "hp": 120421465}, {"id": "14403", "type": 1, "hp": 112657976}, {"id": "20400", "type": 1, "hp": 114213400} ]

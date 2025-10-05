@@ -40,6 +40,7 @@ body.no-scroll {
   text-align: center;
 }
 .text img {
+  margin-top: -4px;
   vertical-align: middle;
 }
 .small-image {

@@ -3157,7 +3157,7 @@
           },
  
   "2.3.1":{ "versionName":"2.3 Phase 1",
-            "versionTime":"xx/xx/2025 - xx/xx/2025",
+            "versionTime":"24/10/2025 - 07/11/2025",
             "versionDazeMult": 100,
             "buffName":"TBD",
             "buffDesc":"• Agent Max HP increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> and <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When an Agent with <span style='font-weight:bold;'>Support</span> specialty uses <span style='font-weight:bold;'>EX Special Attack</span>, the whole squad's <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> and ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, lasting 20s, repeated triggers reset the duration.",
@@ -3221,10 +3221,9 @@
                     { "enemies":[ {"id":"12105", "type":1, "hp":7331756, "mult": null, "count":1} ] },
                     { "enemies":[ {"id":"12103", "type":1, "hp":7851866, "mult": null, "count":1}, {"id":"12104", "type":0, "hp":7105060, "mult": null, "count":1} ] } ]
                   },
-                  { "sideHPMult": 1558.19, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.2], "waves":[
+                  { "sideHPMult": 1558.19, "sideElementMult":[1.0, 1.0, 1.0, 0.8, 1.2], "waves":[
                     { "enemies":[ {"id":"12000", "type":1, "hp":1086133, "mult": null, "count":3}, {"id":"12002", "type":1, "hp":1086133, "mult": null, "count":2} ] },
-                    { "enemies":[ {"id":"23103", "type":1, "hp":10283829, "mult": null, "count":1} ] },
-                    { "enemies":[ {"id":"10132", "type":1, "hp":5867557, "mult": null, "count":1}, {"id":"10113", "type":1, "hp":5273556, "mult": null, "count":1} ] } ]
+                    { "enemies":[ {"id":"23103", "type":1, "hp":10283829, "mult": null, "count":1} ] } ]
                   }]
                 },
                 { "sides":[
@@ -3251,7 +3250,7 @@
           },
  
   "2.3.2":{ "versionName":"2.3 Phase 2",
-            "versionTime":"xx/xx/2025 - xx/xx/2025",
+            "versionTime":"07/11/2025 - 21/11/2025",
             "versionDazeMult": 100,
             "buffName":"TBD",
             "buffDesc":"• Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• While Agents are in an Ether Veil, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span> and <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>. These buffs are removed when exiting Ether Veil.",
@@ -3305,10 +3304,9 @@
                 },
                 { "sides":[
                   {
-                    "sideHPMult": 676.77, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.2], "waves":[
+                    "sideHPMult": 676.77, "sideElementMult":[1.0, 1.0, 1.0, 0.8, 1.2], "waves":[
                     { "enemies":[ {"id":"12000", "type":1, "hp":426041, "mult": null, "count":3}, {"id":"12002", "type":1, "hp":426041, "mult": null, "count":2} ] },
-                    { "enemies":[ {"id":"23103", "type":1, "hp":4033883, "mult": null, "count":1} ] },
-                    { "enemies":[ {"id":"10132", "type":1, "hp":2301579, "mult": null, "count":1}, {"id":"10113", "type":1, "hp":2068579, "mult": null, "count":1} ] }
+                    { "enemies":[ {"id":"23103", "type":1, "hp":4033883, "mult": null, "count":1} ] }
                     ]
                   },
                   { "sideHPMult": 676.77, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
@@ -3359,7 +3357,7 @@
           },
  
   "2.3.3":{ "versionName":"2.3 Phase 3",
-            "versionTime":"xx/xx/2025 - xx/xx/2025",
+            "versionTime":"21/11/2025 - 05/12/2025",
             "versionDazeMult": 100,
             "buffName":"TBD",
             "buffDesc":"• <span style='font-weight:bold;'>Stun</span> specialty Agent <span style='color:#ffe599;font-weight:bold;'>Daze</span> dealt increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• Agent <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>50%</span> when attacking <span style='color:#ffe599;font-weight:bold;'>Stunned</span> enemies.",
@@ -3426,14 +3424,12 @@
                 },
                 { "sides":[
                   { "sideHPMult": 1558.19, "sideElementMult":[1.0, 1.0, 1.0, 0.8, 1.2], "waves":[
-                    { "enemies":[ {"id":"10020", "type":1, "hp":984981, "mult": null, "count":2}, {"id":"10021", "type":1, "hp":984981, "mult": null, "count":2} ] },
-                    { "enemies":[ {"id":"10110", "type":1, "hp":6267145, "mult": null, "count":1} ] },
+                    { "enemies":[ {"id":"10020", "type":1, "hp":984981, "mult": null, "count":2} ] },
                     { "enemies":[ {"id":"23103", "type":0, "hp":9928002, "mult": null, "count":1}, {"id":"23102", "type":0, "hp":6873342, "mult": null, "count":1} ] }
                     ]
                   },
                   { "sideHPMult": 1558.19, "sideElementMult":[1.0, 0.8, 1.0, 1.2, 0.8], "waves":[
                     { "enemies":[ {"id":"10015", "type":0, "hp":805632, "mult": null, "count":2}, {"id":"10022", "type":0, "hp":805632, "mult": null, "count":2} ] },
-                    { "enemies":[ {"id":"10119", "type":1, "hp":4909120, "mult": null, "count":1} ] },
                     { "enemies":[ {"id":"10116", "type":1, "hp":6267145, "mult": null, "count":1}, {"id":"10126", "type":1, "hp":5273556, "mult": null, "count":1} ] }
                     ]
                   }]

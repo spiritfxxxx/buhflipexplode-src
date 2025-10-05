@@ -283,7 +283,7 @@ function generateWR(mult, wr) {
 function hitch(hp) {
   return `<span style="font-weight:bold;text-decoration:underline;">Hitchspiker</span><br>
           True <span style="color:#ff5555;font-weight:bold;">Raw HP</span>: <span style="color:#ff5555;font-weight:bold;">${numberFormat(hp)}</span><br><br>
-          technically doesn't need to be killed`;
+          technically doesn't<br>need to be killed`;
 }
 function palicus(hp) {
   return `<span style="font-weight:bold;text-decoration:underline;">Palicus</span><br>

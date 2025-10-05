@@ -185,12 +185,12 @@ body.no-scroll {
 
 /* wave's enemies in a row */
 .e {
-  padding: 5px;
+  padding: 15px;
   display: block;
   position: relative;
 }
 .e-img {
-  height: 180px;
+  height: 210px;
   transition: opacity 0.1s ease-in-out;
   user-select: none;
 }
@@ -255,7 +255,7 @@ body.no-scroll {
 
 /* enemy stage info */
 .esd {
-  margin-top: 140px;
+  margin-top: 125px;
   min-height: 480px;
   gap: 10px;
   padding: 20px;
@@ -682,8 +682,8 @@ input:checked + #st {
   position: absolute;
   font-weight: normal;
   font-size: 48px;
-  top: -32px;
-  right: 126px;
+  top: -22px;
+  right: 157px;
   user-select: none;
 }
 .tt-e-stat {
@@ -735,7 +735,7 @@ input:checked + #st {
 .tt-e-hp .tt-text{
   white-space: nowrap;
   width: auto;
-  bottom: 110%;
+  bottom: 95%;
   left: 50%;
 }
 .tt-v-hp .tt-text {

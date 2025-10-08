@@ -18,8 +18,8 @@ let menuIsOpen = false, versionSelectorIsOpen = false, chartIsOpen = false;
 
 /* load main page data from .json files, and display */
 async function loadShiyuPage() {
-  versionData = await (await fetch("shiyu-versions.json")).json();
-  enemyData = await (await fetch("shiyu-enemies.json")).json();
+  versionData = await (await fetch("sd-versions.json")).json();
+  enemyData = await (await fetch("sd-enemies.json")).json();
   versionIDs = Object.keys(versionData);
   hpData = await buildHPData(versionIDs, enemyData);
   loadSavedState();
@@ -107,6 +107,7 @@ function showEnemies() {
   for (let s = 1; s <= 2; ++s) {
     let side = s == 1 ? side1 : side2;
     let currSide = currNode.sides[s - 1];
+    let sideHPMult = null;
 
     /* add side x-x LvXX title */
     let sideHeader = document.createElement("div");
@@ -116,16 +117,12 @@ function showEnemies() {
     /* add side supposed equal HP multiplier */
     let combHPMult = document.createElement("div");
     combHPMult.className = "s-hp-daze-anom-mult";
-    combHPMult.innerHTML = `HP: <span style="color:#ff5555;">${currSide.sideHPMult}%</span> | Daze: <span style="color:#ffe599;">${versionDazeMult}%</span>`;
-    sideHeader.appendChild(combHPMult);
 
     /* add side combined weaknesses/resistances */
     let combWR = document.createElement("div");
     let currSideElementMult = currSide.sideElementMult;
     combWR.className = "wr";
     generateWR(currSideElementMult, combWR);
-    sideHeader.appendChild(combWR);
-    side.appendChild(sideHeader);
 
     /* loop side's waves */
     for (let w = 1; w <= currSide.waves.length; ++w) {
@@ -155,16 +152,26 @@ function showEnemies() {
         let eMods = currEnemyData.mods;
         let showEnemySpoilers = spoilersToggle.checked || !eTags.includes("spoiler");
         let eName = showEnemySpoilers ? currEnemyData.name : "SPOILER ENEMY";
-        let eImg = showEnemySpoilers ? `shiyu-images/${currEnemyData.image}.webp` : `shiyu-images/doppelganger-i.webp`;
+        let eImg = showEnemySpoilers ? `sd-enemies-img/${currEnemyData.image}.webp` : `sd-enemies-img/doppelganger-i.webp`;
 
         /* define current enemy's various stats */
         let eHP = currEnemy.hp;
+        let eHPMult = Math.round(eHP / currEnemyData.baseHP[currEnemyType] / nodeHPMult[nodeNum - 1] * 10000) / 100;
         let eDef = currEnemyData.baseDef / 50 * nodeDefMult[nodeNum - 1];
         let eDaze = currEnemyData.baseDaze[currEnemyType] * nodeDazeMult[nodeNum - 1];
         let eStunMult = currEnemyData.stunMult;
         let eStunTime = currEnemyData.stunTime;
         let eAnom = currEnemyData.baseAnom;
         let eElementMult = currEnemyData.elementMult;
+
+        /* finish adding side header */
+        if (sideHPMult == null && currEnemyID != "10213") {
+          combHPMult.innerHTML = `HP: <span style="color:#ff5555;">${eHPMult}%</span> | Daze: <span style="color:#ffe599;">${versionDazeMult}%</span>`;
+          sideHeader.appendChild(combHPMult);
+          sideHeader.appendChild(combWR);
+          side.appendChild(sideHeader);
+          sideHPMult = eHPMult;
+        }
 
         /* loop each enemy appearance */ 
         for (let cnt = 1; cnt <= currEnemy.count; ++cnt) {
@@ -213,11 +220,11 @@ function showEnemies() {
           }
           enemy.appendChild(enemyHP);
 
-          /* add enemy specific HP multiplier (if no match side HP multiplier) */
-          if (currEnemy.mult) {
+          /* add enemy specific HP multiplier (if no match side HP multiplier or dullahan) */
+          if (sideHPMult != eHPMult || currEnemyID == "10213") {
             let specificHPMult = document.createElement("div");
             specificHPMult.className = "e-hp-mult";
-            specificHPMult.innerHTML = `[${currEnemy.mult}%]`;
+            specificHPMult.innerHTML = `[${eHPMult}%]`;
             enemy.appendChild(specificHPMult);
           }
 
@@ -320,17 +327,17 @@ function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
 function loadSavedState() {
   if (localStorage.getItem("leaksEnabled") == "true") leaksToggle.checked = true;
   if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
-  versionNum = leaksToggle.checked ? parseInt(localStorage.getItem("lastShiyuVersion") || `${cntNoLeaks}`) : cntNoLeaks;
-  nodeNum = parseInt(localStorage.getItem("lastShiyuNode") || "7");
-  chartNodeNum = parseInt(localStorage.getItem("lastShiyuChartNode") || "7");
+  versionNum = leaksToggle.checked ? parseInt(localStorage.getItem("lastSDVersion") || `${cntNoLeaks}`) : cntNoLeaks;
+  nodeNum = parseInt(localStorage.getItem("lastSDNode") || "7");
+  chartNodeNum = parseInt(localStorage.getItem("lastSDChartNode") || "7");
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
 }
 
 /* save current page location + settings */
 function saveProgress() {
-  localStorage.setItem("lastShiyuVersion", versionNum);
-  localStorage.setItem("lastShiyuNode", nodeNum);
-  localStorage.setItem("lastShiyuChartNode", chartNodeNum);
+  localStorage.setItem("lastSDVersion", versionNum);
+  localStorage.setItem("lastSDNode", nodeNum);
+  localStorage.setItem("lastSDChartNode", chartNodeNum);
   localStorage.setItem("numberFormat", currNumberFormat);
   localStorage.setItem("leaksEnabled", leaksToggle.checked);
   localStorage.setItem("spoilersEnabled", spoilersToggle.checked);

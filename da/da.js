@@ -14,9 +14,9 @@ let menuIsOpen = false, versionSelectorIsOpen = false, chartIsOpen = false;
 
 /* load main page data from .json files, and display */
 async function loadDeadlyPage() {
-  versionData = await (await fetch("deadly-versions.json")).json();
-  enemyData = await (await fetch("deadly-enemies.json")).json();
-  buffDescs = await (await fetch("deadly-buffs.json")).json();
+  versionData = await (await fetch("da-versions.json")).json();
+  enemyData = await (await fetch("da-enemies.json")).json();
+  buffDescs = await (await fetch("da-buffs.json")).json();
   versionIDs = Object.keys(versionData);
   hpData = await buildHPData(versionIDs, enemyData);
   loadSavedState();
@@ -62,7 +62,7 @@ async function showVersion() {
   document.getElementById("v-name").innerHTML = currVersionData.versionName;
   document.getElementById("v-time").innerHTML = currVersionData.versionTime;
   for (let buff = 1; buff <= 3; ++buff) {
-    document.getElementById(`b-img${buff}`).src = `deadly-buffs/${buffNames[buff - 1].toLowerCase().replace(" ", "-")}.webp`;
+    document.getElementById(`b-img${buff}`).src = `da-buffs-img/${buffNames[buff - 1].toLowerCase().replace(" ", "-")}.webp`;
     document.getElementById(`b-name${buff}`).innerHTML = buffNames[buff - 1];
     document.getElementById(`b-desc${buff}`).innerHTML = buffDescs[buffNames[buff - 1]];
   }
@@ -101,7 +101,7 @@ function showEnemies() {
     let eMods = currEnemyData.mods;
     let showEnemySpoilers = spoilersToggle.checked || !eTags.includes("spoiler");
     let eName = showEnemySpoilers ? currEnemyData.name : "SPOILER BOSS";
-    let eImg = showEnemySpoilers ? `deadly-images/${currEnemyData.image}.webp` : `deadly-images/doppelganger-i.webp`;
+    let eImg = showEnemySpoilers ? `da-enemies-img/${currEnemyData.image}.webp` : `da-enemies-img/doppelganger-i.webp`;
 
     /* define current enemy's various stats */
     let eHP = currEnemy.hp;

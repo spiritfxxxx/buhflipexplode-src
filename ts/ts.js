@@ -1,30 +1,3 @@
-/* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
-let buhImg = document.getElementById("buh");
-let buh = "buh.webp";
-let buhFlip = "buhFlip.webp";
-let buhFlipExplode = "buhFlipExplode.webp";
-let canClick = true;
-
-/* pause buh after flipping/exploding (he is tired) */
-function enableClicksAfterDelay() {
-  setTimeout(() => { canClick = true; }, 3000);
-}
-
-/* flip/explode buh for the gif's specified duration */
-function playGif(src, duration) {
-  if (!canClick) return;
-  canClick = false;
-  buhImg.src = src + "?t=" + new Date().getTime();
-  setTimeout(() => {
-    buhImg.src = buh + "?t=" + new Date().getTime();
-    enableClicksAfterDelay();
-  }, duration);
-}
-
-/* left click to flip, right click to explode */
-buhImg.addEventListener("click", () => { playGif(buhFlip, 2970); });
-buhImg.addEventListener("contextmenu", (e) => { e.preventDefault(); playGif(buhFlipExplode, 2480); });
-
 /* ------------------------------------------------------------------------ MENU BAR ----------------------------------------------------------------------- */
 
 var currNumberFormat;
@@ -33,7 +6,7 @@ let spoilersToggle = document.getElementById("spl");
 let menuIsOpen = false;
 
 /* load main page menu bar + settings */
-function loadHomePage() {
+function loadThresholdPage() {
   loadSavedState();
   updateNumberFormat();
 }
@@ -91,7 +64,6 @@ function updateNumberFormat(e) {
   numFormatButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == currNumberFormat));
   saveProgress();
 }
-
 function numberFormat(num) {
   if (currNumberFormat == "comma") return num.toLocaleString("en-US");
   if (currNumberFormat == "period") return num.toLocaleString("de-DE");
@@ -100,10 +72,7 @@ function numberFormat(num) {
 
 /* enables/disables leaks/spoilers slider + access */
 leaksToggle.addEventListener("change", () => {
-  if (!leaksToggle.checked) {
-    spoilersToggle.checked = false;
-    if (versionNum > cntNoLeaks) versionNum = cntNoLeaks;
-  }
+  if (!leaksToggle.checked) spoilersToggle.checked = false;
   saveProgress();
 });
 spoilersToggle.addEventListener("change", () => {
@@ -113,4 +82,4 @@ spoilersToggle.addEventListener("change", () => {
 
 /* ----------------------------------------------------------------------------- MAIN ----------------------------------------------------------------------- */
 
-window.addEventListener("DOMContentLoaded", async () => { loadHomePage(); });
+window.addEventListener("DOMContentLoaded", async () => { loadThresholdPage(); });

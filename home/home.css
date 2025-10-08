@@ -13,7 +13,7 @@ html, body {
 
 /* buh */
 #buh {
-  margin-top: 20vh;
+  margin-top: 17.5vh;
   width: 275px;
   border: 2px solid #b2cee7;
   user-select: none;
@@ -25,10 +25,10 @@ html, body {
   user-select: none;
 }
 
-/* ------------------------------------------------------------------ NAVIGATION BUTTONSs ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ NAVIGATION BUTTONS ------------------------------------------------------------------ */
 
 nav {
-  padding: 5vh;
+  padding: 2.5vh;
   gap: 50px;
   display: flex;
   justify-content: center;

@@ -794,7 +794,7 @@ input:checked + #st {
   #s2, #s3 { margin-top: 20px; }
 }
 @media (max-width: 800px) {
-  #mb-nf { margin-top: 30vh; }
+  #mb-nf { margin-top: 27.5vh; }
   .vg-c { width: 150px; }
   #c-x-bar { width: 100vw; }
   #c { width: 100%; }
@@ -803,8 +803,8 @@ input:checked + #st {
 @media (max-width: 500px) {
   .vg-c { width: 250px; }
   #c-g { width: 227.5vw; height: 1000vh; }
-  #c-x-bar { width: 227.5vw; }
-  #da { margin-top: 50px; }
+  #vs-x-bar { padding: 1vh 2.25vw; }
+  #c-x-bar { width: 227.5vw; padding: 1vh 2.25vw; }
   .tt-v-hp .tt-text { top: -300%; left: 50%; width: 120px; height: 37.5px; }
   .tt-v-hp .tt-text::after { top: 100%; left: 50%; border-color: #444444 transparent transparent transparent; }
 }

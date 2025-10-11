@@ -322,7 +322,7 @@ input:checked + #st {
 @media (max-width: 800px) {
   nav { gap: 25px; flex-direction: column; align-items: center; }
   nav a { width: fit-content; }
-  #mb-nf { margin-top: 30vh; }
+  #mb-nf { margin-top: 27.5vh; }
 }
 
 @font-face {

@@ -1,16 +1,15 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-var versionNum, chartScoreNum, currNumberFormat;
-var buffNames, buffDescs, versionAnomMult, versionEnemies;
-
 let cntNoLeaks = 21;
-let versionData = null, enemyData = null, hpChart = null;
-let versionIDs = [], hpData = [];
-let elementsData = ["ice", "fire", "electric", "ether", "physical"];
-
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
+let versionNum = null, chartScoreNum = null, currNumberFormat = null;
 let menuIsOpen = false, versionSelectorIsOpen = false, chartIsOpen = false;
+
+let versionData = null, enemyData = null, hpChart = null;
+let buffNames = null, buffDescs = null, versionDazeMult = null, versionAnomMult = null, versionEnemies = null;
+let versionIDs = [], hpData = [];
+let elementsData = ["ice", "fire", "electric", "ether", "physical"];
 
 /* load main page data from .json files, and display */
 async function loadDeadlyPage() {
@@ -54,13 +53,13 @@ async function buildHPData(versionIDs, enemyData) {
 
 /* ◁ [version # + time] ▷ display */
 async function showVersion() {
-  let currVersion = versionIDs[versionNum - 1];
-  let currVersionData = versionData[currVersion];
-  versionAnomMult = currVersionData.versionAnomMult;
-  versionEnemies = currVersionData.versionEnemies;
-  buffNames = currVersionData.buffNames;
-  document.getElementById("v-name").innerHTML = currVersionData.versionName;
-  document.getElementById("v-time").innerHTML = currVersionData.versionTime;
+  let currVersion = versionData[versionIDs[versionNum - 1]];
+  versionDazeMult = currVersion.versionDazeMult;
+  versionAnomMult = currVersion.versionAnomMult;
+  versionEnemies = currVersion.versionEnemies;
+  buffNames = currVersion.buffNames;
+  document.getElementById("v-name").innerHTML = currVersion.versionName;
+  document.getElementById("v-time").innerHTML = currVersion.versionTime;
   for (let buff = 1; buff <= 3; ++buff) {
     document.getElementById(`b-img${buff}`).src = `da-buffs-img/${buffNames[buff - 1].toLowerCase().replace(" ", "-")}.webp`;
     document.getElementById(`b-name${buff}`).innerHTML = buffNames[buff - 1];
@@ -68,8 +67,11 @@ async function showVersion() {
   }
   showEnemies();
 }
-async function prevVersion() { versionNum = versionNum == 1 ? (leaksToggle.checked ? versionIDs.length : cntNoLeaks) : versionNum - 1; await showVersion(); }
-async function nextVersion() { versionNum = versionNum == (leaksToggle.checked ? versionIDs.length : cntNoLeaks) ? 1 : versionNum + 1; await showVersion(); }
+async function changeVersion(n) {
+  let maxVersion = leaksToggle.checked ? versionIDs.length : cntNoLeaks;
+  versionNum = (versionNum - 1 + n + maxVersion) % maxVersion + 1;
+  await showVersion();
+}
 
 /* place and display elements/enemies/weaknesses/resistances/HP/count on screen */
 function showEnemies() {
@@ -77,6 +79,7 @@ function showEnemies() {
   let side1 = document.querySelector("#s1"), side2 = document.querySelector("#s2"), side3 = document.querySelector("#s3");
   side1.innerHTML = ``; side2.innerHTML = ``; side3.innerHTML = ``;
 
+  /* loop version's sides */
   for (let s = 1; s <= 3; ++s) {
     let side = s == 1 ? side1 : (s == 2 ? side2 : side3);
     /* add side x-x LvXX title */
@@ -248,9 +251,11 @@ function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
 function loadSavedState() {
   if (localStorage.getItem("leaksEnabled") == "true") leaksToggle.checked = true;
   if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
-  versionNum = leaksToggle.checked ? parseInt(localStorage.getItem("lastDAVersion") || `${cntNoLeaks}`) : cntNoLeaks;
+  versionNum = parseInt(localStorage.getItem("lastDAVersion") || `${cntNoLeaks}`);
   chartScoreNum = localStorage.getItem("lastDAChartScore") || "60k";
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
+  if (!leaksToggle.checked) versionNum = Math.min(versionNum, cntNoLeaks);
+  saveProgress();
 }
 
 /* save current page location + settings */
@@ -268,8 +273,8 @@ document.addEventListener("keydown", (e) => {
   if (e.key == "Escape") { e.preventDefault(); chartIsOpen ? toggleChart() : (versionSelectorIsOpen ? toggleVersionSelector() : toggleMenu()); }
   else if (e.key == " " && !menuIsOpen && !chartIsOpen) { e.preventDefault(); toggleVersionSelector(); }
   else if (e.key == "Backspace" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); toggleChart(); }
-  else if (e.key == "ArrowLeft" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); prevVersion(); }
-  else if (e.key == "ArrowRight" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); nextVersion(); }
+  else if (e.key == "ArrowLeft" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }
+  else if (e.key == "ArrowRight" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(1); }
   else if (e.key == "ArrowUp") { e.preventDefault(); }
   else if (e.key == "ArrowDown") { e.preventDefault(); }
   return;
@@ -355,8 +360,7 @@ function displayVersionSelectorGrid() {
 
   /* loop enabled versions to add it to the selector */
   for (let v = 1; v <= (leaksToggle.checked ? versionIDs.length : cntNoLeaks); ++v) {
-    let currVersion = versionIDs[v - 1];
-    let currVersionData = versionData[currVersion];
+    let currVersion = versionData[versionIDs[v - 1]];
 
     /* create a new version selection button */
     let versionButton = document.createElement("div");
@@ -365,8 +369,8 @@ function displayVersionSelectorGrid() {
     versionButton.className = "vg-c";
     nameDiv.className = "vg-c-name";
     timeDiv.className = "vg-c-time";
-    nameDiv.innerHTML = currVersionData.versionName;
-    timeDiv.innerHTML = currVersionData.versionTime;
+    nameDiv.innerHTML = currVersion.versionName;
+    timeDiv.innerHTML = currVersion.versionTime;
     versionButton.appendChild(nameDiv);
     versionButton.appendChild(timeDiv);
 

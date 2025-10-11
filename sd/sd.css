@@ -529,13 +529,21 @@ input:checked + #st {
 
 /* version grid selections */
 #vg {
-  padding: 15px 15px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+#vg-row1, #vg-row2 {
+  padding: 15px;
   gap: 15px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  flex-direction: row;
+  justify-content: center;
+}
+#vg-title {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
 }
 /* grid option */
 .vg-c {
@@ -803,7 +811,7 @@ input:checked + #st {
   src: url('../Inconsolata-Regular.ttf') format('truetype');
 }
 @media (max-width: 800px) {
-  #mb-nf { margin-top: 30vh; }
+  #mb-nf { margin-top: 27.5vh; }
   .vg-c { width: 150px; }
   #c-x-bar { width: 100vw; }
   #c { width: 100%; }
@@ -812,8 +820,8 @@ input:checked + #st {
 @media (max-width: 500px) {
   .vg-c { width: 250px; }
   #c-g { width: 227.5vw; height: 1000vh; }
-  #c-x-bar { width: 227.5vw; }
-  #sd { margin-top: 50px; }
+  #vs-x-bar { padding: 1vh 2.25vw; }
+  #c-x-bar { width: 227.5vw; padding: 1vh 2.25vw; }
   #s { flex-direction: column; }
   #s2 { margin-top: 100px; }
   .tt-n-hp .tt-text { top: -225%; left: 50%; }

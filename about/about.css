@@ -41,6 +41,8 @@ body.no-scroll {
 }
 .text img {
   margin-top: -4px;
+  width: 32px;
+  height: 32px;
   vertical-align: middle;
 }
 .small-image {
@@ -353,8 +355,9 @@ input:checked + #st {
   src: url('../Inconsolata-Regular.ttf') format('truetype');
 }
 @media (max-width: 800px) {
-  #mb-nf { margin-top: 30vh; }
+  #mb-nf { margin-top: 27.5vh; }
 }
 @media (max-width: 500px) {
+  .text img { margin-top: 0px; }
   .small-image, .large-image { max-width: 80vw; }
 }

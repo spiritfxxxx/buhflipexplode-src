@@ -17,7 +17,7 @@ async function loadDeadlyPage() {
   enemyData = await (await fetch("da-enemies.json")).json();
   buffDescs = await (await fetch("da-buffs.json")).json();
   versionIDs = Object.keys(versionData);
-  hpData = await buildHPData(versionIDs, enemyData);
+  buildHPData();
   loadSavedState();
   await showVersion();
   displayHPChart();
@@ -25,8 +25,8 @@ async function loadDeadlyPage() {
 }
 
 /* create hp database using 3D matrix */
-async function buildHPData(versionIDs, enemyData) {
-  let hp = Array.from({length: 4}, () => Array.from({length: versionIDs.length}).fill(null));
+function buildHPData() {
+  hpData = Array.from({length: 4}, () => Array.from({length: versionIDs.length}).fill(null));
   for (let v = 1; v <= versionIDs.length; ++v) {
     let raw60kEnemyHP = 0, alt60kEnemyHP = 0;
     versionEnemies = versionData[versionIDs[v - 1]].versionEnemies;
@@ -43,12 +43,11 @@ async function buildHPData(versionIDs, enemyData) {
       }
       else alt60kEnemyHP += eHP;
     }
-    hp[0][v - 1] = Math.ceil(raw60kEnemyHP * 0.281083138);
-    hp[1][v - 1] = Math.ceil(raw60kEnemyHP);
-    hp[2][v - 1] = Math.ceil(alt60kEnemyHP * 0.281083138);
-    hp[3][v - 1] = Math.ceil(alt60kEnemyHP);
+    hpData[0][v - 1] = Math.ceil(raw60kEnemyHP * 0.281083138);
+    hpData[1][v - 1] = Math.ceil(raw60kEnemyHP);
+    hpData[2][v - 1] = Math.ceil(alt60kEnemyHP * 0.281083138);
+    hpData[3][v - 1] = Math.ceil(alt60kEnemyHP);
   }
-  return hp;
 }
 
 /* ◁ [version # + time] ▷ display */
@@ -61,7 +60,7 @@ async function showVersion() {
   document.getElementById("v-name").innerHTML = currVersion.versionName;
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
   for (let buff = 1; buff <= 3; ++buff) {
-    document.getElementById(`b-img${buff}`).src = `da-buffs-img/${buffNames[buff - 1].toLowerCase().replace(" ", "-")}.webp`;
+    document.getElementById(`b-img${buff}`).src = `da-buffs-img/${buffNames[buff - 1].toLowerCase().replace(" ", "-").replace(" ", "-")}.webp`;
     document.getElementById(`b-name${buff}`).innerHTML = buffNames[buff - 1];
     document.getElementById(`b-desc${buff}`).innerHTML = buffDescs[buffNames[buff - 1]];
   }
@@ -150,6 +149,7 @@ function showEnemies() {
         ttHP.innerHTML = `<span style="color:#d4317b;">✦</span><span class="tt-text">${instant("#d4317b", "PURIFIED!!", eName, eHP, 3, 1)}</span>`;
       enemyHP.appendChild(ttHP);
     }
+    if (currEnemyID == "24300") enemyHP.innerHTML = numberFormat(eHP / 2) + `<span style="color:#888888;font-weight:bold;"> x2</span>`;
     enemy.appendChild(enemyHP);
 
     /* add enemy specific HP multiplier (if no match side HP multiplier) */
@@ -175,9 +175,8 @@ function showEnemies() {
     /* add enemy stage description */
     let stageDesc = document.createElement("div");
     stageDesc.className = "esd";
-    stageDesc.innerHTML = `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}
-                           ${(currEnemyType == 1 || (currEnemyType == 0 && currEnemyID == "14403" && versionNum == 4)) ? `<br><br>${currEnemyData.misc}` : ``}`;
-    if (eTags.includes("spoiler") && !spoilersToggle.checked) stageDesc.innerHTML = `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}`;
+    stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}` : `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}`;
+    stageDesc.innerHTML += `${(currEnemyType == 1 || (currEnemyID == "14403" && versionNum == 4)) ? `<br><br>${currEnemyData.misc}` : ``}`;
     side.appendChild(stageDesc);
   }
 
@@ -538,7 +537,7 @@ function displayHPChart() {
     createHPDataset(`Alt HP (${chartScoreNum})`, chartScoreNum == "20k" ? hpData[2] : hpData[3], "#f6b26b"),
   ]
   hpChart.options.scales.y.min = chartScoreNum == "20k" ? 40000000 : 160000000;
-  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 120000000 : 400000000;
+  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 160000000 : 480000000;
   hpChart.options.plugins.title.text = `Deadly Assault HP (${chartScoreNum})`;
   hpChart.update();
   saveProgress();

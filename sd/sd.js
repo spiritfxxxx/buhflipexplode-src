@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 32, modeNum = 4;
+let cntNoLeaks = 32, oldModeNum = 4, modeNum = 4;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let versionNum = null, nodeNum = null, chartNodeNum = null, currNumberFormat = null;
@@ -57,6 +57,7 @@ function buildHPData() {
         let addAOE = true;
         for (let s = 1; s <= currNode.sides.length; ++s) {
           let currSide = currNode.sides[s - 1];
+          if (currSide == null) continue;
           for (let w = 1; w <= currSide.waves.length; ++w) {
             let currWave = currSide.waves[w - 1];
             for (let e = 1; e <= currWave.enemies.length; ++e) {
@@ -94,7 +95,6 @@ async function showVersion() {
   versionDazeMult = currVersion.versionDazeMult;
   versionAnomMult = currVersion.versionAnomMult;
   versionEnemies = currVersion.versionEnemies;
-  nodeNum = modeNum == 4 ? parseInt(localStorage.getItem("lastSDNode")) : nodeLvlData[modeNum - 1].length;
   document.getElementById("v-name").innerHTML = currVersion.versionName;
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
   document.getElementById("b-name").innerHTML = currVersion.buffName;
@@ -104,24 +104,25 @@ async function showVersion() {
 async function changeVersion(n) {
   let lastVersion = parseInt(localStorage.getItem("lastSDVersion")), maxVersion = leaksToggle.checked ? versionIDs[modeNum - 1].length : cntNoLeaks;
   if (modeNum == 4) versionNum = (versionNum - 1 + n + maxVersion) % maxVersion + 1;
-  else { versionNum = (!leaksToggle.checked && lastVersion > cntNoLeaks) ? cntNoLeaks : lastVersion; modeNum = 4; }
+  else { modeNum = 4; versionNum = (!leaksToggle.checked && lastVersion > cntNoLeaks) ? cntNoLeaks : lastVersion; }
   await showVersion();
 }
 
 /* ◁ node # ▷ display */
 function showNode() {
+  if (oldModeNum != modeNum) {
+    nodeNum = modeNum == 4 ? parseInt(localStorage.getItem("lastSDNode")) : nodeLvlData[modeNum - 1].length;
+    oldModeNum = modeNum;
+    displayHPChart();
+  }
   if (modeNum != 4) {
-    let currVersion = versionData[modeNum - 1].versions[versionIDs[modeNum - 1][versionNum - 1]];
-    document.getElementById("b-name").innerHTML = currVersion.versionEnemies.nodes[nodeNum - 1].buffName;
-    document.getElementById("b-desc").innerHTML = currVersion.versionEnemies.nodes[nodeNum - 1].buffDesc;
+    document.getElementById("b-name").innerHTML = versionEnemies.nodes[nodeNum - 1].buffName;
+    document.getElementById("b-desc").innerHTML = versionEnemies.nodes[nodeNum - 1].buffDesc;
   }
   document.getElementById("n-text").innerHTML = nodeNum;
   showEnemies();
 }
-function changeNode(n){
-  nodeNum = (nodeNum - 1 + n + nodeLvlData[modeNum - 1].length) % nodeLvlData[modeNum - 1].length + 1;
-  showNode();
-}
+function changeNode(n) { nodeNum = (nodeNum - 1 + n + nodeLvlData[modeNum - 1].length) % nodeLvlData[modeNum - 1].length + 1; showNode(); }
 
 /* chart ◁ ▷ display */
 function showChartNode() { displayHPChart(); }
@@ -138,7 +139,7 @@ function showEnemies() {
   side2.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
 
   /* loop node's sides */
-  for (let s = 1; s <= currNode.sides.length; ++s) {
+  for (let s = 1; s <= 2; ++s) {
     let side = s == 1 ? side1 : side2;
     let currSide = currNode.sides[s - 1];
     let sideHPMult = null;
@@ -151,12 +152,17 @@ function showEnemies() {
     /* add side supposed equal HP multiplier */
     let combHPMult = document.createElement("div");
     combHPMult.className = "s-hp-daze-anom-mult";
+    combHPMult.innerHTML = `HP: <span style="color:#ff5555;">N/A</span> | Daze: <span style="color:#ffe599;">N/A</span>`;
+    sideHeader.appendChild(combHPMult);
 
     /* add side combined weaknesses/resistances */
     let combWR = document.createElement("div");
-    let currSideElementMult = currSide.sideElementMult;
     combWR.className = "wr";
-    generateWR(currSideElementMult, combWR);
+    generateWR(currSide != null ? currNode.sides[s - 1].sideElementMult : [1.0, 1.0, 1.0, 1.0, 1.0], combWR);
+    sideHeader.appendChild(combWR);
+    side.appendChild(sideHeader);
+
+    if (currSide == null) continue;
 
     /* loop side's waves */
     for (let w = 1; w <= currSide.waves.length; ++w) {
@@ -201,13 +207,8 @@ function showEnemies() {
         /* finish adding side header after first+ enemy */
         if (sideHPMult == null) {
           combHPMult.innerHTML = `HP: <span style="color:#ff5555;">${eHPMult}%</span> | Daze: <span style="color:#ffe599;">${versionDazeMult}%</span>`;
-          sideHeader.appendChild(combHPMult);
-          sideHeader.appendChild(combWR);
           /* do not add header if not. dullahan (weird base hp) is not the only enemy in wave */
-          if (currEnemyID != "10213" || currWave.enemies.length == 1) {
-            side.appendChild(sideHeader);
-            sideHPMult = eHPMult;
-          }
+          if (currEnemyID != "10213" || currWave.enemies.length == 1) sideHPMult = eHPMult;
         }
 
         /* loop each enemy appearance */ 
@@ -245,14 +246,14 @@ function showEnemies() {
               ttHP.innerHTML = `<span style="color:#ffffff;">✦</span><span class="tt-text">${hitch(eHP)}</span>`;
               enemyHP.innerHTML = numberFormat(1);
             }
-            else if (eTags.includes("palicus"))
-              ttHP.innerHTML = `<span style="color:#93c47d;">✦</span><span class="tt-text">${palicus(eHP)}</span>`;
-            else if (eTags.includes("robot"))
-              ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 5, 2)}</span>`;
             else if (eTags.includes("brute"))
               ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 8, 1)}</span>`;
+            else if (eTags.includes("robot"))
+              ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 5, 2)}</span>`;
             else if (eTags.includes("miasma"))
               ttHP.innerHTML = `<span style="color:#d4317b;">✦</span><span class="tt-text">${instant("#d4317b", "PURIFIED!!", eName, eHP, 15, 1)}</span>`;
+            else if (eTags.includes("palicus"))
+              ttHP.innerHTML = `<span style="color:#93c47d;">✦</span><span class="tt-text">${palicus(eHP)}</span>`;
             enemyHP.appendChild(ttHP);
           }
           enemy.appendChild(enemyHP);
@@ -479,7 +480,7 @@ function displayVersionSelectorGrid() {
   let title = versionSelector.querySelector("#vg-title");
   let row2 = versionSelector.querySelector("#vg-row2");
   row1.innerHTML = ``;
-  title.innerHTML = "Critical Node";
+  title.innerHTML = `Critical Node`;
   row2.innerHTML = ``;
 
   /* loop enabled versions to add it to the selector */
@@ -503,9 +504,7 @@ function displayVersionSelectorGrid() {
       versionButton.onclick = () => {
         modeNum = m;
         versionNum = modeNum == 4 ? v : 1;
-        nodeNum = modeNum == 4 ? parseInt(localStorage.getItem("lastSDNode")) : nodeLvlData[modeNum - 1].length;
         toggleVersionSelector();
-        displayHPChart();
         showVersion();
       };
 
@@ -681,7 +680,7 @@ function displayHPChart() {
     altHPData = hpData[3][chartNodeNum - 1][2];
     hpChart.options.plugins.title.text = `Shiyu Defense: Critical Node ${chartNodeNum} HP`;
     hpChart.options.scales.y.min = 0;
-    hpChart.options.scales.y.max = 60000000;
+    hpChart.options.scales.y.max = 70000000;
     hpChart.options.scales.y.ticks.stepSize = 5000000;
     hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % 10000000 == 0 ? "#888888" : "#444444"; } };
   }

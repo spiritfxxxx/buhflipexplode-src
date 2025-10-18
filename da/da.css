@@ -87,7 +87,7 @@ body.no-scroll {
 
 /* buff placement */
 #b {
-  margin: 25px 15px;
+  margin: 15px 15px;
   gap: 15px;
   min-height: 330px;
   display: flex;
@@ -246,7 +246,6 @@ body.no-scroll {
 /* underlined element: green = weak, red = res */
 .wk, .res {
   width: 24px;
-  height: 24px;
   border-bottom: 2px solid;
   user-select: none;
 }
@@ -256,10 +255,11 @@ body.no-scroll {
 /* enemy stage info */
 .esd {
   margin-top: 125px;
-  min-height: 480px;
+  min-height: 525px;
+  width: 100%;
+  box-sizing: border-box;
   gap: 10px;
   padding: 20px;
-  margin-bottom: 15px;
   line-height: 2.0;
   border-radius: 4px;
   background-color: #27363e;
@@ -784,7 +784,7 @@ input:checked + #st {
 }
 @media (max-width: 1300px) {
   #b { min-height: 390px; }
-  .esd { min-height: 675px; }
+  .esd { min-height: 725px; }
 }
 @media (max-width: 1000px) {
   #b { flex-direction: column; }

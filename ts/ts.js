@@ -25,8 +25,8 @@ let elementsData = ["ice", "fire", "electric", "ether", "physical"];
 /* load main page data from .json files, and display */
 async function loadThresholdPage() {
   versionData = await (await fetch("ts-versions.json")).json();
-  enemyData = await (await fetch("ts-enemies.json")).json();
-  buffDescs = await (await fetch("ts-buffs.json")).json();
+  enemyData = await (await fetch("../assets/enemies.json")).json();
+  buffDescs = await (await fetch("../assets/buffs.json")).json();
   for (let m = 1; m <= 2; ++m) versionIDs.push(Object.keys(versionData[m - 1].versions));
   buildHPData();
   loadSavedState();
@@ -105,7 +105,7 @@ function showNode() {
   }
   buffNames = versionEnemies.nodes[nodeNum - 1].buffNames;
   for (let buff = 1; buff <= 4; ++buff) {
-    document.getElementById(`b-img${buff}`).src = `ts-buffs-img/${buffNames[buff - 1].toLowerCase().replace(" ", "-")}.webp`;
+    document.getElementById(`b-img${buff}`).src = `../assets/buffs/${buffNames[buff - 1].toLowerCase().replace(" ", "-")}.webp`;
     document.getElementById(`b-name${buff}`).innerHTML = buffNames[buff - 1];
     document.getElementById(`b-desc${buff}`).innerHTML = buffDescs[buffNames[buff - 1]];
   }
@@ -173,8 +173,8 @@ function showEnemies() {
         let eTags = currEnemyData.tags;
         let eMods = currEnemyData.mods;
         let showEnemySpoilers = spoilersToggle.checked || !eTags.includes("spoiler");
-        let eName = showEnemySpoilers ? currEnemyData.name : "SPOILER BOSS";
-        let eImg = showEnemySpoilers ? `ts-enemies-img/${currEnemyData.image}.webp` : `ts-enemies-img/doppelganger-i.webp`;
+        let eName = showEnemySpoilers ? currEnemyData.name : (s >= 2 ? "SPOILER ENEMY" : "SPOILER BOSS");
+        let eImg = showEnemySpoilers ? `../assets/enemies/${currEnemyData.image}.webp` : `../assets/enemies/doppelganger-i.webp`;
 
         /* define current enemy's various stats */
         let eHP = currEnemy.hp;
@@ -300,16 +300,16 @@ function generateWR(mult, wr, s) {
   resImg1.className = "res";
   resImg2.className = "res";
   if (s >= 2) { weakImg1.style.width = "20px"; weakImg2.style.width = "20px"; resImg1.style.width = "20px"; resImg2.style.width = "20px"; }
-  weakImg1.src = "elements/none.webp";
-  weakImg2.src = "elements/none.webp";
-  resImg1.src = "elements/none.webp";
-  resImg2.src = "elements/none.webp";
+  weakImg1.src = "../assets/elements/none.webp";
+  weakImg2.src = "../assets/elements/none.webp";
+  resImg1.src = "../assets/elements/none.webp";
+  resImg2.src = "../assets/elements/none.webp";
   let wkCnt = 0, resCnt = 0;
   for (let i = 0; i < 5; ++i) {
-    if (mult[i] < 1 && wkCnt == 0) { weakImg1.src = `elements/${elementsData[i]}.webp`; ++wkCnt;}
-    else if (mult[i] < 1 && wkCnt == 1) weakImg2.src = `elements/${elementsData[i]}.webp`;
-    else if (mult[i] > 1 && resCnt == 0) { resImg1.src = `elements/${elementsData[i]}.webp`; ++resCnt; }
-    else if (mult[i] > 1 && resCnt == 1) resImg2.src = `elements/${elementsData[i]}.webp`;
+    if (mult[i] < 1 && wkCnt == 0) { weakImg1.src = `../assets/elements/${elementsData[i]}.webp`; ++wkCnt;}
+    else if (mult[i] < 1 && wkCnt == 1) weakImg2.src = `../assets/elements/${elementsData[i]}.webp`;
+    else if (mult[i] > 1 && resCnt == 0) { resImg1.src = `../assets/elements/${elementsData[i]}.webp`; ++resCnt; }
+    else if (mult[i] > 1 && resCnt == 1) resImg2.src = `../assets/elements/${elementsData[i]}.webp`;
   }
   wr.appendChild(weakImg1);
   wr.appendChild(weakImg2);
@@ -382,7 +382,7 @@ document.addEventListener("keydown", (e) => {
   e.stopPropagation();
   if (e.key == "Escape") { e.preventDefault(); chartIsOpen ? toggleChart() : (versionSelectorIsOpen ? toggleVersionSelector() : toggleMenu()); }
   else if (e.key == " " && !menuIsOpen && !chartIsOpen) { e.preventDefault(); toggleVersionSelector(); }
-  else if (e.key == "Backspace" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); toggleChart(); }
+  else if (e.key == "Backspace" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); } // toggleChart(); }
   else if (e.key == "ArrowLeft" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }
   else if (e.key == "ArrowRight" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(1); }
   else if (e.key == "ArrowUp") { e.preventDefault(); !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen ? changeNode(1) : changeChartNode(1) }

@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 let buhImg = document.getElementById("buh");
-let buh = "buh.webp";
-let buhFlip = "buhFlip.webp";
-let buhFlipExplode = "buhFlipExplode.webp";
+let buh = "../assets/misc/buh.webp";
+let buhFlip = "../assets/misc/buhFlip.webp";
+let buhFlipExplode = "../assets/misc/buhFlipExplode.webp";
 let canClick = true;
 
 /* pause buh after flipping/exploding (he is tired) */

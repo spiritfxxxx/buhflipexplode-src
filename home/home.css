@@ -321,7 +321,7 @@ input:checked + #st {
 
 @font-face {
   font-family: 'Inconsolata';
-  src: url('../Inconsolata-Regular.ttf') format('truetype');
+  src: url('../assets/misc/Inconsolata-Regular.ttf') format('truetype');
 }
 @media (max-width: 800px) {
   nav { gap: 5vh; flex-direction: column; align-items: center; }

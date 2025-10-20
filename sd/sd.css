@@ -614,7 +614,7 @@ input:checked + #st {
   height: 28px;
 }
 #c-btn img:hover {
-  content: url("chart-hover.webp");
+  content: url("../assets/misc/chart-hover.webp");
 }
 
 /* chart button stays at top right when chart is open */
@@ -627,7 +627,7 @@ input:checked + #st {
   cursor: pointer;
 }
 #open-c-btn img:hover {
-  content: url("chart-hover.webp");
+  content: url("../assets/misc/chart-hover.webp");
 }
 
 /* top bar + close + nav + download buttons */
@@ -673,7 +673,7 @@ input:checked + #st {
   cursor: pointer;
 }
 #c-download-btn img:hover {
-  content: url("download-hover.webp");
+  content: url("../assets/misc/download-hover.webp");
 }
 
 /* graph container */

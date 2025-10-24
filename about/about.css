@@ -352,7 +352,7 @@ input:checked + #st {
 
 @font-face {
   font-family: 'Inconsolata';
-  src: url('../assets/misc/Inconsolata-Regular.ttf') format('truetype');
+  src: url('../assets/Inconsolata-Regular.ttf') format('truetype');
 }
 @media (max-width: 800px) {
   #mb-nf { margin-top: 27.5vh; }

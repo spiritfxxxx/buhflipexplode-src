@@ -196,7 +196,7 @@
             "versionDazeMult": 100,
             "versionAnomMult": 110,
             "buffNames": ["Aberration", "Meditation", "2.4 Buff 1"],
-            "versionEnemies": [ {"id": "10303", "type": 0, "hp": 133391001}, {"id": "24300", "type": 1, "hp": 67638126}, {"id": "21300", "type": 1, "hp": 229872245} ]
+            "versionEnemies": [ {"id": "10303", "type": 0, "hp": 140666874}, {"id": "24300", "type": 1, "hp": 98698494}, {"id": "21300", "type": 1, "hp": 154342793} ]
           },
 
   "2.4.2":{ "versionName":"2.4 Phase 2",
@@ -204,14 +204,14 @@
             "versionDazeMult": 100,
             "versionAnomMult": 110,
             "buffNames": ["Interrupt", "2.4 Buff 1", "2.4 Buff 2"],
-            "versionEnemies": [ {"id": "23300", "type": 1, "hp": 137873851}, {"id": "15300", "type": 1, "hp": 105224232}, {"id": "22300", "type": 1, "hp": 125898073} ]
+            "versionEnemies": [ {"id": "23300", "type": 1, "hp": 137873851}, {"id": "15300", "type": 1, "hp": 156716941}, {"id": "22300", "type": 1, "hp": 125898073} ]
           },
 
   "2.4.3":{ "versionName":"2.4 Phase 3",
             "versionTime":"xx/xx/20xx - xx/xx/20xx",
             "versionDazeMult": 100,
             "versionAnomMult": 110,
-            "buffNames": ["Aberration", "2.4 Buff 3", "2.4 Buff 4"],
-            "versionEnemies": [ {"id": "23300", "type": 1, "hp": 137873851}, {"id": "24300", "type": 1, "hp": 67638126}, {"id": "14302", "type": 1, "hp": 161709467} ]
+            "buffNames": ["Graceful Mastery", "2.4 Buff 3", "2.4 Buff 4"],
+            "versionEnemies": [ {"id": "23300", "type": 1, "hp": 137873851}, {"id": "24300", "type": 1, "hp": 98698494}, {"id": "14302", "type": 1, "hp": 170693326} ]
           }
 }

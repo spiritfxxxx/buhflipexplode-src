@@ -149,7 +149,6 @@ function showEnemies() {
         ttHP.innerHTML = `<span style="color:#d4317b;">✦</span><span class="tt-text">${instant("#d4317b", "PURIFIED!!", eName, eHP, 3, 1)}</span>`;
       enemyHP.appendChild(ttHP);
     }
-    if (currEnemyID == "24300") enemyHP.innerHTML = numberFormat(eHP / 2) + `<span style="color:#888888;font-weight:bold;"> x2</span>`;
     enemy.appendChild(enemyHP);
 
     /* add enemy specific HP multiplier (if no match side HP multiplier) */

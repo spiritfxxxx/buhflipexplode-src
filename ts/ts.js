@@ -355,8 +355,8 @@ function loadSavedState() {
   if (localStorage.getItem("leaksEnabled") == "true") leaksToggle.checked = true;
   if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
   versionNum = parseInt(localStorage.getItem("lastTSVersion") || `${cntNoLeaks}`);
-  nodeNum = parseInt(localStorage.getItem("lastTSNode") || "5");
-  chartNodeNum = parseInt(localStorage.getItem("lastTSChartNode") || "5");
+  nodeNum = parseInt(localStorage.getItem("lastTSNode") || "6");
+  chartNodeNum = parseInt(localStorage.getItem("lastTSChartNode") || "6");
   chartScoreNum = localStorage.getItem("lastTSChartScore") || "60k";
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
   if (!leaksToggle.checked) versionNum = Math.min(versionNum, cntNoLeaks);

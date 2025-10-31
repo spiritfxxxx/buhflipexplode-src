@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 32, oldModeNum = 4, modeNum = 4;
+let cntNoLeaks = 33, oldModeNum = 4, modeNum = 4;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let versionNum = null, nodeNum = null, chartNodeNum = null, currNumberFormat = null;

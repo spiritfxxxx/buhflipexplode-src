@@ -3353,8 +3353,7 @@
               "versionTime":"24/10/2025 - 07/11/2025",
               "versionDazeMult":100,
               "versionAnomMult":100,
-              "buffName":"TBD",
-              
+              "buffName":"Harmony of Strings",
               "buffDesc":"• Agent Max HP increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> and <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When an Agent with <span style='font-weight:bold;'>Support</span> specialty uses <span style='font-weight:bold;'>EX Special Attack</span>, the whole squad's <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> and ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, lasting 20s. Repeated triggers reset the duration.",
               "versionEnemies":{ 
                 "nodes":[
@@ -3448,8 +3447,8 @@
               "versionTime":"07/11/2025 - 21/11/2025",
               "versionDazeMult":100,
               "versionAnomMult":100,
-              "buffName":"TBD",
-              "buffDesc":"• Agent <span style='color:#98eff0;font-weight:bold;'>Ice</span> and <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• While an Agent is in the Ether Veil state, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span> and <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
+              "buffName":"Frosty Fire",
+              "buffDesc":"• Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• While Agents are in an Ether Veil, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span> and <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>. These buffs are removed when exiting Ether Veil.",
               "versionEnemies":{ 
                 "nodes":[
                   { "sides":[
@@ -3541,8 +3540,8 @@
               "versionTime":"21/11/2025 - 05/12/2025",
               "versionDazeMult":100,
               "versionAnomMult":100,
-              "buffName":"TBD",
-              "buffDesc":"• <span style='font-weight:bold;'>Stun</span> specialty Agents <span style='color:#ffe599;font-weight:bold;'>Daze</span> dealt increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• Agent <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increased by <span style='color:#2bad00;font-weight:bold;'>15%</span>, and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>50%</span> when attacking <span style='color:#ffe599;font-weight:bold;'>Stunned</span> enemies.",
+              "buffName":"Cruising Shark in Red",
+              "buffDesc":"• <span style='font-weight:bold;'>Stun</span> specialty Agent <span style='color:#ffe599;font-weight:bold;'>Daze</span> dealt increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• Agent <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>50%</span> when attacking <span style='color:#ffe599;font-weight:bold;'>Stunned</span> enemies.",
               "versionEnemies":{ 
                 "nodes":[
                   { "sides":[
@@ -3632,7 +3631,7 @@
               "versionDazeMult":100,
               "versionAnomMult":100,
               "buffName":"TBD",
-              "buffDesc":"• <span style='font-weight:bold;'>Stun</span> specialty Agents’ <span style='color:#ffe599;font-weight:bold;'>Impact</span> is increased by <span style='color:#2bad00;font-weight:bold;'>10%</span>.<br>• When an Agent inflicts <span style='color:#ffe599;font-weight:bold;'>Stun</span> on an enemy, the enemy’s <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> increases by <span style='color:#2bad00;font-weight:bold;'>50%</span>, and the Agent’s <span style='font-weight:bold;'>EX Special Attack</span> and <span style='font-weight:bold;'>Ultimate</span> DMG are increased by <span style='color:#2bad00;font-weight:bold;'>50%</span>.",
+              "buffDesc":"• When an Agent with the <span style='font-weight:bold;'>Stun</span> specialty hits a <span style='color:#ffe599;font-weight:bold;'>Stunned</span> enemy, the enemy's <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> increases by <span style='color:#2bad00;font-weight:bold;'>50%</span>.<br>• Agent <span style='font-weight:bold;'>EX Special Attack</span> and <span style='font-weight:bold;'>Ultimate</span> DMG increase by <span style='color:#2bad00;font-weight:bold;'>60%</span>.",
               "versionEnemies":{ 
                 "nodes":[
                   { "sides":[
@@ -3721,7 +3720,7 @@
               "versionDazeMult":100,
               "versionAnomMult":100,
               "buffName":"TBD",
-              "buffDesc":"• The Agent’s <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> is increased by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and both <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> are increased by <span style='color:#2bad00;font-weight:bold;'>30%</span>.<br>• When the Agent’s <span style='font-weight:bold;'>Basic Attack</span> hits an enemy and triggers a CRIT, their CRIT DMG is increased by <span style='color:#2bad00;font-weight:bold;'>5%</span> for 10s, stacking up to 10 times. Reapplying the effect refreshes its duration.",
+              "buffDesc":"• Agent <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>30%</span>.<br>• When Agents' <span style='font-weight:bold;'>Basic Attacks</span> land a critical hit on an enemy, their CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>5%</span> for 10s, stacking up to 10 times. Repeated triggers reset the duration.",
               "versionEnemies":{ 
                 "nodes":[
                   { "sides":[
@@ -3801,7 +3800,7 @@
                       { "enemies":[ {"id":"24200", "type":0, "hp":34746622, "count":1} ] } ]
                     },
                     { "sideElementMult":[1.0, 1.0, 1.0, 1.2, 0.8], "waves":[
-                      { "enemies":[ {"id":"20203", "type":0, "hp":29375281, "count":1} ] } ]
+                      { "enemies":[ {"id":"21200", "type":0, "hp":24416430, "count":1} ] } ]
                     }]
                   }
                 ]

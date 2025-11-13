@@ -598,7 +598,7 @@ function toggleChartPoints(points) {
 function downloadChart() {
   let downloadButton = document.createElement("a");
   downloadButton.href = hpChart.toBase64Image("image/png", 1.0);
-  downloadButton.download = `Threshold Simulation - ${versionData[modeNum - 1].name} HP (${chartScoreNum})`;
+  downloadButton.download = `Threshold Simulation - ${versionData[modeNum - 1].name} ` + (modeNum == 2 ? `${chartNodeNum < 4 ? chartNodeNum : `4`}${modeNum != 2 || chartNodeNum < 4 ? `` : `-${chartNodeNum - 3}`} ` : ``) + `${chartDisplayType} HP` + (chartDisplayType == "Boss" ? ` (${chartScoreNum})` : ``);
   downloadButton.click();
 }
 /* format 3 hp dataset */
@@ -748,7 +748,7 @@ function displayHPChart() {
       aoeHPData.push(hpData[modeNum - 1][n][5][0]);
       altHPData.push(hpData[modeNum - 1][n][6][0]);
     }
-    hpChart.options.plugins.title.text = `Threshold Simulation: Easy Mode ${chartDisplayType} HP`;
+    hpChart.options.plugins.title.text = `Threshold Simulation: Easy Mode ${chartDisplayType} HP${chartDisplayType == "Boss" ? ` (${chartScoreNum})` : ``}`;
     hpChart.options.scales.y.min = chartScoreNum == "20k" ? 0 : 0;
     hpChart.options.scales.y.max = chartScoreNum == "20k" ? 40000000 : 120000000;
   }

@@ -4,7 +4,7 @@
             "versionDazeMult": 100,
             "versionAnomMult": 100,
             "buffNames": ["Spirit Break", "Swift Resolution", "Interrupt"],
-            "versionEnemies": [ {"id": "14302", "type": 0, "hp": 76362803}, {"id": "12300", "type": 0, "hp": 58395085}, {"id": "14300", "type": 1, "hp": 58049652} ]
+            "versionEnemies": [ {"id": "14302", "type": 0, "hp": 76362803}, {"id": "12300", "type": 0, "hp": 58395085}, {"id": "14300", "type": 0, "hp": 58049652} ]
           },
 
   "1.4.2":{ "versionName":"1.4 Phase 2",
@@ -28,7 +28,7 @@
             "versionDazeMult": 100,
             "versionAnomMult": 100,
             "buffNames": ["Rapid Aid", "Dazing Force", "Interrupt"],
-            "versionEnemies": [ {"id": "15300", "type": 0, "hp": 85970436}, {"id": "14303", "type": 0, "hp": 64522295}, {"id": "14300", "type": 1, "hp": 69659582} ]
+            "versionEnemies": [ {"id": "15300", "type": 0, "hp": 85970436}, {"id": "14303", "type": 0, "hp": 64522295}, {"id": "14300", "type": 0, "hp": 69659582} ]
           },
 
   "1.5.3":{ "versionName":"1.5 Phase 3",
@@ -60,7 +60,7 @@
             "versionDazeMult": 100,
             "versionAnomMult": 100,
             "buffNames": ["Swift Advance", "Worn Out", "Blazing Chill"],
-            "versionEnemies": [ {"id": "14300", "type": 1, "hp": 78367030}, {"id": "14303", "type": 1, "hp": 79372665}, {"id": "14301", "type": 1, "hp": 78608768} ]
+            "versionEnemies": [ {"id": "14300", "type": 0, "hp": 78367030}, {"id": "14303", "type": 1, "hp": 79372665}, {"id": "14301", "type": 1, "hp": 78608768} ]
           },
 
   "1.6.3":{ "versionName":"1.6 Phase 3",
@@ -84,7 +84,7 @@
             "versionDazeMult": 100,
             "versionAnomMult": 100,
             "buffNames": ["Raging Storm", "Graceful Mastery", "Worn Out"],
-            "versionEnemies": [ {"id": "14300", "type": 1, "hp": 84171995}, {"id": "15300", "type": 0, "hp": 102985418}, {"id": "14303", "type": 1, "hp": 82445155} ]
+            "versionEnemies": [ {"id": "14300", "type": 0, "hp": 84171995}, {"id": "15300", "type": 0, "hp": 102985418}, {"id": "14303", "type": 1, "hp": 82445155} ]
           },
 
   "1.7.3":{ "versionName":"1.7 Phase 3",
@@ -92,7 +92,7 @@
             "versionDazeMult": 100,
             "versionAnomMult": 100,
             "buffNames": ["Collapse", "Sonata", "Aberration"],
-            "versionEnemies": [ {"id": "14300", "type": 0, "hp": 84171995}, {"id": "14302", "type": 1, "hp": 110501469}, {"id": "14301", "type": 1, "hp": 84672873} ]
+            "versionEnemies": [ {"id": "14300", "type": 1, "hp": 84171995}, {"id": "14302", "type": 1, "hp": 110501469}, {"id": "14301", "type": 1, "hp": 84672873} ]
           },
 
   "2.0.1":{ "versionName":"2.0 Phase 1",
@@ -192,26 +192,26 @@
           },
 
   "2.4.1":{ "versionName":"2.4 Phase 1",
-            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionTime":"28/11/2025 - 12/12/2025",
             "versionDazeMult": 100,
             "versionAnomMult": 110,
-            "buffNames": ["Aberration", "Meditation", "2.4 Buff 1"],
-            "versionEnemies": [ {"id": "14300", "type": 0, "hp": 133514200}, {"id": "24300", "type": 1, "hp": 134588856}, {"id": "21300", "type": 1, "hp": 154342793} ]
+            "buffNames": ["Aberration", "Meditation", "Sever Pulse"],
+            "versionEnemies": [ {"id": "14300", "type": 1, "hp": 127709235}, {"id": "24300", "type": 1, "hp": 134588856}, {"id": "21300", "type": 1, "hp": 160910571} ]
           },
 
   "2.4.2":{ "versionName":"2.4 Phase 2",
-            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionTime":"12/12/2025 - 26/12/2025",
             "versionDazeMult": 100,
             "versionAnomMult": 110,
-            "buffNames": ["Graceful Mastery", "2.4 Buff 2", "2.4 Buff 3"],
+            "buffNames": ["Graceful Mastery", "Break Through", "Body Tempering"],
             "versionEnemies": [ {"id": "23300", "type": 1, "hp": 137873851}, {"id": "24300", "type": 1, "hp": 134588856}, {"id": "14302", "type": 1, "hp": 170693326} ]
           },
 
-  "2.4.3":{ "versionName":"2.4 Phase 3",
-            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+  "2.4.3":{ "versionName":"PLACEHOLDER",
+            "versionTime":"26/12/2025 - 09/01/2026",
             "versionDazeMult": 100,
             "versionAnomMult": 110,
-            "buffNames": ["Graceful Mastery", "2.4 Buff 2", "2.4 Buff 3"],
+            "buffNames": ["Graceful Mastery", "Break Through", "Body Tempering"],
             "versionEnemies": [ {"id": "23300", "type": 1, "hp": 137873851}, {"id": "24300", "type": 1, "hp": 134588856}, {"id": "14302", "type": 1, "hp": 170693326} ]
           }
 }

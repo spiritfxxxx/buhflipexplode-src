@@ -9,7 +9,7 @@
                         { "buffName":"Assault Up",
                           "buffDesc":"• Increases Agent <span style='color:#f0d12b;font-weight:bold;'>Physical Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and <span style='color:#f0d12b;font-weight:bold;'>Assault</span> DMG by <span style='color:#2bad00;font-weight:bold;'>80%</span>.",
                           "sides":[
-                          { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 1.0, 0.8], "waves":[
+                          { "sideElementMult":[0.8, 1.0, 1.0, 1.0, 0.8], "waves":[
                             { "enemies":[ {"id":"10031", "type":1, "hp":22024, "count":2}, {"id":"10028", "type":0, "hp":15314, "count":2} ] }, 
                             { "enemies":[ {"id":"10028", "type":0, "hp":15314, "count":3} ] },
                             { "enemies":[ {"id":"10031", "type":1, "hp":22024, "count":2}, {"id":"10028", "type":0, "hp":15314, "count":2} ] },
@@ -20,7 +20,7 @@
                         { "buffName":"Shock Up",
                           "buffDesc":"• Increases Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and <span style='color:#2eb6ff;font-weight:bold;'>Shock</span> DMG by <span style='color:#2bad00;font-weight:bold;'>80%</span>.",
                           "sides":[
-                          { "sideHPMult":0, "sideElementMult":[1.0, 1.0, 0.8, 0.8, 1.2], "waves":[
+                          { "sideElementMult":[1.0, 1.0, 0.8, 0.8, 1.2], "waves":[
                             { "enemies":[ {"id":"10007", "type":0, "hp":19387, "count":3} ] },
                             { "enemies":[ {"id":"10109", "type":0, "hp":116687, "count":1} ] },
                             { "enemies":[ {"id":"10007", "type":1, "hp":23703, "count":3} ] },
@@ -31,7 +31,7 @@
                         { "buffName":"Corruption Up",
                           "buffDesc":"• Increases Agent <span style='color:#fe437e;font-weight:bold;'>Ether Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and <span style='color:#fe437e;font-weight:bold;'>Corruption</span> DMG by <span style='color:#2bad00;font-weight:bold;'>80%</span>.",
                           "sides":[
-                          { "sideHPMult":0, "sideElementMult":[1.2, 1.0, 1.0, 0.8, 1.0], "waves":[
+                          { "sideElementMult":[1.2, 1.0, 1.0, 0.8, 1.0], "waves":[
                             { "enemies":[ {"id":"10020", "type":1, "hp":29504, "count":3} ] },
                             { "enemies":[ {"id":"10123", "type":0, "hp":180873, "count":1} ] },
                             { "enemies":[ {"id":"10008", "type":0, "hp":9928, "count":3} ] },
@@ -42,7 +42,7 @@
                         { "buffName":"Burn Up",
                           "buffDesc":"• Increases Agent <span style='color:#ff5521;font-weight:bold;'>Fire Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and <span style='color:#ff5521;font-weight:bold;'>Burn</span> DMG by <span style='color:#2bad00;font-weight:bold;'>80%</span>.",
                           "sides":[
-                          { "sideHPMult":0, "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
+                          { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
                             { "enemies":[ {"id":"10033", "type":0, "hp":30745, "count":3} ] },
                             { "enemies":[ {"id":"10135", "type":0, "hp":173138, "count":1} ] },
                             { "enemies":[ {"id":"10023", "type":1, "hp":44215, "count":2}, {"id":"10033", "type":0, "hp":30745, "count":2} ] },
@@ -53,7 +53,7 @@
                         { "buffName":"Shatter Up",
                           "buffDesc":"• Increases Agent <span style='color:#98eff0;font-weight:bold;'>Ice Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and <span style='color:#98eff0;font-weight:bold;'>Shatter</span> DMG by <span style='color:#2bad00;font-weight:bold;'>80%</span>.",
                           "sides":[
-                          { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
+                          { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
                             { "enemies":[ {"id":"10011", "type":0, "hp":38337, "count":3} ] },
                             { "enemies":[ {"id":"10113", "type":0, "hp":242277, "count":1}, {"id":"10011", "type":1, "hp":46871, "count":2} ] },
                             { "enemies":[ {"id":"10102", "type":0, "hp":221590, "count":1} ] },
@@ -64,7 +64,7 @@
                         { "buffName":"Superior Execution",
                           "buffDesc":"• Increases <span style='font-weight:bold;'>Chain Attack</span> DMG by <span style='color:#2bad00;font-weight:bold;'>100%</span>. Upon launching a <span style='font-weight:bold;'>Chain Attack</span>, all squad members deal <span style='color:#2bad00;font-weight:bold;'>10%</span> more DMG for 30s, stacking up to 3 times. Each stack's duration is calculated separately.",
                           "sides":[
-                          { "sideHPMult":0, "sideElementMult":[1.0, 0.8, 1.2, 1.0, 1.0], "waves":[
+                          { "sideElementMult":[1.0, 0.8, 1.2, 1.0, 1.0], "waves":[
                             { "enemies":[ {"id":"10040", "type":1, "hp":60883, "count":1}, {"id":"10014", "type":0, "hp":49797, "count":2} ] },
                             { "enemies":[ {"id":"10136", "type":1, "hp":402989, "count":1} ] },
                             { "enemies":[ {"id":"10040", "type":1, "hp":60883, "count":2}, {"id":"10014", "type":0, "hp":49797, "count":2} ] },
@@ -75,12 +75,12 @@
                         { "buffName":"Perfect Parry",
                           "buffDesc":"• Increases <span style='color:#ffe599;font-weight:bold;'>Daze</span> inflicted by <span style='font-weight:bold;'>Defensive Assists</span> by <span style='color:#2bad00;font-weight:bold;'>100%</span>, and <span style='font-weight:bold;'>Assist Follow-Up</span> DMG by <span style='color:#2bad00;font-weight:bold;'>1<span style='color:#2bad00;font-weight:bold;'>50%</span></span>. Upon launching a <span style='font-weight:bold;'>Chain Attack</span>, gain 1 extra Assist Point.",
                           "sides":[
-                          { "sideHPMult":0, "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "waves":[
+                          { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "waves":[
                             { "enemies":[ {"id":"10016", "type":1, "hp":73978, "count":1}, {"id":"10034", "type":0, "hp":51441, "count":2} ] },
                             { "enemies":[ {"id":"10104", "type":0, "hp":304156, "count":1} ] },
                             { "enemies":[ {"id":"10115", "type":0, "hp":385555, "count":1} ] } ]
                           },
-                          { "sideHPMult":0, "sideElementMult":[1.2, 1.0, 1.0, 0.8, 1.0], "waves":[
+                          { "sideElementMult":[1.2, 1.0, 1.0, 0.8, 1.0], "waves":[
                             { "enemies":[ {"id":"10020", "type":0, "hp":51441, "count":2}, {"id":"10021", "type":0, "hp":51441, "count":1} ] },
                             { "enemies":[ {"id":"10123", "type":0, "hp":385555, "count":1} ] },
                             { "enemies":[ {"id":"10124", "type":0, "hp":364209, "count":1} ] } ]
@@ -89,12 +89,12 @@
                         { "buffName":"Daze Up",
                           "buffDesc":"• Increases Agent <span style='color:#ffe599;font-weight:bold;'>Impact</span> by <span style='color:#2bad00;font-weight:bold;'>50%</span>. Upon hitting <span style='color:#ffe599;font-weight:bold;'>Stunned</span> enemies, increases the target's <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> by <span style='color:#2bad00;font-weight:bold;'>75%</span>.",
                           "sides":[
-                          { "sideHPMult":0, "sideElementMult":[1.0, 0.8, 1.2, 1.0, 1.0], "waves":[
+                          { "sideElementMult":[1.0, 0.8, 1.2, 1.0, 1.0], "waves":[
                             { "enemies":[ {"id":"10040", "type":1, "hp":102221, "count":2}, {"id":"10014", "type":0, "hp":83608, "count":1} ] },
                             { "enemies":[ {"id":"10136", "type":1, "hp":676611, "count":1} ] },
                             { "enemies":[ {"id":"10130", "type":1, "hp":650404, "count":1} ] } ]
                           },
-                          { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 1.0, 0.8], "waves":[
+                          { "sideElementMult":[0.8, 1.0, 1.0, 1.0, 0.8], "waves":[
                             { "enemies":[ {"id":"10031", "type":1, "hp":120237, "count":3} ] },
                             { "enemies":[ {"id":"10106", "type":1, "hp":485197, "count":1} ] },
                             { "enemies":[ {"id":"10105", "type":1, "hp":644373, "count":1} ] } ]
@@ -103,11 +103,11 @@
                         { "buffName":"Fervent Duel",
                           "buffDesc":"• Agent Decibel Generation Rate increases by <span style='color:#2bad00;font-weight:bold;'>50%</span>. Increases <span style='font-weight:bold;'>Ultimate</span> DMG by <span style='color:#2bad00;font-weight:bold;'>120%</span>.",
                           "sides":[
-                          { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
+                          { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
                             { "enemies":[ {"id":"10117", "type":0, "hp":555745, "count":1} ] },
                             { "enemies":[ {"id":"10215", "type":0, "hp":1744889, "count":1} ] } ]
                           },
-                          { "sideHPMult":0, "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
+                          { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
                             { "enemies":[ {"id":"10023", "type":1, "hp":152382, "count":3} ] },
                             { "enemies":[ {"id":"10216", "type":0, "hp":1938786, "count":1} ] } ]
                           }]
@@ -115,10 +115,10 @@
                         { "buffName":"Overload",
                           "buffDesc":"• Increases Agent <span style='color:#7e50bb;font-weight:bold;'>Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>25%</span>, and <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> DMG by <span style='color:#2bad00;font-weight:bold;'>80%</span>.",
                           "sides":[
-                          { "sideHPMult":0, "sideElementMult":[1.0, 1.0, 1.0, 0.8, 1.2], "waves":[
+                          { "sideElementMult":[1.0, 1.0, 1.0, 0.8, 1.2], "waves":[
                             { "enemies":[ {"id":"10203", "type":0, "hp":2945444, "count":1} ] } ]
                           },
-                          { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
+                          { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
                             { "enemies":[ {"id":"10213", "type":0, "hp":2296086, "count":1} ] } ]
                           }]
                         }
@@ -135,7 +135,7 @@
                           { "buffName":"Frontier Buff",
                             "buffDesc":"• <span style='font-weight:bold;'>Defensive Assist's</span> <span style='color:#ffe599;font-weight:bold;'>Daze</span> increases by <span style='color:#2bad00;font-weight:bold;'>100%</span>. <span style='font-weight:bold;'>Assist Follow-Up's</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>100%</span>.",
                             "sides":[
-                            { "sideHPMult":0, "sideElementMult":[1.0, 0.8, 1.2, 1.0, 1.0], "waves":[
+                            { "sideElementMult":[1.0, 0.8, 1.2, 1.0, 1.0], "waves":[
                               { "enemies":[ {"id":"10112", "type":1, "hp":350670, "count":1} ] }, 
                               { "enemies":[ {"id":"10130", "type":1, "hp":486185, "count":1} ] } ]
                             },
@@ -144,7 +144,7 @@
                           { "buffName":"Frontier Buff",
                             "buffDesc":"• <span style='font-weight:bold;'>Dodge Counter</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>150%</span>.",
                             "sides":[
-                            { "sideHPMult":0, "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.2], "waves":[
+                            { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.2], "waves":[
                               { "enemies":[ {"id":"10109", "type":1, "hp":521231, "count":1} ] }, 
                               { "enemies":[ {"id":"10125", "type":1, "hp":547289, "count":1} ] } ]
                             },
@@ -153,11 +153,11 @@
                           { "buffName":"Frontier Buff",
                             "buffDesc":"• When launching <span style='font-weight:bold;'>EX Special Attacks</span>, Agent DMG increases by <span style='color:#2bad00;font-weight:bold;'>35%</span> and DMG received is reduced by <span style='color:#2bad00;font-weight:bold;'>25%</span> for 15s.",
                             "sides":[
-                            { "sideHPMult":0, "sideElementMult":[1.2, 0.8, 1.0, 1.2, 0.8], "waves":[
+                            { "sideElementMult":[1.2, 0.8, 1.0, 1.2, 0.8], "waves":[
                               { "enemies":[ {"id":"10134", "type":1, "hp":816634, "count":1} ] }, 
                               { "enemies":[ {"id":"10121", "type":1, "hp":816634, "count":1} ] } ]
                             },
-                            { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
+                            { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
                               { "enemies":[ {"id":"10110", "type":1, "hp":824277, "count":1} ] }, 
                               { "enemies":[ {"id":"10113", "type":1, "hp":693596, "count":1} ] } ]
                             }]
@@ -165,50 +165,50 @@
                           { "buffName":"Frontier Buff",
                             "buffDesc":"• Increases Agent <span style='color:#ffe599;font-weight:bold;'>Impact</span> by <span style='color:#2bad00;font-weight:bold;'>30%</span>. Slows down <span style='color:#ffe599;font-weight:bold;'>Daze</span> recovery for <span style='color:#ffe599;font-weight:bold;'>Stunned</span> enemies by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
                             "sides":[
-                            { "sideHPMult":0, "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "waves":[
+                            { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "waves":[
                               { "enemies":[ {"id":"10208", "type":0, "hp":1933254, "count":1} ] } ]
                             },
-                            { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
+                            { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
                               { "enemies":[ {"id":"10215", "type":0, "hp":2076413, "count":1} ] } ]
                             }]
                           },
                           { "buffName":"Frontier Buff",
                             "buffDesc":"• When launching <span style='font-weight:bold;'>Perfect Assists</span>, Agent DMG increases by <span style='color:#2bad00;font-weight:bold;'>35%</span> and DMG received is reduced by <span style='color:#2bad00;font-weight:bold;'>25%</span> for 15s.",
                             "sides":[
-                            { "sideHPMult":0, "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "waves":[
+                            { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "waves":[
                               { "enemies":[ {"id":"10218", "type":0, "hp":2296086, "count":1} ] } ]
                             },
-                            { "sideHPMult":0, "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
+                            { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
                               { "enemies":[ {"id":"10216", "type":0, "hp":2812014, "count":1} ] } ]
                             }]
                           },
                           { "buffName":"Frontier Buff",
                             "buffDesc":"• Increases Agent <span style='color:#7e50bb;font-weight:bold;'>Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>30%</span>. Enemies afflicted with <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> deal <span style='color:#2bad00;font-weight:bold;'>25%</span> less DMG for 10s.",
                             "sides":[
-                            { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
+                            { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
                               { "enemies":[ {"id":"10212", "type":0, "hp":2558781, "count":1} ] } ]
                             },
-                            { "sideHPMult":0, "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
+                            { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
                               { "enemies":[ {"id":"11202", "type":0, "hp":3621411, "count":1} ] } ]
                             }]
                           },
                           { "buffName":"Frontier Buff",
                             "buffDesc":"• When triggering a <span style='font-weight:bold;'>Perfect Dodge</span>, Agent DMG increases by <span style='color:#2bad00;font-weight:bold;'>10%</span> and DMG received is reduced by <span style='color:#2bad00;font-weight:bold;'>10%</span> for 10s, stacking up to 3 times. The duration of each stack is calculated separately.",
                             "sides":[
-                            { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
+                            { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
                               { "enemies":[ {"id":"10213", "type":0, "hp":3417192, "count":1}, {"id":"10132", "type":0, "hp":1619388, "count":1} ] } ]
                             },
-                            { "sideHPMult":0, "sideElementMult":[1.0, 0.8, 1.0, 1.2, 0.8], "waves":[
+                            { "sideElementMult":[1.0, 0.8, 1.0, 1.2, 0.8], "waves":[
                               { "enemies":[ {"id":"10217", "type":0, "hp":3417192, "count":1}, {"id":"10119", "type":0, "hp":1352375, "count":1} ] } ]
                             }]
                           },
                           { "buffName":"Frontier Buff",
                             "buffDesc":"• When triggering a <span style='font-weight:bold;'>Perfect Dodge</span> or <span style='font-weight:bold;'>Perfect Assist</span>, Agent DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>, and they slowly recover <span style='color:#2bad00;font-weight:bold;'>5%</span> of their HP for 5s.<br>• If an agent is hit while the above buffs are active, the DMG boost and HP recovery effects will be <span style='color:#ad2b00;font-weight:bold;'>interrupted</span>.",
                             "sides":[
-                            { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
+                            { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
                               { "enemies":[ {"id":"10215", "type":0, "hp":4661290, "count":1}, {"id":"10113", "type":1, "hp":1852871, "count":1} ] } ]
                             },
-                            { "sideHPMult":0, "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
+                            { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
                               { "enemies":[ {"id":"11202", "type":0, "hp":5497615, "count":1}, {"id":"10134", "type":1, "hp":2181553, "count":1} ] } ]
                             }]
                           }
@@ -225,50 +225,50 @@
                       { "buffName":"Frontier Buff",
                         "buffDesc":"• <span style='font-weight:bold;'>Defensive Assist's</span> <span style='color:#ffe599;font-weight:bold;'>Daze</span> increases by <span style='color:#2bad00;font-weight:bold;'>100%</span>. <span style='font-weight:bold;'>Assist Follow-Up's</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>100%</span>.",
                         "sides":[
-                        { "sideHPMult":0, "sideElementMult":[1.0, 0.8, 1.2, 1.0, 1.0], "waves":[
+                        { "sideElementMult":[1.0, 0.8, 1.2, 1.0, 1.0], "waves":[
                           { "enemies":[ {"id":"10136", "type":0, "hp":1209079, "count":1}, {"id":"10112", "type":1, "hp":862298, "count":1} ] } ]
                         },
-                        { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 1.0, 0.8], "waves":[
+                        { "sideElementMult":[0.8, 1.0, 1.0, 1.0, 0.8], "waves":[
                           { "enemies":[ {"id":"10105", "type":1, "hp":1184445, "count":1}, {"id":"10106", "type":0, "hp":865446, "count":1} ] } ]
                         }]
                       },
                       { "buffName":"Frontier Buff",
                         "buffDesc":"• <span style='font-weight:bold;'>Dodge Counter</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>150%</span>.",
                         "sides":[
-                        { "sideHPMult":0, "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "waves":[
+                        { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "waves":[
                           { "enemies":[ {"id":"10120", "type":1, "hp":1508935, "count":1}, {"id":"10125", "type":0, "hp":1178357, "count":1} ] } ]
                         },
-                        { "sideHPMult":0, "sideElementMult":[1.0, 0.8, 1.2, 1.0, 1.0], "waves":[
+                        { "sideElementMult":[1.0, 0.8, 1.2, 1.0, 1.0], "waves":[
                           { "enemies":[ {"id":"12200", "type":0, "hp":3411708, "count":1} ] } ]
                         }]
                       },
                       { "buffName":"Frontier Buff",
                         "buffDesc":"• When launching <span style='font-weight:bold;'>Perfect Assists</span>, Agent DMG increases by <span style='color:#2bad00;font-weight:bold;'>35%</span> and DMG received is reduced by <span style='color:#2bad00;font-weight:bold;'>25%</span> for 15s.",
                         "sides":[
-                        { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
+                        { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
                           { "enemies":[ {"id":"10110", "type":1, "hp":1779270, "count":1}, {"id":"10132", "type":1, "hp":1665825, "count":1} ] } ]
                         },
-                        { "sideHPMult":0, "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "waves":[
+                        { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "waves":[
                           { "enemies":[ {"id":"10208", "type":0, "hp":3506807, "count":1} ] } ]
                         }]
                       },
                       { "buffName":"Frontier Buff",
                         "buffDesc":"• When triggering a <span style='font-weight:bold;'>Perfect Dodge</span>, Agent DMG increases by <span style='color:#2bad00;font-weight:bold;'>10%</span> and DMG received is reduced by <span style='color:#2bad00;font-weight:bold;'>10%</span> for 10s, stacking up to 3 times. The duration of each stack is calculated separately.",
                         "sides":[
-                        { "sideHPMult":0, "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
+                        { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
                           { "enemies":[ {"id":"10132", "type":0, "hp":2061574, "count":2} ] } ]
                         },
-                        { "sideHPMult":0, "sideElementMult":[1.2, 1.0, 1.0, 1.0, 0.8], "waves":[
+                        { "sideElementMult":[1.2, 1.0, 1.0, 1.0, 0.8], "waves":[
                           { "enemies":[ {"id":"11201", "type":0, "hp":4516357, "count":1} ] } ]
                         }]
                       },
                       { "buffName":"Frontier Buff",
                         "buffDesc":"• Increases Agent <span style='color:#7e50bb;font-weight:bold;'>Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>30%</span>. Enemies afflicted with <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> deal <span style='color:#2bad00;font-weight:bold;'>25%</span> less DMG for 10s.",
                         "sides":[
-                        { "sideHPMult":0, "sideElementMult":[1.2, 0.8, 1.0, 1.2, 0.8], "waves":[
+                        { "sideElementMult":[1.2, 0.8, 1.0, 1.2, 0.8], "waves":[
                           { "enemies":[ {"id":"10217", "type":0, "hp":4598061, "count":1}, {"id":"12105", "type":1, "hp":2800822, "count":1} ] } ]
                         },
-                        { "sideHPMult":0, "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
+                        { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
                           { "enemies":[ {"id":"10216", "type":0, "hp":5631241, "count":1}, {"id":"12104", "type":1, "hp":2800822, "count":1} ] } ]
                         }]
                       }
@@ -837,7 +837,7 @@
                       { "enemies":[ {"id":"12000", "type":1, "hp":488015, "count":2}, {"id":"12002", "type":1, "hp":488015, "count":2}, {"id":"10024", "type":1, "hp":371652, "count":1} ] },
                       { "enemies":[ {"id":"10212", "type":0, "hp":4967505, "count":1} ] } ]
                     },
-                    { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
+                    { "sideElementMult":[1.2, 1.0, 1.0, 1.0, 0.8], "waves":[
                       { "enemies":[ {"id":"10023", "type":1, "hp":520571, "count":3}, {"id":"10005", "type":1, "hp":442566, "count":2} ] },
                       { "enemies":[ {"id":"11201", "type":0, "hp":5775599, "count":1} ] } ]
                     }]
@@ -3627,10 +3627,10 @@
             },
   
     "2.4.1":{ "versionName":"2.4 Phase 1",
-              "versionTime":"xx/xx/20xx - xx/xx/20xx",
+              "versionTime":"05/12/2025 - 19/12/2025",
               "versionDazeMult":100,
               "versionAnomMult":100,
-              "buffName":"TBD",
+              "buffName":"Deceitful Steps",
               "buffDesc":"• When an Agent with the <span style='font-weight:bold;'>Stun</span> specialty hits a <span style='color:#ffe599;font-weight:bold;'>Stunned</span> enemy, the enemy's <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> increases by <span style='color:#2bad00;font-weight:bold;'>50%</span>.<br>• Agent <span style='font-weight:bold;'>EX Special Attack</span> and <span style='font-weight:bold;'>Ultimate</span> DMG increase by <span style='color:#2bad00;font-weight:bold;'>60%</span>.",
               "versionEnemies":{ 
                 "nodes":[
@@ -3679,7 +3679,7 @@
                       { "enemies":[ {"id":"10110", "type":0, "hp":2368552, "count":1}, {"id":"10107", "type":1, "hp":2068579, "count":1} ] } ]
                     },
                     { "sideElementMult":[0.8, 1.0, 1.0, 1.0, 0.8], "waves":[
-                      { "enemies":[ {"id":"21000", "type":1, "hp":672267, "count":3} ] },
+                      { "enemies":[ {"id":"21000", "type":1, "hp":672267, "count":4} ] },
                       { "enemies":[ {"id":"10132", "type":1, "hp":2301579, "count":1} ] },
                       { "enemies":[ {"id":"24100", "type":1, "hp":3810451, "count":1} ] } ]
                     }]
@@ -3716,10 +3716,10 @@
             },
   
     "2.4.2":{ "versionName":"2.4 Phase 2",
-              "versionTime":"xx/xx/20xx - xx/xx/20xx",
+              "versionTime":"19/12/2025 - 02/01/2026",
               "versionDazeMult":100,
               "versionAnomMult":100,
-              "buffName":"TBD",
+              "buffName":"Cloudbreaker",
               "buffDesc":"• Agent <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>30%</span>.<br>• When Agents' <span style='font-weight:bold;'>Basic Attacks</span> land a critical hit on an enemy, their CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>5%</span> for 10s, stacking up to 10 times. Repeated triggers reset the duration.",
               "versionEnemies":{ 
                 "nodes":[
@@ -3782,7 +3782,7 @@
                       { "enemies":[ {"id":"24102", "type":1, "hp":14420220, "count":1} ] } ]
                     },
                     { "sideElementMult":[0.8, 1.0, 1.0, 1.0, 0.8], "waves":[
-                      { "enemies":[ {"id":"21000", "type":1, "hp":2038094, "count":3} ] },
+                      { "enemies":[ {"id":"21000", "type":1, "hp":2038094, "count":4} ] },
                       { "enemies":[ {"id":"10132", "type":1, "hp":6977636, "count":1} ] },
                       { "enemies":[ {"id":"24100", "type":1, "hp":11552044, "count":1} ] } ]
                     }]
@@ -3799,8 +3799,8 @@
                     { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
                       { "enemies":[ {"id":"24200", "type":0, "hp":34746622, "count":1} ] } ]
                     },
-                    { "sideElementMult":[1.0, 1.0, 1.0, 1.2, 0.8], "waves":[
-                      { "enemies":[ {"id":"21200", "type":0, "hp":24416430, "count":1} ] } ]
+                    { "sideElementMult":[1.0, 1.0, 0.8, 1.2, 0.8], "waves":[
+                      { "enemies":[ {"id":"21200", "type":0, "hp":25701505, "count":1} ] } ]
                     }]
                   }
                 ]

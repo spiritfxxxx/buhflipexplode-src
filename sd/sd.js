@@ -531,7 +531,7 @@ function toggleChart() {
 function downloadChart() {
   let downloadButton = document.createElement("a");
   downloadButton.href = hpChart.toBase64Image("image/png", 1.0);
-  downloadButton.download = `Shiyu Defense ${versionData[modeNum - 1].name}-  ` + (modeNum == 4 ? `${chartNodeNum} HP` : `HP`);
+  downloadButton.download = `Shiyu Defense - ${versionData[modeNum - 1].name} ` + (modeNum == 4 ? `${chartNodeNum} HP` : `HP`);
   downloadButton.click();
 }
 /* format 3 hp dataset */

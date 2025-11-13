@@ -89,7 +89,7 @@ function showEnemies() {
     /* add side supposed equal HP multiplier */
     let combHPMult = document.createElement("div");
     combHPMult.className = "s-hp-daze-anom-mult";
-    combHPMult.innerHTML = `⇧ HP: <span style="color:#ff5555;">SOON™</span> | Anom: <span style="color:#7e50bb;">${versionAnomMult}%</span>`;
+    combHPMult.innerHTML = `⇧ HP: <span style="color:#ff5555;">SOON™</span> | Daze: <span style="color:#ffe599;">${versionDazeMult}%</span> | Anom: <span style="color:#7e50bb;">${versionAnomMult}%</span>`;
     sideHeader.appendChild(combHPMult);
     side.appendChild(sideHeader);
 
@@ -411,6 +411,10 @@ function createHPDataset(label, data, color) {
 }
 
 function displayHPChart() {
+  /* change color of selected score value */
+  let chartScoreButtons = document.querySelectorAll(".c-k");
+  chartScoreButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == chartScoreNum));
+
   /* various plugins thanks to Chart.js documentation + videos + Stack Overflow + friends */
   /* position hover line highlighting respective hp points */
   const verticalHoverLine = {
@@ -420,7 +424,7 @@ function displayHPChart() {
       ctx.save();
       for (let hp = 0; hp <= 2; ++hp)
         chart.getDatasetMeta(hp).data.forEach((dataPoint, index) => {
-          if (dataPoint.active == true) {
+          if (dataPoint.active) {
             ctx.beginPath();
             ctx.strokeStyle = "#888888";
             ctx.setLineDash([4, 6]);
@@ -532,9 +536,9 @@ function displayHPChart() {
   /* add global chart settings */
   hpChart.data.labels = versionIDs;
   hpChart.data.datasets = [
-    createHPDataset(`Raw HP (${chartScoreNum})`, chartScoreNum == "20k" ? hpData[0] : hpData[1], "#e06666"),
-    createHPDataset(`Alt HP (${chartScoreNum})`, chartScoreNum == "20k" ? hpData[2] : hpData[3], "#f6b26b"),
-  ]
+    createHPDataset(`Raw HP`, chartScoreNum == "20k" ? hpData[0] : hpData[1], "#e06666"),
+    createHPDataset(`Alt HP`, chartScoreNum == "20k" ? hpData[2] : hpData[3], "#f6b26b")
+  ];
   hpChart.options.scales.y.min = chartScoreNum == "20k" ? 40000000 : 160000000;
   hpChart.options.scales.y.max = chartScoreNum == "20k" ? 160000000 : 480000000;
   hpChart.options.plugins.title.text = `Deadly Assault HP (${chartScoreNum})`;

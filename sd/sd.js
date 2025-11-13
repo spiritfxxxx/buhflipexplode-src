@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 33, oldModeNum = 4, modeNum = 4;
+let cntNoLeaks = 34, oldModeNum = 4, modeNum = 4;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let versionNum = null, nodeNum = null, chartNodeNum = null, currNumberFormat = null;
@@ -78,12 +78,12 @@ function buildHPData() {
                 addAOE = false;
               }
             }
-            hpData[m - 1][n - 1][0][v - 1] = rawHP;
-            hpData[m - 1][n - 1][1][v - 1] = aoeHP;
-            hpData[m - 1][n - 1][2][v - 1] = (m == 4 && n > 5) || m != 3 ? Math.ceil(altHP) : null;
             addAOE = true;
           }
         }
+        hpData[m - 1][n - 1][0][v - 1] = rawHP;
+        hpData[m - 1][n - 1][1][v - 1] = aoeHP;
+        hpData[m - 1][n - 1][2][v - 1] = (m == 4 && n > 5) || m != 3 ? Math.ceil(altHP) : null;
       }
     }
   }
@@ -531,7 +531,7 @@ function toggleChart() {
 function downloadChart() {
   let downloadButton = document.createElement("a");
   downloadButton.href = hpChart.toBase64Image("image/png", 1.0);
-  downloadButton.download = `Shiyu Defense - ${versionData[modeNum - 1].name} ` + (modeNum == 4 ? `${chartNodeNum} HP` : `HP`);
+  downloadButton.download = `Shiyu Defense ${versionData[modeNum - 1].name}-  ` + (modeNum == 4 ? `${chartNodeNum} HP` : `HP`);
   downloadButton.click();
 }
 /* format 3 hp dataset */
@@ -549,7 +549,7 @@ function displayHPChart() {
       ctx.save();
       for (let hp = 0; hp <= 2; ++hp)
         chart.getDatasetMeta(hp).data.forEach((dataPoint, index) => {
-          if (dataPoint.active == true) {
+          if (dataPoint.active) {
             ctx.beginPath();
             ctx.strokeStyle = "#888888";
             ctx.setLineDash([4, 6]);
@@ -663,7 +663,7 @@ function displayHPChart() {
   if (modeNum != 4) {
     labels = Array.from({length: nodeLvlData[modeNum - 1].length}, (_, n) => `${versionData[modeNum - 1].name} ${n + 1}`);
     for (let n = 0; n < nodeLvlData[modeNum - 1].length; ++n) {
-      rawHPData.push(hpData[modeNum - 1][n][0][0])
+      rawHPData.push(hpData[modeNum - 1][n][0][0]);
       aoeHPData.push(hpData[modeNum - 1][n][1][0]);
       altHPData.push(hpData[modeNum - 1][n][2][0]);
     }
@@ -674,10 +674,10 @@ function displayHPChart() {
     hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % 4000000 == 0 ? "#888888" : "#444444"; } };
   }
   else {
-    labels = versionIDs[3];
-    rawHPData = hpData[3][chartNodeNum - 1][0];
-    aoeHPData = hpData[3][chartNodeNum - 1][1];
-    altHPData = hpData[3][chartNodeNum - 1][2];
+    labels = versionIDs[modeNum - 1];
+    rawHPData = hpData[modeNum - 1][chartNodeNum - 1][0];
+    aoeHPData = hpData[modeNum - 1][chartNodeNum - 1][1];
+    altHPData = hpData[modeNum - 1][chartNodeNum - 1][2];
     hpChart.options.plugins.title.text = `Shiyu Defense: Critical Node ${chartNodeNum} HP`;
     hpChart.options.scales.y.min = 0;
     hpChart.options.scales.y.max = 70000000;

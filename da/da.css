@@ -138,13 +138,11 @@ body.no-scroll {
   flex-direction: column;
 }
 /* raw, aoe, alt hp display */
-#v-hp-raw-6000, #v-hp-raw-14000, 
 #v-hp-raw-20000, #v-hp-raw-60000 {
   color: #e06666;
   font-weight: bold;
   user-select: all;
 }
-#v-hp-alt-6000, #v-hp-alt-14000, 
 #v-hp-alt-20000, #v-hp-alt-60000 {
   color: #f6b26b;
   font-weight: bold;
@@ -254,7 +252,7 @@ body.no-scroll {
 
 /* enemy stage info */
 .esd {
-  margin-top: 125px;
+  margin-top: 120px;
   min-height: 525px;
   width: 100%;
   box-sizing: border-box;
@@ -631,13 +629,20 @@ input:checked + #st {
   color: #b2cee7;
 }
 /* chart point switcher */
-#c-20k, #c-60k {
+.c-k {
   font-size: 3vh;
   font-weight: bold;
   cursor: pointer;
+  display: block;
   user-select: none;
 }
-#c-20k:hover, #c-60k:hover {
+.c-k:hover {
+  color: #b2cee7;
+  transition: all 0.1s ease-in-out;
+}
+.c-k.selected {
+  font-weight: bold;
+  text-decoration: underline;
   color: #b2cee7;
   transition: all 0.1s ease-in-out;
 }
@@ -739,7 +744,7 @@ input:checked + #st {
   left: 50%;
 }
 .tt-v-hp .tt-text {
-  width: 200px;
+  width: 240px;
   top: -190%;
 }
 .tt-e-stat .tt-text {
@@ -801,6 +806,7 @@ input:checked + #st {
   .tt-v-hp .tt-text { top: -25%; left: 1200%; }
 }
 @media (max-width: 500px) {
+  #v-hp { flex-direction: column; gap: 15px; }
   .vg-c { width: 250px; }
   #c-g { width: 227.5vw; height: 1000vh; }
   #vs-x-bar { padding: 1vh 2.25vw; }

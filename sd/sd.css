@@ -118,6 +118,7 @@ body.no-scroll {
 /* buff placement */
 #b {
   padding: 15px;
+  margin-bottom: 15px;
   margin-left: 15px;
   margin-right: 15px;
   background-color: #27363e;
@@ -182,7 +183,6 @@ body.no-scroll {
 }
 /* put side header + content in the center of each half */
 .s-header {
-  padding: 15px;
   font-size: 16px;
   color: #f29e38;
   font-weight: bold;
@@ -698,7 +698,7 @@ input:checked + #st {
   display: inline-block;
 }
 .tt-n-hp {
-  margin-left: 12px;
+  margin-left: 8px;
   display: inline-block;
 }
 .tt-e-hp, .tt-e-stat {

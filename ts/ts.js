@@ -3,11 +3,11 @@
 let cntNoLeaks = 1, oldModeNum = 2, modeNum = 2;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
-let versionNum = null, nodeNum = null, chartNodeNum = null, chartScoreNum = null, currNumberFormat = null;
+let versionNum = null, nodeNum = null, endingNum = null, chartNodeNum = null, chartScoreNum = null, chartDisplayType = null, currNumberFormat = null;
 let menuIsOpen = false, versionSelectorIsOpen = false, chartIsOpen = false;
 
 let versionData = null, enemyData = null, hpChart = null;
-let buffNames = null, buffDescs = null, versionDazeMult = null, versionAnomMult = null, versionEnemies = null;
+let buffNames = null, buffDescs = null, versionDazeMult = null, versionBossAnomMult = null, versionEnemyAnomMult = null, versionEnemies = null;
 let versionIDs = [], hpData = [];
 let nodeLvlData = [ [55, 58, 60, 65],                                                 // easy
                     [60, 63, 65, 70, 70, 70] ];                                       // hard
@@ -19,7 +19,7 @@ let nodeDefMult = [ [689, 751, 794, 794],                                       
                     [794, 794, 794, 794, 794, 794] ];                                 // hard
 
 let nodeDazeMult = [ [1.92, 2, 2.06, 2.2],                                            // easy
-                     [2.06, 2.2, 2.35, 2.35, 2.35] ];                                 // hard
+                     [2.06, 2.2, 2.35, 2.35, 2.35, 2.35] ];                           // hard
 let elementsData = ["ice", "fire", "electric", "ether", "physical"];
 
 /* load main page data from .json files, and display */
@@ -31,21 +31,39 @@ async function loadThresholdPage() {
   buildHPData();
   loadSavedState();
   await showVersion();
-  //displayHPChart();
+  displayHPChart();
   updateNumberFormat();
 }
 
 /* create hp database using 3D matrix */
 async function buildHPData() {
-  hpData = [Array.from({length: 4}, () => Array.from({length: 5}, () => Array.from({length: 1}).fill(null))),
-            Array.from({length: 6}, () => Array.from({length: 5}, () => Array.from({length: versionIDs[1].length}).fill(null))) ];
+  hpData = [Array.from({length: 4}, () => Array.from({length: 7}, () => Array.from({length: 1}).fill(null))),
+            Array.from({length: 6}, () => Array.from({length: 7}, () => Array.from({length: versionIDs[1].length}).fill(null))) ];
   for (let m = 1; m <= 2; ++m) {
     for (let v = 1; v <= versionIDs[m - 1].length; ++v) {
       versionEnemies = versionData[m - 1].versions[versionIDs[m - 1][v - 1]].versionEnemies;
       for (let n = 1; n <= versionEnemies.nodes.length; ++n) {
-        let raw60kEnemyHP = 0, alt60kEnemyHP = 0;
         let currNode = versionEnemies.nodes[n - 1];
-        for (let s = 1; s <= 5; ++s) {
+        let alt60kEnemyHP = 0, rawHP = 0, aoeHP = 0, altHP = 0;
+        let addAOE = true;
+
+        let currEnemy = currNode.sides[0].waves[0].enemies[0];
+        let currEnemyID = currEnemy.id;
+        let currEnemyData = enemyData[currEnemyID];
+        let eHP = currEnemy.hp;
+
+        hpData[m - 1][n - 1][0][v - 1] = Math.ceil(eHP * 0.281083138);
+        hpData[m - 1][n - 1][1][v - 1] = Math.ceil(eHP);
+        let eTags = currEnemyData.tags;
+        if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
+          if (eTags.includes("miasma")) alt60kEnemyHP += eHP * 0.97;
+          else if (eTags.includes("ucc")) alt60kEnemyHP += eHP * 0.964;
+        }
+        else alt60kEnemyHP += eHP;
+        hpData[m - 1][n - 1][2][v - 1] = Math.ceil(alt60kEnemyHP * 0.281083138);
+        hpData[m - 1][n - 1][3][v - 1] = Math.ceil(alt60kEnemyHP);
+
+        for (let s = 2; s <= 5; ++s) {
           let currSide = currNode.sides[s - 1];
           if (currSide == null) continue;
           for (let w = 1; w <= currSide.waves.length; ++w) {
@@ -57,23 +75,24 @@ async function buildHPData() {
               let eHP = currEnemy.hp;
               let eTags = currEnemyData.tags;
               for (let cnt = 1; cnt <= currEnemy.count; ++cnt) {
-                raw60kEnemyHP += eHP;
+                rawHP += currEnemy.id != "14000" ? eHP : 1;
+                aoeHP += addAOE ? eHP : 0;
                 if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
-                  if (eTags.includes("ucc")) alt60kEnemyHP += eHP * 0.964;
-                  else if (eTags.includes("brute")) alt60kEnemyHP += eHP * 0.92;
-                  else if (eTags.includes("robot")) alt60kEnemyHP += eHP * 0.9;
-                  else if (eTags.includes("miasma")) alt60kEnemyHP += eHP * (currEnemyID[2] == '2' ? 0.85 : 0.97);
-                  else if (eTags.includes("palicus")) alt60kEnemyHP += eHP * 0.75;
+                  if (eTags.includes("brute")) altHP += eHP * 0.92;
+                  else if (eTags.includes("robot")) altHP += eHP * 0.9;
+                  else if (eTags.includes("miasma")) altHP += eHP * 0.85;
+                  else if (eTags.includes("palicus")) altHP += eHP * 0.75;
                 }
-                else alt60kEnemyHP += eHP;
+                else altHP += addAOE ? eHP : 0;
+                addAOE = false;
               }
             }
+            addAOE = true;
           }
         }
-        hpData[m - 1][n - 1][0][v - 1] = Math.ceil(raw60kEnemyHP * 0.281083138);
-        hpData[m - 1][n - 1][1][v - 1] = Math.ceil(raw60kEnemyHP);
-        hpData[m - 1][n - 1][2][v - 1] = Math.ceil(alt60kEnemyHP * 0.281083138);
-        hpData[m - 1][n - 1][3][v - 1] = Math.ceil(alt60kEnemyHP);
+        hpData[m - 1][n - 1][4][v - 1] = rawHP;
+        hpData[m - 1][n - 1][5][v - 1] = aoeHP;
+        hpData[m - 1][n - 1][6][v - 1] = Math.ceil(altHP);
       }
     }
   }
@@ -83,7 +102,8 @@ async function buildHPData() {
 async function showVersion() {
   let currVersion = versionData[modeNum - 1].versions[versionIDs[modeNum - 1][versionNum - 1]];
   versionDazeMult = currVersion.versionDazeMult;
-  versionAnomMult = currVersion.versionAnomMult;
+  versionBossAnomMult = currVersion.versionBossAnomMult;
+  versionEnemyAnomMult = currVersion.versionEnemyAnomMult;
   versionEnemies = currVersion.versionEnemies;
   document.getElementById("v-name").innerHTML = currVersion.versionName;
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
@@ -99,9 +119,9 @@ async function changeVersion(n) {
 /* ◁ node # ▷ display */
 function showNode() {
   if (oldModeNum != modeNum) {
-    nodeNum = modeNum == 2 ? parseInt(localStorage.getItem("lastTSNode")) : nodeLvlData[modeNum - 1].length;
+    nodeNum = modeNum == 2 ? parseInt(localStorage.getItem("lastTSNode")) : 4;
     oldModeNum = modeNum;
-    //displayHPChart();
+    displayHPChart();
   }
   buffNames = versionEnemies.nodes[nodeNum - 1].buffNames;
   for (let buff = 1; buff <= 4; ++buff) {
@@ -109,9 +129,32 @@ function showNode() {
     document.getElementById(`b-name${buff}`).innerHTML = buffNames[buff - 1];
     document.getElementById(`b-desc${buff}`).innerHTML = buffDescs[buffNames[buff - 1]];
   }
-  document.getElementById("n-text").innerHTML = `${nodeNum < 4 || modeNum != 2 ? nodeNum : `4.${nodeNum < 4 ? 1 : nodeNum - 3}`}`; showEnemies();
+  document.getElementById("n-text").innerHTML = `${nodeNum < 4 ? nodeNum : 4}`;showEnemies();
+  if (modeNum == 2 && nodeNum >= 4) {
+    document.getElementById("end").style.display = "flex";
+    let endingButtons = document.querySelectorAll(".end-text");
+    endingButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == endingNum));
+  }
+  else document.getElementById("end").style.display = "none";
 }
-function changeNode(n) { nodeNum = (nodeNum - 1 + n + nodeLvlData[modeNum - 1].length) % nodeLvlData[modeNum - 1].length + 1; showNode(); }
+function changeNode(n) {
+  if (modeNum == 2 && nodeNum > 4) nodeNum = 4;
+  nodeNum = (nodeNum - 1 + n + 4) % 4 + 1;
+  if (modeNum == 2 && nodeNum == 4) nodeNum += endingNum - 1;
+  showNode();
+}
+
+/* show specific ending variant for final node */
+function changeEnding(n) { endingNum = n; nodeNum = 3 + n; showNode(); }
+
+/* chart ◁ ▷ display */
+function showChartNode() { displayHPChart(); }
+function changeChartNode(n) { chartNodeNum = (chartNodeNum - 1 + n + nodeLvlData[modeNum - 1].length) % nodeLvlData[modeNum - 1].length + 1; showChartNode(); }
+
+/* show specific chart variant for bosses/enemies*/
+function changeChart() {
+  displayHPChart();
+}
 
 /* place and display elements/enemies/weaknesses/resistances/HP/count on screen */
 function showEnemies() {
@@ -136,12 +179,16 @@ function showEnemies() {
     /* add side supposed equal HP multiplier */
     let combHPMult = document.createElement("div");
     combHPMult.className = "s-hp-daze-anom-mult";
+    combHPMult.innerHTML = `HP: <span style="color:#ff5555;">N/A</span> | Daze: <span style="color:#ffe599;">N/A</span>`;
+    sideHeader.appendChild(combHPMult);
 
     /* add side combined weaknesses/resistances */
-    /*let combWR = document.createElement("div");
-    let currSideElementMult = currSide.sideElementMult;
-    combWR.className = "wr";
-    generateWR(currSideElementMult, combWR, s);*/
+    if (s >= 2) {
+      let combWR = document.createElement("div");
+      combWR.className = "wr";
+      generateWR(currSide != null ? currNode.sides[s - 1].sideElementMult : [1.0, 1.0, 1.0, 1.0, 1.0], combWR);
+      sideHeader.appendChild(combWR);
+    }
     side.appendChild(sideHeader);
 
     if (currSide == null) continue;
@@ -152,10 +199,12 @@ function showEnemies() {
       wave.className = "w";
 
       /* add wave WAVE # title */
-      let waveHeader = document.createElement("div");
-      waveHeader.className = "w-num";
-      waveHeader.innerHTML = `WAVE ${w}`;
-      wave.appendChild(waveHeader);
+      if (s >= 2) {
+        let waveHeader = document.createElement("div");
+        waveHeader.className = "w-num";
+        waveHeader.innerHTML = `WAVE ${w}`;
+        wave.appendChild(waveHeader);
+      }
 
       /* add wave enemy display */
       let currWave = currSide.waves[w - 1];
@@ -180,11 +229,18 @@ function showEnemies() {
         let eHP = currEnemy.hp;
         let eHPMult = Math.round(eHP / currEnemyData.baseHP[currEnemyType] / nodeHPMult[modeNum - 1][nodeNum - 1] * 10000) / 100;
         let eDef = currEnemyData.baseDef / 50 * nodeDefMult[modeNum - 1][nodeNum - 1];
-        let eDaze = currEnemyData.baseDaze[currEnemyType] * nodeDazeMult[modeNum - 1][nodeNum - 1];
+        let eDaze = (currEnemyID[2] == '3' ? currEnemyData.baseDaze : currEnemyData.baseDaze[currEnemyType]) * nodeDazeMult[modeNum - 1][nodeNum - 1];
         let eStunMult = currEnemyData.stunMult;
         let eStunTime = currEnemyData.stunTime;
         let eAnom = currEnemyData.baseAnom;
         let eElementMult = currEnemyData.elementMult;
+
+        /* finish adding side header after first+ enemy */
+        if (sideHPMult == null) {
+          combHPMult.innerHTML = `HP: <span style="color:#ff5555;">${s == 1 ? `SOON™` : `${eHPMult}%`}</span> | Daze: <span style="color:#ffe599;">${versionDazeMult}%</span>${s == 1 ? ` | Anom: <span style="color:#7e50bb;">${versionBossAnomMult}%</span>` : ``}`;
+          /* do not add header if not. dullahan (weird base hp) is not the only enemy in wave */
+          if (currEnemyID != "10213" || currWave.enemies.length == 1) sideHPMult = eHPMult;
+        }
 
         /* loop each enemy appearance */ 
         for (let cnt = 1; cnt <= currEnemy.count; ++cnt) {
@@ -222,8 +278,8 @@ function showEnemies() {
             let ttHP = document.createElement("div");
             ttHP.className = "tt-e-hp";
 
-            /* set tooltip position to be in the top right of the smaller image */
-            if (s >= 2) ttHP.style.right = "87px";
+            /* set tooltip to be smaller */
+            if (s >= 2) { ttHP.style.fontSize = "36px"; ttHP.style.top = "-22px"; ttHP.style.right = "89px"; }
 
             if (eTags.includes("ucc"))
               ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 1.2, 3)}</span>`;
@@ -245,6 +301,14 @@ function showEnemies() {
           /* ADDING LATER */
           /* ADDING LATER */
 
+          /* add enemy specific HP multiplier if not in a margin of error */
+          if (Math.abs(sideHPMult - eHPMult) > 1) {
+            let specificHPMult = document.createElement("div");
+            specificHPMult.className = "e-hp-mult";
+            specificHPMult.innerHTML = `[${eHPMult}%]`;
+            enemy.appendChild(specificHPMult);
+          }
+
           /* add enemy def display */
           let enemyDef = document.createElement("div");
           enemyDef.className = "e-def";
@@ -254,7 +318,7 @@ function showEnemies() {
           /* add enemy misc stat tooltip */
           let ttMiscStat = document.createElement("div");
           ttMiscStat.className = "tt-e-stat";
-          ttMiscStat.innerHTML = `+</span><span class="tt-text">${generateEnemyStats(eDaze, eStunMult, eStunTime, versionAnomMult / 100 * eAnom, eElementMult, eMods)}</span>`;
+          ttMiscStat.innerHTML = `+</span><span class="tt-text">${generateEnemyStats(eDaze, eStunMult, eStunTime, (currEnemyID[2] == '3' ? versionBossAnomMult : versionEnemyAnomMult) / 100 * eAnom, eElementMult, eMods)}</span>`;
           enemy.appendChild(ttMiscStat);
 
           waveEnemies.appendChild(enemy);
@@ -277,10 +341,13 @@ function showEnemies() {
   }
 
   /* add raw + alt HP display */
-  document.getElementById("v-hp-raw-20000").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][0][versionNum - 1]);
-  document.getElementById("v-hp-raw-60000").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
-  document.getElementById("v-hp-alt-20000").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][2][versionNum - 1]);
-  document.getElementById("v-hp-alt-60000").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][3][versionNum - 1]);
+  document.getElementById("n-hp-b-raw-20000").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][0][versionNum - 1]);
+  document.getElementById("n-hp-b-raw-60000").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
+  document.getElementById("n-hp-b-alt-20000").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][2][versionNum - 1]);
+  document.getElementById("n-hp-b-alt-60000").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][3][versionNum - 1]);
+  document.getElementById("n-hp-raw").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][4][versionNum - 1]);
+  document.getElementById("n-hp-aoe").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][5][versionNum - 1]);
+  document.getElementById("n-hp-alt").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][6][versionNum - 1]);
 
   /* save current page + settings */
   if (modeNum == 2) saveLastPage();
@@ -299,7 +366,7 @@ function generateWR(mult, wr, s) {
   weakImg2.className = "wk";
   resImg1.className = "res";
   resImg2.className = "res";
-  if (s >= 2) { weakImg1.style.width = "20px"; weakImg2.style.width = "20px"; resImg1.style.width = "20px"; resImg2.style.width = "20px"; }
+  if (s == 1) { weakImg1.style.width = "24px"; weakImg2.style.width = "24px"; resImg1.style.width = "24px"; resImg2.style.width = "24px"; }
   weakImg1.src = "../assets/elements/none.webp";
   weakImg2.src = "../assets/elements/none.webp";
   resImg1.src = "../assets/elements/none.webp";
@@ -356,8 +423,10 @@ function loadSavedState() {
   if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
   versionNum = parseInt(localStorage.getItem("lastTSVersion") || `${cntNoLeaks}`);
   nodeNum = parseInt(localStorage.getItem("lastTSNode") || "6");
+  endingNum = parseInt(localStorage.getItem("lastTSEnding") || "3");
   chartNodeNum = parseInt(localStorage.getItem("lastTSChartNode") || "6");
   chartScoreNum = localStorage.getItem("lastTSChartScore") || "60k";
+  chartDisplayType = localStorage.getItem("lastTSChartType") || "Boss";
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
   if (!leaksToggle.checked) versionNum = Math.min(versionNum, cntNoLeaks);
   saveLastPage();
@@ -368,7 +437,9 @@ function loadSavedState() {
 function saveLastPage() {
   localStorage.setItem("lastTSVersion", versionNum);
   localStorage.setItem("lastTSNode", nodeNum);
+  localStorage.setItem("lastTSEnding", endingNum);
   localStorage.setItem("lastTSChartNode", chartNodeNum);
+  localStorage.setItem("lastTSChartType", chartDisplayType);
 }
 function saveSettings() {
   localStorage.setItem("lastTSChartScore", chartScoreNum);
@@ -382,7 +453,7 @@ document.addEventListener("keydown", (e) => {
   e.stopPropagation();
   if (e.key == "Escape") { e.preventDefault(); chartIsOpen ? toggleChart() : (versionSelectorIsOpen ? toggleVersionSelector() : toggleMenu()); }
   else if (e.key == " " && !menuIsOpen && !chartIsOpen) { e.preventDefault(); toggleVersionSelector(); }
-  else if (e.key == "Backspace" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); } // toggleChart(); }
+  else if (e.key == "Backspace" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); toggleChart(); }
   else if (e.key == "ArrowLeft" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }
   else if (e.key == "ArrowRight" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(1); }
   else if (e.key == "ArrowUp") { e.preventDefault(); !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen ? changeNode(1) : changeChartNode(1) }
@@ -421,7 +492,7 @@ function updateNumberFormat(e) {
   ex.innerHTML = numberFormat(2222222);
   numFormatButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == currNumberFormat));
   showEnemies();
-  //displayHPChart();
+  displayHPChart();
 }
 function numberFormat(num) {
   if (currNumberFormat == "comma") return num.toLocaleString("en-US");
@@ -495,7 +566,6 @@ function displayVersionSelectorGrid() {
         modeNum = m;
         versionNum = modeNum == 2 ? v : 1;
         toggleVersionSelector();
-        //displayHPChart();
         showVersion();
       };
 
@@ -528,7 +598,7 @@ function toggleChartPoints(points) {
 function downloadChart() {
   let downloadButton = document.createElement("a");
   downloadButton.href = hpChart.toBase64Image("image/png", 1.0);
-  downloadButton.download = `Threshold Simulation HP (${chartScoreNum})`;
+  downloadButton.download = `Threshold Simulation - ${versionData[modeNum - 1].name} HP (${chartScoreNum})`;
   downloadButton.click();
 }
 /* format 3 hp dataset */
@@ -537,6 +607,15 @@ function createHPDataset(label, data, color) {
 }
 
 function displayHPChart() {
+  /* remove score selector if enemy dropdown is selected */
+  chartDisplayType = document.getElementById("c-dd").value;
+  let score = document.querySelectorAll(".c-k");
+  score.forEach(btn => {btn.style.display = chartDisplayType == "Boss" ? "block" : "none"});
+
+  /* change color of selected score value */
+  let chartScoreButtons = document.querySelectorAll(".c-k");
+  chartScoreButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == chartScoreNum));
+
   /* various plugins thanks to Chart.js documentation + videos + Stack Overflow + friends */
   /* position hover line highlighting respective hp points */
   const verticalHoverLine = {
@@ -546,7 +625,7 @@ function displayHPChart() {
       ctx.save();
       for (let hp = 0; hp <= 2; ++hp)
         chart.getDatasetMeta(hp).data.forEach((dataPoint, index) => {
-          if (dataPoint.active == true) {
+          if (dataPoint.active) {
             ctx.beginPath();
             ctx.strokeStyle = "#888888";
             ctx.setLineDash([4, 6]);
@@ -656,14 +735,38 @@ function displayHPChart() {
   }
   
   /* add global chart settings */
-  hpChart.data.labels = versionIDs[modeNum - 1];
-  hpChart.data.datasets = [
-    createHPDataset(`Raw HP (${chartScoreNum})`, chartScoreNum == "20k" ? hpData[modeNum - 1][nodeNum - 1][0] : hpData[modeNum - 1][nodeNum - 1][1], "#e06666"),
-    createHPDataset(`Alt HP (${chartScoreNum})`, chartScoreNum == "20k" ? hpData[modeNum - 1][nodeNum - 1][2] : hpData[modeNum - 1][nodeNum - 1][3], "#f6b26b"),
-  ]
-  hpChart.options.scales.y.min = chartScoreNum == "20k" ? 40000000 : 160000000;
-  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 120000000 : 400000000;
-  hpChart.options.plugins.title.text = `Threshold Simulation HP (${chartScoreNum})`;
+  document.getElementById("c-dd").value = chartDisplayType;
+  var labels;
+  let rawBossHPData = [], altBossHPData = [];
+  let rawHPData = [], aoeHPData = [], altHPData = [];
+  if (modeNum != 2) {
+    labels = Array.from({length: nodeLvlData[modeNum - 1].length}, (_, n) => `${versionData[modeNum - 1].name} ${n + 1}`);
+    for (let n = 0; n < nodeLvlData[modeNum - 1].length; ++n) {
+      rawBossHPData.push(chartScoreNum == "20k" ? hpData[modeNum - 1][n][0][0] : hpData[modeNum - 1][n][1][0]);
+      altBossHPData.push(chartScoreNum == "20k" ? hpData[modeNum - 1][n][2][0] : hpData[modeNum - 1][n][3][0]);
+      rawHPData.push(hpData[modeNum - 1][n][4][0]);
+      aoeHPData.push(hpData[modeNum - 1][n][5][0]);
+      altHPData.push(hpData[modeNum - 1][n][6][0]);
+    }
+    hpChart.options.plugins.title.text = `Threshold Simulation: Easy Mode ${chartDisplayType} HP`;
+    hpChart.options.scales.y.min = chartScoreNum == "20k" ? 0 : 0;
+    hpChart.options.scales.y.max = chartScoreNum == "20k" ? 40000000 : 120000000;
+  }
+  else {
+    labels = versionIDs[modeNum - 1];
+    rawBossHPData = chartScoreNum == "20k" ? hpData[modeNum - 1][chartNodeNum - 1][0] : hpData[modeNum - 1][chartNodeNum - 1][1];
+    altBossHPData = chartScoreNum == "20k" ? hpData[modeNum - 1][chartNodeNum - 1][2] : hpData[modeNum - 1][chartNodeNum - 1][3];
+    rawHPData = hpData[modeNum - 1][chartNodeNum - 1][4];
+    aoeHPData = hpData[modeNum - 1][chartNodeNum - 1][5];
+    altHPData = hpData[modeNum - 1][chartNodeNum - 1][6];
+    hpChart.options.plugins.title.text = `Threshold Simulation: Hard Mode ${chartNodeNum < 4 ? chartNodeNum : `4`}${modeNum != 2 || chartNodeNum < 4 ? `` : `.${chartNodeNum - 3}`} ${chartDisplayType} HP${chartDisplayType == "Boss" ? ` (${chartScoreNum})` : ``}`;
+    hpChart.options.scales.y.min = chartDisplayType == "Enemy" ? 0 : (chartScoreNum == "20k" ? 0 : 80000000);
+    hpChart.options.scales.y.max = chartDisplayType == "Enemy" ? 160000000 : (chartScoreNum == "20k" ? 120000000 : 400000000);
+  }
+  hpChart.data.labels = labels;
+  hpChart.data.datasets = chartDisplayType == "Boss" ?
+    [ createHPDataset(`Raw HP`, rawBossHPData, "#e06666"), createHPDataset(`Alt HP`, altBossHPData, "#f6b26b") ] :
+    [ createHPDataset(`Raw HP`, rawHPData, "#e06666"), createHPDataset(`AOE HP`, aoeHPData, "#6d9eeb"), createHPDataset(`Alt HP`, altHPData, "#f6b26b") ];
   hpChart.update();
   if (modeNum == 2) saveLastPage();
   saveSettings();

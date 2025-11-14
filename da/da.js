@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 23;
+let cntNoLeaks = 24;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let versionNum = null, chartScoreNum = null, currNumberFormat = null;
@@ -62,7 +62,7 @@ async function showVersion() {
   for (let buff = 1; buff <= 3; ++buff) {
     document.getElementById(`b-img${buff}`).src = `../assets/buffs/${buffNames[buff - 1].toLowerCase().replace(" ", "-").replace(" ", "-")}.webp`;
     document.getElementById(`b-name${buff}`).innerHTML = buffNames[buff - 1];
-    document.getElementById(`b-desc${buff}`).innerHTML = buffDescs[buffNames[buff - 1]];
+    document.getElementById(`b-desc${buff}`).innerHTML = versionNum == 8 && buffNames[buff - 1] == "Blazing Chill" ? "• Agent <span style='color:#ff5521;font-weight:bold;'>Fire Anomaly Buildup Rate</span> and <span style='color:#98eff0;font-weight:bold;'>Ice Anomaly Buildup Rate</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and ATK increases by <span style='color:#2bad00;font-weight:bold;'>25%</span>.<br>• When inflicting an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on enemies, the Agent restores <span style='color:#2bad00;font-weight:bold;'>400</span> Decibels and <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> is increased by <span style='color:#2bad00;font-weight:bold;'>80</span>, lasting 15s. Decibels recovery can be triggered once every 15s." : buffDescs[buffNames[buff - 1]];
   }
   showEnemies();
 }

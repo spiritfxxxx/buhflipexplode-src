@@ -123,19 +123,15 @@ function showNode() {
     oldModeNum = modeNum;
     displayHPChart();
   }
-  buffNames = versionEnemies.nodes[nodeNum - 1].buffNames;
-  for (let buff = 1; buff <= 4; ++buff) {
-    document.getElementById(`b-img${buff}`).src = `../assets/buffs/${buffNames[buff - 1].toLowerCase().replace(" ", "-")}.webp`;
-    document.getElementById(`b-name${buff}`).innerHTML = buffNames[buff - 1];
-    document.getElementById(`b-desc${buff}`).innerHTML = buffDescs[buffNames[buff - 1]];
-  }
-  document.getElementById("n-text").innerHTML = `${nodeNum < 4 ? nodeNum : 4}`;showEnemies();
+  document.getElementById("n-text").innerHTML = `${nodeNum < 4 ? nodeNum : 4}`;
   if (modeNum == 2 && nodeNum >= 4) {
     document.getElementById("end").style.display = "flex";
     let endingButtons = document.querySelectorAll(".end-text");
     endingButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == endingNum));
   }
   else document.getElementById("end").style.display = "none";
+  showBuffs();
+  showEnemies();
 }
 function changeNode(n) {
   if (modeNum == 2 && nodeNum > 4) nodeNum = 4;
@@ -151,9 +147,17 @@ function changeEnding(n) { endingNum = n; nodeNum = 3 + n; showNode(); }
 function showChartNode() { displayHPChart(); }
 function changeChartNode(n) { chartNodeNum = (chartNodeNum - 1 + n + nodeLvlData[modeNum - 1].length) % nodeLvlData[modeNum - 1].length + 1; showChartNode(); }
 
-/* show specific chart variant for bosses/enemies*/
-function changeChart() {
-  displayHPChart();
+/* show specific chart variant for bosses/enemies */
+function changeChart() { displayHPChart(); }
+
+/* show node buffs */
+function showBuffs() {
+  buffNames = versionEnemies.nodes[nodeNum - 1].buffNames;
+  for (let buff = 1; buff <= 4; ++buff) {
+    document.getElementById(`b-img${buff}`).src = `../assets/buffs/${buffNames[buff - 1].toLowerCase().replace(" ", "-")}.webp`;
+    document.getElementById(`b-name${buff}`).innerHTML = buffNames[buff - 1];
+    document.getElementById(`b-desc${buff}`).innerHTML = buffDescs[buffNames[buff - 1]];
+  }
 }
 
 /* place and display elements/enemies/weaknesses/resistances/HP/count on screen */

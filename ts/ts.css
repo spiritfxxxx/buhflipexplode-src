@@ -734,6 +734,9 @@ input:checked + #st {
   border: none;
   cursor: pointer;
 }
+#c-x:hover {
+  color: #b2cee7;
+}
 /* chart boss/enemy dropdown */
 #c-dd {
   z-index: 2003;
@@ -742,9 +745,6 @@ input:checked + #st {
   top: 25px;
   right: 25px;
   font-size: 14px;
-}
-#c-x:hover {
-  color: #b2cee7;
 }
 /* chart node switcher */
 #c-l, #c-r {
@@ -941,7 +941,7 @@ input:checked + #st {
   #c-g { width: 227.5vw; height: 1000vh; }
   #vs-x-bar { padding: 1vh 2.25vw; }
   #c-x-bar { width: 227.5vw; padding: 1vh 2.25vw; }
-  .tt-n-hp .tt-text { top: -300%; left: 50%; width: 120px; height: 37.5px; }
+  .tt-n-hp .tt-text { top: -300%; left: 50%; width: 120px; height: 37.5px; display: flex; align-items: center; justify-content: center; }
   .tt-n-hp .tt-text::after { top: 100%; left: 50%; border-color: #444444 transparent transparent transparent; }
 }
 @media (max-width:300px){

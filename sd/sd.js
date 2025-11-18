@@ -1,9 +1,10 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 34, oldModeNum = 4, modeNum = 4;
+let cntNoLeaks = 34, oldModeNum = 4, modeNum = 4, v2_4 = 37;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
-let versionNum = null, nodeNum = null, chartNodeNum = null, currNumberFormat = null;
+let oldVersionNum = null, currVersion = null, versionNum = null;
+let nodeNum = null, chartNodeNum = null, chartDisplayType = null, currNumberFormat = null;
 let menuIsOpen = false, versionSelectorIsOpen = false, chartIsOpen = false;
 
 let versionData = null, versionDazeMult = null, versionAnomMult = null, versionEnemies = null, enemyData = null, hpChart = null;
@@ -12,21 +13,25 @@ let nodeLvlData = [ [25, 28, 30, 33, 35, 38, 40, 43, 45, 50],                   
                     [40, 43, 45, 48, 50, 53, 55, 60],                                         // disputed
                     [50, 53, 55, 60, 65],                                                     // ambush
                     [50, 53, 55, 58, 60, 65, 70] ];                                           // critical
+let newNodeLvlData = [50, 55, 60, 65, 70];
 
 let nodeHPMult = [ [11.19, 11.6, 13.51, 15.41, 18.53, 18.7, 21.58, 23.77, 28.24, 32.13],      // stable
                    [21.58, 23.77, 28.24, 28.96, 32.13, 34.60, 40.8, 46.04],                   // disputed
                    [32.13, 34.6, 40.8, 46.04, 47.74],                                         // ambush
                    [32.13, 34.6, 40.8, 41.58, 46.04, 47.74, 54.06] ];                         // critical
+let newNodeHPMult = [32.13, 40.8, 46.04, 47.74, 54.06];
 
 let nodeDefMult = [ [222, 256, 281, 319, 347, 390, 421, 469, 502, 592],                       // stable
                     [421, 469, 502, 555, 592, 649, 689, 794],                                 // disputed
                     [592, 649, 689, 794, 794],                                                // ambush
                     [592, 649, 689, 751, 794, 794, 794] ];                                    // critical
+let newNodeDefMult = [592, 689, 794, 794, 794];
 
 let nodeDazeMult = [ [1.04, 1.06, 1.08, 1.15, 1.2, 1.28, 1.2901, 1.46, 1.55, 1.78],           // stable
                      [1.329, 1.46, 1.55, 1.691, 1.78, 1.86, 1.92, 2.06],                      // disputed
                      [1.78, 1.86, 1.92, 2.06, 2.2],                                           // ambush
                      [1.78, 1.86, 1.92, 2, 2.06, 2.2, 2.35] ];                                // critical
+let newNodeDazeMult = [1.78, 1.92, 2.06, 2.2, 2.35];
 let elementsData = ["ice", "fire", "electric", "ether", "physical"];
 
 /* load main page data from .json files, and display */
@@ -91,14 +96,12 @@ function buildHPData() {
 
 /* ◁ [version # + time] ▷ display */
 async function showVersion() {
-  let currVersion = versionData[modeNum - 1].versions[versionIDs[modeNum - 1][versionNum - 1]];
+  currVersion = versionData[modeNum - 1].versions[versionIDs[modeNum - 1][versionNum - 1]];
   versionDazeMult = currVersion.versionDazeMult;
   versionAnomMult = currVersion.versionAnomMult;
   versionEnemies = currVersion.versionEnemies;
   document.getElementById("v-name").innerHTML = currVersion.versionName;
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
-  document.getElementById("b-name").innerHTML = currVersion.buffName;
-  document.getElementById("b-desc").innerHTML = currVersion.buffDesc;
   showNode();
 }
 async function changeVersion(n) {
@@ -111,43 +114,100 @@ async function changeVersion(n) {
 /* ◁ node # ▷ display */
 function showNode() {
   if (oldModeNum != modeNum) {
-    nodeNum = modeNum == 4 ? parseInt(localStorage.getItem("lastSDNode")) : nodeLvlData[modeNum - 1].length;
+    nodeNum = modeNum == 4 ? parseInt(localStorage.getItem("lastSDNode")) : versionEnemies.nodes.length;
     oldModeNum = modeNum;
     displayHPChart();
   }
+  changePrePostNode();
+  document.getElementById("n-text").innerHTML = nodeNum;
+  showBuffs();
+  showEnemies();
+}
+function changeNode(n) { nodeNum = (nodeNum - 1 + n + versionEnemies.nodes.length) % versionEnemies.nodes.length + 1; showNode(); }
+function changePrePostNode() {
+  if (oldVersionNum <= v2_4 && versionNum > v2_4) {
+    if (nodeNum <= 2) nodeNum = 1;
+    else if (nodeNum <= 4) nodeNum = 2;
+    else nodeNum -= 2;
+  }
+  else if (oldVersionNum > v2_4 && versionNum <= v2_4) {
+    if (nodeNum >= 3) nodeNum += 2;
+    else if (nodeNum == 2) nodeNum = 3;
+  }
+  oldVersionNum = versionNum;
+}
+
+/* chart ◁ ▷ display */
+function showChartNode() { displayHPChart(); }
+function changeChartNode(n) {
+  if (modeNum != 4) return;
+  let maxChartNodeNum = chartDisplayType == "Pre 2.5" ? 7 : 5;
+  chartNodeNum = (chartNodeNum - 1 + n + maxChartNodeNum) % maxChartNodeNum + 1;
+  showChartNode();
+}
+function changePrePostChartNode() {
+  if (chartDisplayType == "Pre 2.5") {
+    if (chartNodeNum <= 2) chartNodeNum = 1;
+    else if (chartNodeNum <= 4) chartNodeNum = 2;
+    else chartNodeNum -= 2;
+  }
+  else {
+    if (chartNodeNum >= 3) chartNodeNum += 2;
+    else if (chartNodeNum == 2) chartNodeNum = 3;
+  }
+  oldVersionNum = versionNum;
+}
+
+/* show specific chart variant for pre/post 2.5 */
+function changeChart() { changePrePostChartNode(); displayHPChart(); }
+
+function showBuffs() {
   if (modeNum != 4) {
     document.getElementById("b-name").innerHTML = versionEnemies.nodes[nodeNum - 1].buffName;
     document.getElementById("b-desc").innerHTML = versionEnemies.nodes[nodeNum - 1].buffDesc;
   }
-  document.getElementById("n-text").innerHTML = nodeNum;
-  showEnemies();
+  else if (versionNum > v2_4) {
+    if (nodeNum == 5) 
+      for (let buff = 1; buff <= 3; ++buff) {
+        document.getElementById(`b-name${buff}`).innerHTML = currVersion.buffName[buff - 1];
+        document.getElementById(`b-desc${buff}`).innerHTML = currVersion.buffDesc[buff - 1];
+      }
+    else {
+      document.getElementById("b-name").innerHTML = currVersion.buffName[0];
+      document.getElementById("b-desc").innerHTML = currVersion.buffDesc[0];
+    }
+  }
+  else {
+    document.getElementById("b-name").innerHTML = currVersion.buffName;
+    document.getElementById("b-desc").innerHTML = currVersion.buffDesc;
+  }
+  document.getElementById("b").style.display = (versionNum > v2_4 && nodeNum == 5) ? "none" : "block";
+  document.getElementById("n5-b").style.display = (versionNum > v2_4 && nodeNum == 5) ? "flex" : "none";
 }
-function changeNode(n) { nodeNum = (nodeNum - 1 + n + nodeLvlData[modeNum - 1].length) % nodeLvlData[modeNum - 1].length + 1; showNode(); }
-
-/* chart ◁ ▷ display */
-function showChartNode() { displayHPChart(); }
-function changeChartNode(n) { if (modeNum != 4) return; chartNodeNum = (chartNodeNum - 1 + n + nodeLvlData[modeNum - 1].length) % nodeLvlData[modeNum - 1].length + 1; showChartNode(); }
 
 /* place and display elements/enemies/weaknesses/resistances/HP/count on screen */
 function showEnemies() {
   let currNode = versionEnemies.nodes[nodeNum - 1];
   
   /* add side 1 & 2 displays */
-  let side1 = document.querySelector("#s1"), side2 = document.querySelector("#s2");
-  side1.innerHTML = ``; side2.innerHTML = ``;
+  let side1 = document.querySelector("#s1"), side2 = document.querySelector("#s2"), side3 = document.querySelector("#s3");
+  side1.innerHTML = ``; side2.innerHTML = ``; side3.innerHTML = ``;
   side1.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
   side2.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
+  side3.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
+  if (versionNum <= v2_4 || nodeNum < 5) side3.style.display = "none";
+  else side3.style.display = "flex";
 
   /* loop node's sides */
-  for (let s = 1; s <= 2; ++s) {
-    let side = s == 1 ? side1 : side2;
+  for (let s = 1; s <= currNode.sides.length; ++s) {
+    let side = s == 1 ? side1 : s == 2 ? side2 : side3;
     let currSide = currNode.sides[s - 1];
     let sideHPMult = null;
 
     /* add side x-x LvXX title */
     let sideHeader = document.createElement("div");
     sideHeader.className = "s-header";
-    sideHeader.innerHTML = `${nodeNum}-${s} Lv${nodeLvlData[modeNum - 1][nodeNum - 1]}`;
+    sideHeader.innerHTML = `${nodeNum}-${s} Lv${versionNum <= v2_4 ? nodeLvlData[modeNum - 1][nodeNum - 1] : newNodeLvlData[nodeNum - 1]}`;
 
     /* add side supposed equal HP multiplier */
     let combHPMult = document.createElement("div");
@@ -196,9 +256,9 @@ function showEnemies() {
 
         /* define current enemy's various stats */
         let eHP = currEnemy.hp;
-        let eHPMult = Math.round(eHP / currEnemyData.baseHP[currEnemyType] / nodeHPMult[modeNum - 1][nodeNum - 1] * 10000) / 100;
-        let eDef = currEnemyData.baseDef / 50 * nodeDefMult[modeNum - 1][nodeNum - 1];
-        let eDaze = currEnemyData.baseDaze[currEnemyType] * nodeDazeMult[modeNum - 1][nodeNum - 1];
+        let eHPMult = Math.round(eHP / currEnemyData.baseHP[currEnemyType] / (versionNum <= v2_4 ? nodeHPMult[modeNum - 1][nodeNum - 1] : newNodeHPMult[nodeNum - 1]) * 10000) / 100;
+        let eDef = currEnemyData.baseDef / 50 * (versionNum <= v2_4 ? nodeDefMult[modeNum - 1][nodeNum - 1] : newNodeDefMult[nodeNum - 1]);
+        let eDaze = currEnemyData.baseDaze[currEnemyType] * (versionNum <= v2_4 ? nodeDazeMult[modeNum - 1][nodeNum - 1] : newNodeDazeMult[nodeNum - 1]);
         let eStunMult = currEnemyData.stunMult;
         let eStunTime = currEnemyData.stunTime;
         let eAnom = currEnemyData.baseAnom;
@@ -367,8 +427,10 @@ function loadSavedState() {
   if (localStorage.getItem("leaksEnabled") == "true") leaksToggle.checked = true;
   if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
   versionNum = parseInt(localStorage.getItem("lastSDVersion") || `${cntNoLeaks}`);
+  oldVersionNum = versionNum;
   nodeNum = parseInt(localStorage.getItem("lastSDNode") || "7");
   chartNodeNum = parseInt(localStorage.getItem("lastSDChartNode") || "7");
+  chartDisplayType = localStorage.getItem("lastSDChartType") || "Pre 2.5";
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
   if (!leaksToggle.checked) versionNum = Math.min(versionNum, cntNoLeaks);
   saveLastPage();
@@ -380,6 +442,7 @@ function saveLastPage() {
   localStorage.setItem("lastSDVersion", versionNum);
   localStorage.setItem("lastSDNode", nodeNum);
   localStorage.setItem("lastSDChartNode", chartNodeNum);
+  localStorage.setItem("lastSDChartType", chartDisplayType);
 }
 function saveSettings() {
   localStorage.setItem("numberFormat", currNumberFormat);
@@ -540,6 +603,11 @@ function createHPDataset(label, data, color) {
 }
 
 function displayHPChart() {
+  /* remove score selector if enemy dropdown is selected */
+  chartDisplayType = document.getElementById("c-dd").value;
+  let startChartVersion = chartDisplayType == "Pre 2.5" ? 0 : v2_4;
+  let endChartVersion = chartDisplayType == "Pre 2.5" ? v2_4 : versionIDs[modeNum - 1].length;
+  
   /* various plugins thanks to Chart.js documentation + videos + Stack Overflow + friends */
   /* position hover line highlighting respective hp points */
   const verticalHoverLine = {
@@ -674,21 +742,22 @@ function displayHPChart() {
     hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % 4000000 == 0 ? "#888888" : "#444444"; } };
   }
   else {
-    labels = versionIDs[modeNum - 1];
-    rawHPData = hpData[modeNum - 1][chartNodeNum - 1][0];
-    aoeHPData = hpData[modeNum - 1][chartNodeNum - 1][1];
-    altHPData = hpData[modeNum - 1][chartNodeNum - 1][2];
-    hpChart.options.plugins.title.text = `Shiyu Defense: Critical Node ${chartNodeNum} HP`;
+    labels = versionIDs[modeNum - 1].slice(startChartVersion, endChartVersion);
+    let newHPData = hpData[modeNum - 1][chartNodeNum - 1].map(row => row.slice(startChartVersion, endChartVersion));
+    rawHPData = newHPData[0];
+    aoeHPData = newHPData[1];
+    altHPData = newHPData[2];
+    hpChart.options.plugins.title.text = `Shiyu Defense: Critical Node ${chartNodeNum} HP - ${chartDisplayType}`;
     hpChart.options.scales.y.min = 0;
-    hpChart.options.scales.y.max = 70000000;
-    hpChart.options.scales.y.ticks.stepSize = 5000000;
-    hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % 10000000 == 0 ? "#888888" : "#444444"; } };
+    hpChart.options.scales.y.max = chartDisplayType == "Pre 2.5" ? 70000000 : 140000000;
+    hpChart.options.scales.y.ticks.stepSize = chartDisplayType == "Pre 2.5" ? 5000000 : 10000000;
+    hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % (chartDisplayType == "Pre 2.5" ? 10000000 : 20000000) == 0 ? "#888888" : "#444444"; } };
   }
   hpChart.data.labels = labels;
   hpChart.data.datasets = [
     createHPDataset("Raw HP", rawHPData, "#e06666"),
     createHPDataset("AOE HP", aoeHPData, "#6d9eeb"),
-    modeNum == 1 || modeNum == 2 || (modeNum == 4 && chartNodeNum > 5) ? createHPDataset("Alt HP", altHPData, "#f6b26b") : null
+    modeNum == 1 || modeNum == 2 || (modeNum == 4 && (chartDisplayType == "Pre 2.5" ? chartNodeNum > 5 : chartNodeNum > 3)) ? createHPDataset("Alt HP", altHPData, "#f6b26b") : null
   ].filter(Boolean);
 
   hpChart.update();

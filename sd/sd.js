@@ -1,10 +1,10 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 34, oldModeNum = 4, modeNum = 4, v2_4 = 37;
+let cntNoLeaks = 35, oldModeNum = 4, modeNum = 4, v2_4 = 37;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
-let oldVersionNum = null, currVersion = null, versionNum = null;
-let nodeNum = null, chartNodeNum = null, chartDisplayType = null, currNumberFormat = null;
+let oldVersionNum = null, currVersion = null, versionNum = null, nodeNum = null;
+let chartNodeNum = null, oldChartDisplayType = null, chartDisplayType = null, currNumberFormat = null;
 let menuIsOpen = false, versionSelectorIsOpen = false, chartIsOpen = false;
 
 let versionData = null, versionDazeMult = null, versionAnomMult = null, versionEnemies = null, enemyData = null, hpChart = null;
@@ -146,20 +146,22 @@ function changeChartNode(n) {
   showChartNode();
 }
 function changePrePostChartNode() {
-  if (chartDisplayType == "Pre 2.5") {
-    if (chartNodeNum <= 2) chartNodeNum = 1;
-    else if (chartNodeNum <= 4) chartNodeNum = 2;
-    else chartNodeNum -= 2;
+  if (oldChartDisplayType != chartDisplayType) {
+    if (chartDisplayType == "Pre 2.5") {
+      if (chartNodeNum >= 3) chartNodeNum += 2;
+      else if (chartNodeNum == 2) chartNodeNum = 3;
+    }
+    else {
+      if (chartNodeNum <= 2) chartNodeNum = 1;
+      else if (chartNodeNum <= 4) chartNodeNum = 2;
+      else chartNodeNum -= 2;
+    }
   }
-  else {
-    if (chartNodeNum >= 3) chartNodeNum += 2;
-    else if (chartNodeNum == 2) chartNodeNum = 3;
-  }
-  oldVersionNum = versionNum;
+  oldChartDisplayType = chartDisplayType;
 }
 
 /* show specific chart variant for pre/post 2.5 */
-function changeChart() { changePrePostChartNode(); displayHPChart(); }
+function changeChart() { displayHPChart(); }
 
 function showBuffs() {
   if (modeNum != 4) {
@@ -431,6 +433,7 @@ function loadSavedState() {
   nodeNum = parseInt(localStorage.getItem("lastSDNode") || "7");
   chartNodeNum = parseInt(localStorage.getItem("lastSDChartNode") || "7");
   chartDisplayType = localStorage.getItem("lastSDChartType") || "Pre 2.5";
+  oldChartDisplayType = chartDisplayType;
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
   if (!leaksToggle.checked) versionNum = Math.min(versionNum, cntNoLeaks);
   saveLastPage();
@@ -605,6 +608,7 @@ function createHPDataset(label, data, color) {
 function displayHPChart() {
   /* remove score selector if enemy dropdown is selected */
   chartDisplayType = document.getElementById("c-dd").value;
+  changePrePostChartNode();
   let startChartVersion = chartDisplayType == "Pre 2.5" ? 0 : v2_4;
   let endChartVersion = chartDisplayType == "Pre 2.5" ? v2_4 : versionIDs[modeNum - 1].length;
   
@@ -749,7 +753,7 @@ function displayHPChart() {
     altHPData = newHPData[2];
     hpChart.options.plugins.title.text = `Shiyu Defense: Critical Node ${chartNodeNum} HP - ${chartDisplayType}`;
     hpChart.options.scales.y.min = 0;
-    hpChart.options.scales.y.max = chartDisplayType == "Pre 2.5" ? 70000000 : 140000000;
+    hpChart.options.scales.y.max = chartDisplayType == "Pre 2.5" ? 70000000 : 160000000;
     hpChart.options.scales.y.ticks.stepSize = chartDisplayType == "Pre 2.5" ? 5000000 : 10000000;
     hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % (chartDisplayType == "Pre 2.5" ? 10000000 : 20000000) == 0 ? "#888888" : "#444444"; } };
   }

@@ -207,31 +207,31 @@
             "versionEnemies": [ {"id": "23300", "type": 1, "hp": 137873851}, {"id": "24300", "type": 1, "hp": 161506628}, {"id": "14302", "type": 1, "hp": 170693326} ]
           },
 
-  "2.4.3":{ "versionName":"PLACEHOLDER",
-            "versionTime":"26/12/2025 - 09/01/2026",
-            "versionDazeMult": 100,
-            "versionAnomMult": 110,
-            "buffNames": ["Sonata", "2.4 Buff 3", "2.5 Buff 1"],
-            "versionEnemies": [ {"id": "25300", "type": 1, "hp": 162336187}, {"id": "21300", "type": 1, "hp": 160910571}, {"id": "23300", "type": 1, "hp": 142236947} ]
-          },
-
-  "2.5.1":{ "versionName":"2.5 Phase 1",
+  "2.4.3":{ "versionName":"2.5 Phase 1",
             "versionTime":"xx/xx/20xx - xx/xx/20xx",
             "versionDazeMult": 100,
             "versionAnomMult": 110,
-            "buffNames": ["Body Tempering", "2.5 Buff 1", "2.5 Buff 2"],
-            "versionEnemies": [ {"id": "24300", "type": 1, "hp": 161506628}, {"id": "14300", "type": 1, "hp": 139319165}, {"id": "20300", "type": 1, "hp": 127919008} ]
+            "buffNames": ["Transformation Charge", "Sonata", "2.5 Buff 1"],
+            "versionEnemies": [ {"id": "25300", "type": 1, "hp": 112177751}, {"id": "21300", "type": 1, "hp": 154342793}, {"id": "23300", "type": 1, "hp": 142236947} ]
           },
 
   "2.5.2":{ "versionName":"2.5 Phase 2",
             "versionTime":"xx/xx/20xx - xx/xx/20xx",
             "versionDazeMult": 100,
             "versionAnomMult": 110,
-            "buffNames": ["Lingering Illness", "Power Boost", "2.5 Buff 3"],
-            "versionEnemies": [ {"id": "25300", "type": 1, "hp": 162336187}, {"id": "10303", "type": 1, "hp": 145517456}, {"id": "23300", "type": 1, "hp": 142236947} ]
+            "buffNames": ["Meditation", "2.5 Buff 1", "2.5 Buff 2"],
+            "versionEnemies": [ {"id": "24300", "type": 1, "hp": 161506628}, {"id": "14300", "type": 1, "hp": 139319165}, {"id": "20300", "type": 1, "hp": 127919008} ]
           },
 
   "2.5.3":{ "versionName":"2.5 Phase 3",
+            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionDazeMult": 100,
+            "versionAnomMult": 110,
+            "buffNames": ["Lingering Illness", "2.5 Buff 3", "2.5 Buff 4"],
+            "versionEnemies": [ {"id": "25300", "type": 1, "hp": 112177751}, {"id": "10303", "type": 1, "hp": 145517456}, {"id": "23300", "type": 1, "hp": 142236947} ]
+          },
+
+  "2.5.4":{ "versionName":"2.5 Phase 4",
             "versionTime":"xx/xx/20xx - xx/xx/20xx",
             "versionDazeMult": 100,
             "versionAnomMult": 110,

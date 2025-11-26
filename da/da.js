@@ -179,7 +179,7 @@ function showEnemies() {
     /* add enemy stage description */
     let stageDesc = document.createElement("div");
     stageDesc.className = "esd";
-    stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}` : `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}`;
+    stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}` : ((currEnemyID[0] == '2') ? `${currEnemyData.desc}<br><br>${currEnemyData.perf}` : `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}`);
     stageDesc.innerHTML += `${(currEnemyType == 1 || (currEnemyID == "14403" && versionNum == 4)) ? `<br><br>${currEnemyData.misc}` : ``}`;
     side.appendChild(stageDesc);
   }

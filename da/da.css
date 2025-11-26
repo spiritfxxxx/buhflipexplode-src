@@ -253,7 +253,7 @@ body.no-scroll {
 /* enemy stage info */
 .esd {
   margin-top: 120px;
-  min-height: 525px;
+  min-height: 550px;
   width: 100%;
   box-sizing: border-box;
   gap: 10px;

@@ -200,10 +200,10 @@
           },
 
   "2.4.2":{ "versionName":"2.4 Phase 2",
-            "versionTime":"12/12/2025 - 26/12/2025",
+            "versionTime":"12/12/2025 - 02/01/2026",
             "versionDazeMult": 100,
             "versionAnomMult": 110,
-            "buffNames": ["Graceful Mastery", "Break Through", "Body Tempering"],
+            "buffNames": ["Graceful Mastery", "Break Through", "Tempering Body"],
             "versionEnemies": [ {"id": "23300", "type": 1, "hp": 137873851}, {"id": "24300", "type": 1, "hp": 161506628}, {"id": "14302", "type": 1, "hp": 170693326} ]
           },
 
@@ -229,13 +229,5 @@
             "versionAnomMult": 110,
             "buffNames": ["Lingering Illness", "2.5 Buff 3", "2.5 Buff 4"],
             "versionEnemies": [ {"id": "25300", "type": 1, "hp": 112177751}, {"id": "10303", "type": 1, "hp": 145517456}, {"id": "23300", "type": 1, "hp": 142236947} ]
-          },
-
-  "2.5.4":{ "versionName":"2.5 Phase 4",
-            "versionTime":"xx/xx/20xx - xx/xx/20xx",
-            "versionDazeMult": 100,
-            "versionAnomMult": 110,
-            "buffNames": ["Aberration", "Meditation", "2.5 Buff 3"],
-            "versionEnemies": [ {"id": "22300", "type": 1, "hp": 128727244}, {"id": "21300", "type": 1, "hp": 160910571}, {"id": "24300", "type": 1, "hp": 161506628} ]
           }
 }

@@ -3716,7 +3716,7 @@
             },
   
     "2.4.2":{ "versionName":"2.4 Phase 2",
-              "versionTime":"19/12/2025 - 02/01/2026",
+              "versionTime":"19/12/2025 - 29/12/2025",
               "versionDazeMult":100,
               "versionAnomMult":100,
               "buffName":"Cloudbreaker",
@@ -3948,7 +3948,7 @@
                     }]
                   },
                   { "sides":[
-                    { "sideElementMult":[1.2, 1.2, 1.0, 0.8, 0.8], "waves":[
+                    { "sideElementMult":[1.2, 1.0, 1.0, 0.8, 0.8], "waves":[
                       { "enemies":[ {"id":"12000", "type":1, "hp":1501585, "count":3} ] },
                       { "enemies":[ {"id":"10135", "type":1, "hp":6463561, "count":1}, {"id":"10005", "type":1, "hp":1361741, "count":2} ] },
                       { "enemies":[ {"id":"25201", "type":0, "hp":32607409, "count":1} ] } ]
@@ -3957,7 +3957,7 @@
                       { "enemies":[ {"id":"23103", "type":0, "hp":12696106, "count":1}, {"id":"23102", "type":0, "hp":8789753, "count":1} ] },
                       { "enemies":[ {"id":"22200", "type":0, "hp":23773892, "count":1} ] } ]
                     },
-                    { "sideElementMult":[1.0, 1.0, 1.2, 0.8, 1.0], "waves":[
+                    { "sideElementMult":[0.8, 1.0, 1.2, 0.8, 1.0], "waves":[
                       { "enemies":[ {"id":"10107", "type":1, "hp":7290722, "count":2} ] },
                       { "enemies":[ {"id":"20204", "type":0, "hp":28954609, "count":1} ] } ]
                     }]
@@ -4095,16 +4095,16 @@
                     }]
                   },
                   { "sides":[
-                    { "sideElementMult":[1.2, 0.8, 1.0, 1.2, 0.8], "waves":[
+                    { "sideElementMult":[1.0, 0.8, 1.2, 1.2, 0.8], "waves":[
                       { "enemies":[ {"id":"20001", "type":1, "hp":1382569, "count":3} ] },
                       { "enemies":[ {"id":"24101", "type":1, "hp":16764395, "count":1}, {"id":"21000", "type":1, "hp":2369410, "count":2} ] },
                       { "enemies":[ {"id":"22203", "type":0, "hp":25701505, "count":1} ] } ]
                     },
-                    { "sideElementMult":[0.8, 1.0, 1.0, 1.0, 0.8], "waves":[
+                    { "sideElementMult":[0.8, 0.8, 1.2, 1.0, 1.2], "waves":[
                       { "enemies":[ {"id":"23103", "type":0, "hp":12696106, "count":1}, {"id":"23102", "type":0, "hp":8789753, "count":1} ] },
                       { "enemies":[ {"id":"23200", "type":0, "hp":27705933, "count":1} ] } ]
                     },
-                    { "sideElementMult":[1.2, 0.8, 1.2, 1.0, 0.8], "waves":[
+                    { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
                       { "enemies":[ {"id":"24100", "type":1, "hp":12422717, "count":1}, {"id":"10106", "type":1, "hp":5978794, "count":1} ] },
                       { "enemies":[ {"id":"17200", "type":0, "hp":19538187, "count":1} ] } ]
                     }]

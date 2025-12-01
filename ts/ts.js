@@ -56,7 +56,8 @@ async function buildHPData() {
         hpData[m - 1][n - 1][1][v - 1] = Math.ceil(eHP);
         let eTags = currEnemyData.tags;
         if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
-          if (eTags.includes("miasma")) alt60kEnemyHP += eHP * 0.97;
+          if (eTags.includes("counter")) alt60kEnemyHP -= eHP * 0.02;
+          if (eTags.includes("miasma")) alt60kEnemyHP += eHP * (currEnemyID != "25300" ? 0.975 : 0.94);
           else if (eTags.includes("ucc")) alt60kEnemyHP += eHP * 0.964;
         }
         else alt60kEnemyHP += eHP;
@@ -233,7 +234,7 @@ function showEnemies() {
         let eHP = currEnemy.hp;
         let eHPMult = Math.round(eHP / currEnemyData.baseHP[currEnemyType] / nodeHPMult[modeNum - 1][nodeNum - 1] * 10000) / 100;
         let eDef = currEnemyData.baseDef / 50 * nodeDefMult[modeNum - 1][nodeNum - 1];
-        let eDaze = (currEnemyID[2] == '3' ? currEnemyData.baseDaze : currEnemyData.baseDaze[currEnemyType]) * nodeDazeMult[modeNum - 1][nodeNum - 1];
+        let eDaze = (currEnemyID[2] == '3' ? currEnemyData.baseDaze : currEnemyData.baseDaze[currEnemyType]) * nodeDazeMult[modeNum - 1][nodeNum - 1] * (currEnemyID == "24300" ? 0.8 : 1);;
         let eStunMult = currEnemyData.stunMult;
         let eStunTime = currEnemyData.stunTime;
         let eAnom = currEnemyData.baseAnom;
@@ -286,13 +287,13 @@ function showEnemies() {
             if (s >= 2) { ttHP.style.fontSize = "36px"; ttHP.style.top = "-22px"; ttHP.style.right = "89px"; }
 
             if (eTags.includes("ucc"))
-              ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 1.2, 3)}</span>`;
+              ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 1.2, 3, false)}</span>`;
             else if (eTags.includes("brute"))
-              ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 8, 1)}</span>`;
+              ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 8, 1, false)}</span>`;
             else if (eTags.includes("robot"))
-              ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 5, 2)}</span>`;
+              ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 5, 2, false)}</span>`;
             else if (eTags.includes("miasma"))
-              ttHP.innerHTML = `<span style="color:#d4317b;">✦</span><span class="tt-text">${instant("#d4317b", "PURIFIED!!", eName, eHP, (currEnemyID[2] == '4' ? 3 : 15), 1)}</span>`;
+              ttHP.innerHTML = `<span style="color:#d4317b;">✦</span><span class="tt-text">${instant("#d4317b", "PURIFIED!!", eName, eHP, (currEnemyID[2] == '3' ? (currEnemyID != "25300" ? 2.5 : 1.5) : 15), currEnemyID != "25300" ? 1 : 4, eTags.includes("counter"))}</span>`;
             else if (eTags.includes("palicus"))
               ttHP.innerHTML = `<span style="color:#93c47d;">✦</span><span class="tt-text">${palicus(eHP)}</span>`;
             enemyHP.appendChild(ttHP);
@@ -332,9 +333,8 @@ function showEnemies() {
             document.querySelector(".esd")?.remove();
             let stageDesc = document.createElement("div");
             stageDesc.className = "esd";
-            stageDesc.innerHTML = `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}
-                                  ${(currEnemyType == 1 || (currEnemyType == 0 && currEnemyID == "14403" && versionNum == 4)) ? `<br><br>${currEnemyData.misc}` : ``}`;
-            if (eTags.includes("spoiler") && !spoilersToggle.checked) stageDesc.innerHTML = `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}`;
+            stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}` : ((currEnemyID[0] == '2') ? `${currEnemyData.desc}<br><br>${currEnemyData.perf}` : `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}`);
+            stageDesc.innerHTML += `${(currEnemyType == 1 || (currEnemyID == "14403" && versionNum == 4) || (currEnemyID == "14302" && versionNum >= 25)) ? `<br><br>${currEnemyData.misc}` : ``}`;
             boss.parentElement.appendChild(stageDesc);
           }
         }
@@ -395,12 +395,13 @@ function palicus(hp) {
           <span style="font-weight:bold;">(assume 75% of HP)</span><br><br>
           hit both 50% of the time<br>`;
 }
-function instant(color, type, name, hp, dmg, cnt) {
+function instant(color, type, name, hp, dmg, cnt, counter) {
   return `<span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
-          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hp * (100 - dmg * cnt) / 100))}</span><br>
-          <span style="font-weight:bold;">(assume ${100 - dmg * cnt}% of HP)</span><br><br>
+          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hp * (100 - dmg * cnt - 2 * counter) / 100))}</span><br>
+          <span style="font-weight:bold;">(assume ${100 - dmg * cnt - 2 * counter}% of HP)</span><br><br>
           <span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)`
-          + (name == "Unknown Corruption Complex" ? ` on<br>legs, 3 time(s) on core` : ``);
+          + (name == "Unknown Corruption Complex" ? ` on<br>legs, 3 time(s) on core` : ``)
+          + (counter ? `<br><span style="font-weight:bold;"><span style="color:#b47ede;">COUNTERED!!</span></span> 1 time(s)` : ``);
 }
 
 /* add enemy stat tooltip text */

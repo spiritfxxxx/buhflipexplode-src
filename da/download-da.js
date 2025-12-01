@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 21;
+let cntNoLeaks = 25;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let versionNum = null, chartScoreNum = null, currNumberFormat = null;
@@ -59,17 +59,22 @@ async function showVersion() {
   buffNames = currVersion.buffNames;
   document.getElementById("v-name").innerHTML = currVersion.versionName;
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
-  for (let buff = 1; buff <= 3; ++buff) {
-    document.getElementById(`b-img${buff}`).src = `../assets/buffs/${buffNames[buff - 1].toLowerCase().replace(" ", "-").replace(" ", "-")}.webp`;
-    document.getElementById(`b-name${buff}`).innerHTML = buffNames[buff - 1];
-    document.getElementById(`b-desc${buff}`).innerHTML = buffDescs[buffNames[buff - 1]];
-  }
+  showBuffs();
   showEnemies();
 }
 async function changeVersion(n) {
   let maxVersion = leaksToggle.checked ? versionIDs.length : cntNoLeaks;
   versionNum = (versionNum - 1 + n + maxVersion) % maxVersion + 1;
   await showVersion();
+}
+
+/* show version buffs */
+function showBuffs() {
+  for (let buff = 1; buff <= 3; ++buff) {
+    document.getElementById(`b-img${buff}`).src = `../assets/buffs/${buffNames[buff - 1].toLowerCase().replace(" ", "-").replace(" ", "-")}.webp`;
+    document.getElementById(`b-name${buff}`).innerHTML = buffNames[buff - 1];
+    document.getElementById(`b-desc${buff}`).innerHTML = versionNum == 8 && buffNames[buff - 1] == "Blazing Chill" ? "• Agent <span style='color:#ff5521;font-weight:bold;'>Fire Anomaly Buildup Rate</span> and <span style='color:#98eff0;font-weight:bold;'>Ice Anomaly Buildup Rate</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and ATK increases by <span style='color:#2bad00;font-weight:bold;'>25%</span>.<br>• When inflicting an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on enemies, the Agent restores <span style='color:#2bad00;font-weight:bold;'>400</span> Decibels and <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> is increased by <span style='color:#2bad00;font-weight:bold;'>80</span>, lasting 15s. Decibels recovery can be triggered once every 15s." : buffDescs[buffNames[buff - 1]];
+  }
 }
 
 /* place and display elements/enemies/weaknesses/resistances/HP/count on screen */
@@ -89,7 +94,7 @@ function showEnemies() {
     /* add side supposed equal HP multiplier */
     let combHPMult = document.createElement("div");
     combHPMult.className = "s-hp-daze-anom-mult";
-    combHPMult.innerHTML = `⇧ HP: <span style="color:#ff5555;">SOON™</span> | Anom: <span style="color:#7e50bb;">${versionAnomMult}%</span>`;
+    combHPMult.innerHTML = `⇧ HP: <span style="color:#ff5555;">SOON™</span> | Daze: <span style="color:#ffe599;">${versionDazeMult}%</span> | Anom: <span style="color:#7e50bb;">${versionAnomMult}%</span>`;
     sideHeader.appendChild(combHPMult);
     side.appendChild(sideHeader);
 
@@ -108,7 +113,7 @@ function showEnemies() {
     /* define current enemy's various stats */
     let eHP = currEnemy.hp;
     let eDef = currEnemyData.baseDef / 50 * 794;
-    let eDaze = currEnemyData.baseDaze * 2.35;
+    let eDaze = currEnemyData.baseDaze * 2.35 * (currEnemyID == "24300" ? 0.8 : 1);
     let eStunMult = currEnemyData.stunMult;
     let eStunTime = currEnemyData.stunTime;
     let eAnom = currEnemyData.baseAnom;
@@ -174,8 +179,8 @@ function showEnemies() {
     /* add enemy stage description */
     let stageDesc = document.createElement("div");
     stageDesc.className = "esd";
-    stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}` : `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}`;
-    stageDesc.innerHTML += `${(currEnemyType == 1 || (currEnemyID == "14403" && versionNum == 4)) ? `<br><br>${currEnemyData.misc}` : ``}`;
+    stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}` : ((currEnemyID[0] == '2') ? `${currEnemyData.desc}<br><br>${currEnemyData.perf}` : `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}`);
+    stageDesc.innerHTML += `${(currEnemyType == 1 || (currEnemyID == "14303" && versionNum == 4) || (currEnemyID == "14302" && versionNum >= 25)) ? `<br><br>${currEnemyData.misc}` : ``}`;
     side.appendChild(stageDesc);
   }
 
@@ -412,6 +417,10 @@ function createHPDataset(label, data, color) {
 }
 
 function displayHPChart() {
+  /* change color of selected score value */
+  let chartScoreButtons = document.querySelectorAll(".c-k");
+  chartScoreButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == chartScoreNum));
+
   /* various plugins thanks to Chart.js documentation + videos + Stack Overflow + friends */
   /* position hover line highlighting respective hp points */
   const verticalHoverLine = {
@@ -421,7 +430,7 @@ function displayHPChart() {
       ctx.save();
       for (let hp = 0; hp <= 2; ++hp)
         chart.getDatasetMeta(hp).data.forEach((dataPoint, index) => {
-          if (dataPoint.active == true) {
+          if (dataPoint.active) {
             ctx.beginPath();
             ctx.strokeStyle = "#888888";
             ctx.setLineDash([4, 6]);
@@ -533,9 +542,9 @@ function displayHPChart() {
   /* add global chart settings */
   hpChart.data.labels = versionIDs;
   hpChart.data.datasets = [
-    createHPDataset(`Raw HP (${chartScoreNum})`, chartScoreNum == "20k" ? hpData[0] : hpData[1], "#e06666"),
-    createHPDataset(`Alt HP (${chartScoreNum})`, chartScoreNum == "20k" ? hpData[2] : hpData[3], "#f6b26b"),
-  ]
+    createHPDataset(`Raw HP`, chartScoreNum == "20k" ? hpData[0] : hpData[1], "#e06666"),
+    createHPDataset(`Alt HP`, chartScoreNum == "20k" ? hpData[2] : hpData[3], "#f6b26b")
+  ];
   hpChart.options.scales.y.min = chartScoreNum == "20k" ? 40000000 : 160000000;
   hpChart.options.scales.y.max = chartScoreNum == "20k" ? 160000000 : 480000000;
   hpChart.options.plugins.title.text = `Deadly Assault HP (${chartScoreNum})`;

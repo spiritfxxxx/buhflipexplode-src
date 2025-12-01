@@ -88,7 +88,7 @@ function buildHPData() {
         }
         hpData[m - 1][n - 1][0][v - 1] = rawHP;
         hpData[m - 1][n - 1][1][v - 1] = aoeHP;
-        hpData[m - 1][n - 1][2][v - 1] = (m == 4 && n > 5) || m != 3 ? Math.ceil(altHP) : null;
+        hpData[m - 1][n - 1][2][v - 1] = (m == 4 && (v <= v2_4 ? n > 5 : n > 3)) || m != 3 ? Math.ceil(altHP) : null;
       }
     }
   }
@@ -351,7 +351,7 @@ function showEnemies() {
   /* add raw + aoe + alt HP display */
   document.getElementById("n-hp-raw").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][0][versionNum - 1]);
   document.getElementById("n-hp-aoe").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
-  document.getElementById("n-hp-alt").innerHTML = modeNum == 1 || modeNum == 2 || (modeNum == 4 && nodeNum > 5) ? numberFormat(hpData[modeNum - 1][nodeNum - 1][2][versionNum - 1]) : numberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
+  document.getElementById("n-hp-alt").innerHTML = modeNum == 1 || modeNum == 2 || (modeNum == 4 && (v <= v2_4 ? nodeNum > 5 : nodeNum > 3)) ? numberFormat(hpData[modeNum - 1][nodeNum - 1][2][versionNum - 1]) : numberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
   
   /* save current page + settings */
   if (modeNum == 4) saveLastPage();

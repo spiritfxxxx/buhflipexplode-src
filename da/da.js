@@ -37,12 +37,13 @@ function buildHPData() {
       let eHP = currEnemy.hp;
       let eTags = currEnemyData.tags;
       raw60kEnemyHP += eHP;
+      alt60kEnemyHP += eHP;
       if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
+        if (eTags.includes("ucc")) alt60kEnemyHP -= eHP * 0.036;
+        if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
+        if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.06 : (v >= 19 ? 0.025 : 0.03));
         if (eTags.includes("counter")) alt60kEnemyHP -= eHP * 0.02;
-        if (eTags.includes("miasma")) alt60kEnemyHP += eHP * (currEnemyID != "25300" ? 0.975 : 0.94);
-        else if (eTags.includes("ucc")) alt60kEnemyHP += eHP * 0.964;
       }
-      else alt60kEnemyHP += eHP;
     }
     hpData[0][v - 1] = Math.ceil(raw60kEnemyHP * 0.281083138);
     hpData[1][v - 1] = Math.ceil(raw60kEnemyHP);
@@ -149,10 +150,31 @@ function showEnemies() {
     if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
       let ttHP = document.createElement("div");
       ttHP.className = "tt-e-hp";
-      if (eTags.includes("ucc"))
-        ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 1.2, 3, false)}</span>`;
-      else if (eTags.includes("miasma"))
-        ttHP.innerHTML = `<span style="color:#d4317b;">✦</span><span class="tt-text">${instant("#d4317b", "PURIFIED!!", eName, eHP, currEnemyID != "25300" ? 2.5 : 1.5, currEnemyID != "25300" ? 1 : 4, eTags.includes("counter"))}</span>`;
+
+      let eHPNew = eHP;
+      let color = "#ffffff";
+
+      if (eTags.includes("ucc")) {
+        eHPNew -= eHP * 0.036;
+        color = "#ecce45";
+        ttHP.innerHTML += instant(color, "IMPAIRED!!", 3) + ` on<br>legs, 3 time(s) on core<br>`;
+      }
+      if (eTags.includes("hunter")) {
+        eHPNew -= eHP * 0.01;
+        color = "#ecce45";
+        ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
+      }
+      if (eTags.includes("miasma")) {
+        eHPNew -= eHP * (currEnemyID == "25300" ? 0.06 : (versionNum >= 19 ? 0.025 : 0.03));
+        color = "#d4317b";
+        ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 4 : 1) + `<br>`;
+      }
+      if (eTags.includes("counter")) {
+        eHPNew -= eHP * 0.02;
+        color = "#b47ede";
+        ttHP.innerHTML += instant(color, "COUNTERED!!", 1) + `<br>`;
+      }
+      ttHP.innerHTML = alt(color, eName, eHPNew, eHP) + ttHP.innerHTML;
       enemyHP.appendChild(ttHP);
     }
     enemy.appendChild(enemyHP);
@@ -225,14 +247,13 @@ function generateWR(mult, wr) {
 }
 
 /* add special enemy tooltip text */
-function instant(color, type, name, hp, dmg, cnt, counter) {
-  return `<span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
-          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hp * (100 - dmg * cnt - 2 * counter) / 100))}</span><br>
-          <span style="font-weight:bold;">(assume ${100 - dmg * cnt - 2 * counter}% of HP)</span><br><br>
-          <span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)`
-          + (name == "Unknown Corruption Complex" ? ` on<br>legs, 3 time(s) on core` : ``)
-          + (counter ? `<br><span style="font-weight:bold;"><span style="color:#b47ede;">COUNTERED!!</span></span> 1 time(s)` : ``);
+function alt(color, name, hpNew, hp) {
+  return `<span style="color:${color};">✦</span><span class="tt-text">
+          <span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
+          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hpNew))}</span><br>
+          <span style="font-weight:bold;">(assume ${Math.round(hpNew / hp * 1000) / 10}% of HP)</span><br><br>`;
 }
+function instant(color, type, cnt) { return `<span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)</span>`; }
 
 /* add enemy stat tooltip text */
 function generateEnemyStats(daze, stun, time, anom, dmg, mods) {

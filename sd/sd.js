@@ -73,13 +73,14 @@ function buildHPData() {
               for (let cnt = 1; cnt <= currEnemy.count; ++cnt) {
                 rawHP += currEnemy.id != "14000" ? eHP : 1;
                 aoeHP += addAOE ? eHP : 0;
-                if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
-                  if (eTags.includes("brute")) altHP += eHP * 0.92;
-                  else if (eTags.includes("robot")) altHP += eHP * 0.9;
-                  else if (eTags.includes("miasma")) altHP += eHP * 0.85;
-                  else if (eTags.includes("palicus")) altHP += eHP * 0.75;
+                altHP += eHP;
+                if (eTags.length >= 1 && !(eTags.length == 1 && (eTags.includes("spoiler") || eTags.includes("hitch")))) {
+                  if (eTags.includes("palicus")) altHP -= eHP * 0.25;
+                  if (eTags.includes("robot")) altHP -= eHP * 0.1;
+                  if (eTags.includes("brute")) altHP -= eHP * 0.08;
+                  if (eTags.includes("miasma")) altHP -= eHP * 0.15;
                 }
-                else altHP += addAOE ? eHP : 0;
+                else altHP -= addAOE ? 0 : eHP;
                 addAOE = false;
               }
             }
@@ -305,17 +306,35 @@ function showEnemies() {
             let ttHP = document.createElement("div");
             ttHP.className = "tt-e-hp";
             if (eTags.includes("hitch")) {
-              ttHP.innerHTML = `<span style="color:#ffffff;">✦</span><span class="tt-text">${hitch(eHP)}</span>`;
+              ttHP.innerHTML = hitch(eHP) + `<br>`;
               enemyHP.innerHTML = numberFormat(1);
             }
-            else if (eTags.includes("brute"))
-              ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 8, 1)}</span>`;
-            else if (eTags.includes("robot"))
-              ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 5, 2)}</span>`;
-            else if (eTags.includes("miasma"))
-              ttHP.innerHTML = `<span style="color:#d4317b;">✦</span><span class="tt-text">${instant("#d4317b", "PURIFIED!!", eName, eHP, 15, 1)}</span>`;
-            else if (eTags.includes("palicus"))
-              ttHP.innerHTML = `<span style="color:#93c47d;">✦</span><span class="tt-text">${palicus(eHP)}</span>`;
+            else {
+              let eHPNew = eHP;
+              let color = "#ffffff";
+
+              if (eTags.includes("palicus")) {
+                eHPNew -= eHP * 0.25;
+                color = "#93c47d";
+                ttHP.innerHTML += palicus(eHPNew) + `<br>`;
+              }
+              if (eTags.includes("robot")) {
+                eHPNew -= eHP * 0.1;
+                color = "#ecce45";
+                ttHP.innerHTML += instant(color, "IMPAIRED!!", 2) + `<br>`;
+              }
+              if (eTags.includes("brute")) {
+                eHPNew -= eHP * 0.08;
+                color = "#ecce45";
+                ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
+              }
+              if (eTags.includes("miasma")) {
+                eHPNew -= eHP * 0.15;
+                color = "#d4317b";
+                ttHP.innerHTML += instant(color, "PURIFIED!!", 1) + `<br>`;
+              }
+              ttHP.innerHTML = alt(color, eName, eHPNew, eHP) + ttHP.innerHTML;
+            }
             enemyHP.appendChild(ttHP);
           }
           enemy.appendChild(enemyHP);
@@ -388,23 +407,20 @@ function generateWR(mult, wr) {
 }
 
 /* add special enemy tooltip text */
+function alt(color, name, hpNew, hp) {
+  return `<span style="color:${color};">✦</span><span class="tt-text">
+          <span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
+          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hpNew))}</span><br>
+          <span style="font-weight:bold;">(assume ${Math.round(hpNew / hp * 1000) / 10}% of HP)</span><br><br>`;
+}
 function hitch(hp) {
-  return `<span style="font-weight:bold;text-decoration:underline;">Hitchspiker</span><br>
+  return `<span style="color:#ffffff;">✦</span><span class="tt-text">
+          <span style="font-weight:bold;text-decoration:underline;">Hitchspiker</span><br>
           True <span style="color:#ff5555;font-weight:bold;">Raw HP</span>: <span style="color:#ff5555;font-weight:bold;">${numberFormat(hp)}</span><br><br>
-          technically doesn't<br>need to be killed`;
+          technically doesn't<br>need to be killed</span>`;
 }
-function palicus(hp) {
-  return `<span style="font-weight:bold;text-decoration:underline;">Palicus</span><br>
-          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:#93c47d;font-weight:bold;">${numberFormat(Math.ceil(hp * 75 / 100))}</span> x2<br>
-          <span style="font-weight:bold;">(assume 75% of HP)</span><br><br>
-          hit both 50% of the time<br>`;
-}
-function instant(color, type, name, hp, dmg, cnt) {
-  return `<span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
-          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hp * (100 - dmg * cnt) / 100))}</span><br>
-          <span style="font-weight:bold;">(assume ${100 - dmg * cnt}% of HP)</span><br><br>
-          <span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)`;
-}
+function palicus() { return `hit both 50% of the time</span>`; }
+function instant(color, type, cnt) { return `<span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)</span>`; }
 
 /* add enemy stat tooltip text */
 function generateEnemyStats(daze, stun, time, anom, dmg, mods) {

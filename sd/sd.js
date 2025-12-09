@@ -119,7 +119,7 @@ function showNode() {
     oldModeNum = modeNum;
     displayHPChart();
   }
-  changePrePostNode();
+  if (modeNum == 4) changePrePostNode();
   document.getElementById("n-text").innerHTML = nodeNum;
   showBuffs();
   showEnemies();
@@ -193,11 +193,10 @@ function showEnemies() {
   let currNode = versionEnemies.nodes[nodeNum - 1];
   
   /* add side 1 & 2 displays */
+  let sides = document.querySelector("#s");
   let side1 = document.querySelector("#s1"), side2 = document.querySelector("#s2"), side3 = document.querySelector("#s3");
+  sides.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
   side1.innerHTML = ``; side2.innerHTML = ``; side3.innerHTML = ``;
-  side1.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
-  side2.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
-  side3.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
   if (versionNum <= v2_4 || nodeNum < 5) side3.style.display = "none";
   else side3.style.display = "flex";
 
@@ -623,10 +622,12 @@ function createHPDataset(label, data, color) {
 
 function displayHPChart() {
   /* remove score selector if enemy dropdown is selected */
-  chartDisplayType = document.getElementById("c-dd").value;
-  changePrePostChartNode();
+  let chartDropdown = document.getElementById("c-dd");
+  chartDisplayType = chartDropdown.value;
+  if (modeNum == 4) changePrePostChartNode();
   let startChartVersion = chartDisplayType == "Pre 2.5" ? 0 : v2_4;
   let endChartVersion = chartDisplayType == "Pre 2.5" ? v2_4 : versionIDs[modeNum - 1].length;
+  chartDropdown.style.display = modeNum == 4 ? "block" : "none";
   
   /* various plugins thanks to Chart.js documentation + videos + Stack Overflow + friends */
   /* position hover line highlighting respective hp points */

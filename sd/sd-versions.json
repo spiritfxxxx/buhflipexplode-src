@@ -3811,12 +3811,12 @@
               "versionTime":"xx/xx/20xx - xx/xx/20xx",
               "versionDazeMult":100,
               "versionAnomMult":100,
-              "buffName":["TBD", "TBD", "TBD"],
-              "buffDesc":["• Agent <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• Landing a critical hit on an enemy increases their <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 5 seconds. Repeated triggers refresh the duration.",
+              "buffName":["Dawn's Guiding Light", "Piercing Thunder Strike", "Accumulating Frost"],
+              "buffDesc":["• Agent <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• Enemy's <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
               
-              "• Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• Agent <span style='font-weight:bold;'>Basic Attack</span> and <span style='font-weight:bold;'>EX Special Attack</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>, and ignore <span style='color:#2bad00;font-weight:bold;'>15%</span> of enemy <span style='color:#5555ff;font-weight:bold;'>DEF</span>.",
+              "• Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• Agent <span style='font-weight:bold;'>Basic Attack</span>, <span style='font-weight:bold;'>Special Attack</span>, and <span style='font-weight:bold;'>EX Special Attack</span> deal <span style='color:#2bad00;font-weight:bold;'>40%</span> increased DMG and ignore <span style='color:#2bad00;font-weight:bold;'>15%</span> of enemy <span style='color:#5555ff;font-weight:bold;'>DEF</span>.",
               
-              "• Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and <span style='font-weight:bold;'>Basic Attack</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• After an Agent uses an <span style='font-weight:bold;'>EX Special Attack</span>, their <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> further increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 15 seconds. Repeated triggers refresh the duration."],
+              "• Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, <span style='font-weight:bold;'>Basic Attack</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• After an Agent uses an <span style='font-weight:bold;'>EX Special Attack</span>, the Agent's <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> additionally increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 15s. Repeated triggers reset the duration."],
               "versionEnemies":{ 
                 "nodes":[
                   { "sides":[
@@ -3870,16 +3870,16 @@
                   },
                   { "sides":[
                     { "sideElementMult":[1.2, 0.8, 1.2, 1.0, 0.8], "waves":[
-                      { "enemies":[ {"id":"20001", "type":1, "hp":1451698, "count":3} ] },
-                      { "enemies":[ {"id":"20102", "type":1, "hp":11762500, "count":1}, {"id":"20000", "type":1, "hp":2073407, "count":2} ] },
-                      { "enemies":[ {"id":"24200", "type":0, "hp":33167230, "count":1} ] } ]
+                      { "enemies":[ {"id":"24101", "type":1, "hp":15926176, "count":1}, {"id":"20102", "type":1, "hp":10642262, "count":1} ] },
+                      { "enemies":[ {"id":"24200", "type":0, "hp":30008446, "count":1} ] } ]
                     },
                     { "sideElementMult":[1.0, 1.2, 0.8, 1.2, 0.8], "waves":[
                       { "enemies":[ {"id":"10120", "type":1, "hp":9464152, "count":1}, {"id":"10125", "type":1, "hp":7655258, "count":1} ] },
                       { "enemies":[ {"id":"21200", "type":0, "hp":26986580, "count":1} ] } ]
                     },
                     { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.2], "waves":[
-                      { "enemies":[ {"id":"10110", "type":1, "hp":9097583, "count":1}, {"id":"10107", "type":1, "hp":7655258, "count":1} ] },
+                      { "enemies":[ {"id":"10002", "type":1, "hp":1429828, "count":3} ] },
+                      { "enemies":[ {"id":"10107", "type":1, "hp":7655258, "count":1}, {"id":"20001", "type":1, "hp":1451698, "count":2} ] },
                       { "enemies":[ {"id":"23203", "type":0, "hp":27989439, "count":1} ] } ]
                     }]
                   }
@@ -3891,12 +3891,12 @@
               "versionTime":"xx/xx/20xx - xx/xx/20xx",
               "versionDazeMult":100,
               "versionAnomMult":100,
-              "buffName":["TBD", "TBD", "TBD"],
-              "buffDesc":["• Agent CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>. While in Ether Veil, Agent <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>30%</span>, and their attacks ignore <span style='color:#2bad00;font-weight:bold;'>15%</span> of the enemy's <span style='color:#5555ff;font-weight:bold;'>DEF</span>.",
+              "buffName":["Frost-Bitten Iron", "Rush of Lightning and Fire", "Blazing Stream"],
+              "buffDesc":["• Agent CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>. While in Ether Veil, Agent <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>30%</span>, and attacks ignore <span style='color:#2bad00;font-weight:bold;'>15%</span> of enemy's <span style='color:#5555ff;font-weight:bold;'>DEF</span>.",
               
-              "• Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>30%</span>, and <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> increases by <span style='color:#2bad00;font-weight:bold;'>60</span> points.<br>• Agent <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
+              "• Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>30%</span>, <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> increases by <span style='color:#2bad00;font-weight:bold;'>60</span>.<br>• Agents start with <span style='color:#2bad00;font-weight:bold;'>40</span> additional Energy, <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
               
-              "• Agent <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span> and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>.<br>• Agent <span style='font-weight:bold;'>Ultimate</span> DMG ignores <span style='color:#2bad00;font-weight:bold;'>10%</span> of an enemy's All DMG RES."],
+              "• Agent <span style='color:#d4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>10%</span>, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>25%</span>.<br>• When an Agent's <span style='font-weight:bold;'>Ultimate</span> hits enemies, ignores <span style='color:#2bad00;font-weight:bold;'>10%</span> of their All-DMG RES."],
               "versionEnemies":{ 
                 "nodes":[
                   { "sides":[
@@ -3948,17 +3948,17 @@
                     }]
                   },
                   { "sides":[
-                    { "sideElementMult":[1.2, 1.0, 1.0, 0.8, 0.8], "waves":[
-                      { "enemies":[ {"id":"12000", "type":1, "hp":1576664, "count":3} ] },
-                      { "enemies":[ {"id":"10135", "type":1, "hp":6786739, "count":1}, {"id":"10005", "type":1, "hp":1429828, "count":2} ] },
-                      { "enemies":[ {"id":"25201", "type":0, "hp":34237779, "count":1} ] } ]
+                    { "sideElementMult":[1.0, 1.2, 1.0, 0.8, 0.8], "waves":[
+                      { "enemies":[ {"id":"10105", "type":1, "hp":8154828, "count":1}, {"id":"10106", "type":1, "hp":6140383, "count":1} ] },
+                      { "enemies":[ {"id":"25201", "type":0, "hp":30977038, "count":1} ] } ]
                     },
-                    { "sideElementMult":[1.0, 0.8, 0.8, 1.0, 1.2], "waves":[
-                      { "enemies":[ {"id":"23103", "type":0, "hp":12696106, "count":1}, {"id":"23102", "type":0, "hp":8789753, "count":1} ] },
-                      { "enemies":[ {"id":"22200", "type":0, "hp":23773892, "count":1} ] } ]
+                    { "sideElementMult":[1.2, 0.8, 0.8, 1.2, 1.0], "waves":[
+                      { "enemies":[ {"id":"12104", "type":1, "hp":9629386, "count":1}, {"id":"12105", "type":1, "hp":9629386, "count":1} ] },
+                      { "enemies":[ {"id":"22200", "type":0, "hp":24416430, "count":1} ] } ]
                     },
-                    { "sideElementMult":[0.8, 1.0, 1.2, 0.8, 1.0], "waves":[
-                      { "enemies":[ {"id":"10107", "type":1, "hp":7655258, "count":2} ] },
+                    { "sideElementMult":[1.0, 1.0, 1.2, 0.8, 0.8], "waves":[
+                      { "enemies":[ {"id":"10011", "type":1, "hp":1429828, "count":3} ] },
+                      { "enemies":[ {"id":"20102", "type":1, "hp":11762500, "count":1}, {"id":"20002", "type":1, "hp":2073407, "count":2} ] },
                       { "enemies":[ {"id":"20204", "type":0, "hp":30402340, "count":1} ] } ]
                     }]
                   }
@@ -3970,12 +3970,12 @@
               "versionTime":"xx/xx/20xx - xx/xx/20xx",
               "versionDazeMult":100,
               "versionAnomMult":100,
-              "buffName":["TBD", "TBD", "TBD"],
-              "buffDesc":["• While in Ether Veil, Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• Agent attacks ignore <span style='color:#2bad00;font-weight:bold;'>10%</span> of an enemy's <span style='color:#fe437e;font-weight:bold;'>Ether DMG RES</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical DMG RES</span>.",
+              "buffName":["Fleeting Glory", "Piercing Blade Abyss", "Cleanse the Heart with Fire"],
+              "buffDesc":["• While in Ether Veil, Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• When Agents hit enemies, they ignore <span style='color:#2bad00;font-weight:bold;'>10%</span> of enemy <span style='color:#f0d12b;font-weight:bold;'>Physical RES</span>.",
               
-              "• Agent <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• After inflicting an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on an enemy, their <span style='color:#5555ff;font-weight:bold;'>DEF</span> is reduced by <span style='color:#2bad00;font-weight:bold;'>10%</span>, and <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> against them increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 10 seconds. Repeated triggers reset the duration.",
+              "• Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• When Agents inflict an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on enemies, their <span style='color:#5555ff;font-weight:bold;'>DEF</span> is reduced by <span style='color:#2bad00;font-weight:bold;'>10%</span>, and they take <span style='color:#2bad00;font-weight:bold;'>20%</span> more <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> for 10s. Repeated triggers reset the duration.",
               
-              "• Agent <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• Agent <span style='font-weight:bold;'>Basic Attack</span> and <span style='font-weight:bold;'>Chain Attack</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>, and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>."],
+              "• Agent <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• Agent <span style='font-weight:bold;'>Basic Attack</span> and <span style='font-weight:bold;'>Chain Attack</span> DMG increase by <span style='color:#2bad00;font-weight:bold;'>40%</span>, and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>."],
               "versionEnemies":{ 
                 "nodes":[
                   { "sides":[
@@ -4026,13 +4026,12 @@
                     }]
                   },
                   { "sides":[
-                    { "sideElementMult":[1.2, 0.8, 1.0, 1.2, 0.8], "waves":[
-                      { "enemies":[ {"id":"20000", "type":1, "hp":2073407, "count":3} ] },
-                      { "enemies":[ {"id":"10134", "type":1, "hp":9013230, "count":1}, {"id":"10033", "type":1, "hp":1429828, "count":2} ] },
-                      { "enemies":[ {"id":"22203", "type":0, "hp":26986580, "count":1} ] } ]
+                    { "sideElementMult":[1.0, 0.8, 1.2, 1.2, 0.8], "waves":[
+                      { "enemies":[ {"id":"24100", "type":1, "hp":12758466, "count":1}, {"id":"10108", "type":1, "hp":6926186, "count":1} ] },
+                      { "enemies":[ {"id":"22203", "type":0, "hp":24416430, "count":1} ] } ]
                     },
-                    { "sideElementMult":[0.8, 1.0, 1.0, 1.0, 0.8], "waves":[
-                      { "enemies":[ {"id":"10127", "type":1, "hp":7655258, "count":2} ] },
+                    { "sideElementMult":[1.0, 0.8, 1.2, 1.2, 0.8], "waves":[
+                      { "enemies":[ {"id":"10108", "type":1, "hp":7655258, "count":1}, {"id":"10119", "type":1, "hp":7126232, "count":1} ] },
                       { "enemies":[ {"id":"20203", "type":0, "hp":32467416, "count":1} ] } ]
                     },
                     { "sideElementMult":[1.2, 0.8, 1.2, 1.0, 0.8], "waves":[

@@ -172,7 +172,7 @@ function showEnemies() {
       if (eTags.includes("counter")) {
         eHPNew -= eHP * 0.02;
         color = "#b47ede";
-        ttHP.innerHTML += instant(color, "COUNTERED!!", 1) + `<br>`;
+        ttHP.innerHTML += instant(color, "SHUTDOWN!!", 1) + `<br>`;
       }
       ttHP.innerHTML = alt(color, eName, eHPNew, eHP) + ttHP.innerHTML;
       enemyHP.appendChild(ttHP);

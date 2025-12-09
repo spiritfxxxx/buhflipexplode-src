@@ -193,9 +193,10 @@ function showEnemies() {
   let currNode = versionEnemies.nodes[nodeNum - 1];
   
   /* add side 1 & 2 displays */
-  let sides = document.querySelector("#s");
   let side1 = document.querySelector("#s1"), side2 = document.querySelector("#s2"), side3 = document.querySelector("#s3");
-  sides.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
+  side1.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
+  side2.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
+  side3.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
   side1.innerHTML = ``; side2.innerHTML = ``; side3.innerHTML = ``;
   if (versionNum <= v2_4 || nodeNum < 5) side3.style.display = "none";
   else side3.style.display = "flex";

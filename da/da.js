@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 25;
+let cntNoLeaks = 26;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let versionNum = null, chartScoreNum = null, currNumberFormat = null;
@@ -42,7 +42,7 @@ function buildHPData() {
         if (eTags.includes("ucc")) alt60kEnemyHP -= eHP * 0.036;
         if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
         if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.06 : (v >= 19 ? 0.025 : 0.03));
-        if (eTags.includes("counter")) alt60kEnemyHP -= eHP * 0.02;
+        if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * 0.015;
       }
     }
     hpData[0][v - 1] = Math.ceil(raw60kEnemyHP * 0.281083138);
@@ -169,8 +169,8 @@ function showEnemies() {
         color = "#d4317b";
         ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 4 : 1) + `<br>`;
       }
-      if (eTags.includes("counter")) {
-        eHPNew -= eHP * 0.02;
+      if (eTags.includes("shutdown")) {
+        eHPNew -= eHP * 0.015;
         color = "#b47ede";
         ttHP.innerHTML += instant(color, "SHUTDOWN!!", 1) + `<br>`;
       }

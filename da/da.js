@@ -524,7 +524,7 @@ function displayHPChart() {
             border: { display: false },
             grid: { color: function(context) { return context.tick.value % 40000000 == 0 ? "#888888" : "#444444"; } },
             ticks: {
-              padding: 15, font: { family: "Inconsolata", size: 12 }, color: "#888888", stepSize: 20000000, 
+              padding: 15, font: { family: "Inconsolata", size: 12 }, color: "#888888", 
               callback: function(value, index) { return index % 2 == 0 ? numberFormat(value) : ""; }
             }
           }
@@ -568,7 +568,8 @@ function displayHPChart() {
     createHPDataset(`Alt HP`, chartScoreNum == "20k" ? hpData[2] : hpData[3], "#f6b26b")
   ];
   hpChart.options.scales.y.min = chartScoreNum == "20k" ? 40000000 : 160000000;
-  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 160000000 : 480000000;
+  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 160000000 : 560000000;
+  hpChart.options.scales.y.ticks.stepSize = chartScoreNum == "20k" ? 10000000 : 40000000;
   hpChart.options.plugins.title.text = `Deadly Assault HP (${chartScoreNum})`;
   hpChart.update();
   saveProgress();

@@ -3812,7 +3812,7 @@
               "versionDazeMult":100,
               "versionAnomMult":100,
               "buffName":["Dawn's Guiding Light", "Piercing Thunder Strike", "Accumulating Frost"],
-              "buffDesc":["• Agent <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• Enemy's <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
+              "buffDesc":["• Agent <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• Enemy <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
               
               "• Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• Agent <span style='font-weight:bold;'>Basic Attack</span>, <span style='font-weight:bold;'>Special Attack</span>, and <span style='font-weight:bold;'>EX Special Attack</span> deal <span style='color:#2bad00;font-weight:bold;'>40%</span> increased DMG and ignore <span style='color:#2bad00;font-weight:bold;'>15%</span> of enemy <span style='color:#5555ff;font-weight:bold;'>DEF</span>.",
               
@@ -3848,39 +3848,39 @@
                   },
                   { "sides":[
                     { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
-                      { "enemies":[ {"id":"10004", "type":1, "hp":1064844, "count":2}, {"id":"10033", "type":1, "hp":1064844, "count":2} ] },
-                      { "enemies":[ {"id":"12105", "type":1, "hp":7926223, "count":1} ] },
-                      { "enemies":[ {"id":"12103", "type":1, "hp":8488504, "count":1}, {"id":"12104", "type":1, "hp":7926223, "count":1} ] } ]
+                      { "enemies":[ {"id":"10004", "type":1, "hp":931738, "count":2}, {"id":"10033", "type":1, "hp":931738, "count":2} ] },
+                      { "enemies":[ {"id":"12105", "type":1, "hp":6935445, "count":1} ] },
+                      { "enemies":[ {"id":"12103", "type":1, "hp":7427441, "count":1}, {"id":"12104", "type":1, "hp":6935445, "count":1} ] } ]
                     },
                     { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "waves":[
-                      { "enemies":[ {"id":"10016", "type":0, "hp":961694, "count":3} ] },
-                      { "enemies":[ {"id":"10104", "type":1, "hp":5307157, "count":1} ] },
-                      { "enemies":[ {"id":"10115", "type":1, "hp":6775292, "count":1}, {"id":"10125", "type":1, "hp":5701142, "count":1} ] } ]
+                      { "enemies":[ {"id":"10016", "type":0, "hp":841483, "count":3} ] },
+                      { "enemies":[ {"id":"10104", "type":1, "hp":4643762, "count":1} ] },
+                      { "enemies":[ {"id":"10115", "type":1, "hp":5928381, "count":1}, {"id":"10125", "type":1, "hp":4988499, "count":1} ] } ]
                     }]
                   },
                   { "sides":[
                     { "sideElementMult":[1.2, 1.0, 0.8, 1.0, 1.0], "waves":[
-                      { "enemies":[ {"id":"22001", "type":1, "hp":1678891, "count":3} ] },
-                      { "enemies":[ {"id":"15200", "type":0, "hp":16977794, "count":1} ] } ]
+                      { "enemies":[ {"id":"22001", "type":1, "hp":1469029, "count":3} ] },
+                      { "enemies":[ {"id":"15200", "type":0, "hp":14855570, "count":1} ] } ]
                     },
                     { "sideElementMult":[1.0, 0.8, 1.0, 1.2, 0.8], "waves":[
-                      { "enemies":[ {"id":"10126", "type":1, "hp":6198657, "count":1}, {"id":"22000", "type":1, "hp":1678891, "count":2} ] },
-                      { "enemies":[ {"id":"12201", "type":0, "hp":17326896, "count":1} ] } ]
+                      { "enemies":[ {"id":"10126", "type":1, "hp":5423825, "count":1}, {"id":"22000", "type":1, "hp":1469029, "count":2} ] },
+                      { "enemies":[ {"id":"10217", "type":0, "hp":12379396, "count":1} ] } ]
                     }]
                   },
                   { "sides":[
                     { "sideElementMult":[1.2, 0.8, 1.2, 1.0, 0.8], "waves":[
-                      { "enemies":[ {"id":"24101", "type":1, "hp":15926176, "count":1}, {"id":"20102", "type":1, "hp":10642262, "count":1} ] },
-                      { "enemies":[ {"id":"24200", "type":0, "hp":30008446, "count":1} ] } ]
+                      { "enemies":[ {"id":"24101", "type":1, "hp":15087956, "count":1}, {"id":"20102", "type":1, "hp":10082143, "count":1} ] },
+                      { "enemies":[ {"id":"24200", "type":0, "hp":28429054, "count":1} ] } ]
                     },
                     { "sideElementMult":[1.0, 1.2, 0.8, 1.2, 0.8], "waves":[
-                      { "enemies":[ {"id":"10120", "type":1, "hp":9464152, "count":1}, {"id":"10125", "type":1, "hp":7655258, "count":1} ] },
-                      { "enemies":[ {"id":"21200", "type":0, "hp":26986580, "count":1} ] } ]
+                      { "enemies":[ {"id":"10120", "type":1, "hp":9013478, "count":1}, {"id":"10125", "type":1, "hp":7290722, "count":1} ] },
+                      { "enemies":[ {"id":"21200", "type":0, "hp":25701505, "count":1} ] } ]
                     },
                     { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.2], "waves":[
-                      { "enemies":[ {"id":"10002", "type":1, "hp":1429828, "count":3} ] },
-                      { "enemies":[ {"id":"10107", "type":1, "hp":7655258, "count":1}, {"id":"20001", "type":1, "hp":1451698, "count":2} ] },
-                      { "enemies":[ {"id":"23203", "type":0, "hp":27989439, "count":1} ] } ]
+                      { "enemies":[ {"id":"10002", "type":1, "hp":1225567, "count":3} ] },
+                      { "enemies":[ {"id":"10107", "type":1, "hp":6561650, "count":1}, {"id":"20001", "type":1, "hp":1244312, "count":2} ] },
+                      { "enemies":[ {"id":"23203", "type":0, "hp":23990948, "count":1} ] } ]
                     }]
                   }
                 ]
@@ -3892,7 +3892,7 @@
               "versionDazeMult":100,
               "versionAnomMult":100,
               "buffName":["Frost-Bitten Iron", "Rush of Lightning and Fire", "Blazing Stream"],
-              "buffDesc":["• Agent CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>. While in Ether Veil, Agent <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>30%</span>, and attacks ignore <span style='color:#2bad00;font-weight:bold;'>15%</span> of enemy's <span style='color:#5555ff;font-weight:bold;'>DEF</span>.",
+              "buffDesc":["• Agent CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>25%</span>. While in Ether Veil, Agent <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and attacks ignore <span style='color:#2bad00;font-weight:bold;'>10%</span> of enemy's <span style='color:#5555ff;font-weight:bold;'>DEF</span>.",
               
               "• Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>30%</span>, <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> increases by <span style='color:#2bad00;font-weight:bold;'>60</span>.<br>• Agents start with <span style='color:#2bad00;font-weight:bold;'>40</span> additional Energy, <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
               
@@ -3927,39 +3927,39 @@
                   },
                   { "sides":[
                     { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
-                      { "enemies":[ {"id":"10004", "type":1, "hp":1064844, "count":2}, {"id":"10033", "type":1, "hp":1064844, "count":2} ] },
-                      { "enemies":[ {"id":"12105", "type":1, "hp":7926223, "count":1} ] },
-                      { "enemies":[ {"id":"12103", "type":1, "hp":8488504, "count":1}, {"id":"12104", "type":1, "hp":7926223, "count":1} ] } ]
+                      { "enemies":[ {"id":"10004", "type":1, "hp":931738, "count":2}, {"id":"10033", "type":1, "hp":931738, "count":2} ] },
+                      { "enemies":[ {"id":"12105", "type":1, "hp":6935445, "count":1} ] },
+                      { "enemies":[ {"id":"12103", "type":1, "hp":7427441, "count":1}, {"id":"12104", "type":1, "hp":6935445, "count":1} ] } ]
                     },
                     { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
-                      { "enemies":[ {"id":"12000", "type":1, "hp":1174198, "count":2}, {"id":"12002", "type":1, "hp":1174198, "count":3} ] },
-                      { "enemies":[ {"id":"10102", "type":0, "hp":5034160, "count":1} ] },
-                      { "enemies":[ {"id":"10132", "type":1, "hp":6343305, "count":1}, {"id":"10113", "type":1, "hp":5701142, "count":1} ] } ]
+                      { "enemies":[ {"id":"12000", "type":1, "hp":1027423, "count":2}, {"id":"12002", "type":1, "hp":1027423, "count":3} ] },
+                      { "enemies":[ {"id":"10102", "type":0, "hp":4404890, "count":1} ] },
+                      { "enemies":[ {"id":"10132", "type":1, "hp":5550392, "count":1}, {"id":"10113", "type":1, "hp":4988499, "count":1} ] } ]
                     }]
                   },
                   { "sides":[
                     { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
-                      { "enemies":[ {"id":"10134", "type":1, "hp":7298242, "count":1}, {"id":"10135", "type":1, "hp":5495395, "count":1} ] },
-                      { "enemies":[ {"id":"11202", "type":0, "hp":18391908, "count":1} ] } ]
+                      { "enemies":[ {"id":"10004", "type":0, "hp":828589, "count":2}, {"id":"10033", "type":0, "hp":828589, "count":2} ] },
+                      { "enemies":[ {"id":"10216", "type":0, "hp":15161034, "count":1} ] } ]
                     },
                     { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
-                      { "enemies":[ {"id":"10117", "type":1, "hp":5109191, "count":2} ] },
-                      { "enemies":[ {"id":"10212", "type":0, "hp":12995172, "count":1} ] } ]
+                      { "enemies":[ {"id":"10117", "type":1, "hp":4470542, "count":2} ] },
+                      { "enemies":[ {"id":"10212", "type":0, "hp":11370775, "count":1} ] } ]
                     }]
                   },
                   { "sides":[
                     { "sideElementMult":[1.0, 1.2, 1.0, 0.8, 0.8], "waves":[
-                      { "enemies":[ {"id":"10105", "type":1, "hp":8154828, "count":1}, {"id":"10106", "type":1, "hp":6140383, "count":1} ] },
-                      { "enemies":[ {"id":"25201", "type":0, "hp":30977038, "count":1} ] } ]
+                      { "enemies":[ {"id":"10105", "type":1, "hp":8584029, "count":1}, {"id":"10106", "type":1, "hp":6463561, "count":1} ] },
+                      { "enemies":[ {"id":"25201", "type":0, "hp":32607409, "count":1} ] } ]
                     },
                     { "sideElementMult":[1.2, 0.8, 0.8, 1.2, 1.0], "waves":[
-                      { "enemies":[ {"id":"12104", "type":1, "hp":9629386, "count":1}, {"id":"12105", "type":1, "hp":9629386, "count":1} ] },
-                      { "enemies":[ {"id":"22200", "type":0, "hp":24416430, "count":1} ] } ]
+                      { "enemies":[ {"id":"12104", "type":1, "hp":9122576, "count":1}, {"id":"12105", "type":1, "hp":9122576, "count":1} ] },
+                      { "enemies":[ {"id":"22200", "type":0, "hp":23131355, "count":1} ] } ]
                     },
                     { "sideElementMult":[1.0, 1.0, 1.2, 0.8, 0.8], "waves":[
-                      { "enemies":[ {"id":"10011", "type":1, "hp":1429828, "count":3} ] },
-                      { "enemies":[ {"id":"20102", "type":1, "hp":11762500, "count":1}, {"id":"20002", "type":1, "hp":2073407, "count":2} ] },
-                      { "enemies":[ {"id":"20204", "type":0, "hp":30402340, "count":1} ] } ]
+                      { "enemies":[ {"id":"10011", "type":1, "hp":1225567, "count":3} ] },
+                      { "enemies":[ {"id":"20102", "type":1, "hp":10082143, "count":1}, {"id":"21000", "type":1, "hp":2132469, "count":2} ] },
+                      { "enemies":[ {"id":"20204", "type":0, "hp":26059148, "count":1} ] } ]
                     }]
                   }
                 ]
@@ -3971,7 +3971,7 @@
               "versionDazeMult":100,
               "versionAnomMult":100,
               "buffName":["Fleeting Glory", "Piercing Blade Abyss", "Cleanse the Heart with Fire"],
-              "buffDesc":["• While in Ether Veil, Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• When Agents hit enemies, they ignore <span style='color:#2bad00;font-weight:bold;'>10%</span> of enemy <span style='color:#f0d12b;font-weight:bold;'>Physical RES</span>.",
+              "buffDesc":["• While in Ether Veil, Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>25%</span> and CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When Agents hit enemies, they ignore <span style='color:#2bad00;font-weight:bold;'>10%</span> of enemy <span style='color:#f0d12b;font-weight:bold;'>Physical RES</span>.",
               
               "• Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>15%</span>.<br>• When Agents inflict an <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly</span> on enemies, their <span style='color:#5555ff;font-weight:bold;'>DEF</span> is reduced by <span style='color:#2bad00;font-weight:bold;'>10%</span>, and they take <span style='color:#2bad00;font-weight:bold;'>20%</span> more <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> for 10s. Repeated triggers reset the duration.",
               
@@ -4006,37 +4006,37 @@
                   },
                   { "sides":[
                     { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
-                      { "enemies":[ {"id":"10004", "type":1, "hp":1064844, "count":2}, {"id":"10033", "type":1, "hp":1064844, "count":2} ] },
-                      { "enemies":[ {"id":"12105", "type":1, "hp":7926223, "count":1} ] },
-                      { "enemies":[ {"id":"12103", "type":1, "hp":8488504, "count":1}, {"id":"12104", "type":0, "hp":7681146, "count":1} ] } ]
+                      { "enemies":[ {"id":"10004", "type":1, "hp":931738, "count":2}, {"id":"10033", "type":1, "hp":931738, "count":2} ] },
+                      { "enemies":[ {"id":"12105", "type":1, "hp":6935445, "count":1} ] },
+                      { "enemies":[ {"id":"12103", "type":1, "hp":7427441, "count":1}, {"id":"12104", "type":0, "hp":6721003, "count":1} ] } ]
                     },
                     { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "waves":[
-                      { "enemies":[ {"id":"12000", "type":1, "hp":1174198, "count":3}, {"id":"12002", "type":1, "hp":1174198, "count":2} ] },
-                      { "enemies":[ {"id":"10117", "type":1, "hp":4699118, "count":1} ] },
-                      { "enemies":[ {"id":"20100", "type":1, "hp":7026574, "count":1}, {"id":"10107", "type":1, "hp":5701142, "count":1} ] } ]
+                      { "enemies":[ {"id":"12000", "type":1, "hp":1027423, "count":3}, {"id":"12002", "type":1, "hp":1027423, "count":2} ] },
+                      { "enemies":[ {"id":"10117", "type":1, "hp":4111728, "count":1} ] },
+                      { "enemies":[ {"id":"20100", "type":1, "hp":6148252, "count":1}, {"id":"10107", "type":1, "hp":4988499, "count":1} ] } ]
                     }]
                   },
                   { "sides":[
                     { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8], "waves":[
-                      { "enemies":[ {"id":"10004", "type":0, "hp":946959, "count":2}, {"id":"10033", "type":0, "hp":946959, "count":2} ] },
-                      { "enemies":[ {"id":"10216", "type":0, "hp":17326896, "count":1} ] } ]
+                      { "enemies":[ {"id":"10004", "type":0, "hp":828589, "count":2}, {"id":"10033", "type":0, "hp":828589, "count":2} ] },
+                      { "enemies":[ {"id":"10216", "type":0, "hp":15161034, "count":1} ] } ]
                     },
                     { "sideElementMult":[1.2, 0.8, 1.0, 0.8, 1.0], "waves":[
-                      { "enemies":[ {"id":"20201", "type":0, "hp":25262627, "count":1} ] } ]
+                      { "enemies":[ {"id":"20201", "type":0, "hp":22104799, "count":1} ] } ]
                     }]
                   },
                   { "sides":[
                     { "sideElementMult":[1.0, 0.8, 1.2, 1.2, 0.8], "waves":[
-                      { "enemies":[ {"id":"24100", "type":1, "hp":12758466, "count":1}, {"id":"10108", "type":1, "hp":6926186, "count":1} ] },
-                      { "enemies":[ {"id":"22203", "type":0, "hp":24416430, "count":1} ] } ]
+                      { "enemies":[ {"id":"24100", "type":1, "hp":12086967, "count":1}, {"id":"10108", "type":1, "hp":6561650, "count":1} ] },
+                      { "enemies":[ {"id":"22203", "type":0, "hp":23131355, "count":1} ] } ]
                     },
                     { "sideElementMult":[1.0, 0.8, 1.2, 1.2, 0.8], "waves":[
-                      { "enemies":[ {"id":"10108", "type":1, "hp":7655258, "count":1}, {"id":"10119", "type":1, "hp":7126232, "count":1} ] },
-                      { "enemies":[ {"id":"20203", "type":0, "hp":32467416, "count":1} ] } ]
+                      { "enemies":[ {"id":"10108", "type":1, "hp":6561650, "count":1}, {"id":"10119", "type":1, "hp":6108199, "count":1} ] },
+                      { "enemies":[ {"id":"20203", "type":0, "hp":27829214, "count":1} ] } ]
                     },
                     { "sideElementMult":[1.2, 0.8, 1.2, 1.0, 0.8], "waves":[
-                      { "enemies":[ {"id":"10136", "type":1, "hp":9464152, "count":1}, {"id":"10112", "type":1, "hp":6561798, "count":1} ] },
-                      { "enemies":[ {"id":"16201", "type":0, "hp":23325053, "count":1} ] } ]
+                      { "enemies":[ {"id":"10136", "type":1, "hp":9013478, "count":1}, {"id":"10112", "type":1, "hp":6249332, "count":1} ] },
+                      { "enemies":[ {"id":"16201", "type":0, "hp":22214336, "count":1} ] } ]
                     }]
                   }
                 ]

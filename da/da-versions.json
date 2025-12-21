@@ -212,7 +212,7 @@
             "versionDazeMult": 100,
             "versionAnomMult": 110,
             "buffNames": ["Dream Delusion", "Sonata", "Focus Energy"],
-            "versionEnemies": [ {"id": "25300", "type": 1, "hp": 142735246}, {"id": "21300", "type": 1, "hp": 154342793}, {"id": "23300", "type": 1, "hp": 152708379} ]
+            "versionEnemies": [ {"id": "25300", "type": 1, "hp": 216746115}, {"id": "21300", "type": 1, "hp": 154342793}, {"id": "23300", "type": 1, "hp": 152708379} ]
           },
 
   "2.5.2":{ "versionName":"2.5 Phase 2",
@@ -220,14 +220,14 @@
             "versionDazeMult": 100,
             "versionAnomMult": 110,
             "buffNames": ["Harnessing Change", "Focus Energy", "Mutation"],
-            "versionEnemies": [ {"id": "24300", "type": 1, "hp": 161506628}, {"id": "14300", "type": 1, "hp": 145124130}, {"id": "20300", "type": 1, "hp": 127919008} ]
+            "versionEnemies": [ {"id": "22300", "type": 1, "hp": 123068903}, {"id": "14300", "type": 1, "hp": 145124130}, {"id": "20300", "type": 1, "hp": 127919008} ]
           },
 
   "2.5.3":{ "versionName":"2.5 Phase 3",
             "versionTime":"xx/xx/20xx - xx/xx/20xx",
             "versionDazeMult": 100,
             "versionAnomMult": 110,
-            "buffNames": ["Focus Energy", "Frost Night", "Formation Breaker"],
-            "versionEnemies": [ {"id": "25300", "type": 1, "hp": 169167699}, {"id": "10303", "type": 1, "hp": 130965710}, {"id": "22300", "type": 1, "hp": 128727244} ]
+            "buffNames": ["Adjudication", "Frost Night", "Formation Breaker"],
+            "versionEnemies": [ {"id": "25300", "type": 1, "hp": 216746115}, {"id": "10303", "type": 1, "hp": 130965710}, {"id": "23300", "type": 1, "hp": 152708379} ]
           }
 }

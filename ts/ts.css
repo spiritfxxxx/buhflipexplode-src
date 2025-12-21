@@ -406,7 +406,6 @@ body.no-scroll {
   background-color: #222222;
   display: none;
   user-select: none;
-  align-items: stretch;
 }
 #mb-bar {
   z-index: 1103;
@@ -441,7 +440,7 @@ body.no-scroll {
   padding: 0px 15px;
   gap: 10px;
   width: 220px;
-  font-size: 18px;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
 }
@@ -481,13 +480,14 @@ body.no-scroll {
   color: #ff5555;
   font-size: 16px;
   font-weight: bold;
+  margin-top: 2px;
 }
 
 /* menu bar toggles */
 #mb-t {
   width: 200px;
   padding: 20px 25px;
-  font-size: 18px;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -503,7 +503,6 @@ body.no-scroll {
 
 /* menu bar leaks toggle */
 #mb-lt {
-  top: 3px;
   width: 44px;
   height: 22px;
   position: relative;
@@ -536,7 +535,6 @@ input:checked + #lt {
 
 /* menu bar spoilers toggle */
 #mb-st {
-  top: 3px;
   width: 44px;
   height: 22px;
   position: relative;
@@ -863,18 +861,18 @@ input:checked + #st {
 /* menu: top, buff: side, star: top, stat: bottom */
 .tt-menu .tt-text{
   width: 120px;
-  bottom: 140%;
+  bottom: 160%;
   left: 50%;
 }
 .tt-e-hp .tt-text{
   white-space: nowrap;
   width: auto;
-  bottom: 95%;
+  bottom: 90%;
   left: 50%;
 }
 .tt-n-hp .tt-text {
   width: 240px;
-  top: -190%;
+  top: -200%;
 }
 .tt-e-stat .tt-text {
   white-space: nowrap;
@@ -889,22 +887,22 @@ input:checked + #st {
 .tt-e-stat .tt-text::after {
   content: "";
   position: absolute;
-  border-width: 7.5px;
+  border-width: 5px;
   transform: translateX(-50%);
   border-style: solid;
 }
 .tt-menu .tt-text::after, .tt-e-hp .tt-text::after {
-  top: 97.5%;
+  top: 100%;
   left: 50%;
   border-color: #444444 transparent transparent transparent;
 }
 .tt-n-hp .tt-text::after {
-  top: 90%;
+  top: 100%;
   left: 47.5%;
   border-color: #444444 transparent transparent transparent;
 }
 .tt-e-stat .tt-text::after{
-  top: -10%;
+  top: -7.5%;
   left: 50%;
   border-color: transparent transparent #444444 transparent;
 }

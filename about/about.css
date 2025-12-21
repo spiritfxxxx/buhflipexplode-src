@@ -157,7 +157,7 @@ a.btn:hover {
   padding: 0px 15px;
   gap: 10px;
   width: 220px;
-  font-size: 18px;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
 }
@@ -197,13 +197,14 @@ a.btn:hover {
   color: #ff5555;
   font-size: 16px;
   font-weight: bold;
+  margin-top: 2px;
 }
 
 /* menu bar toggles */
 #mb-t {
   width: 200px;
   padding: 20px 25px;
-  font-size: 18px;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -219,7 +220,6 @@ a.btn:hover {
 
 /* menu bar leaks toggle */
 #mb-lt {
-  top: 3px;
   width: 44px;
   height: 22px;
   position: relative;
@@ -252,7 +252,6 @@ input:checked + #lt {
 
 /* menu bar spoilers toggle */
 #mb-st {
-  top: 3px;
   width: 44px;
   height: 22px;
   position: relative;
@@ -313,7 +312,7 @@ input:checked + #st {
   z-index: 1000;
   padding: 10px;
   width: 120px;
-  bottom: 140%;
+  bottom: 160%;
   left: 50%;
   transform: translateX(-50%);
   position: absolute;
@@ -339,11 +338,11 @@ input:checked + #st {
 /* tooltip arrow placements */
 .tt-menu .tt-text::after {
   content: "";
-  top: 97.5%;
+  top: 100%;
   left: 50%;
   position: absolute;
   border-color: #444444 transparent transparent transparent;
-  border-width: 7.5px;
+  border-width: 5px;
   transform: translateX(-50%);
   border-style: solid;
 }

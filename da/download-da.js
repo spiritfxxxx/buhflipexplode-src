@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 25;
+let cntNoLeaks = 26;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let versionNum = null, chartScoreNum = null, currNumberFormat = null;
@@ -37,11 +37,13 @@ function buildHPData() {
       let eHP = currEnemy.hp;
       let eTags = currEnemyData.tags;
       raw60kEnemyHP += eHP;
+      alt60kEnemyHP += eHP;
       if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
-        if (eTags.includes("miasma")) alt60kEnemyHP += eHP * 0.97;
-        else if (eTags.includes("ucc")) alt60kEnemyHP += eHP * 0.964;
+        if (eTags.includes("ucc")) alt60kEnemyHP -= eHP * 0.036;
+        if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
+        if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.06 : (v >= 19 ? 0.025 : 0.03));
+        if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * 0.015;
       }
-      else alt60kEnemyHP += eHP;
     }
     hpData[0][v - 1] = Math.ceil(raw60kEnemyHP * 0.281083138);
     hpData[1][v - 1] = Math.ceil(raw60kEnemyHP);
@@ -148,10 +150,31 @@ function showEnemies() {
     if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
       let ttHP = document.createElement("div");
       ttHP.className = "tt-e-hp";
-      if (eTags.includes("ucc"))
-        ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 1.2, 3)}</span>`;
-      if (eTags.includes("miasma"))
-        ttHP.innerHTML = `<span style="color:#d4317b;">✦</span><span class="tt-text">${instant("#d4317b", "PURIFIED!!", eName, eHP, 3, 1)}</span>`;
+
+      let eHPNew = eHP;
+      let color = "#ffffff";
+
+      if (eTags.includes("ucc")) {
+        eHPNew -= eHP * 0.036;
+        color = "#ecce45";
+        ttHP.innerHTML += instant(color, "IMPAIRED!!", 3) + ` on<br>legs, 3 time(s) on core<br>`;
+      }
+      if (eTags.includes("hunter")) {
+        eHPNew -= eHP * 0.01;
+        color = "#ecce45";
+        ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
+      }
+      if (eTags.includes("miasma")) {
+        eHPNew -= eHP * (currEnemyID == "25300" ? 0.06 : (versionNum >= 19 ? 0.025 : 0.03));
+        color = "#d4317b";
+        ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 4 : 1) + `<br>`;
+      }
+      if (eTags.includes("shutdown")) {
+        eHPNew -= eHP * 0.015;
+        color = "#b47ede";
+        ttHP.innerHTML += instant(color, "SHUTDOWN!!", 1) + `<br>`;
+      }
+      ttHP.innerHTML = alt(color, eName, eHPNew, eHP) + ttHP.innerHTML;
       enemyHP.appendChild(ttHP);
     }
     enemy.appendChild(enemyHP);
@@ -224,13 +247,13 @@ function generateWR(mult, wr) {
 }
 
 /* add special enemy tooltip text */
-function instant(color, type, name, hp, dmg, cnt) {
-  return `<span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
-          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hp * (100 - dmg * cnt) / 100))}</span><br>
-          <span style="font-weight:bold;">(assume ${100 - dmg * cnt}% of HP)</span><br><br>
-          <span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)`
-          + (name == "Unknown Corruption Complex" ? ` on<br>legs, 3 time(s) on core` : ``);
+function alt(color, name, hpNew, hp) {
+  return `<span style="color:${color};">✦</span><span class="tt-text">
+          <span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
+          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hpNew))}</span><br>
+          <span style="font-weight:bold;">(assume ${Math.round(hpNew / hp * 1000) / 10}% of HP)</span><br><br>`;
 }
+function instant(color, type, cnt) { return `<span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)</span>`; }
 
 /* add enemy stat tooltip text */
 function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
@@ -502,7 +525,7 @@ function displayHPChart() {
             border: { display: false },
             grid: { color: function(context) { return context.tick.value % 40000000 == 0 ? "#888888" : "#444444"; } },
             ticks: {
-              padding: 15, font: { family: "Inconsolata", size: 12 }, color: "#888888", stepSize: 20000000, 
+              padding: 15, font: { family: "Inconsolata", size: 12 }, color: "#888888", 
               callback: function(value, index) { return index % 2 == 0 ? numberFormat(value) : ""; }
             }
           }
@@ -546,7 +569,8 @@ function displayHPChart() {
     createHPDataset(`Alt HP`, chartScoreNum == "20k" ? hpData[2] : hpData[3], "#f6b26b")
   ];
   hpChart.options.scales.y.min = chartScoreNum == "20k" ? 40000000 : 160000000;
-  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 160000000 : 480000000;
+  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 160000000 : 560000000;
+  hpChart.options.scales.y.ticks.stepSize = chartScoreNum == "20k" ? 10000000 : 40000000;
   hpChart.options.plugins.title.text = `Deadly Assault HP (${chartScoreNum})`;
   hpChart.update();
   saveProgress();
@@ -554,21 +578,8 @@ function displayHPChart() {
 
 /* ----------------------------------------------------------------------------- TEST ----------------------------------------------------------------------- */
 
-// CHART
-/*let myChart = new Chart("myChart", {
-  type: "line",
-  data: {},
-  options: {}
-});*/
-
-// DOTTED LINE THINGY
-
-/* Exports a CSV file containing unique enemies and their HP for the current node */
-/* Exports a CSV file containing all enemies and their HP and daze for the current node */
-/* Exports a CSV file containing all enemies and their HP and daze for the current node */
-/* Exports a CSV file containing unique enemies (by name and HP) and their HP and daze for the current node */
-
-async function exportShiyuCSVUnique() {
+/* Exports a CSV file containing all enemies and their HP and daze for the current version */
+async function exportDeadlyCSVUnique() {
   const container = document.getElementById("s");
   if (!container) {
     console.error("No #s container found in HTML");
@@ -621,13 +632,12 @@ async function exportShiyuCSVUnique() {
   a.click();
   URL.revokeObjectURL(url);
 
-  console.log("✅ Exported shiyu_combined.csv");
+  console.log("✅ Exported deadly_combined.csv");
 }
-
 
 /* ----------------------------------------------------------------------------- MAIN ----------------------------------------------------------------------- */
 
 window.addEventListener("DOMContentLoaded", async () => {
   await loadDeadlyPage();
-  document.getElementById("export-csv-btn").addEventListener("click", exportShiyuCSVUnique);
+  document.getElementById("export-csv-btn").addEventListener("click", exportDeadlyCSVUnique);
 });

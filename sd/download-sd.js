@@ -1,10 +1,10 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 34, oldModeNum = 4, modeNum = 4, v2_4 = 37;
+let cntNoLeaks = 37, oldModeNum = 4, modeNum = 4, v2_4 = 37;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
-let oldVersionNum = null, currVersion = null, versionNum = null;
-let nodeNum = null, chartNodeNum = null, chartDisplayType = null, currNumberFormat = null;
+let oldVersionNum = null, currVersion = null, versionNum = null, nodeNum = null;
+let chartNodeNum = null, oldChartDisplayType = null, chartDisplayType = null, currNumberFormat = null;
 let menuIsOpen = false, versionSelectorIsOpen = false, chartIsOpen = false;
 
 let versionData = null, versionDazeMult = null, versionAnomMult = null, versionEnemies = null, enemyData = null, hpChart = null;
@@ -73,13 +73,14 @@ function buildHPData() {
               for (let cnt = 1; cnt <= currEnemy.count; ++cnt) {
                 rawHP += currEnemy.id != "14000" ? eHP : 1;
                 aoeHP += addAOE ? eHP : 0;
-                if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
-                  if (eTags.includes("brute")) altHP += eHP * 0.92;
-                  else if (eTags.includes("robot")) altHP += eHP * 0.9;
-                  else if (eTags.includes("miasma")) altHP += eHP * 0.85;
-                  else if (eTags.includes("palicus")) altHP += eHP * 0.75;
+                altHP += eHP;
+                if (eTags.length >= 1 && !(eTags.length == 1 && (eTags.includes("spoiler") || eTags.includes("hitch")))) {
+                  if (eTags.includes("palicus")) altHP -= eHP * 0.25;
+                  if (eTags.includes("robot")) altHP -= eHP * 0.1;
+                  if (eTags.includes("brute")) altHP -= eHP * 0.08;
+                  if (eTags.includes("miasma")) altHP -= eHP * 0.15;
                 }
-                else altHP += addAOE ? eHP : 0;
+                else altHP -= addAOE ? 0 : eHP;
                 addAOE = false;
               }
             }
@@ -88,7 +89,7 @@ function buildHPData() {
         }
         hpData[m - 1][n - 1][0][v - 1] = rawHP;
         hpData[m - 1][n - 1][1][v - 1] = aoeHP;
-        hpData[m - 1][n - 1][2][v - 1] = (m == 4 && n > 5) || m != 3 ? Math.ceil(altHP) : null;
+        hpData[m - 1][n - 1][2][v - 1] = (m == 4 && (v <= v2_4 ? n > 5 : n > 3)) || m != 3 ? Math.ceil(altHP) : null;
       }
     }
   }
@@ -118,7 +119,7 @@ function showNode() {
     oldModeNum = modeNum;
     displayHPChart();
   }
-  changePrePostNode();
+  if (modeNum == 4) changePrePostNode();
   document.getElementById("n-text").innerHTML = nodeNum;
   showBuffs();
   showEnemies();
@@ -146,20 +147,22 @@ function changeChartNode(n) {
   showChartNode();
 }
 function changePrePostChartNode() {
-  if (chartDisplayType == "Pre 2.5") {
-    if (chartNodeNum <= 2) chartNodeNum = 1;
-    else if (chartNodeNum <= 4) chartNodeNum = 2;
-    else chartNodeNum -= 2;
+  if (oldChartDisplayType != chartDisplayType) {
+    if (chartDisplayType == "Pre 2.5") {
+      if (chartNodeNum >= 3) chartNodeNum += 2;
+      else if (chartNodeNum == 2) chartNodeNum = 3;
+    }
+    else {
+      if (chartNodeNum <= 2) chartNodeNum = 1;
+      else if (chartNodeNum <= 4) chartNodeNum = 2;
+      else chartNodeNum -= 2;
+    }
   }
-  else {
-    if (chartNodeNum >= 3) chartNodeNum += 2;
-    else if (chartNodeNum == 2) chartNodeNum = 3;
-  }
-  oldVersionNum = versionNum;
+  oldChartDisplayType = chartDisplayType;
 }
 
 /* show specific chart variant for pre/post 2.5 */
-function changeChart() { changePrePostChartNode(); displayHPChart(); }
+function changeChart() { displayHPChart(); }
 
 function showBuffs() {
   if (modeNum != 4) {
@@ -191,10 +194,10 @@ function showEnemies() {
   
   /* add side 1 & 2 displays */
   let side1 = document.querySelector("#s1"), side2 = document.querySelector("#s2"), side3 = document.querySelector("#s3");
-  side1.innerHTML = ``; side2.innerHTML = ``; side3.innerHTML = ``;
   side1.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
   side2.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
   side3.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
+  side1.innerHTML = ``; side2.innerHTML = ``; side3.innerHTML = ``;
   if (versionNum <= v2_4 || nodeNum < 5) side3.style.display = "none";
   else side3.style.display = "flex";
 
@@ -303,17 +306,35 @@ function showEnemies() {
             let ttHP = document.createElement("div");
             ttHP.className = "tt-e-hp";
             if (eTags.includes("hitch")) {
-              ttHP.innerHTML = `<span style="color:#ffffff;">✦</span><span class="tt-text">${hitch(eHP)}</span>`;
+              ttHP.innerHTML = hitch(eHP) + `<br>`;
               enemyHP.innerHTML = numberFormat(1);
             }
-            else if (eTags.includes("brute"))
-              ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 8, 1)}</span>`;
-            else if (eTags.includes("robot"))
-              ttHP.innerHTML = `<span style="color:#ecce45;">✦</span><span class="tt-text">${instant("#ecce45", "IMPAIRED!!", eName, eHP, 5, 2)}</span>`;
-            else if (eTags.includes("miasma"))
-              ttHP.innerHTML = `<span style="color:#d4317b;">✦</span><span class="tt-text">${instant("#d4317b", "PURIFIED!!", eName, eHP, 15, 1)}</span>`;
-            else if (eTags.includes("palicus"))
-              ttHP.innerHTML = `<span style="color:#93c47d;">✦</span><span class="tt-text">${palicus(eHP)}</span>`;
+            else {
+              let eHPNew = eHP;
+              let color = "#ffffff";
+
+              if (eTags.includes("palicus")) {
+                eHPNew -= eHP * 0.25;
+                color = "#93c47d";
+                ttHP.innerHTML += palicus(eHPNew) + `<br>`;
+              }
+              if (eTags.includes("robot")) {
+                eHPNew -= eHP * 0.1;
+                color = "#ecce45";
+                ttHP.innerHTML += instant(color, "IMPAIRED!!", 2) + `<br>`;
+              }
+              if (eTags.includes("brute")) {
+                eHPNew -= eHP * 0.08;
+                color = "#ecce45";
+                ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
+              }
+              if (eTags.includes("miasma")) {
+                eHPNew -= eHP * 0.15;
+                color = "#d4317b";
+                ttHP.innerHTML += instant(color, "PURIFIED!!", 1) + `<br>`;
+              }
+              ttHP.innerHTML = alt(color, eName, eHPNew, eHP) + ttHP.innerHTML;
+            }
             enemyHP.appendChild(ttHP);
           }
           enemy.appendChild(enemyHP);
@@ -349,7 +370,7 @@ function showEnemies() {
   /* add raw + aoe + alt HP display */
   document.getElementById("n-hp-raw").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][0][versionNum - 1]);
   document.getElementById("n-hp-aoe").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
-  document.getElementById("n-hp-alt").innerHTML = modeNum == 1 || modeNum == 2 || (modeNum == 4 && nodeNum > 5) ? numberFormat(hpData[modeNum - 1][nodeNum - 1][2][versionNum - 1]) : numberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
+  document.getElementById("n-hp-alt").innerHTML = modeNum == 1 || modeNum == 2 || (modeNum == 4 && (v <= v2_4 ? nodeNum > 5 : nodeNum > 3)) ? numberFormat(hpData[modeNum - 1][nodeNum - 1][2][versionNum - 1]) : numberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
   
   /* save current page + settings */
   if (modeNum == 4) saveLastPage();
@@ -386,23 +407,20 @@ function generateWR(mult, wr) {
 }
 
 /* add special enemy tooltip text */
+function alt(color, name, hpNew, hp) {
+  return `<span style="color:${color};">✦</span><span class="tt-text">
+          <span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
+          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hpNew))}</span><br>
+          <span style="font-weight:bold;">(assume ${Math.round(hpNew / hp * 1000) / 10}% of HP)</span><br><br>`;
+}
 function hitch(hp) {
-  return `<span style="font-weight:bold;text-decoration:underline;">Hitchspiker</span><br>
+  return `<span style="color:#ffffff;">✦</span><span class="tt-text">
+          <span style="font-weight:bold;text-decoration:underline;">Hitchspiker</span><br>
           True <span style="color:#ff5555;font-weight:bold;">Raw HP</span>: <span style="color:#ff5555;font-weight:bold;">${numberFormat(hp)}</span><br><br>
-          technically doesn't<br>need to be killed`;
+          technically doesn't<br>need to be killed</span>`;
 }
-function palicus(hp) {
-  return `<span style="font-weight:bold;text-decoration:underline;">Palicus</span><br>
-          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:#93c47d;font-weight:bold;">${numberFormat(Math.ceil(hp * 75 / 100))}</span> x2<br>
-          <span style="font-weight:bold;">(assume 75% of HP)</span><br><br>
-          hit both 50% of the time<br>`;
-}
-function instant(color, type, name, hp, dmg, cnt) {
-  return `<span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
-          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hp * (100 - dmg * cnt) / 100))}</span><br>
-          <span style="font-weight:bold;">(assume ${100 - dmg * cnt}% of HP)</span><br><br>
-          <span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)`;
-}
+function palicus() { return `hit both 50% of the time</span>`; }
+function instant(color, type, cnt) { return `<span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)</span>`; }
 
 /* add enemy stat tooltip text */
 function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
@@ -431,6 +449,7 @@ function loadSavedState() {
   nodeNum = parseInt(localStorage.getItem("lastSDNode") || "7");
   chartNodeNum = parseInt(localStorage.getItem("lastSDChartNode") || "7");
   chartDisplayType = localStorage.getItem("lastSDChartType") || "Pre 2.5";
+  oldChartDisplayType = chartDisplayType;
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
   if (!leaksToggle.checked) versionNum = Math.min(versionNum, cntNoLeaks);
   saveLastPage();
@@ -458,8 +477,8 @@ document.addEventListener("keydown", (e) => {
   else if (e.key == "Backspace" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); toggleChart(); }
   else if (e.key == "ArrowLeft" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }
   else if (e.key == "ArrowRight" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(1); }
-  else if (e.key == "ArrowUp") { e.preventDefault(); !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen ? changeNode(1) : changeChartNode(1); }
-  else if (e.key == "ArrowDown") { e.preventDefault(); !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen ? changeNode(-1) : changeChartNode(-1); }
+  else if (e.key == "ArrowUp") { e.preventDefault(); !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen ? changeNode(1) : changeChartNode(1) }
+  else if (e.key == "ArrowDown") { e.preventDefault(); !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen ? changeNode(-1) : changeChartNode(-1) }
   else if (e.key == "Enter") { e.preventDefault(); exportShiyuCSVUnique(); }
   return;
 });
@@ -605,9 +624,12 @@ function createHPDataset(label, data, color) {
 
 function displayHPChart() {
   /* remove score selector if enemy dropdown is selected */
-  chartDisplayType = document.getElementById("c-dd").value;
+  let chartDropdown = document.getElementById("c-dd");
+  chartDisplayType = chartDropdown.value;
+  if (modeNum == 4) changePrePostChartNode();
   let startChartVersion = chartDisplayType == "Pre 2.5" ? 0 : v2_4;
   let endChartVersion = chartDisplayType == "Pre 2.5" ? v2_4 : versionIDs[modeNum - 1].length;
+  chartDropdown.style.display = modeNum == 4 ? "block" : "none";
   
   /* various plugins thanks to Chart.js documentation + videos + Stack Overflow + friends */
   /* position hover line highlighting respective hp points */
@@ -749,10 +771,10 @@ function displayHPChart() {
     aoeHPData = newHPData[1];
     altHPData = newHPData[2];
     hpChart.options.plugins.title.text = `Shiyu Defense: Critical Node ${chartNodeNum} HP - ${chartDisplayType}`;
-    hpChart.options.scales.y.min = 0;
-    hpChart.options.scales.y.max = chartDisplayType == "Pre 2.5" ? 70000000 : 140000000;
-    hpChart.options.scales.y.ticks.stepSize = chartDisplayType == "Pre 2.5" ? 5000000 : 10000000;
-    hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % (chartDisplayType == "Pre 2.5" ? 10000000 : 20000000) == 0 ? "#888888" : "#444444"; } };
+    hpChart.options.scales.y.min = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 0 : 80000000;
+    hpChart.options.scales.y.max = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 70000000 : 240000000;
+    hpChart.options.scales.y.ticks.stepSize = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 5000000 : 10000000;
+    hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % (chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 10000000 : 20000000) == 0 ? "#888888" : "#444444"; } };
   }
   hpChart.data.labels = labels;
   hpChart.data.datasets = [
@@ -777,19 +799,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 /* ----------------------------------------------------------------------------- TEST ----------------------------------------------------------------------- */
 
-// CHART
-/*let myChart = new Chart("myChart", {
-  type: "line",
-  data: {},
-  options: {}
-});*/
-
-// DOTTED LINE THINGY
-
-/* Exports a CSV file containing unique enemies and their HP for the current node */
 /* Exports a CSV file containing all enemies and their HP and daze for the current node */
-/* Exports a CSV file containing all enemies and their HP and daze for the current node */
-/* Exports a CSV file containing unique enemies (by name and HP) and their HP and daze for the current node */
 async function exportShiyuCSVUnique() {
   if (!versionEnemies || !enemyData) {
     console.log("Data not loaded yet");
@@ -813,10 +823,6 @@ async function exportShiyuCSVUnique() {
         const currEnemyID = currEnemy.id;
         const currEnemyData = enemyData[currEnemyID];
         if (!currEnemyData) continue;
-
-        // Handle spoilers
-        const showEnemySpoilers = !currEnemyData.tags.includes("spoiler") || spoilersToggle.checked;
-        const eName = showEnemySpoilers ? currEnemyData.name : "SPOILER ENEMY";
 
         // Calculate daze value
         const currEnemyType = currEnemy.type;

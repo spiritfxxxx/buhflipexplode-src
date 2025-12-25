@@ -59,7 +59,7 @@ async function buildHPData() {
         if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
         if (eTags.includes("ucc")) alt60kEnemyHP -= eHP * 0.036;
         if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
-        if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.06 : 0.025);
+        if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.045 : 0.025);
         if (eTags.includes("counter")) alt60kEnemyHP -= eHP * 0.02;
         }
         hpData[m - 1][n - 1][2][v - 1] = Math.ceil(alt60kEnemyHP * 0.281083138);
@@ -322,9 +322,9 @@ function showEnemies() {
                 ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
               }
               if (eTags.includes("miasma")) {
-                eHPNew -= eHP * (currEnemyID[2] != '3' ? 0.15 : (currEnemyID == "25300" ? 0.06 : 0.025));
+                eHPNew -= eHP * (currEnemyID[2] != '3' ? 0.15 : (currEnemyID == "25300" ? 0.045 : 0.025));
                 color = "#d4317b";
-                ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 4 : 1) + `<br>`;
+                ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 3 : 1) + `<br>`;
               }
               if (eTags.includes("counter")) {
                 eHPNew -= eHP * 0.02;

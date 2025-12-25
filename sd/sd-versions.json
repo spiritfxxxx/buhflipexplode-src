@@ -3812,11 +3812,11 @@
               "versionDazeMult":100,
               "versionAnomMult":100,
               "buffName":["Dawn's Guiding Light", "Piercing Thunder Strike", "Accumulating Frost"],
-              "buffDesc":["• Agent <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• Enemy <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
+              "buffDesc":["• Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>18%</span>, CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>.<br>• Enemy <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
               
               "• Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• Agent <span style='font-weight:bold;'>Basic Attack</span>, <span style='font-weight:bold;'>Special Attack</span>, and <span style='font-weight:bold;'>EX Special Attack</span> deal <span style='color:#2bad00;font-weight:bold;'>40%</span> increased DMG and ignore <span style='color:#2bad00;font-weight:bold;'>15%</span> of enemy <span style='color:#5555ff;font-weight:bold;'>DEF</span>.",
               
-              "• Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, <span style='font-weight:bold;'>Basic Attack</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• After an Agent uses an <span style='font-weight:bold;'>EX Special Attack</span>, the Agent's <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> additionally increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 15s. Repeated triggers reset the duration."],
+              "• Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>, <span style='font-weight:bold;'>Basic Attack</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>40%</span>.<br>• After an Agent uses an <span style='font-weight:bold;'>EX Special Attack</span>, the Agent's <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> additionally increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 15s, repeated triggers reset the duration."],
               "versionEnemies":{ 
                 "nodes":[
                   { "sides":[
@@ -3892,7 +3892,7 @@
               "versionDazeMult":100,
               "versionAnomMult":100,
               "buffName":["Frost-Bitten Iron", "Rush of Lightning and Fire", "Blazing Stream"],
-              "buffDesc":["• Agent CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>25%</span>. While in Ether Veil, Agent <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>, and attacks ignore <span style='color:#2bad00;font-weight:bold;'>10%</span> of enemy's <span style='color:#5555ff;font-weight:bold;'>DEF</span>.",
+              "buffDesc":["• Agent CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>. While in Ether Veil, Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, and attacks ignore <span style='color:#2bad00;font-weight:bold;'>10%</span> of enemy's <span style='color:#5555ff;font-weight:bold;'>DEF</span>.",
               
               "• Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> and <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>30%</span>, <span style='color:#7e50bb;font-weight:bold;'>Anomaly Proficiency</span> increases by <span style='color:#2bad00;font-weight:bold;'>60</span>.<br>• Agents start with <span style='color:#2bad00;font-weight:bold;'>40</span> additional Energy, <span style='color:#7e50bb;font-weight:bold;'>Attribute Anomaly DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
               

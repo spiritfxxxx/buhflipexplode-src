@@ -824,6 +824,10 @@ async function exportShiyuCSVUnique() {
         const currEnemyData = enemyData[currEnemyID];
         if (!currEnemyData) continue;
 
+        // Handle spoilers
+        const showEnemySpoilers = !currEnemyData.tags.includes("spoiler") || spoilersToggle.checked;
+        const eName = showEnemySpoilers ? currEnemyData.name : "SPOILER ENEMY";
+
         // Calculate daze value
         const currEnemyType = currEnemy.type;
         let maxDaze = 0;

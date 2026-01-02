@@ -567,9 +567,9 @@ function displayHPChart() {
     createHPDataset(`Raw HP`, chartScoreNum == "20k" ? hpData[0] : hpData[1], "#e06666"),
     createHPDataset(`Alt HP`, chartScoreNum == "20k" ? hpData[2] : hpData[3], "#f6b26b")
   ];
-  hpChart.options.scales.y.min = chartScoreNum == "20k" ? 40000000 : 160000000;
-  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 160000000 : 560000000;
-  hpChart.options.scales.y.ticks.stepSize = chartScoreNum == "20k" ? 10000000 : 40000000;
+  hpChart.options.scales.y.min = chartScoreNum == "20k" ? 40000000 : 120000000;
+  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 200000000 : 600000000;
+  hpChart.options.scales.y.ticks.stepSize = chartScoreNum == "20k" ? 10000000 : 30000000;
   hpChart.options.plugins.title.text = `Deadly Assault HP (${chartScoreNum})`;
   hpChart.update();
   saveProgress();

@@ -208,7 +208,7 @@
           },
 
   "2.5.1":{ "versionName":"2.5 Phase 1",
-            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionTime":"02/01/2026 - 16/01/2026",
             "versionDazeMult": 100,
             "versionAnomMult": 110,
             "buffNames": ["Dream Delusion", "Sonata", "Focus Energy"],
@@ -216,7 +216,7 @@
           },
 
   "2.5.2":{ "versionName":"2.5 Phase 2",
-            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionTime":"16/30/2026 - 30/01/2026",
             "versionDazeMult": 100,
             "versionAnomMult": 110,
             "buffNames": ["Harnessing Change", "Focus Energy", "Mutation"],
@@ -224,10 +224,34 @@
           },
 
   "2.5.3":{ "versionName":"2.5 Phase 3",
-            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionTime":"30/01/2026 - 13/02/2026",
             "versionDazeMult": 100,
             "versionAnomMult": 110,
             "buffNames": ["Adjudication", "Frost Night", "Formation Breaker"],
             "versionEnemies": [ {"id": "25300", "type": 1, "hp": 216746115}, {"id": "10303", "type": 1, "hp": 130965710}, {"id": "23300", "type": 1, "hp": 152708379} ]
+          },
+
+  "2.6.1":{ "versionName":"2.6 Phase 1",
+            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionDazeMult": 100,
+            "versionAnomMult": 110,
+            "buffNames": ["Meditation", "Mutation", "2.6 Buff 1"],
+            "versionEnemies": [ {"id": "25300", "type": 1, "hp": 248465059}, {"id": "20300", "type": 1, "hp": 137056080}, {"id": "15300", "type": 1, "hp": 179105075} ]
+          },
+
+  "2.6.2":{ "versionName":"2.6 Phase 2",
+            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionDazeMult": 100,
+            "versionAnomMult": 110,
+            "buffNames": ["Clarity", "2.6 Buff 2", "2.6 Buff 3"],
+            "versionEnemies": [ {"id": "26300", "type": 1, "hp": 176885982}, {"id": "22300", "type": 1, "hp": 141458509}, {"id": "23300", "type": 1, "hp": 157071476} ]
+          },
+
+  "2.6.3":{ "versionName":"2.6 Phase 3",
+            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionDazeMult": 100,
+            "versionAnomMult": 110,
+            "buffNames": ["Harnessing Change", "2.6 Buff 2", "2.6 Buff 4"],
+            "versionEnemies": [ {"id": "21300", "type": 1, "hp": 160910571}, {"id": "24300", "type": 1, "hp": 179451809}, {"id": "14301", "type": 1, "hp": 143741748} ]
           }
 }

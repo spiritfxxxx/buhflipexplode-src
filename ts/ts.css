@@ -151,7 +151,6 @@ body.no-scroll {
 }
 #b1, #b2, #b3, #b4 {
   padding: 15px;
-  min-height: 375px;
   align-items: center;
   flex: 1;
   border-radius: 4px;
@@ -159,15 +158,19 @@ body.no-scroll {
   border: 1px solid #27363e;
   flex-direction: column;
 }
+/* buff image + text */
+#b-img1, #b-img2, #b-img3, #b-img4 {
+  height: 40px;
+}
 #b-name1, #b-name2, #b-name3, #b-name4  {
-  padding: 15px;
-  font-size: 16px;
+  margin: 7.5px;
+  font-size: 14px;
   font-weight: bold;
   text-decoration: underline;
   user-select: all;
 }
 #b-desc1, #b-desc2, #b-desc3, #b-desc4 {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 2.0;
 }
 
@@ -236,18 +239,26 @@ body.no-scroll {
   justify-content: center;
   display: flex;
 }
+#s-e {
+  flex-direction: column;
+}
 #boss, #s1, #s2, #s3, #s4 {
   gap: 15px;
+  justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
 }
 #boss {
+  margin-top: 15px;
   width: 250px;
   justify-content: center;
 }
 #s1, #s2, #s3, #s4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
   flex: 1;
+  flex-direction: row;
 }
 /* put side header + content in the center of each half */
 .s-header {
@@ -272,7 +283,6 @@ body.no-scroll {
   flex-direction: column;
 }
 .w-e {
-  padding: 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -291,12 +301,12 @@ body.no-scroll {
   position: relative;
 }
 .e-img {
-  height: 210px;
+  height: 216px;
   transition: opacity 0.1s ease-in-out;
   user-select: none;
 }
 .e-hp {
-  margin-top: 5px;
+  margin-top: 2.5px;
   font-size: 14px;
   font-weight: bold;
   color: #ff5555;
@@ -307,7 +317,7 @@ body.no-scroll {
   color: #888888;
 }
 .e-def {
-  margin-top: 5px;
+  margin-top: 2.5px;
   font-size: 14px;
   font-weight: bold;
   color: #5555ff;
@@ -315,7 +325,8 @@ body.no-scroll {
 }
 /* enemy hover image */
 .e-hover {
-  max-height: 210px;
+  max-height: 216px;
+  width: 216px;
   display: block;
   position: relative;
 }
@@ -355,10 +366,10 @@ body.no-scroll {
 
 /* enemy stage info */
 .esd {
-  min-height: 400px;
   width: 40vw;
   gap: 10px;
-  padding: 20px;
+  padding: 15px;
+  font-size: 12px;
   line-height: 2.0;
   border-radius: 4px;
   background-color: #27363e;
@@ -417,6 +428,7 @@ body.no-scroll {
   display: flex;
   flex: 1;
   flex-direction: column;
+  align-items: center;
   overflow-y: auto;
   overscroll-behavior: contain;
   height: calc(100% - 51px);
@@ -437,7 +449,6 @@ body.no-scroll {
 /* menu bar number format changer */
 #mb-nf {
   margin-top: auto;
-  padding: 0px 15px;
   gap: 10px;
   width: 220px;
   font-size: 16px;
@@ -486,7 +497,8 @@ body.no-scroll {
 /* menu bar toggles */
 #mb-t {
   width: 200px;
-  padding: 20px 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 16px;
   display: flex;
   flex-direction: column;
@@ -664,137 +676,6 @@ input:checked + #st {
   display: none;
 }
 
-/* ------------------------------------------------------------------ CHART/GRAPH MENU ------------------------------------------------------------------ */
-
-/* chart menu */
-#c {
-  z-index: 2001;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  background-color: #222222;
-  display: none;
-  flex-direction: column;
-  user-select: none;
-  overflow-x: auto;
-  overflow-y: scroll;
-}
-
-/* chart button stays at top right, moves away when scroll */
-#c-btn {
-  z-index: 1100;
-  position: absolute;
-  top: 9px;
-  right: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  user-select: none;
-}
-#c-btn img {
-  width: 28px;
-  height: 28px;
-}
-#c-btn img:hover {
-  content: url("../assets/misc/chart-hover.webp");
-}
-
-/* chart button stays at top right when chart is open */
-#open-c-btn {
-  margin-top: 0.5vh;
-}
-#open-c-btn img {
-  width: 4vh;
-  height: 4vh;
-  cursor: pointer;
-}
-#open-c-btn img:hover {
-  content: url("../assets/misc/chart-hover.webp");
-}
-
-/* top bar + close + nav + download buttons */
-#c-x-bar {
-  z-index: 2002;
-  padding: 1vh 1vw;
-  height: 5vh;
-  background-color: #222222;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 0.5vh solid #444444;
-}
-/* close chart button */
-#c-x {
-  font-size: 5vh;
-  color: #ffffff;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-#c-x:hover {
-  color: #b2cee7;
-}
-/* chart boss/enemy dropdown */
-#c-dd {
-  z-index: 2003;
-  position: absolute;
-  font-family: 'Inconsolata', monospace;
-  top: 25px;
-  right: 25px;
-  font-size: 14px;
-}
-/* chart node switcher */
-#c-l, #c-r {
-  font-size: 4vh;
-  font-weight: bold;
-  cursor: pointer;
-  user-select: none;
-}
-#c-l:hover, #c-r:hover {
-  color: #b2cee7;
-  transition: all 0.1s ease-in-out;
-}
-/* chart point switcher */
-.c-k {
-  font-size: 3vh;
-  font-weight: bold;
-  cursor: pointer;
-  display: block;
-  user-select: none;
-}
-.c-k:hover {
-  color: #b2cee7;
-  transition: all 0.1s ease-in-out;
-}
-.c-k.selected {
-  font-weight: bold;
-  text-decoration: underline;
-  color: #b2cee7;
-  transition: all 0.1s ease-in-out;
-}
-/* chart download button */
-#c-download-btn {
-  margin-top: 0.5vh;
-}
-#c-download-btn img {
-  width: 4vh;
-  height: 4vh;
-  cursor: pointer;
-}
-#c-download-btn img:hover {
-  content: url("../assets/misc/download-hover.webp");
-}
-
-/* graph container */
-#c-g {
-  width: 100vw;
-  height: 90vh;
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
 /* -------------------------------------------------------------------- MISC TOOLTIPS -------------------------------------------------------------------- */
 
 /* menu, buff hp, special enemy hp, misc stats tooltips */
@@ -814,14 +695,14 @@ input:checked + #st {
   position: absolute;
   font-weight: normal;
   font-size: 48px;
-  top: -32px;
-  right: 147px;
+  top: -27px;
+  right: 177px;
   user-select: none;
 }
 .tt-e-stat {
   display: inline-block;
   width: 25px;
-  margin-top: 5px;
+  margin-top: 2.5px;
   font-size: 16px;
   color: #888888;
 }
@@ -920,25 +801,21 @@ input:checked + #st {
 @media (max-width: 1000px) {
   #b { flex-direction: column; min-height: 0px; }
   #b1, #b2, #b3, #b4 { min-height: 0px; }
-  #n-hp{ width: 60vw; margin: 15px auto; }
+  #n-hp{ margin: 15px 15vw;}
   #boss { width: auto; }
-  .esd { margin-top: 100px; width: auto; }
+  .esd, #s2, #s3, #s4 { margin-top: 125px; width: auto; }
   #s-b, #s-e { flex-direction: column; }
-  #s2, #s3, #s4 { margin-top: 100px; }
+  #s1, #s2, #s3, #s4 { flex-direction: column; }
 }
 @media (max-width: 800px) {
-  #mb-nf { margin-top: 27.5vh; }
+  #mb-nf { margin-top: 25vh; }
   .vg-c { width: 150px; }
-  #c-x-bar { width: 100vw; }
-  #c { width: 100%; }
   .tt-n-hp .tt-text { top: -25%; left: 1200%; }
 }
 @media (max-width: 500px) {
   #n-hp { flex-direction: column; gap: 15px; }
   .vg-c { width: 250px; }
-  #c-g { width: 227.5vw; height: 1000vh; }
   #vs-x-bar { padding: 1vh 2.25vw; }
-  #c-x-bar { width: 227.5vw; padding: 1vh 2.25vw; }
   .tt-n-hp .tt-text { top: -300%; left: 50%; width: 120px; height: 37.5px; display: flex; align-items: center; justify-content: center; }
   .tt-n-hp .tt-text::after { top: 100%; left: 50%; border-color: #444444 transparent transparent transparent; }
 }

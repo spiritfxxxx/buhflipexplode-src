@@ -1,37 +1,29 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 37, oldModeNum = 4, modeNum = 4, v2_4 = 37;
+let cntNoLeaks = 41, oldModeNum = 4, modeNum = 4, v25 = 38;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
-let oldVersionNum = null, currVersion = null, versionNum = null, nodeNum = null;
-let chartNodeNum = null, oldChartDisplayType = null, chartDisplayType = null, currNumberFormat = null;
-let menuIsOpen = false, versionSelectorIsOpen = false, chartIsOpen = false;
+let chartDropdown = document.getElementById("c-dd");
+let oldVersionNum, currVersion, versionNum, nodeNum, chartNodeNum, oldChartDisplayType, chartDisplayType, currNumberFormat;
+let menuIsOpen = versionSelectorIsOpen = chartIsOpen = false;
 
-let versionData = null, versionDazeMult = null, versionAnomMult = null, versionEnemies = null, enemyData = null, hpChart = null;
-let versionIDs = [], hpData = [];
-let nodeLvlData = [ [25, 28, 30, 33, 35, 38, 40, 43, 45, 50],                                 // stable
-                    [40, 43, 45, 48, 50, 53, 55, 60],                                         // disputed
-                    [50, 53, 55, 60, 65],                                                     // ambush
-                    [50, 53, 55, 58, 60, 65, 70] ];                                           // critical
-let newNodeLvlData = [50, 55, 60, 65, 70];
+let versionData, versionDazeMult, versionAnomMult, versionEnemies, enemyData, hpChart;
+let versionIDs = hpData = [];
 
-let nodeHPMult = [ [11.19, 11.6, 13.51, 15.41, 18.53, 18.7, 21.58, 23.77, 28.24, 32.13],      // stable
-                   [21.58, 23.77, 28.24, 28.96, 32.13, 34.60, 40.8, 46.04],                   // disputed
-                   [32.13, 34.6, 40.8, 46.04, 47.74],                                         // ambush
-                   [32.13, 34.6, 40.8, 41.58, 46.04, 47.74, 54.06] ];                         // critical
-let newNodeHPMult = [32.13, 40.8, 46.04, 47.74, 54.06];
+let nodeLvlData = [];
+let stableNodeLvlData = [25, 28, 30, 33, 35, 38, 40, 43, 45, 50];
+let disputedNodeLvlData = [40, 43, 45, 48, 50, 53, 55, 60];
+let ambushNodeLvlData = [50, 53, 55, 60, 65];
+let pre25CriticalNodeLvlData = [50, 53, 55, 58, 60, 65, 70];
+let post25CriticalNodeLvlData = [50, 55, 60, 65, 70];
 
-let nodeDefMult = [ [222, 256, 281, 319, 347, 390, 421, 469, 502, 592],                       // stable
-                    [421, 469, 502, 555, 592, 649, 689, 794],                                 // disputed
-                    [592, 649, 689, 794, 794],                                                // ambush
-                    [592, 649, 689, 751, 794, 794, 794] ];                                    // critical
-let newNodeDefMult = [592, 689, 794, 794, 794];
+/* new full list of numbers thanks to Dimbreath's database */
+let nodeHPMult = [100,116,135,157,181,193,206,220,235,271,291,314,338,364,419,431,444,458,472,543,618,703,801,912,1049,1134,1227,1328,1437,1653,1792,1942,2106,2283,2626,2865,3126,3411,3722,4281,4717,5197,5727,6311,7258,7691,8151,8637,9153,10527,11227,11975,12772,13623,15667,15957,16252,16553,16860,19389,19716,20049,20387,20731,21081,21437,21799,22167,22541,24795];
 
-let nodeDazeMult = [ [1.04, 1.06, 1.08, 1.15, 1.2, 1.28, 1.2901, 1.46, 1.55, 1.78],           // stable
-                     [1.329, 1.46, 1.55, 1.691, 1.78, 1.86, 1.92, 2.06],                      // disputed
-                     [1.78, 1.86, 1.92, 2.06, 2.2],                                           // ambush
-                     [1.78, 1.86, 1.92, 2, 2.06, 2.2, 2.35] ];                                // critical
-let newNodeDazeMult = [1.78, 1.92, 2.06, 2.2, 2.35];
+let nodeDefMult = [100,108,116,124,132,142,152,164,176,188,200,214,228,242,258,274,290,306,324,344,362,382,402,422,444,466,490,512,536,562,586,612,638,666,694,722,750,780,810,842,872,904,938,970,1004,1038,1074,1110,1146,1184,1220,1258,1298,1338,1378,1418,1460,1502,1544,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588];
+
+let nodeDazeMult = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,101,102,103,104,104,105,106,107,108,110,113,115,118,120,123,125,128,130,133,137,142,146,151,155,160,164,169,173,178,180,183,186,189,192,195,197,200,203,206,209,212,215,217,220,223,226,229,232,235];
+
 let elementsData = ["ice", "fire", "electric", "ether", "physical"];
 
 /* load main page data from .json files, and display */
@@ -55,20 +47,22 @@ function buildHPData() {
             Array.from({length: 7}, () => Array.from({length: 3}, () => Array.from({length: versionIDs[3].length}).fill(null))) ];
   for (let m = 1; m <= 4; ++m) {
     for (let v = 1; v <= versionIDs[m - 1].length; ++v) {
+      nodeLvlData = m == 1 ? stableNodeLvlData : m == 2 ? disputedNodeLvlData : m == 3 ? ambushNodeLvlData : (v < v25 ? pre25CriticalNodeLvlData : post25CriticalNodeLvlData);
       versionEnemies = versionData[m - 1].versions[versionIDs[m - 1][v - 1]].versionEnemies;
       for (let n = 1; n <= versionEnemies.nodes.length; ++n) {
         let currNode = versionEnemies.nodes[n - 1];
-        let rawHP = 0, aoeHP = 0, altHP = 0;
+        let rawHP = aoeHP = altHP = 0;
         let addAOE = true;
         for (let s = 1; s <= currNode.sides.length; ++s) {
           let currSide = currNode.sides[s - 1];
           if (currSide == null) continue;
+          let sideHPMult = currSide.sideHPMult;
           for (let w = 1; w <= currSide.waves.length; ++w) {
             let currWave = currSide.waves[w - 1];
             for (let e = 1; e <= currWave.enemies.length; ++e) {
               let currEnemy = currWave.enemies[e - 1];
               let currEnemyData = enemyData[currEnemy.id];
-              let eHP = currEnemy.hp;
+              let eHP = Math.round(sideHPMult * currEnemyData.baseHP[currEnemy.type] * nodeHPMult[nodeLvlData[n - 1] - 1] / 10000);
               let eTags = currEnemyData.tags;
               for (let cnt = 1; cnt <= currEnemy.count; ++cnt) {
                 rawHP += currEnemy.id != "14000" ? eHP : 1;
@@ -78,7 +72,7 @@ function buildHPData() {
                   if (eTags.includes("palicus")) altHP -= eHP * 0.25;
                   if (eTags.includes("robot")) altHP -= eHP * 0.1;
                   if (eTags.includes("brute")) altHP -= eHP * 0.08;
-                  if (eTags.includes("miasma")) altHP -= eHP * 0.15;
+                  if (eTags.includes("miasma")) altHP -= eHP * (currEnemy.id == "26202" ? 0.3 : 0.15);
                 }
                 else altHP -= addAOE ? 0 : eHP;
                 addAOE = false;
@@ -89,7 +83,7 @@ function buildHPData() {
         }
         hpData[m - 1][n - 1][0][v - 1] = rawHP;
         hpData[m - 1][n - 1][1][v - 1] = aoeHP;
-        hpData[m - 1][n - 1][2][v - 1] = (m == 4 && (v <= v2_4 ? n > 5 : n > 3)) || m != 3 ? Math.ceil(altHP) : null;
+        hpData[m - 1][n - 1][2][v - 1] = (m == 4 && (v < v25 ? n > 5 : n > 3)) || m != 3 ? Math.ceil(altHP) : null;
       }
     }
   }
@@ -101,7 +95,7 @@ async function showVersion() {
   versionDazeMult = currVersion.versionDazeMult;
   versionAnomMult = currVersion.versionAnomMult;
   versionEnemies = currVersion.versionEnemies;
-  document.getElementById("v-name").innerHTML = currVersion.versionName;
+  document.getElementById("v-name").innerHTML = currVersion.versionName + (modeNum == 4 && versionNum == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``);
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
   showNode();
 }
@@ -120,18 +114,19 @@ function showNode() {
     displayHPChart();
   }
   if (modeNum == 4) changePrePostNode();
+  nodeLvlData = modeNum == 1 ? stableNodeLvlData : modeNum == 2 ? disputedNodeLvlData : modeNum == 3 ? ambushNodeLvlData : (versionNum < v25 ? pre25CriticalNodeLvlData : post25CriticalNodeLvlData);
   document.getElementById("n-text").innerHTML = nodeNum;
   showBuffs();
   showEnemies();
 }
 function changeNode(n) { nodeNum = (nodeNum - 1 + n + versionEnemies.nodes.length) % versionEnemies.nodes.length + 1; showNode(); }
 function changePrePostNode() {
-  if (oldVersionNum <= v2_4 && versionNum > v2_4) {
+  if (oldVersionNum < v25 && versionNum >= v25) {
     if (nodeNum <= 2) nodeNum = 1;
     else if (nodeNum <= 4) nodeNum = 2;
     else nodeNum -= 2;
   }
-  else if (oldVersionNum > v2_4 && versionNum <= v2_4) {
+  else if (oldVersionNum >= v25 && versionNum < v25) {
     if (nodeNum >= 3) nodeNum += 2;
     else if (nodeNum == 2) nodeNum = 3;
   }
@@ -169,23 +164,24 @@ function showBuffs() {
     document.getElementById("b-name").innerHTML = versionEnemies.nodes[nodeNum - 1].buffName;
     document.getElementById("b-desc").innerHTML = versionEnemies.nodes[nodeNum - 1].buffDesc;
   }
-  else if (versionNum > v2_4) {
+  else if (versionNum >= v25) {
     if (nodeNum == 5) 
       for (let buff = 1; buff <= 3; ++buff) {
         document.getElementById(`b-name${buff}`).innerHTML = currVersion.buffName[buff - 1];
         document.getElementById(`b-desc${buff}`).innerHTML = currVersion.buffDesc[buff - 1];
       }
     else {
-      document.getElementById("b-name").innerHTML = currVersion.buffName[0];
-      document.getElementById("b-desc").innerHTML = currVersion.buffDesc[0];
+      let mainBuff = currVersion.mainBuffNum;
+      document.getElementById("b-name").innerHTML = currVersion.buffName[mainBuff - 1];
+      document.getElementById("b-desc").innerHTML = currVersion.buffDesc[mainBuff - 1];
     }
   }
   else {
     document.getElementById("b-name").innerHTML = currVersion.buffName;
     document.getElementById("b-desc").innerHTML = currVersion.buffDesc;
   }
-  document.getElementById("b").style.display = (versionNum > v2_4 && nodeNum == 5) ? "none" : "block";
-  document.getElementById("n5-b").style.display = (versionNum > v2_4 && nodeNum == 5) ? "flex" : "none";
+  document.getElementById("b").style.display = (versionNum >= v25 && nodeNum == 5) ? "none" : "block";
+  document.getElementById("n5-b").style.display = (versionNum >= v25 && nodeNum == 5) ? "flex" : "none";
 }
 
 /* place and display elements/enemies/weaknesses/resistances/HP/count on screen */
@@ -194,28 +190,26 @@ function showEnemies() {
   
   /* add side 1 & 2 displays */
   let side1 = document.querySelector("#s1"), side2 = document.querySelector("#s2"), side3 = document.querySelector("#s3");
-  side1.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
-  side2.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
-  side3.style.height = modeNum == 4 ? (nodeNum > 5 ? "775px" : "1350px") : modeNum == 3 ? "490px" : modeNum == 2 ? "775px" : (nodeNum > 8 ? "775px" : "1350px");
+  let sideHeight = modeNum == 4 ? (versionNum >= v25 ? (nodeNum > 3 ? "1050px" : "1350px") : (nodeNum > 5 ? "750px" : "1350px")) : modeNum == 3 ? "490px" : modeNum == 2 ? "750px" : (nodeNum > 8 ? "750px" : "1350px");
+  side1.style.height = side2.style.height = side3.style.height = sideHeight;
   side1.innerHTML = ``; side2.innerHTML = ``; side3.innerHTML = ``;
-  if (versionNum <= v2_4 || nodeNum < 5) side3.style.display = "none";
+  if (versionNum < v25 || nodeNum < 5) side3.style.display = "none";
   else side3.style.display = "flex";
 
   /* loop node's sides */
   for (let s = 1; s <= currNode.sides.length; ++s) {
     let side = s == 1 ? side1 : s == 2 ? side2 : side3;
     let currSide = currNode.sides[s - 1];
-    let sideHPMult = null;
 
     /* add side x-x LvXX title */
     let sideHeader = document.createElement("div");
     sideHeader.className = "s-header";
-    sideHeader.innerHTML = `${nodeNum}-${s} Lv${versionNum <= v2_4 ? nodeLvlData[modeNum - 1][nodeNum - 1] : newNodeLvlData[nodeNum - 1]}`;
+    sideHeader.innerHTML = `${nodeNum}-${s} Lv${nodeLvlData[nodeNum - 1]}`;
 
     /* add side supposed equal HP multiplier */
     let combHPMult = document.createElement("div");
     combHPMult.className = "s-hp-daze-anom-mult";
-    combHPMult.innerHTML = `HP: <span style="color:#ff5555;">N/A</span> | Daze: <span style="color:#ffe599;">N/A</span>`;
+    combHPMult.innerHTML = `HP: <span style="color:#ff5555;">N/A</span> | Daze: <span style="color:#ffe599;">N/A</span> | Anom: <span style="color:#7756c6;">N/A</span>`;
     sideHeader.appendChild(combHPMult);
 
     /* add side combined weaknesses/resistances */
@@ -226,6 +220,8 @@ function showEnemies() {
     side.appendChild(sideHeader);
 
     if (currSide == null) continue;
+    let sideHPMult = currSide.sideHPMult;
+    combHPMult.innerHTML = `HP: <span style="color:#ff5555;">${sideHPMult}%</span> | Daze: <span style="color:#ffe599;">${modeNum == 1 && nodeNum == 7 ? 97 : versionDazeMult}%</span> | Anom: <span style="color:#7756c6;">${versionAnomMult}%</span>`;
 
     /* loop side's waves */
     for (let w = 1; w <= currSide.waves.length; ++w) {
@@ -258,21 +254,13 @@ function showEnemies() {
         let eImg = showEnemySpoilers ? `../assets/enemies/${currEnemyData.image}.webp` : `../assets/enemies/doppelganger-i.webp`;
 
         /* define current enemy's various stats */
-        let eHP = currEnemy.hp;
-        let eHPMult = Math.round(eHP / currEnemyData.baseHP[currEnemyType] / (versionNum <= v2_4 ? nodeHPMult[modeNum - 1][nodeNum - 1] : newNodeHPMult[nodeNum - 1]) * 10000) / 100;
-        let eDef = currEnemyData.baseDef / 50 * (versionNum <= v2_4 ? nodeDefMult[modeNum - 1][nodeNum - 1] : newNodeDefMult[nodeNum - 1]);
-        let eDaze = currEnemyData.baseDaze[currEnemyType] * (versionNum <= v2_4 ? nodeDazeMult[modeNum - 1][nodeNum - 1] : newNodeDazeMult[nodeNum - 1]);
+        let eHP = Math.round(sideHPMult * currEnemyData.baseHP[currEnemyType] * nodeHPMult[nodeLvlData[nodeNum - 1] - 1] / 10000);
+        let eDef = currEnemyData.baseDef * nodeDefMult[nodeLvlData[nodeNum - 1] - 1] / 100;
+        let eDaze = currEnemyData.baseDaze[currEnemyType] * nodeDazeMult[nodeLvlData[nodeNum - 1] - 1] / 100 * (modeNum == 1 && nodeNum == 7 ? 0.97 : 1);
         let eStunMult = currEnemyData.stunMult;
         let eStunTime = currEnemyData.stunTime;
         let eAnom = currEnemyData.baseAnom;
         let eElementMult = currEnemyData.elementMult;
-
-        /* finish adding side header after first+ enemy */
-        if (sideHPMult == null) {
-          combHPMult.innerHTML = `HP: <span style="color:#ff5555;">${eHPMult}%</span> | Daze: <span style="color:#ffe599;">${versionDazeMult}%</span>`;
-          /* do not add header if not. dullahan (weird base hp) is not the only enemy in wave */
-          if (currEnemyID != "10213" || currWave.enemies.length == 1) sideHPMult = eHPMult;
-        }
 
         /* loop each enemy appearance */ 
         for (let cnt = 1; cnt <= currEnemy.count; ++cnt) {
@@ -320,32 +308,24 @@ function showEnemies() {
               }
               if (eTags.includes("robot")) {
                 eHPNew -= eHP * 0.1;
-                color = "#ecce45";
+                color = "#ca9a00";
                 ttHP.innerHTML += instant(color, "IMPAIRED!!", 2) + `<br>`;
               }
               if (eTags.includes("brute")) {
                 eHPNew -= eHP * 0.08;
-                color = "#ecce45";
+                color = "#ca9a00";
                 ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
               }
               if (eTags.includes("miasma")) {
-                eHPNew -= eHP * 0.15;
-                color = "#d4317b";
-                ttHP.innerHTML += instant(color, "PURIFIED!!", 1) + `<br>`;
+                eHPNew -= eHP * (currEnemyID == "26202" ? 0.3 : 0.15);
+                color = "#b4317b";
+                ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "26202" ? 2 : 1) + `<br>`;
               }
               ttHP.innerHTML = alt(color, eName, eHPNew, eHP) + ttHP.innerHTML;
             }
             enemyHP.appendChild(ttHP);
           }
           enemy.appendChild(enemyHP);
-
-          /* add enemy specific HP multiplier if not in a margin of error */
-          if (Math.abs(sideHPMult - eHPMult) > 1) {
-            let specificHPMult = document.createElement("div");
-            specificHPMult.className = "e-hp-mult";
-            specificHPMult.innerHTML = `[${eHPMult}%]`;
-            enemy.appendChild(specificHPMult);
-          }
 
           /* add enemy def display */
           let enemyDef = document.createElement("div");
@@ -370,7 +350,7 @@ function showEnemies() {
   /* add raw + aoe + alt HP display */
   document.getElementById("n-hp-raw").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][0][versionNum - 1]);
   document.getElementById("n-hp-aoe").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
-  document.getElementById("n-hp-alt").innerHTML = modeNum == 1 || modeNum == 2 || (modeNum == 4 && (v <= v2_4 ? nodeNum > 5 : nodeNum > 3)) ? numberFormat(hpData[modeNum - 1][nodeNum - 1][2][versionNum - 1]) : numberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
+  document.getElementById("n-hp-alt").innerHTML = modeNum == 1 || modeNum == 2 || (modeNum == 4 && (v < v25 ? nodeNum > 5 : nodeNum > 3)) ? numberFormat(hpData[modeNum - 1][nodeNum - 1][2][versionNum - 1]) : numberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
   
   /* save current page + settings */
   if (modeNum == 4) saveLastPage();
@@ -393,7 +373,7 @@ function generateWR(mult, wr) {
   weakImg2.src = "../assets/elements/none.webp";
   resImg1.src = "../assets/elements/none.webp";
   resImg2.src = "../assets/elements/none.webp";
-  let wkCnt = 0, resCnt = 0;
+  let wkCnt = resCnt = 0;
   for (let i = 0; i < 5; ++i) {
     if (mult[i] < 1 && wkCnt == 0) { weakImg1.src = `../assets/elements/${elementsData[i]}.webp`; ++wkCnt;}
     else if (mult[i] < 1 && wkCnt == 1) weakImg2.src = `../assets/elements/${elementsData[i]}.webp`;
@@ -450,6 +430,7 @@ function loadSavedState() {
   chartNodeNum = parseInt(localStorage.getItem("lastSDChartNode") || "7");
   chartDisplayType = localStorage.getItem("lastSDChartType") || "Pre 2.5";
   oldChartDisplayType = chartDisplayType;
+  chartDropdown.value = chartDisplayType;
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
   if (!leaksToggle.checked) versionNum = Math.min(versionNum, cntNoLeaks);
   saveLastPage();
@@ -472,13 +453,14 @@ function saveSettings() {
 /* keyboard shortcuts to navigate main page */
 document.addEventListener("keydown", (e) => {
   e.stopPropagation();
-  if (e.key == "Escape") { e.preventDefault(); chartIsOpen ? toggleChart() : (versionSelectorIsOpen ? toggleVersionSelector() : toggleMenu()); }
-  else if (e.key == " " && !menuIsOpen && !chartIsOpen) { e.preventDefault(); toggleVersionSelector(); }
+  if (e.shiftKey || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (e.key == "Escape") { e.preventDefault(); chartIsOpen ? toggleChart() : (menuIsOpen ? toggleMenu() : toggleVersionSelector()); }
+  else if (e.key == " " && !chartIsOpen && !menuIsOpen) { e.preventDefault(); toggleVersionSelector(); }
   else if (e.key == "Backspace" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); toggleChart(); }
-  else if (e.key == "ArrowLeft" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }
-  else if (e.key == "ArrowRight" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(1); }
-  else if (e.key == "ArrowUp") { e.preventDefault(); !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen ? changeNode(1) : changeChartNode(1) }
-  else if (e.key == "ArrowDown") { e.preventDefault(); !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen ? changeNode(-1) : changeChartNode(-1) }
+  else if (e.key == "ArrowLeft" && !chartIsOpen && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }
+  else if (e.key == "ArrowRight" && !chartIsOpen && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(1); }
+  else if (e.key == "ArrowUp") { e.preventDefault(); !chartIsOpen && !menuIsOpen && !versionSelectorIsOpen ? changeNode(1) : changeChartNode(1) }
+  else if (e.key == "ArrowDown") { e.preventDefault(); !chartIsOpen && !menuIsOpen && !versionSelectorIsOpen ? changeNode(-1) : changeChartNode(-1) }
   return;
 });
 
@@ -558,9 +540,9 @@ function toggleVersionSelector() {
 function displayVersionSelectorGrid() {
   let versionSelector = document.getElementById("vs");
   let gridContent = versionSelector.querySelector("#vg");
-  let row1 = versionSelector.querySelector("#vg-row1");
+  let row1 = versionSelector.querySelector("#vg-misc");
   let title = versionSelector.querySelector("#vg-title");
-  let row2 = versionSelector.querySelector("#vg-row2");
+  let row2 = versionSelector.querySelector("#vg-crit");
   row1.innerHTML = ``;
   title.innerHTML = `Critical Node`;
   row2.innerHTML = ``;
@@ -577,7 +559,7 @@ function displayVersionSelectorGrid() {
       versionButton.className = "vg-c";
       nameDiv.className = "vg-c-name";
       timeDiv.className = "vg-c-time";
-      nameDiv.innerHTML = currVersion.versionName;
+      nameDiv.innerHTML = currVersion.versionName + (m == 4 && v == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``);
       timeDiv.innerHTML = currVersion.versionTime;
       versionButton.appendChild(nameDiv);
       versionButton.appendChild(timeDiv);
@@ -609,6 +591,7 @@ function toggleChart() {
   else { document.body.classList.add("no-scroll"); chart.style.display = "flex"; }
   chartIsOpen = !chartIsOpen;
 }
+
 /* download the chart with the middle button in the chart top bar */
 function downloadChart() {
   let downloadButton = document.createElement("a");
@@ -616,6 +599,7 @@ function downloadChart() {
   downloadButton.download = `Shiyu Defense - ${versionData[modeNum - 1].name} ` + (modeNum == 4 ? `${chartNodeNum} HP` : `HP`);
   downloadButton.click();
 }
+
 /* format 3 hp dataset */
 function createHPDataset(label, data, color) {
   return { label, data, pointRadius: 2, borderWidth: 2, borderColor: color, pointHoverRadius: 4, pointHoverBorderWidth: 2, pointHoverBorderColor: color, backgroundColor: "#ffffff" };
@@ -623,14 +607,13 @@ function createHPDataset(label, data, color) {
 
 function displayHPChart() {
   /* remove score selector if enemy dropdown is selected */
-  let chartDropdown = document.getElementById("c-dd");
   chartDisplayType = chartDropdown.value;
   if (modeNum == 4) changePrePostChartNode();
-  let startChartVersion = chartDisplayType == "Pre 2.5" ? 0 : v2_4;
-  let endChartVersion = chartDisplayType == "Pre 2.5" ? v2_4 : versionIDs[modeNum - 1].length;
+  let startChartVersion = chartDisplayType == "Pre 2.5" ? 0 : v25 - 1;
+  let endChartVersion = chartDisplayType == "Pre 2.5" ? v25 - 1 : versionIDs[modeNum - 1].length;
   chartDropdown.style.display = modeNum == 4 ? "block" : "none";
   
-  /* various plugins thanks to Chart.js documentation + videos + Stack Overflow + friends */
+  /* various plugins thanks to Chart.js documentation + videos + Stack Overflow */
   /* position hover line highlighting respective hp points */
   const verticalHoverLine = {
     id: "verticalHoverLine",
@@ -748,8 +731,7 @@ function displayHPChart() {
   }
 
   /* add global chart settings */
-  var labels;
-  let rawHPData = [], aoeHPData = [], altHPData = [];
+  let labels = rawHPData = aoeHPData = altHPData = [];
   if (modeNum != 4) {
     labels = Array.from({length: nodeLvlData[modeNum - 1].length}, (_, n) => `${versionData[modeNum - 1].name} ${n + 1}`);
     for (let n = 0; n < nodeLvlData[modeNum - 1].length; ++n) {

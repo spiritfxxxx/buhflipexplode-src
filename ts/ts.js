@@ -1,25 +1,29 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 1, oldModeNum = 2, modeNum = 2;
+let cntNoLeaks = 2, oldModeNum = 2, modeNum = 2, v26 = 2;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
-let versionNum = null, nodeNum = null, endingNum = null, chartNodeNum = null, chartScoreNum = null, chartDisplayType = null, currNumberFormat = null;
-let menuIsOpen = false, versionSelectorIsOpen = false, chartIsOpen = false;
+let oldVersionNum, versionNum, nodeNum, maxNode, endingNum, currNumberFormat;
+let menuIsOpen = versionSelectorIsOpen = false;
 
-let versionData = null, enemyData = null, hpChart = null;
-let buffNames = null, buffDescs = null, versionDazeMult = null, versionBossAnomMult = null, versionEnemyAnomMult = null, versionEnemies = null;
-let versionIDs = [], hpData = [];
-let nodeLvlData = [ [55, 58, 60, 65],                                                 // easy
-                    [60, 63, 65, 70, 70, 70] ];                                       // hard
+let versionData, enemyData;
+let buffNames, buffDescs, versionBossDazeMult, versionEnemyDazeMult, versionBossAnomMult, versionEnemyAnomMult, versionEnemies;
+let versionIDs = hpData = [];
 
-let nodeHPMult = [ [40.8, 41.58, 46.04, 47.74],                                       // easy
-                   [46.04, 47.04, 47.74, 54.06, 54.06, 54.06] ];                      // hard
+let nodeLvlData = [];
+let easyNodeLvlData = [55, 58, 60, 65];
+let pre26HardNodeLvlData = [60, 63, 65, 70, 70, 70];
+let post26HardNodeLvlData = [60, 65, 70, 70, 70];
 
-let nodeDefMult = [ [689, 751, 794, 794],                                             // easy
-                    [794, 794, 794, 794, 794, 794] ];                                 // hard
+/* new full list of numbers thanks to Dimbreath's database */
+let nodeEnemyHPMult = [100,116,135,157,181,193,206,220,235,271,291,314,338,364,419,431,444,458,472,543,618,703,801,912,1049,1111,1176,1246,1320,1518,1609,1706,1809,1919,2207,2320,2440,2566,2698,3103,3404,3734,4097,4494,5169,5591,6049,6544,7079,8141,8826,9569,10374,11246,12934,13260,13595,13938,14290,16434,16774,17121,17475,17837,18206,18583,18968,19361,19761,21738];
 
-let nodeDazeMult = [ [1.92, 2, 2.06, 2.2],                                            // easy
-                     [2.06, 2.2, 2.35, 2.35, 2.35, 2.35] ];                           // hard
+let nodeBossHPMult = [100,116,135,157,181,193,206,220,235,271,291,314,338,364,419,431,444,458,472,543,618,703,801,912,1049,1134,1227,1328,1437,1653,1792,1942,2106,2283,2626,2865,3126,3411,3722,4281,4717,5197,5727,6311,7258,7691,8151,8637,9153,10527,11227,11975,12772,13623,15667,15957,16252,16553,16860,19389,19716,20049,20387,20731,21081,21437,21799,22167,22541,24795];
+
+let nodeDefMult = [100,108,116,124,132,142,152,164,176,188,200,214,228,242,258,274,290,306,324,344,362,382,402,422,444,466,490,512,536,562,586,612,638,666,694,722,750,780,810,842,872,904,938,970,1004,1038,1074,1110,1146,1184,1220,1258,1298,1338,1378,1418,1460,1502,1544,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588];
+
+let nodeDazeMult = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,101,102,103,104,104,105,106,107,108,110,113,115,118,120,123,125,128,130,133,137,142,146,151,155,160,164,169,173,178,180,183,186,189,192,195,197,200,203,206,209,212,215,217,220,223,226,229,232,235];
+
 let elementsData = ["ice", "fire", "electric", "ether", "physical"];
 
 /* load main page data from .json files, and display */
@@ -31,7 +35,6 @@ async function loadThresholdPage() {
   buildHPData();
   loadSavedState();
   await showVersion();
-  displayHPChart();
   updateNumberFormat();
 }
 
@@ -41,40 +44,43 @@ async function buildHPData() {
             Array.from({length: 6}, () => Array.from({length: 7}, () => Array.from({length: versionIDs[1].length}).fill(null))) ];
   for (let m = 1; m <= 2; ++m) {
     for (let v = 1; v <= versionIDs[m - 1].length; ++v) {
+      nodeLvlData = m == 1 ? easyNodeLvlData : (v < v26 ? pre26HardNodeLvlData : post26HardNodeLvlData);
       versionEnemies = versionData[m - 1].versions[versionIDs[m - 1][v - 1]].versionEnemies;
       for (let n = 1; n <= versionEnemies.nodes.length; ++n) {
         let currNode = versionEnemies.nodes[n - 1];
-        let alt60kEnemyHP = 0, rawHP = 0, aoeHP = 0, altHP = 0;
+        let raw60kEnemyHP = alt60kEnemyHP = rawHP = aoeHP = altHP = 0;
         let addAOE = true;
 
         let currEnemy = currNode.sides[0].waves[0].enemies[0];
         let currEnemyID = currEnemy.id;
+        let currEnemyType = currEnemy.type;
         let currEnemyData = enemyData[currEnemyID];
-        let eHP = currEnemy.hp;
-
-        hpData[m - 1][n - 1][0][v - 1] = Math.ceil(eHP * 0.281083138);
-        hpData[m - 1][n - 1][1][v - 1] = Math.ceil(eHP);
+        let eHP =  Math.floor(8.74 * currEnemyData.baseHP[currEnemyType] * nodeBossHPMult[nodeLvlData[n - 1] - 1] * currEnemy.mult / 10000);
         let eTags = currEnemyData.tags;
+
+        raw60kEnemyHP += eHP;
         alt60kEnemyHP += eHP;
         if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
-        if (eTags.includes("ucc")) alt60kEnemyHP -= eHP * 0.036;
-        if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
-        if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.045 : 0.025);
-        if (eTags.includes("counter")) alt60kEnemyHP -= eHP * 0.02;
+          if (eTags.includes("ucc")) alt60kEnemyHP -= eHP * 0.036;
+          if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
+          if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.045 : 0.025);
+          if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * (currEnemyID == "26300" ? 0.03 : 0.015);
         }
+        hpData[m - 1][n - 1][0][v - 1] = Math.ceil(raw60kEnemyHP * 0.281083138);
+        hpData[m - 1][n - 1][1][v - 1] = Math.ceil(raw60kEnemyHP);
         hpData[m - 1][n - 1][2][v - 1] = Math.ceil(alt60kEnemyHP * 0.281083138);
         hpData[m - 1][n - 1][3][v - 1] = Math.ceil(alt60kEnemyHP);
 
         for (let s = 2; s <= 5; ++s) {
           let currSide = currNode.sides[s - 1];
           if (currSide == null) continue;
+          let sideHPMult = currSide.sideHPMult;
           for (let w = 1; w <= currSide.waves.length; ++w) {
             let currWave = currSide.waves[w - 1];
             for (let e = 1; e <= currWave.enemies.length; ++e) {
               let currEnemy = currWave.enemies[e - 1];
-              let currEnemyID = currEnemy.id;
-              let currEnemyData = enemyData[currEnemyID];
-              let eHP = currEnemy.hp;
+              let currEnemyData = enemyData[currEnemy.id];
+              let eHP = Math.round(currEnemyData.baseHP[currEnemyType] * sideHPMult * nodeEnemyHPMult[nodeLvlData[n - 1] - 1] / 10000);
               let eTags = currEnemyData.tags;
               for (let cnt = 1; cnt <= currEnemy.count; ++cnt) {
                 rawHP += currEnemy.id != "14000" ? eHP : 1;
@@ -84,7 +90,7 @@ async function buildHPData() {
                   if (eTags.includes("palicus")) altHP -= eHP * 0.25;
                   if (eTags.includes("robot")) altHP -= eHP * 0.1;
                   if (eTags.includes("brute")) altHP -= eHP * 0.08;
-                  if (eTags.includes("miasma")) altHP -= eHP * 0.15;
+                  if (eTags.includes("miasma")) altHP -= eHP * (currEnemy.id == "26202" ? 0.3 : 0.15);
                 }
                 else altHP -= addAOE ? 0 : eHP;
                 addAOE = false;
@@ -104,11 +110,12 @@ async function buildHPData() {
 /* ◁ [version # + time] ▷ display */
 async function showVersion() {
   let currVersion = versionData[modeNum - 1].versions[versionIDs[modeNum - 1][versionNum - 1]];
-  versionDazeMult = currVersion.versionDazeMult;
+  versionBossDazeMult = currVersion.versionBossDazeMult;
+  versionEnemyDazeMult = currVersion.versionEnemyDazeMult;
   versionBossAnomMult = currVersion.versionBossAnomMult;
   versionEnemyAnomMult = currVersion.versionEnemyAnomMult;
   versionEnemies = currVersion.versionEnemies;
-  document.getElementById("v-name").innerHTML = currVersion.versionName;
+  document.getElementById("v-name").innerHTML = currVersion.versionName + (modeNum == 2 && versionNum == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``);
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
   showNode();
 }
@@ -124,40 +131,49 @@ function showNode() {
   if (oldModeNum != modeNum) {
     nodeNum = modeNum == 2 ? parseInt(localStorage.getItem("lastTSNode")) : 4;
     oldModeNum = modeNum;
-    displayHPChart();
   }
-  document.getElementById("n-text").innerHTML = `${nodeNum < 4 ? nodeNum : 4}`;
-  if (modeNum == 2 && nodeNum >= 4) {
-    document.getElementById("end").style.display = "flex";
-    let endingButtons = document.querySelectorAll(".end-text");
-    endingButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == endingNum));
-  }
-  else document.getElementById("end").style.display = "none";
+  if (modeNum == 2) changePrePostNode();
+  maxNode = versionNum < v26 ? 4 : 3;
+  nodeLvlData = modeNum == 1 ? easyNodeLvlData : (versionNum < v26 ? pre26HardNodeLvlData : post26HardNodeLvlData);
+  document.getElementById("n-text").innerHTML = `${nodeNum < maxNode ? nodeNum : maxNode}`;
+  showEndings();
   showBuffs();
   showEnemies();
 }
 function changeNode(n) {
-  if (modeNum == 2 && nodeNum > 4) nodeNum = 4;
-  nodeNum = (nodeNum - 1 + n + 4) % 4 + 1;
-  if (modeNum == 2 && nodeNum == 4) nodeNum += endingNum - 1;
+  if (modeNum == 2 && nodeNum > maxNode) nodeNum = maxNode;
+  nodeNum = (nodeNum - 1 + n + maxNode) % maxNode + 1;
+  if (modeNum == 2 && nodeNum == maxNode) nodeNum += endingNum - 1;
   showNode();
 }
+function changePrePostNode() {
+  if (oldVersionNum < v26 && versionNum >= v26) {
+    if (nodeNum == 3 || (nodeNum >= maxNode && nodeNum - maxNode < 2)) nodeNum--;
+    else if (nodeNum >= maxNode && nodeNum - maxNode >= 2) nodeNum = 4;
+  }
+  else if (oldVersionNum >= v26 && versionNum < v26 && nodeNum >= 2) nodeNum++;
+  oldVersionNum = versionNum;
+}
 
+/* add ending choices to final node */
+function showEndings() {
+  if (versionNum >= v26 && endingNum > 2) endingNum = 2;
+  if (modeNum == 2 && nodeNum >= maxNode) {
+    document.getElementById("end").style.display = "flex";
+    document.getElementById("end-3").style.display = versionNum < v26 ? "flex" : "none";
+    let endingButtons = document.querySelectorAll(".end-text");
+    endingButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == endingNum));
+  }
+  else document.getElementById("end").style.display = "none";
+}
 /* show specific ending variant for final node */
-function changeEnding(n) { endingNum = n; nodeNum = 3 + n; showNode(); }
-
-/* chart ◁ ▷ display */
-function showChartNode() { displayHPChart(); }
-function changeChartNode(n) { chartNodeNum = (chartNodeNum - 1 + n + nodeLvlData[modeNum - 1].length) % nodeLvlData[modeNum - 1].length + 1; showChartNode(); }
-
-/* show specific chart variant for bosses/enemies */
-function changeChart() { displayHPChart(); }
+function changeEndings(n) { endingNum = n; nodeNum = (versionNum < v26 ? 3 : 2) + n; showNode(); }
 
 /* show node buffs */
 function showBuffs() {
   buffNames = versionEnemies.nodes[nodeNum - 1].buffNames;
   for (let buff = 1; buff <= 4; ++buff) {
-    document.getElementById(`b-img${buff}`).src = `../assets/buffs/${buffNames[buff - 1].toLowerCase().replace(" ", "-")}.webp`;
+    document.getElementById(`b-img${buff}`).src = `../assets/buffs/${buffNames[buff - 1].toLowerCase().replaceAll(" ", "-")}.webp`;
     document.getElementById(`b-name${buff}`).innerHTML = buffNames[buff - 1];
     document.getElementById(`b-desc${buff}`).innerHTML = buffDescs[buffNames[buff - 1]];
   }
@@ -176,17 +192,16 @@ function showEnemies() {
  for (let s = 1; s <= 5; ++s) {
     let side = s == 1 ? boss : s == 2 ? side1 : s == 3 ? side2 : s == 4 ? side3 : side4;
     let currSide = currNode.sides[s - 1];
-    let sideHPMult = null;
 
     /* add side x-x LvXX title */
     let sideHeader = document.createElement("div");
     sideHeader.className = "s-header";
-    sideHeader.innerHTML = `${s == 1 ? `Final BATTLE` : s <= 4 ? `Required` : `Optional`} ${nodeNum < 4 ? nodeNum : `4`}${modeNum != 2 || nodeNum < 4 ? `` : `.${nodeNum - 3}`}${s != 1 ? `-${s - 1}` : ``} Lv${nodeLvlData[modeNum - 1][nodeNum - 1]}`;
+    sideHeader.innerHTML = `${s == 1 ? `Final BATTLE` : s <= 4 ? `Required` : `Optional`} ${nodeNum < maxNode ? nodeNum : maxNode}${modeNum != 2 || nodeNum < maxNode ? `` : `.${nodeNum - maxNode + 1}`}${s != 1 ? `-${s - 1}` : ``} Lv${nodeLvlData[nodeNum - 1]}`;
 
     /* add side supposed equal HP multiplier */
     let combHPMult = document.createElement("div");
     combHPMult.className = "s-hp-daze-anom-mult";
-    combHPMult.innerHTML = `HP: <span style="color:#ff5555;">N/A</span> | Daze: <span style="color:#ffe599;">N/A</span>`;
+    combHPMult.innerHTML = `HP: <span style="color:#ff5555;">N/A</span> | Daze: <span style="color:#ffe599;">N/A</span> | Anom: <span style="color:#7756c6;">N/A</span>`;
     sideHeader.appendChild(combHPMult);
 
     /* add side combined weaknesses/resistances */
@@ -199,9 +214,11 @@ function showEnemies() {
     side.appendChild(sideHeader);
 
     if (currSide == null) continue;
+    let sideHPMult = s == 1 ? currSide.waves[0].enemies[0].mult : currSide.sideHPMult;
+    combHPMult.innerHTML = `HP: <span style="color:#ff5555;">${modeNum == 1 ? Math.round(sideHPMult * 100) / 100 : sideHPMult}%</span> | Daze: <span style="color:#ffe599;">${s == 1 ? versionBossDazeMult : versionEnemyDazeMult}%</span> | Anom: <span style="color:#7756c6;">${s == 1 ? versionBossAnomMult : versionEnemyAnomMult}%</span>`;
 
     /* loop side's waves */
-    for (let w = currSide.waves.length; w >= 1; --w) {
+    for (let w = 1; w <= currSide.waves.length; ++w) {
       let wave = document.createElement("div");
       wave.className = "w";
 
@@ -233,21 +250,13 @@ function showEnemies() {
         let eImg = showEnemySpoilers ? `../assets/enemies/${currEnemyData.image}.webp` : `../assets/enemies/doppelganger-i.webp`;
 
         /* define current enemy's various stats */
-        let eHP = currEnemy.hp;
-        let eHPMult = Math.round(eHP / currEnemyData.baseHP[currEnemyType] / nodeHPMult[modeNum - 1][nodeNum - 1] * 10000) / 100;
-        let eDef = currEnemyData.baseDef / 50 * nodeDefMult[modeNum - 1][nodeNum - 1];
-        let eDaze = (currEnemyID[2] == '3' ? currEnemyData.baseDaze : currEnemyData.baseDaze[currEnemyType]) * nodeDazeMult[modeNum - 1][nodeNum - 1] * (currEnemyID == "24300" ? 0.8 : 1);;
+        let eHP = (s == 1 ? Math.floor : Math.round)(sideHPMult * currEnemyData.baseHP[currEnemyType] * (s == 1 ? 8.74 : 1) * (s == 1 ? nodeBossHPMult : nodeEnemyHPMult)[nodeLvlData[nodeNum - 1] - 1] / 10000);
+        let eDef = currEnemyData.baseDef * nodeDefMult[nodeLvlData[nodeNum - 1] - 1] / 100;
+        let eDaze = currEnemyData.baseDaze[currEnemyType] * nodeDazeMult[nodeLvlData[nodeNum - 1] - 1] * (currEnemyID == "24300" ? 0.8 : 1) / 100;
         let eStunMult = currEnemyData.stunMult;
         let eStunTime = currEnemyData.stunTime;
         let eAnom = currEnemyData.baseAnom;
         let eElementMult = currEnemyData.elementMult;
-
-        /* finish adding side header after first+ enemy */
-        if (sideHPMult == null) {
-          combHPMult.innerHTML = `HP: <span style="color:#ff5555;">${s == 1 ? `SOON™` : `${eHPMult}%`}</span> | Daze: <span style="color:#ffe599;">${versionDazeMult}%</span>${s == 1 ? ` | Anom: <span style="color:#7e50bb;">${versionBossAnomMult}%</span>` : ``}`;
-          /* do not add header if not. dullahan (weird base hp) is not the only enemy in wave */
-          if (currEnemyID != "10213" || currWave.enemies.length == 1) sideHPMult = eHPMult;
-        }
 
         /* loop each enemy appearance */ 
         for (let cnt = 1; cnt <= currEnemy.count; ++cnt) {
@@ -259,9 +268,6 @@ function showEnemies() {
           let enemyName = document.createElement("div");
           let enemyHover = document.createElement("div");
           enemyImg.className = "e-img";
-          
-          /* set non-final-boss enemies to be smaller */
-          if (s >= 2) { enemyImg.style.height = "108px"; enemyName.style.fontSize = "12px"; enemyHover.style.maxHeight = "108px"; }
 
           enemyName.className = "e-name";
           enemyHover.className = "e-hover";
@@ -286,7 +292,7 @@ function showEnemies() {
             ttHP.className = "tt-e-hp";
 
             /* set tooltip to be smaller */
-            if (s >= 2) { ttHP.style.fontSize = "36px"; ttHP.style.top = "-22px"; ttHP.style.right = "89px"; }
+            if (s >= 2) { ttHP.style.fontSize = "36px"; ttHP.style.top = "-19px"; ttHP.style.right = "87px"; }
 
             if (eTags.includes("hitch")) {
               ttHP.innerHTML = hitch(eHP) + `<br>`;
@@ -303,53 +309,39 @@ function showEnemies() {
               }
               if (eTags.includes("robot")) {
                 eHPNew -= eHP * 0.1;
-                color = "#ecce45";
+                color = "#ca9a00";
                 ttHP.innerHTML += instant(color, "IMPAIRED!!", 2) + `<br>`;
               }
               if (eTags.includes("brute")) {
                 eHPNew -= eHP * 0.08;
-                color = "#ecce45";
+                color = "#ca9a00";
                 ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
               }
               if (eTags.includes("ucc")) {
                 eHPNew -= eHP * 0.036;
-                color = "#ecce45";
+                color = "#ca9a00";
                 ttHP.innerHTML += instant(color, "IMPAIRED!!", 3) + ` on<br>legs, 3 time(s) on core<br>`;
               }
               if (eTags.includes("hunter")) {
                 eHPNew -= eHP * 0.01;
-                color = "#ecce45";
+                color = "#ca9a00";
                 ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
               }
               if (eTags.includes("miasma")) {
                 eHPNew -= eHP * (currEnemyID[2] != '3' ? 0.15 : (currEnemyID == "25300" ? 0.045 : 0.025));
-                color = "#d4317b";
+                color = "#b4317b";
                 ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 3 : 1) + `<br>`;
               }
-              if (eTags.includes("counter")) {
-                eHPNew -= eHP * 0.02;
+              if (eTags.includes("shutdown")) {
+                eHPNew -= eHP * (currEnemyID == "26300" ? 0.03 : 0.015);
                 color = "#b47ede";
-                ttHP.innerHTML += instant(color, "SHUTDOWN!!", 1) + `<br>`;
+                ttHP.innerHTML += instant(color, "SHUTDOWN!!", (currEnemyID == "26300" ? 2 : 1)) + `<br>`;
               }
               ttHP.innerHTML = alt(color, eName, eHPNew, eHP) + ttHP.innerHTML;
             }
             enemyHP.appendChild(ttHP);
           }
           enemy.appendChild(enemyHP);
-
-          /* add enemy specific HP multiplier (if no match side HP multiplier) */
-          /* ADDING LATER */
-          /* ADDING LATER */
-          /* ADDING LATER */
-          /* ADDING LATER */
-
-          /* add enemy specific HP multiplier if not in a margin of error */
-          if (Math.abs(sideHPMult - eHPMult) > 1) {
-            let specificHPMult = document.createElement("div");
-            specificHPMult.className = "e-hp-mult";
-            specificHPMult.innerHTML = `[${eHPMult}%]`;
-            enemy.appendChild(specificHPMult);
-          }
 
           /* add enemy def display */
           let enemyDef = document.createElement("div");
@@ -360,8 +352,15 @@ function showEnemies() {
           /* add enemy misc stat tooltip */
           let ttMiscStat = document.createElement("div");
           ttMiscStat.className = "tt-e-stat";
-          ttMiscStat.innerHTML = `+</span><span class="tt-text">${generateEnemyStats(eDaze, eStunMult, eStunTime, (currEnemyID[2] == '3' ? versionBossAnomMult : versionEnemyAnomMult) / 100 * eAnom, eElementMult, eMods)}</span>`;
+          ttMiscStat.innerHTML = `+</span><span class="tt-text">${generateEnemyStats((currEnemyID[2] == '3' ? versionBossDazeMult : versionEnemyDazeMult) / 100 * eDaze, eStunMult, eStunTime, (currEnemyID[2] == '3' ? versionBossAnomMult : versionEnemyAnomMult) / 100 * eAnom, eElementMult, eMods)}</span>`;
           enemy.appendChild(ttMiscStat);
+          
+          /* change image formatting for bosses/enemies */
+          if (s >= 2) {
+            enemyImg.style.height = enemyHover.style.maxHeight = enemyHover.style.width = "108px";
+            enemyName.style.fontSize = enemyHP.style.fontSize = enemyDef.style.fontSize = "12px";
+            waveEnemies.style.padding = "15px";
+          }
 
           waveEnemies.appendChild(enemy);
 
@@ -370,8 +369,9 @@ function showEnemies() {
             document.querySelector(".esd")?.remove();
             let stageDesc = document.createElement("div");
             stageDesc.className = "esd";
-            stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}` : ((currEnemyID[0] == '2') ? `${currEnemyData.desc}<br><br>${currEnemyData.perf}` : `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}`);
-            stageDesc.innerHTML += `${(currEnemyType == 1 || (currEnemyID == "14403" && versionNum == 4) || (currEnemyID == "14302" && versionNum >= 25)) ? `<br><br>${currEnemyData.misc}` : ``}`;
+            stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}` : `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}`;
+            stageDesc.innerHTML += `<br><br>• When an extra score multiplier is active in this stage, the <span style='color:#ffaf2c;font-weight:bold;'>Performance Points</span> cap will increase accordingly.`;
+            stageDesc.innerHTML += `${currEnemyID[0] == '2' || currEnemyID == "14303" || (currEnemyID == "14302") ? `<br><br>${currEnemyData.misc}` : ``}`;
             boss.parentElement.appendChild(stageDesc);
           }
         }
@@ -412,7 +412,7 @@ function generateWR(mult, wr, s) {
   weakImg2.src = "../assets/elements/none.webp";
   resImg1.src = "../assets/elements/none.webp";
   resImg2.src = "../assets/elements/none.webp";
-  let wkCnt = 0, resCnt = 0;
+  let wkCnt = resCnt = 0;
   for (let i = 0; i < 5; ++i) {
     if (mult[i] < 1 && wkCnt == 0) { weakImg1.src = `../assets/elements/${elementsData[i]}.webp`; ++wkCnt;}
     else if (mult[i] < 1 && wkCnt == 1) weakImg2.src = `../assets/elements/${elementsData[i]}.webp`;
@@ -464,11 +464,9 @@ function loadSavedState() {
   if (localStorage.getItem("leaksEnabled") == "true") leaksToggle.checked = true;
   if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
   versionNum = parseInt(localStorage.getItem("lastTSVersion") || `${cntNoLeaks}`);
+  oldVersionNum = versionNum;
   nodeNum = parseInt(localStorage.getItem("lastTSNode") || "6");
-  endingNum = parseInt(localStorage.getItem("lastTSEnding") || "3");
-  chartNodeNum = parseInt(localStorage.getItem("lastTSChartNode") || "6");
-  chartScoreNum = localStorage.getItem("lastTSChartScore") || "60k";
-  chartDisplayType = localStorage.getItem("lastTSChartType") || "Boss";
+  endingNum = parseInt(localStorage.getItem("lastTSEnding") || "1");
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
   if (!leaksToggle.checked) versionNum = Math.min(versionNum, cntNoLeaks);
   saveLastPage();
@@ -480,11 +478,8 @@ function saveLastPage() {
   localStorage.setItem("lastTSVersion", versionNum);
   localStorage.setItem("lastTSNode", nodeNum);
   localStorage.setItem("lastTSEnding", endingNum);
-  localStorage.setItem("lastTSChartNode", chartNodeNum);
-  localStorage.setItem("lastTSChartType", chartDisplayType);
 }
 function saveSettings() {
-  localStorage.setItem("lastTSChartScore", chartScoreNum);
   localStorage.setItem("numberFormat", currNumberFormat);
   localStorage.setItem("leaksEnabled", leaksToggle.checked);
   localStorage.setItem("spoilersEnabled", spoilersToggle.checked);
@@ -493,13 +488,13 @@ function saveSettings() {
 /* keyboard shortcuts to navigate main page */
 document.addEventListener("keydown", (e) => {
   e.stopPropagation();
-  if (e.key == "Escape") { e.preventDefault(); chartIsOpen ? toggleChart() : (versionSelectorIsOpen ? toggleVersionSelector() : toggleMenu()); }
-  else if (e.key == " " && !menuIsOpen && !chartIsOpen) { e.preventDefault(); toggleVersionSelector(); }
-  else if (e.key == "Backspace" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); toggleChart(); }
-  else if (e.key == "ArrowLeft" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }
-  else if (e.key == "ArrowRight" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(1); }
-  else if (e.key == "ArrowUp") { e.preventDefault(); !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen ? changeNode(1) : changeChartNode(1) }
-  else if (e.key == "ArrowDown") { e.preventDefault(); !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen ? changeNode(-1) : changeChartNode(-1) }
+  if (e.shiftKey || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (e.key == "Escape") { e.preventDefault(); menuIsOpen ? toggleMenu() : toggleVersionSelector(); }
+  else if (e.key == " " && !menuIsOpen) { e.preventDefault(); toggleVersionSelector(); }
+  else if (e.key == "ArrowLeft" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }
+  else if (e.key == "ArrowRight" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(1); }
+  else if (e.key == "ArrowUp" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeNode(1); }
+  else if (e.key == "ArrowDown" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeNode(-1); }
   return;
 });
 
@@ -534,7 +529,6 @@ function updateNumberFormat(e) {
   ex.innerHTML = numberFormat(2222222);
   numFormatButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == currNumberFormat));
   showEnemies();
-  displayHPChart();
 }
 function numberFormat(num) {
   if (currNumberFormat == "comma") return num.toLocaleString("en-US");
@@ -598,7 +592,7 @@ function displayVersionSelectorGrid() {
       versionButton.className = "vg-c";
       nameDiv.className = "vg-c-name";
       timeDiv.className = "vg-c-time";
-      nameDiv.innerHTML = currVersion.versionName;
+      nameDiv.innerHTML = currVersion.versionName + (m == 2 && v == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``);
       timeDiv.innerHTML = currVersion.versionTime;
       versionButton.appendChild(nameDiv);
       versionButton.appendChild(timeDiv);
@@ -619,199 +613,6 @@ function displayVersionSelectorGrid() {
   gridContent.appendChild(row1);
   gridContent.appendChild(title);
   gridContent.appendChild(row2);
-}
-
-/* ----------------------------------------------------------------------------- CHART ----------------------------------------------------------------------- */
-
-/* enables/disables version menu */
-function toggleChart() {
-  let chart = document.getElementById("c");
-  if (chartIsOpen) { document.body.classList.remove("no-scroll"); chart.style.display = "none"; }
-  else { document.body.classList.add("no-scroll"); chart.style.display = "flex"; }
-  chartIsOpen = !chartIsOpen;
-}
-function toggleChartPoints(points) {
-  if (chartScoreNum == points) return;
-  chartScoreNum = points;
-  saveSettings();
-  displayHPChart();
-}
-/* download the chart with the middle button in the chart top bar */
-function downloadChart() {
-  let downloadButton = document.createElement("a");
-  downloadButton.href = hpChart.toBase64Image("image/png", 1.0);
-  downloadButton.download = `Threshold Simulation - ${versionData[modeNum - 1].name} ` + (modeNum == 2 ? `${chartNodeNum < 4 ? chartNodeNum : `4`}${modeNum != 2 || chartNodeNum < 4 ? `` : `-${chartNodeNum - 3}`} ` : ``) + `${chartDisplayType} HP` + (chartDisplayType == "Boss" ? ` (${chartScoreNum})` : ``);
-  downloadButton.click();
-}
-/* format 3 hp dataset */
-function createHPDataset(label, data, color) {
-  return { label, data, pointRadius: 2, borderWidth: 2, borderColor: color, pointHoverRadius: 4, pointHoverBorderWidth: 2, pointHoverBorderColor: color, backgroundColor: "#ffffff" };
-}
-
-function displayHPChart() {
-  /* remove score selector if enemy dropdown is selected */
-  chartDisplayType = document.getElementById("c-dd").value;
-  let score = document.querySelectorAll(".c-k");
-  score.forEach(btn => {btn.style.display = chartDisplayType == "Boss" ? "block" : "none"});
-
-  /* change color of selected score value */
-  let chartScoreButtons = document.querySelectorAll(".c-k");
-  chartScoreButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == chartScoreNum));
-
-  /* various plugins thanks to Chart.js documentation + videos + Stack Overflow + friends */
-  /* position hover line highlighting respective hp points */
-  const verticalHoverLine = {
-    id: "verticalHoverLine",
-    beforeDatasetsDraw(chart, args, plugins) {
-      let { ctx, chartArea: {top, bottom, height} } = chart;
-      ctx.save();
-      for (let hp = 0; hp <= 2; ++hp)
-        chart.getDatasetMeta(hp).data.forEach((dataPoint, index) => {
-          if (dataPoint.active) {
-            ctx.beginPath();
-            ctx.strokeStyle = "#888888";
-            ctx.setLineDash([4, 6]);
-            ctx.moveTo(dataPoint.x, top);
-            ctx.lineTo(dataPoint.x, bottom);
-            ctx.stroke();
-          }
-        })
-      ctx.restore();
-    }
-  }
-  /* add padding below legend */
-  const legendPadding = {
-    id: "legendPadding",
-    beforeInit(chart) {
-      let newLegend = chart.legend.fit;
-      chart.legend.fit = function fit() { newLegend.bind(chart.legend)(); chart.legend.height += 15; }
-    }
-  };
-  /* force hide tooltip + vertical hover line if moved out of ACTUAL chart area */
-  const hideTooltipOutside = {
-    id: "hideTooltipOutside",
-    afterEvent(chart, args) {
-      let {top, bottom, left, right} = chart.chartArea;
-      let {x, y} = args.event;
-      if (x < left || x > right || y < top || y > bottom) {
-        chart.tooltip.setActiveElements([]);
-        chart.tooltip.update();
-        chart.setActiveElements([]);
-        chart.update();
-      }
-    }
-  };
-  
-  /* position hover tooltip */
-  Chart.Tooltip.positioners.cursor = function(elements, eventPosition) {
-    if (!eventPosition) return false;
-    let {top, bottom} = this.chart.chartArea;
-    let {x, y} = eventPosition;
-    y += y <= (top + bottom) / 3 ? 50 : -50;
-    return {x, y};
-  };
-
-  /* update chart data if a chart is already loaded */
-  if (!hpChart) {
-    hpChart = new Chart("hpChart", {
-      /* import plugin data */
-      type: "line", plugins: [verticalHoverLine, legendPadding, hideTooltipOutside],
-
-      /* add chart settings */
-      options: {
-        /* disable chart animations, fit to screen, detect cursor position, positioning */
-        animation: false, responsive: true, maintainAspectRatio: false,
-        interaction: { mode: "nearest", axis: "x", intersect: false },
-        layout: { padding: {top: 10, bottom: 15, left: 10, right: 25} },
-        
-        /* add x/y-axis formatting */
-        scales: {
-          x: {
-            offset: true,
-            border: { display: false },
-            grid: { color: "transparent" },
-            ticks: {
-              padding: 10, font: { family: "Inconsolata", size: 12 }, color: "#888888", maxRotation: 0, 
-              callback: function(value, index) { return index % 2 == 0 ? this.getLabelForValue(value) : ""; }
-            }
-          },
-          y: {
-            border: { display: false },
-            grid: { color: function(context) { return context.tick.value % 40000000 == 0 ? "#888888" : "#444444"; } },
-            ticks: {
-              padding: 15, font: { family: "Inconsolata", size: 12 }, color: "#888888", stepSize: 20000000, 
-              callback: function(value, index) { return index % 2 == 0 ? numberFormat(value) : ""; }
-            }
-          }
-        },
-
-        /* add chart, legend, hover tooltip formatting */
-        plugins: {
-          title: { display: true, color: "#ffffff", font: { family: "Inconsolata", size: 20, weight: "bold" } },
-          legend: {
-            labels: { usePointStyle: true, boxHeight: 8,
-              font: { family: "Inconsolata", size: 14 },
-              /* make legend element grayscale if disabled */
-              generateLabels: function(chart) {
-                let hpLegend = Chart.defaults.plugins.legend.labels.generateLabels(chart);
-                hpLegend.forEach((label, index) => {
-                  if (!chart.isDatasetVisible(index)) { label.fontColor = "#888888"; label.strokeStyle = "#888888"; }
-                  else label.fontColor = chart.data.datasets[label.datasetIndex].borderColor;
-                });
-                return hpLegend;
-              },
-            }
-          },
-          tooltip: { usePointStyle: true, boxHeight: 8, position: "cursor", caretSize: 0,
-            titleFont: { family: "Inconsolata", size: 12, weight: "bold", lineHeight: 0.75 },
-            bodyFont: { family: "Inconsolata", size: 12 },
-            callbacks: {
-              /* add tooltip text colors */
-              labelTextColor: function(context) { return context.dataset.borderColor; },
-              label: function(context) { return context.dataset.label + ": " + numberFormat(context.parsed.y); }
-            }
-          }
-        }
-      }
-    });
-  }
-  
-  /* add global chart settings */
-  document.getElementById("c-dd").value = chartDisplayType;
-  var labels;
-  let rawBossHPData = [], altBossHPData = [];
-  let rawHPData = [], aoeHPData = [], altHPData = [];
-  if (modeNum != 2) {
-    labels = Array.from({length: nodeLvlData[modeNum - 1].length}, (_, n) => `${versionData[modeNum - 1].name} ${n + 1}`);
-    for (let n = 0; n < nodeLvlData[modeNum - 1].length; ++n) {
-      rawBossHPData.push(chartScoreNum == "20k" ? hpData[modeNum - 1][n][0][0] : hpData[modeNum - 1][n][1][0]);
-      altBossHPData.push(chartScoreNum == "20k" ? hpData[modeNum - 1][n][2][0] : hpData[modeNum - 1][n][3][0]);
-      rawHPData.push(hpData[modeNum - 1][n][4][0]);
-      aoeHPData.push(hpData[modeNum - 1][n][5][0]);
-      altHPData.push(hpData[modeNum - 1][n][6][0]);
-    }
-    hpChart.options.plugins.title.text = `Threshold Simulation: Easy Mode ${chartDisplayType} HP${chartDisplayType == "Boss" ? ` (${chartScoreNum})` : ``}`;
-    hpChart.options.scales.y.min = chartScoreNum == "20k" ? 0 : 0;
-    hpChart.options.scales.y.max = chartScoreNum == "20k" ? 40000000 : 120000000;
-  }
-  else {
-    labels = versionIDs[modeNum - 1];
-    rawBossHPData = chartScoreNum == "20k" ? hpData[modeNum - 1][chartNodeNum - 1][0] : hpData[modeNum - 1][chartNodeNum - 1][1];
-    altBossHPData = chartScoreNum == "20k" ? hpData[modeNum - 1][chartNodeNum - 1][2] : hpData[modeNum - 1][chartNodeNum - 1][3];
-    rawHPData = hpData[modeNum - 1][chartNodeNum - 1][4];
-    aoeHPData = hpData[modeNum - 1][chartNodeNum - 1][5];
-    altHPData = hpData[modeNum - 1][chartNodeNum - 1][6];
-    hpChart.options.plugins.title.text = `Threshold Simulation: Hard Mode ${chartNodeNum < 4 ? chartNodeNum : `4`}${modeNum != 2 || chartNodeNum < 4 ? `` : `.${chartNodeNum - 3}`} ${chartDisplayType} HP${chartDisplayType == "Boss" ? ` (${chartScoreNum})` : ``}`;
-    hpChart.options.scales.y.min = chartDisplayType == "Enemy" ? 0 : (chartScoreNum == "20k" ? 0 : 80000000);
-    hpChart.options.scales.y.max = chartDisplayType == "Enemy" ? 160000000 : (chartScoreNum == "20k" ? 120000000 : 400000000);
-  }
-  hpChart.data.labels = labels;
-  hpChart.data.datasets = chartDisplayType == "Boss" ?
-    [ createHPDataset(`Raw HP`, rawBossHPData, "#e06666"), createHPDataset(`Alt HP`, altBossHPData, "#f6b26b") ] :
-    [ createHPDataset(`Raw HP`, rawHPData, "#e06666"), createHPDataset(`AOE HP`, aoeHPData, "#6d9eeb"), createHPDataset(`Alt HP`, altHPData, "#f6b26b") ];
-  hpChart.update();
-  if (modeNum == 2) saveLastPage();
-  saveSettings();
 }
 
 /* ----------------------------------------------------------------------------- MAIN ----------------------------------------------------------------------- */

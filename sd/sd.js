@@ -454,7 +454,7 @@ function saveSettings() {
 document.addEventListener("keydown", (e) => {
   e.stopPropagation();
   if (e.shiftKey || e.ctrlKey || e.metaKey || e.altKey) return;
-  if (e.key == "Escape") { e.preventDefault(); chartIsOpen ? toggleChart() : (menuIsOpen ? toggleMenu() : toggleVersionSelector()); }
+  if (e.key == "Escape") { e.preventDefault(); chartIsOpen ? toggleChart() : versionSelectorIsOpen ? toggleVersionSelector() : toggleMenu(); }
   else if (e.key == " " && !chartIsOpen && !menuIsOpen) { e.preventDefault(); toggleVersionSelector(); }
   else if (e.key == "Backspace" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); toggleChart(); }
   else if (e.key == "ArrowLeft" && !chartIsOpen && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }

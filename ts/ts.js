@@ -489,7 +489,7 @@ function saveSettings() {
 document.addEventListener("keydown", (e) => {
   e.stopPropagation();
   if (e.shiftKey || e.ctrlKey || e.metaKey || e.altKey) return;
-  if (e.key == "Escape") { e.preventDefault(); menuIsOpen ? toggleMenu() : toggleVersionSelector(); }
+  if (e.key == "Escape") { e.preventDefault(); versionSelectorIsOpen ? toggleVersionSelector() : toggleMenu(); }
   else if (e.key == " " && !menuIsOpen) { e.preventDefault(); toggleVersionSelector(); }
   else if (e.key == "ArrowLeft" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }
   else if (e.key == "ArrowRight" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(1); }

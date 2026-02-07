@@ -300,7 +300,7 @@ function saveProgress() {
 document.addEventListener("keydown", (e) => {
   e.stopPropagation();
   if (e.shiftKey || e.ctrlKey || e.metaKey || e.altKey) return;
-  if (e.key == "Escape") { e.preventDefault(); calcIsOpen ? toggleCalc() : (chartIsOpen ? toggleChart() : menuIsOpen ? toggleMenu() : toggleVersionSelector()); }
+  if (e.key == "Escape") { e.preventDefault(); calcIsOpen ? toggleCalc() : chartIsOpen ? toggleChart() : versionSelectorIsOpen ? toggleVersionSelector() : toggleMenu(); }
   else if (e.key == " " && !calcIsOpen && !chartIsOpen && !menuIsOpen) { e.preventDefault(); toggleVersionSelector(); }
   else if (e.key == "Backspace" && !calcIsOpen && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); toggleChart(); }
   else if (e.key == "=" && !chartIsOpen && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); toggleCalc(); }

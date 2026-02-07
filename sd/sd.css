@@ -120,7 +120,7 @@ body.no-scroll {
 #b {
   padding: 15px;
   margin: 15px;
-  min-height: 107.5px;
+  min-height: 95px;
   background-color: #27363e;
   border: 1px solid #27363e;
   border-radius: 4px;
@@ -128,14 +128,14 @@ body.no-scroll {
 /* buff text */
 #b-name {
   text-align: left;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   text-decoration: underline;
 }
 #b-desc {
-  margin-top: 5px;
+  margin-top: 7.5px;
   text-align: left;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 2.0;
 }
 
@@ -143,7 +143,7 @@ body.no-scroll {
 #n5-b {
   margin: 15px 15px;
   gap: 15px;
-  min-height: 200px;
+  min-height: 160px;
   display: none;
 }
 #n5-b1, #n5-b2, #n5-b3 {
@@ -163,8 +163,8 @@ body.no-scroll {
   user-select: all;
 }
 #b-desc1, #b-desc2, #b-desc3 {
-  margin-top: 5px;
-  font-size: 14px;
+  margin-top: 7.5px;
+  font-size: 12px;
   line-height: 2.0;
 }
 
@@ -249,8 +249,7 @@ body.no-scroll {
   justify-content: center;
 }
 .w-num {
-  padding: 5px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /* ------------------------------------------------------------------------ ENEMY ------------------------------------------------------------------------ */
@@ -267,19 +266,15 @@ body.no-scroll {
   user-select: none;
 }
 .e-hp {
-  margin-top: 5px;
-  font-size: 14px;
+  margin-top: 2.5px;
+  font-size: 12px;
   font-weight: bold;
   color: #ff5555;
   user-select: all;
 }
-.e-hp-mult {
-  font-size: 10px;
-  color: #888888;
-}
 .e-def {
-  margin-top: 5px;
-  font-size: 14px;
+  margin-top: 2.5px;
+  font-size: 12px;
   font-weight: bold;
   color: #5555ff;
   user-select: all;
@@ -287,6 +282,7 @@ body.no-scroll {
 /* enemy hover image */
 .e-hover {
   max-height: 108px;
+  width: 108px;
   display: block;
   position: relative;
 }
@@ -372,6 +368,7 @@ body.no-scroll {
   display: flex;
   flex: 1;
   flex-direction: column;
+  align-items: center;
   overflow-y: auto;
   overscroll-behavior: contain;
   height: calc(100% - 51px);
@@ -392,7 +389,6 @@ body.no-scroll {
 /* menu bar number format changer */
 #mb-nf {
   margin-top: auto;
-  padding: 0px 15px;
   gap: 10px;
   width: 220px;
   font-size: 16px;
@@ -441,7 +437,8 @@ body.no-scroll {
 /* menu bar toggles */
 #mb-t {
   width: 200px;
-  padding: 20px 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 16px;
   display: flex;
   flex-direction: column;
@@ -569,7 +566,7 @@ input:checked + #st {
   overflow-y: auto;
   overscroll-behavior: contain;
 }
-#vg-row1, #vg-row2 {
+#vg-misc, #vg-crit {
   padding: 15px;
   gap: 15px;
   display: flex;
@@ -660,8 +657,8 @@ input:checked + #st {
   margin-top: 0.5vh;
 }
 #open-c-btn img {
-  width: 4vh;
-  height: 4vh;
+  width: 4.25vh;
+  height: 4.25vh;
   cursor: pointer;
 }
 #open-c-btn img:hover {
@@ -701,7 +698,7 @@ input:checked + #st {
 }
 /* chart node switcher */
 #c-l, #c-r {
-  font-size: 4vh;
+  font-size: 5vh;
   font-weight: bold;
   cursor: pointer;
   user-select: none;
@@ -729,47 +726,37 @@ input:checked + #st {
   height: 90vh;
   position: relative;
   display: flex;
-  justify-content: center;
 }
 
 /* -------------------------------------------------------------------- MISC TOOLTIPS -------------------------------------------------------------------- */
 
 /* menu, buff hp, special enemy hp, misc stats tooltips */
-.tt-menu, .tt-n-hp, .tt-e-n-hp, .tt-e-stat {
+.tt-menu, .tt-n-hp, .tt-e-hp, .tt-e-stat {
   position: relative;
+  display: inline-block;
   cursor: pointer;
   user-select: none;
 }
-.tt-menu {
+.tt-menu, .tt-n-hp {
   margin-left: 8px;
-  display: inline-block;
-}
-.tt-n-hp {
-  margin-left: 8px;
-  display: inline-block;
-}
-.tt-e-hp, .tt-e-stat {
-  display: block;
 }
 .tt-e-hp {
   position: absolute;
   font-weight: normal;
   font-size: 36px;
-  top: -22px;
-  right: 89px;
+  top: -19px;
+  right: 87px;
   user-select: none;
 }
 .tt-e-stat {
-  display: inline-block;
   width: 25px;
-  margin-top: 5px;
+  margin-top: 2.5px;
   font-size: 16px;
   color: #888888;
 }
 
 /* tooltip text box */
-.tt-menu .tt-text, .tt-e-hp .tt-text,
-.tt-n-hp .tt-text, .tt-e-stat .tt-text {
+.tt-menu .tt-text, .tt-e-hp .tt-text, .tt-n-hp .tt-text, .tt-e-stat .tt-text {
   z-index: 1000;
   padding: 7.5px;
   transform: translateX(-50%);
@@ -784,15 +771,10 @@ input:checked + #st {
   transition: opacity 0.1s ease-in-out;
   line-height: 1.5;
 }
-.tt-menu:hover,
-.tt-n-hp:hover,
-.tt-e-stat:hover {
+.tt-menu:hover, .tt-n-hp:hover, .tt-e-stat:hover {
   color: #b2cee7;
 }
-.tt-menu:hover .tt-text,
-.tt-n-hp:hover .tt-text,
-.tt-e-hp:hover .tt-text,
-.tt-e-stat:hover .tt-text {
+.tt-menu:hover .tt-text, .tt-n-hp:hover .tt-text,.tt-e-hp:hover .tt-text, .tt-e-stat:hover .tt-text {
   color: #ffffff;
   visibility: visible;
   opacity: 1;
@@ -822,10 +804,7 @@ input:checked + #st {
   left: 50%;
 }
 /* tooltip arrow placements */
-.tt-menu .tt-text::after,
-.tt-n-hp .tt-text::after,
-.tt-e-hp .tt-text::after,
-.tt-e-stat .tt-text::after {
+.tt-menu .tt-text::after, .tt-n-hp .tt-text::after, .tt-e-hp .tt-text::after, .tt-e-stat .tt-text::after {
   content: "";
   position: absolute;
   border-width: 5px;
@@ -856,9 +835,8 @@ input:checked + #st {
   src: url('../assets/Inconsolata-Regular.ttf') format('truetype');
 }
 @media (max-width: 800px) {
-  #mb-nf { margin-top: 27.5vh; }
+  #mb-nf { margin-top: 25vh; }
   .vg-c { width: 150px; }
-  #c-x-bar { width: 100vw; }
   #c { width: 100%; }
   .w-e { row-gap: 15px; }
   #n-hp { margin: 0px 15vw; }
@@ -866,9 +844,9 @@ input:checked + #st {
 @media (max-width: 500px) {
   #n5-b { flex-direction: column; }
   .vg-c { width: 250px; }
-  #c-g { width: 227.5vw; height: 1000vh; }
+  #c-g { width: 240vw; height: 1000vh; }
   #vs-x-bar { padding: 1vh 2.25vw; }
-  #c-x-bar { width: 227.5vw; padding: 1vh 2.25vw; }
+  #c-x-bar { width: 240vw; padding: 1vh 2.25vw; }
   #s { flex-direction: column; }
   #s2, #s3 { margin-top: 100px; }
   .tt-n-hp .tt-text { top: -300%; left: 50%; width: 120px; height: 37.5px; display: flex; align-items: center; justify-content: center; }

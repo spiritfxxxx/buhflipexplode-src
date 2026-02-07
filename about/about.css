@@ -10,64 +10,161 @@ html, body {
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
-h3, p {
+h1, p {
   margin: 0;
-  line-height: 2.0;
 }
 body.no-scroll {
   overflow: hidden;
-}
-
-/* ------------------------------------------------------------------ ABOUT ME TEXT BOXES ------------------------------------------------------------------ */
-
-#t {
-  max-width: 100%;
-  max-height: 1500vh;
-  margin: 0vh 2.5vw;
-  padding: 15px;
-  background-color: #27363e;
-  border: 1px solid #27363e;
-  border-radius: 4px;
 }
 .title {
   color: #f29e38;
   text-decoration: underline;
   font-size: 24px;
 }
-.text {
-  font-size: 16px;
-  line-height: 1.25;
+
+/* ------------------------------------------------------------------ ABOUT ME/SITE TEXT BOXES ------------------------------------------------------------------ */
+
+/* about me/site text boxes */
+#about, #tid, #bl, #fav, #site-hist, #site-about {
+  padding: 15px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #27363e;
+  border: 1px solid #27363e;
+  border-radius: 4px;
+}
+#other {
+  margin: 15px;
+  gap: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#about {
+  margin: 15px;
+}
+#tid, #bl {
+  gap: 15px;
+}
+#about, #tid, #bl, #fav {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+/* about me text box */
+#about-text {
+  text-align: center;
+  font-size: 12px;
+}
+#about-img {
+   width: 96px;
+   margin-left: 90px;
+   margin-right: 90px;
+}
+
+/* site history + info */
+#site {
+  margin: 15px;
+  gap: 15px;
+  display: flex;
+  flex-direction: row;
   text-align: center;
 }
-.text img {
-  margin-top: -4px;
-  width: 32px;
-  height: 32px;
-  vertical-align: middle;
+#site-hist, #site-about {
+  flex: 1;
+  font-size: 12px;
 }
-.small-image {
-  max-width: 47.5%;
-  height: auto;
-  display: inline-block;
+#site-hotkey {
+  gap: 75px;
+  line-height: 1.75;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
-.large-image {
-  max-width: 80%;
-  height: auto;
-  display: inline-block;
+#site-hotkey-key, #site-hotkey-cmd {
+  font-size: 12px;
+}
+
+/* things i do text box */
+#tid-text {
+  width: 180px;
+  text-align: center;
+  font-size: 12px;
+}
+#tid-display {
+  flex-direction: column;
+}
+#tid-img {
+  width: 400px;
+}
+
+/* bucket list text box */
+#bl-text {
+  width: 175px;
+  font-size: 12px;
+}
+#bl-display1 {
+  flex-direction: column;
+  align-items: center;
+}
+#bl-display1-1, #bl-display1-2 {
+  z-index: 2222;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+#bl-display1-2 {
+  margin-top: 15px;
+  left: 40px;
+}
+#bl-display2 {
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: -30px;
+}
+#bl-img1 {
+  width: 200px;
+}
+#bl-img2 {
+  width: 300px;
+}
+
+/* favorite things text box */
+#fav-text {
+  width: 300px;
+  font-size: 12px;
+}
+#fav-display1, #fav-display2 {
+  flex-direction: column;
+  align-items: center;
+}
+#fav-img1 {
+  width: 800px;
+}
+#fav-img2 {
+  width: 200px;
+}
+
+/* image captions */
+#caption {
+  color: #aaaaaa;
+  margin-top: 5px;
+  font-size: 12px;
 }
 
 /* ------------------------------------------------------------------ NAVIGATION BUTTONS ------------------------------------------------------------------ */
 
 nav {
-  padding: 30px;
+  margin: 30px;
   gap: 50px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 a.link {
-  margin-left: 2px;
-  margin-right: 2px;
   color: #b2cee7;
 }
 a.btn{
@@ -310,7 +407,7 @@ input:checked + #st {
 /* menu: top, buff: side, star: top, stat: bottom */
 .tt-menu .tt-text {
   z-index: 1000;
-  padding: 10px;
+  padding: 7.5px;
   width: 120px;
   bottom: 160%;
   left: 50%;
@@ -353,10 +450,13 @@ input:checked + #st {
   font-family: 'Inconsolata';
   src: url('../assets/Inconsolata-Regular.ttf') format('truetype');
 }
-@media (max-width: 800px) {
-  #mb-nf { margin-top: 27.5vh; }
+@media (max-width: 1400px) {
+  #about-img, #tid-display, #bl-display1, #bl-display2, #fav-display1, #fav-display2 { display: none; }
 }
-@media (max-width: 500px) {
-  .text img { margin-top: 0px; }
-  .small-image, .large-image { max-width: 80vw; }
+@media (max-width: 800px) {
+  p { margin-left: 17.5px; margin-right: 17.5px; line-height: 1.5; }
+  #mb-nf { margin-top: 25vh; }
+  #other { flex-direction: column; }
+  #site { flex-direction: column; }
+  #site-hotkey { gap: 15px; }
 }

@@ -14,9 +14,10 @@ function enableClicksAfterDelay() {
 function playGif(src, duration) {
   if (!canClick) return;
   canClick = false;
-  buhImg.src = src + "?t=" + new Date().getTime();
+  let currTime = new Date().getTime();
+  buhImg.src = src + "?t=" + currTime;
   setTimeout(() => {
-    buhImg.src = buh + "?t=" + new Date().getTime();
+    buhImg.src = buh + "?t=" + (currTime + duration);
     enableClicksAfterDelay();
   }, duration);
 }

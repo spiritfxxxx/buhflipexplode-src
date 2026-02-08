@@ -426,9 +426,9 @@ function loadSavedState() {
   if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
   versionNum = parseInt(localStorage.getItem("lastSDVersion") || `${cntNoLeaks}`);
   oldVersionNum = versionNum;
-  nodeNum = parseInt(localStorage.getItem("lastSDNode") || "7");
-  chartNodeNum = parseInt(localStorage.getItem("lastSDChartNode") || "7");
-  chartDisplayType = localStorage.getItem("lastSDChartType") || "Pre 2.5";
+  nodeNum = parseInt(localStorage.getItem("lastSDNode") || "5");
+  chartNodeNum = parseInt(localStorage.getItem("lastSDChartNode") || "5");
+  chartDisplayType = localStorage.getItem("lastSDChartType") || "Post 2.5";
   oldChartDisplayType = chartDisplayType;
   chartDropdown.value = chartDisplayType;
   currNumberFormat = localStorage.getItem("numberFormat") || "period";

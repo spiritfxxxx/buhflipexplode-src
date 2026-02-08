@@ -465,7 +465,7 @@ function loadSavedState() {
   if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
   versionNum = parseInt(localStorage.getItem("lastTSVersion") || `${cntNoLeaks}`);
   oldVersionNum = versionNum;
-  nodeNum = parseInt(localStorage.getItem("lastTSNode") || "6");
+  nodeNum = parseInt(localStorage.getItem("lastTSNode") || "3");
   endingNum = parseInt(localStorage.getItem("lastTSEnding") || "1");
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
   if (!leaksToggle.checked) versionNum = Math.min(versionNum, cntNoLeaks);

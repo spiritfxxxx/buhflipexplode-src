@@ -25,7 +25,7 @@ body.no-scroll {
 /* ------------------------------------------------------------------ ABOUT ME/SITE TEXT BOXES ------------------------------------------------------------------ */
 
 /* about me/site text boxes */
-#about, #tid, #bl, #fav, #site-hist, #site-about {
+#about, #disclaimer, #tid, #bl, #fav, #site-hist, #site-about {
   padding: 15px;
   text-align: center;
   justify-content: center;
@@ -41,7 +41,7 @@ body.no-scroll {
   flex-direction: row;
   justify-content: center;
 }
-#about {
+#about, #disclaimer {
   margin: 15px;
 }
 #tid, #bl {
@@ -53,8 +53,8 @@ body.no-scroll {
   flex: 1;
 }
 
-/* about me text box */
-#about-text {
+/* about me/disclaimer text box */
+#about-text, #disclaimer-text {
   text-align: center;
   font-size: 12px;
 }

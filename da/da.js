@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 29;
+let cntNoLeaks = 30;
 let leaksToggle = document.getElementById("lks"), spoilersToggle = document.getElementById("spl");
 let bossDropdown = document.getElementById("b-dd");
 let bossHPCalc1 = document.getElementById("b-hp1"), bossScoreCalc1 = document.getElementById("b-score1"), bossVerDropdown1 = document.getElementById("b-v-dd1");

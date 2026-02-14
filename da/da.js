@@ -204,7 +204,7 @@ function showEnemies() {
     /* add enemy stage description */
     let stageDesc = document.createElement("div");
     stageDesc.className = "esd";
-    stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}` : `${currEnemyData.desc[currEnemyType]}<br><br>`;
+    stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>` : `${currEnemyData.desc[currEnemyType]}<br><br>`;
     stageDesc.innerHTML += (currEnemyID == "14301" && versionNum == 6) ? `• Successfully triggering <span style='font-weight:bold;'>Perfect Assist</span> grants <span style='color:#ffaf2c;font-weight:bold;'>300 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.` : (eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerPerf}` : `${currEnemyData.perf[currEnemyType]}`);
     stageDesc.innerHTML += `${(currEnemyID[0] == '2' || (currEnemyID == "14303" && versionNum >= 4)) ? `<br><br>${currEnemyData.misc}` : ``}`;
     side.appendChild(stageDesc);
@@ -718,7 +718,7 @@ function displayHPChart() {
     createHPDataset(`Alt HP`, chartScoreNum == "20k" ? hpData[2] : hpData[3], "#f6b26b")
   ];
   hpChart.options.scales.y.min = chartScoreNum == "20k" ? 40000000 : 120000000;
-  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 200000000 : 600000000;
+  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 200000000 : 720000000;
   hpChart.options.scales.y.ticks.stepSize = chartScoreNum == "20k" ? 10000000 : 30000000;
   hpChart.options.plugins.title.text = `Deadly Assault HP (${chartScoreNum})`;
   hpChart.update();

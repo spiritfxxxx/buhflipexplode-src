@@ -252,6 +252,30 @@
             "versionDazeMult": 100,
             "versionAnomMult": 110,
             "buffNames": ["Harnessing Change", "Psychics", "Heartcrusher"],
-            "versionEnemies": [ {"id": "21300", "type": 0, "mult": 260}, {"id": "24300", "type": 1, "mult": 180}, {"id": "14301", "type": 1, "mult": 260} ]
+            "versionEnemies": [ {"id": "26300", "type": 0, "mult": 260}, {"id": "24300", "type": 1, "mult": 180}, {"id": "14301", "type": 1, "mult": 260} ]
+          },
+
+  "2.7.1":{ "versionName":"2.7 Phase 1",
+            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionDazeMult": 100,
+            "versionAnomMult": 110,
+            "buffNames": ["Raging Storm", "2.7 Buff 1", "2.7 Buff 2"],
+            "versionEnemies": [ {"id": "27300", "type": 0, "mult": 140}, {"id": "25300", "type": 1, "mult": 270}, {"id": "14300", "type": 1, "mult": 280} ]
+          },
+
+  "2.7.2":{ "versionName":"2.7 Phase 2",
+            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionDazeMult": 100,
+            "versionAnomMult": 110,
+            "buffNames": ["Collapse", "Combined Attack", "2.7 Buff 1"],
+            "versionEnemies": [ {"id": "15300", "type": 0, "mult": 360}, {"id": "10304", "type": 1, "mult": 320}, {"id": "24300", "type": 1, "mult": 200} ]
+          },
+
+  "2.7.3":{ "versionName":"2.7 Phase 3",
+            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionDazeMult": 100,
+            "versionAnomMult": 110,
+            "buffNames": ["Meditation", "Mutation", "2.7 Buff 3"],
+            "versionEnemies": [ {"id": "26300", "type": 0, "mult": 270}, {"id": "23300", "type": 1, "mult": 200}, {"id": "22300", "type": 1, "mult": 270} ]
           }
 }

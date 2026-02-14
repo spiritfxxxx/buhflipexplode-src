@@ -89,7 +89,7 @@ body.no-scroll {
 #b {
   margin: 15px 15px;
   gap: 15px;
-  min-height: 275px;
+  min-height: 300px;
   display: flex;
 }
 #b1, #b2, #b3 {
@@ -249,7 +249,7 @@ body.no-scroll {
 
 /* enemy stage info */
 .esd {
-  margin-top: 125px;
+  margin-top: 150px;
   min-height: 400px;
   width: 100%;
   box-sizing: border-box;

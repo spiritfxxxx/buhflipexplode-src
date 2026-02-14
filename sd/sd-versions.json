@@ -4372,7 +4372,250 @@
                   }
                 ]
               }
+            },
+  
+    "2.7.1":{ "versionName":"2.7 Phase 1",
+              "versionTime":"xx/xx/20xx - xx/xx/20xx",
+              "versionDazeMult":100,
+              "versionAnomMult":100,
+              "mainBuffNum": 2,
+              "buffName":["Thunder Crimson Blaze", "TBD", "TBD"],
+              "buffDesc":[
+              "• Agent <span style='color:#f0d12b;font-weight:bold;'>Physical DMG</span> and <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>15%</span>, while their CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When an Agent with <span style='font-weight:bold;'>Attack</span> specialty hits an enemy and crits, enemy <span style='color:#5555ff;font-weight:bold;'>DEF</span> drops by <span style='color:#2bad00;font-weight:bold;'>10%</span> for 5s. Repeated triggers reset the duration.",
+              
+              "• Increases the Agent's <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When an enemy enters the <span style='color:#ffe599;font-weight:bold;'>Stunned</span> state, increases their <span style='color:#ffe599;font-weight:bold;'>Daze Vulnerability</span> by <span style='color:#2bad00;font-weight:bold;'>30%</span> and increases <span style='color:#7756c6;font-weight:bold;'>Attribute Anomaly DMG</span> taken by <span style='color:#2bad00;font-weight:bold;'>20%</span>.",
+              
+              "• Agent <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, <span style='font-weight:bold;'>Ultimate</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>.<br>• After an Agent uses an <span style='font-weight:bold;'>EX Special Attack</span>, the Agent's <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#ff5521;font-weight:bold;'>Fire DMG</span> additionally increases by <span style='color:#2bad00;font-weight:bold;'>15%</span> for 15s, repeated triggers reset the duration."],
+              "versionEnemies":{ 
+                "nodes":[
+                  { "sides":[
+                    { "sideElementMult":[1.0, 1.0, 0.8, 0.8, 1.0], "sideHPMult":175, "waves":[
+                      { "enemies":[ {"id":"22001", "type":0, "count":3} ] },
+                      { "enemies":[ {"id":"10131", "type":0, "count":1} ] },
+                      { "enemies":[ {"id":"22000", "type":0, "count":2}, {"id":"22001", "type":0, "count":2} ] },
+                      { "enemies":[ {"id":"10131", "type":0, "count":1}, {"id":"22000", "type":0, "count":2} ] } ]
+                    },
+                    { "sideElementMult":[1.2, 1.0, 1.0, 0.8, 1.0], "sideHPMult":175, "waves":[
+                      { "enemies":[ {"id":"10020", "type":0, "count":2}, {"id":"10021", "type":0, "count":2} ] },
+                      { "enemies":[ {"id":"10123", "type":0, "count":1} ] },
+                      { "enemies":[ {"id":"10122", "type":0, "count":1} ] } ]
+                    }]
+                  },
+                  { "sides":[
+                    { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.2], "sideHPMult":175, "waves":[
+                      { "enemies":[ {"id":"10026", "type":1, "count":2}, {"id":"10034", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10109", "type":0, "count":1} ] },
+                      { "enemies":[ {"id":"10016", "type":1, "count":2}, {"id":"10034", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10116", "type":1, "count":1}, {"id":"10026", "type":1, "count":2} ] } ]
+                    },
+                    { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "sideHPMult":175, "waves":[
+                      { "enemies":[ {"id":"10002", "type":1, "count":2}, {"id":"10017", "type":1, "count":2}, {"id":"10024", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"10117", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"10127", "type":1, "count":1}, {"id":"10038", "type":1, "count":3} ] } ]
+                    }]
+                  },
+                  { "sides":[
+                    { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "sideHPMult":350, "waves":[
+                      { "enemies":[ {"id":"22000", "type":0, "count":2}, {"id":"22001", "type":0, "count":2} ] },
+                      { "enemies":[ {"id":"10126", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"10121", "type":1, "count":1}, {"id":"10104", "type":0, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[1.2, 1.0, 1.0, 0.8, 1.2], "sideHPMult":350, "waves":[
+                      { "enemies":[ {"id":"10020", "type":1, "count":2}, {"id":"10021", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"23102", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"10124", "type":1, "count":1}, {"id":"10122", "type":1, "count":1} ] } ]
+                    }]
+                  },
+                  { "sides":[
+                    { "sideElementMult":[1.2, 1.0, 0.8, 1.0, 1.0], "sideHPMult":350, "waves":[
+                      { "enemies":[ {"id":"22001", "type":1, "count":3} ] },
+                      { "enemies":[ {"id":"15200", "type":0, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[1.2, 0.8, 1.0, 0.8, 1.0], "sideHPMult":350, "waves":[
+                      { "enemies":[ {"id":"20201", "type":0, "count":1} ] } ]
+                    }]
+                  },
+                  { "sides":[
+                    { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.2], "sideHPMult":430, "waves":[
+                      { "enemies":[ {"id":"10116", "type":1, "count":1}, {"id":"10104", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"25200", "type":0, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[1.2, 0.8, 1.2, 0.8, 1.0], "sideHPMult":430, "waves":[
+                      { "enemies":[ {"id":"10136", "type":1, "count":1}, {"id":"10124", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"26202", "type":0, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[0.8, 0.8, 1.2, 1.0, 1.0], "sideHPMult":480, "waves":[
+                      { "enemies":[ {"id":"10105", "type":1, "count":1}, {"id":"10106", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"23203", "type":0, "count":1} ] } ]
+                    }]
+                  }
+                ]
+              }
+            },
+  
+    "2.7.2":{ "versionName":"2.7 Phase 2",
+              "versionTime":"xx/xx/20xx - xx/xx/20xx",
+              "versionDazeMult":100,
+              "versionAnomMult":100,
+              "mainBuffNum": 2,
+              "buffName":["Mecha Wings", "Piercing Thunder Strike", "TBD"],
+              "buffDesc":[
+              "• Agent <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• While in Ether Veil, Agent ATK increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>, and attacks ignore <span style='color:#2bad00;font-weight:bold;'>10%</span> of enemy <span style='color:#fe437e;font-weight:bold;'>Ether RES</span>.",
+              
+              "• Agent <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• Agent <span style='font-weight:bold;'>Basic Attack</span>, <span style='font-weight:bold;'>Special Attack</span>, and <span style='font-weight:bold;'>EX Special Attack</span> deal <span style='color:#2bad00;font-weight:bold;'>40%</span> increased DMG and ignore <span style='color:#2bad00;font-weight:bold;'>15%</span> of enemy <span style='color:#5555ff;font-weight:bold;'>DEF</span>.",
+              
+              "• Agent Max HP increases by <span style='color:#2bad00;font-weight:bold;'>15%</span>, <span style='color:#fe437e;font-weight:bold;'>Ether DMG</span> and <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> increase by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When an Agent activates <span style='font-weight:bold;'>EX Special Attack</span>, their <span style='color:#b4317b;font-weight:bold;'>Sheer DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>15%</span> for 15s. Repeated triggers reset the duration."],
+              "versionEnemies":{ 
+                "nodes":[
+                  { "sides":[
+                    { "sideElementMult":[1.0, 1.0, 0.8, 0.8, 1.0], "sideHPMult":175, "waves":[
+                      { "enemies":[ {"id":"22001", "type":0, "count":3} ] },
+                      { "enemies":[ {"id":"10131", "type":0, "count":1} ] },
+                      { "enemies":[ {"id":"22000", "type":0, "count":2}, {"id":"22001", "type":0, "count":2} ] },
+                      { "enemies":[ {"id":"10131", "type":0, "count":1}, {"id":"22000", "type":0, "count":2} ] } ]
+                    },
+                    { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "sideHPMult":175, "waves":[
+                      { "enemies":[ {"id":"12000", "type":1, "count":3} ] },
+                      { "enemies":[ {"id":"10110", "type":0, "count":1} ] },
+                      { "enemies":[ {"id":"12000", "type":1, "count":2}, {"id":"12002", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"20100", "type":0, "count":1} ] } ]
+                    }]
+                  },
+                  { "sides":[
+                    { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.2], "sideHPMult":175, "waves":[
+                      { "enemies":[ {"id":"10026", "type":1, "count":2}, {"id":"10034", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10109", "type":0, "count":1} ] },
+                      { "enemies":[ {"id":"10016", "type":1, "count":2}, {"id":"10034", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10116", "type":1, "count":1}, {"id":"10026", "type":1, "count":2} ] } ]
+                    },
+                    { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.2], "sideHPMult":175, "waves":[
+                      { "enemies":[ {"id":"10020", "type":1, "count":2}, {"id":"10021", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10107", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"23102", "type":1, "count":1} ] } ]
+                    }]
+                  },
+                  { "sides":[
+                    { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "sideHPMult":350, "waves":[
+                      { "enemies":[ {"id":"22000", "type":0, "count":2}, {"id":"22001", "type":0, "count":2} ] },
+                      { "enemies":[ {"id":"10126", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"10121", "type":1, "count":1}, {"id":"10104", "type":0, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[1.0, 1.0, 1.0, 0.8, 1.2], "sideHPMult":350, "waves":[
+                      { "enemies":[ {"id":"12000", "type":1, "count":3}, {"id":"12002", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"23103", "type":1, "count":1} ] } ]
+                    }]
+                  },
+                  { "sides":[
+                    { "sideElementMult":[1.2, 1.2, 0.8, 1.0, 1.0], "sideHPMult":350, "waves":[
+                      { "enemies":[ {"id":"10126", "type":1, "count":1}, {"id":"10007", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"15201", "type":0, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "sideHPMult":350, "waves":[
+                      { "enemies":[ {"id":"10117", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10212", "type":0, "count":1} ] } ]
+                    }]
+                  },
+                  { "sides":[
+                    { "sideElementMult":[1.2, 1.0, 1.2, 0.8, 1.0], "sideHPMult":480, "waves":[
+                      { "enemies":[ {"id":"10123", "type":1, "count":1}, {"id":"10122", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"20204", "type":0, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[1.0, 1.2, 0.8, 1.2, 0.8], "sideHPMult":480, "waves":[
+                      { "enemies":[ {"id":"10121", "type":1, "count":1}, {"id":"10126", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"21200", "type":0, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[0.8, 0.8, 1.2, 1.0, 1.0], "sideHPMult":430, "waves":[
+                      { "enemies":[ {"id":"20001", "type":1, "count":3} ] },
+                      { "enemies":[ {"id":"10110", "type":1, "count":1}, {"id":"10002", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"23200", "type":0, "count":1} ] } ]
+                    }]
+                  }
+                ]
+              }
+            },
+  
+    "2.7.3":{ "versionName":"2.7 Phase 3",
+              "versionTime":"xx/xx/20xx - xx/xx/20xx",
+              "versionDazeMult":100,
+              "versionAnomMult":100,
+              "mainBuffNum": 2,
+              "buffName":["TBD", "TBD", "TBD"],
+              "buffDesc":[
+              "• Agents' <span style='color:#ffe599;font-weight:bold;'>Daze</span> dealt increases by <span style='color:#2bad00;font-weight:bold;'>10%</span>, <span style='font-weight:bold;'>Ultimate</span> DMG increases by <span style='color:#2bad00;font-weight:bold;'>20%</span>.<br>• When enemies are <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, the whole squad's CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>30%</span> for 30s, repeated triggers reset the duration.",
+              
+              "• When there are 1/2 Agents with <span style='font-weight:bold;'>Attack</span> specialty in the squad, Agents ignore <span style='color:#2bad00;font-weight:bold;'>5%/15%</span> of all DMG RES when hitting enemies.<br>• After triggering a critical hit, the Agent's <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> increases by <span style='color:#2bad00;font-weight:bold;'>20%</span> for 5s. Repeated triggers refresh the duration.",
+              
+              "• Agent <span style='color:#fe437e;font-weight:bold;'>Ether Anomaly Buildup Rate</span> and <span style='color:#98eff0;font-weight:bold;'>Ice Anomaly Buildup Rate</span> increase by <span style='color:#2bad00;font-weight:bold;'>25%</span>.<br>• When Agents inflict an <span style='color:#7756c6;font-weight:bold;'>Attribute Anomaly</span> on enemies, their <span style='color:#5555ff;font-weight:bold;'>DEF</span> is reduced by <span style='color:#2bad00;font-weight:bold;'>10%</span>, and they take <span style='color:#2bad00;font-weight:bold;'>20%</span> more <span style='color:#7756c6;font-weight:bold;'>Attribute Anomaly DMG</span> for 10s. Repeated triggers reset the duration."],
+              "versionEnemies":{ 
+                "nodes":[
+                  { "sides":[
+                    { "sideElementMult":[0.8, 1.0, 1.0, 1.0, 0.8], "sideHPMult":175, "waves":[
+                      { "enemies":[ {"id":"10031", "type":1, "count":2}, {"id":"10028", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10106", "type":0, "count":1}, {"id":"10031", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10105", "type":0, "count":1}, {"id":"10028", "type":1, "count":2} ] } ]
+                    },
+                    { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "sideHPMult":175, "waves":[
+                      { "enemies":[ {"id":"10026", "type":1, "count":3} ] },
+                      { "enemies":[ {"id":"10104", "type":0, "count":1} ] },
+                      { "enemies":[ {"id":"10026", "type":1, "count":2}, {"id":"10034", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10126", "type":0, "count":1} ] } ]
+                    }]
+                  },
+                  { "sides":[
+                    { "sideElementMult":[0.8, 1.0, 1.0, 1.0, 0.8], "sideHPMult":175, "waves":[
+                      { "enemies":[ {"id":"10031", "type":1, "count":3} ] },
+                      { "enemies":[ {"id":"10106", "type":0, "count":1} ] },
+                      { "enemies":[ {"id":"10031", "type":1, "count":2}, {"id":"10028", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10105", "type":0, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.2], "sideHPMult":175, "waves":[
+                      { "enemies":[ {"id":"10026", "type":1, "count":2}, {"id":"10034", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10109", "type":0, "count":1} ] },
+                      { "enemies":[ {"id":"10016", "type":1, "count":2}, {"id":"10034", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10116", "type":1, "count":1}, {"id":"10026", "type":1, "count":2} ] } ]
+                    }]
+                  },
+                  { "sides":[
+                    { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "sideHPMult":350, "waves":[
+                      { "enemies":[ {"id":"12000", "type":1, "count":2}, {"id":"12002", "type":1, "count":3} ] },
+                      { "enemies":[ {"id":"10102", "type":0, "count":1} ] },
+                      { "enemies":[ {"id":"10132", "type":1, "count":1}, {"id":"10113", "type":1, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "sideHPMult":350, "waves":[
+                      { "enemies":[ {"id":"22000", "type":0, "count":2}, {"id":"22001", "type":0, "count":2} ] },
+                      { "enemies":[ {"id":"10126", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"10121", "type":1, "count":1}, {"id":"10104", "type":0, "count":1} ] } ]
+                    }]
+                  },
+                  { "sides":[
+                    { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0], "sideHPMult":350, "waves":[
+                      { "enemies":[ {"id":"17200", "type":0, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[1.0, 1.2, 0.8, 1.0, 1.0], "sideHPMult":350, "waves":[
+                      { "enemies":[ {"id":"10026", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"10218", "type":0, "count":1} ] } ]
+                    }]
+                  },
+                  { "sides":[
+                    { "sideElementMult":[1.2, 0.8, 1.0, 1.2, 0.8], "sideHPMult":430, "waves":[
+                      { "enemies":[ {"id":"10011", "type":1, "count":3} ] },
+                      { "enemies":[ {"id":"20100", "type":1, "count":1}, {"id":"21000", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"25201", "type":0, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[1.2, 0.8, 1.2, 0.8, 1.0], "sideHPMult":480, "waves":[
+                      { "enemies":[ {"id":"22001", "type":1, "count":3} ] },
+                      { "enemies":[ {"id":"25100", "type":1, "count":1}, {"id":"22000", "type":1, "count":2} ] },
+                      { "enemies":[ {"id":"22200", "type":0, "count":1} ] } ]
+                    },
+                    { "sideElementMult":[0.8, 0.8, 1.2, 1.0, 1.0], "sideHPMult":430, "waves":[
+                      { "enemies":[ {"id":"10127", "type":1, "count":1}, {"id":"10102", "type":1, "count":1} ] },
+                      { "enemies":[ {"id":"17200", "type":0, "count":1} ] } ]
+                    }]
+                  }
+                ]
+              }
             }
           }
+          
   }
 ]

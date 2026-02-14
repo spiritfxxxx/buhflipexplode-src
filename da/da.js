@@ -47,6 +47,7 @@ function buildHPData() {
         if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
         if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.045 : (v >= 19 ? 0.025 : 0.03));
         if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * (currEnemyID == "26300" ? 0.03 : 0.015);
+        if (eTags.includes("convert")) alt60kEnemyHP -= eHP * 0.03;
       }
 
       /* add boss appearance to boss hp map */
@@ -181,6 +182,11 @@ function showEnemies() {
         eHPNew -= eHP * (currEnemyID == "26300" ? 0.03 : 0.015);
         color = "#b47ede";
         ttHP.innerHTML += instant(color, "SHUTDOWN!!", (currEnemyID == "26300" ? 2 : 1)) + `<br>`;
+      }
+      if (eTags.includes("convert")) {
+        eHPNew -= eHP * 0.03;
+        color = "#007bb8";
+        ttHP.innerHTML += instant(color, "CONVERT!!", 1) + `<br>`;
       }
       ttHP.innerHTML = alt(color, currEnemyID == "25300" ? (eName.slice(0, 21) + "<br>" + eName.slice(21)) : eName, eHPNew, eHP) + ttHP.innerHTML;
       enemyHP.appendChild(ttHP);

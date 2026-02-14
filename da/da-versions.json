@@ -252,7 +252,7 @@
             "versionDazeMult": 100,
             "versionAnomMult": 110,
             "buffNames": ["Harnessing Change", "Psychics", "Heartcrusher"],
-            "versionEnemies": [ {"id": "26300", "type": 0, "mult": 260}, {"id": "24300", "type": 1, "mult": 180}, {"id": "14301", "type": 1, "mult": 260} ]
+            "versionEnemies": [ {"id": "21300", "type": 0, "mult": 260}, {"id": "24300", "type": 1, "mult": 180}, {"id": "14301", "type": 1, "mult": 260} ]
           },
 
   "2.7.1":{ "versionName":"2.7 Phase 1",

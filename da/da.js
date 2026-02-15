@@ -483,8 +483,8 @@ function changeBoss() {
   for (let v = 0; v < specificHPData[bossDropdown.value].length; ++v) {
     let option1 = document.createElement("option"), option2 = document.createElement("option");
     let verHP = specificHPData[bossDropdown.value][v][0];
-    option1.text = option1.value = `${verHP[0]}.${verHP[2]} Version ${verHP[4]}`;
-    option2.text = option2.value = `${verHP[0]}.${verHP[2]} Version ${verHP[4]}`;
+    option1.text = option1.value = `${verHP[0]}.${verHP[2]} Phase ${verHP[4]}`;
+    option2.text = option2.value = `${verHP[0]}.${verHP[2]} Phase ${verHP[4]}`;
     bossVerDropdown1.appendChild(option1);
     bossVerDropdown2.appendChild(option2);
   }

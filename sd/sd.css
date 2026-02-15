@@ -83,6 +83,12 @@ body.no-scroll {
   font-size: 12px;
   font-style: italic;
 }
+#v-id {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #aaaaaa;
+  font-style: italic;
+}
 
 /* ------------------------------------------------------------------------ NODE ------------------------------------------------------------------------ */
 
@@ -595,6 +601,12 @@ input:checked + #st {
 .vg-c-time {
   margin-top: 5px;
   font-size: 12px;
+  font-style: italic;
+}
+.vg-c-id {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #aaaaaa;
   font-style: italic;
 }
 .vg-c:hover {

@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 30;
+let cntNoLeaks = 30, vBeta = 33;
 let leaksToggle = document.getElementById("lks"), spoilersToggle = document.getElementById("spl");
 let bossDropdown = document.getElementById("b-dd");
 let bossHPCalc1 = document.getElementById("b-hp1"), bossScoreCalc1 = document.getElementById("b-score1"), bossVerDropdown1 = document.getElementById("b-v-dd1");
@@ -68,8 +68,9 @@ async function showVersion() {
   versionAnomMult = currVersion.versionAnomMult;
   versionEnemies = currVersion.versionEnemies;
   buffNames = currVersion.buffNames;
-  document.getElementById("v-name").innerHTML = currVersion.versionName + (versionNum == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``);
+  document.getElementById("v-name").innerHTML = currVersion.versionName + (versionNum == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``) + (versionNum >= vBeta ? `<span style='color:#52a9f7;font-weight:bold;'> (BETA)</span>` : ``);
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
+  document.getElementById("v-id").innerHTML = `ID: 690${versionNum.toString().padStart(2, '0')}${versionNum >= vBeta ? `1` : ``}`;
   showBuffs();
   showEnemies();
 }
@@ -403,13 +404,17 @@ function displayVersionSelectorGrid() {
     let versionButton = document.createElement("div");
     let nameDiv = document.createElement("div");
     let timeDiv = document.createElement("div");
+    let idDiv = document.createElement("div");
     versionButton.className = "vg-c";
     nameDiv.className = "vg-c-name";
     timeDiv.className = "vg-c-time";
-    nameDiv.innerHTML = currVersion.versionName + (v == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``);
+    idDiv.className = "vg-c-id";
+    nameDiv.innerHTML = currVersion.versionName + (v == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``) + (v >= vBeta ? `<span style='color:#52a9f7;font-weight:bold;'> (BETA)</span>` : ``);
     timeDiv.innerHTML = currVersion.versionTime;
+    idDiv.innerHTML = `ID: 690${v.toString().padStart(2, '0')}${v >= vBeta ? `1` : ``}`;
     versionButton.appendChild(nameDiv);
     versionButton.appendChild(timeDiv);
+    versionButton.appendChild(idDiv);
 
     /* make it clickable, and if clicked go to that version */
     versionButton.onclick = () => {

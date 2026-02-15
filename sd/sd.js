@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 41, oldModeNum = 4, modeNum = 4, v25 = 38;
+let cntNoLeaks = 41, oldModeNum = 4, modeNum = 4, v25 = 38, vBeta = 45;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let chartDropdown = document.getElementById("c-dd");
@@ -93,8 +93,9 @@ async function showVersion() {
   versionDazeMult = currVersion.versionDazeMult;
   versionAnomMult = currVersion.versionAnomMult;
   versionEnemies = currVersion.versionEnemies;
-  document.getElementById("v-name").innerHTML = currVersion.versionName + (modeNum == 4 && versionNum == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``);
+  document.getElementById("v-name").innerHTML = currVersion.versionName + (modeNum == 4 && versionNum == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``) + (modeNum == 4 && versionNum >= vBeta ? `<span style='color:#52a9f7;font-weight:bold;'> (BETA)</span>` : ``);
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
+  document.getElementById("v-id").innerHTML = `ID: 620${versionNum.toString().padStart(2, '0')}${versionNum >= vBeta ? `1` : ``}`;
   showNode();
 }
 async function changeVersion(n) {
@@ -554,13 +555,17 @@ function displayVersionSelectorGrid() {
       let versionButton = document.createElement("div");
       let nameDiv = document.createElement("div");
       let timeDiv = document.createElement("div");
+      let idDiv = document.createElement("div");
       versionButton.className = "vg-c";
       nameDiv.className = "vg-c-name";
       timeDiv.className = "vg-c-time";
-      nameDiv.innerHTML = currVersion.versionName + (m == 4 && v == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``);
+      idDiv.className = "vg-c-id";
+      nameDiv.innerHTML = currVersion.versionName + (m == 4 && v == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``) + (m == 4 && v >= vBeta ? `<span style='color:#52a9f7;font-weight:bold;'> (BETA)</span>` : ``);
       timeDiv.innerHTML = currVersion.versionTime;
+      idDiv.innerHTML = `ID: 6${m != 4 ? `1` : `2`}0${m != 4 ? `0${m}` : v.toString().padStart(2, '0')}${v >= vBeta ? `1` : ``}`;
       versionButton.appendChild(nameDiv);
       versionButton.appendChild(timeDiv);
+      versionButton.appendChild(idDiv);
 
       /* make it clickable, and if clicked go to that version */
       versionButton.onclick = () => {

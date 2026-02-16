@@ -710,7 +710,7 @@ input:checked + #st {
   z-index: 1102;
   top: 0;
   right: 0;
-  width: 320px;
+  width: 375px;
   height: 100%;
   position: fixed;
   background-color: #222222;

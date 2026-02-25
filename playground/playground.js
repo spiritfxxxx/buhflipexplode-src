@@ -1,194 +1,5 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-/*let cntNoLeaks = 37, oldModeNum = 4, modeNum = 4, v2_4 = 37;
-let leaksToggle = document.getElementById("lks");
-let spoilersToggle = document.getElementById("spl");
-let oldVersionNum = null, currVersion = null, versionNum = null, nodeNum = null;
-let chartNodeNum = null, oldChartDisplayType = null, chartDisplayType = null, currNumberFormat = null;
-let menuIsOpen = false, versionSelectorIsOpen = false, chartIsOpen = false;
-
-let versionData = null, versionDazeMult = null, versionAnomMult = null, versionEnemies = null, enemyData = null, hpChart = null;
-
-async function loadShiyuPage() {
-  enemyData = await (await fetch("../assets/enemies.json")).json();
-  // console.log(enemyData);
-  // console.log(Object.keys(enemyData).length);
-  
-  let enemyIDs = Object.keys(enemyData);
-
-  let t = document.querySelector("#test");
-  t.innerHTML = "";
-
-  for (let i = 0; i < enemyIDs.length; i++) { 
-    let tt = document.createElement("div");
-    tt.className = "tt";
-
-    let text = document.createElement("div");
-    text.innerHTML = `(${enemyIDs[i]})`;
-    text.className = "id";
-    tt.appendChild(text);
-
-    let imgH = document.createElement("div");
-    imgH.className = "e-hover";
-
-    let img = document.createElement("img");
-    img.className = "e-img";
-    img.src = `../assets/enemies/${enemyData[enemyIDs[i]].image}.webp`;
-    imgH.appendChild(img);
-
-    let name = document.createElement("div");
-    name.className = "e-name";
-    name.innerHTML = (spoilersToggle.checked || enemyData[enemyIDs[i]].tags.includes("spoiler")) ? ("SPOILER " + (enemyIDs[i][2] == '3' ? "BOSS" : "ENEMY")) : enemyData[enemyIDs[i]].name;
-    imgH.appendChild(name);
-
-    tt.appendChild(imgH);
-
-    let eElementMult = enemyData[enemyIDs[i]].elementMult;
-    let enemyWR = document.createElement("div");
-    enemyWR.className = "wr";
-    generateWR(eElementMult, enemyWR);
-    tt.appendChild(enemyWR);
-
-    let hp = document.createElement("div");
-    let hp1 = enemyIDs[i][2] != '3' ? enemyData[enemyIDs[i]].baseHP[0] : enemyData[enemyIDs[i]].baseHP;
-    let hp2 = enemyIDs[i][2] != '3' ? enemyData[enemyIDs[i]].baseHP[1] : enemyData[enemyIDs[i]].baseHP;
-    hp.className = "e-hp";
-    hp.innerHTML = hp1 + " / " + hp2;
-    tt.appendChild(hp);
-
-    let def = document.createElement("div");
-    def.innerHTML = enemyData[enemyIDs[i]].baseDef;
-    def.className = "e-def";
-    tt.appendChild(def);
-
-    let ttMiscStat = document.createElement("div");
-    ttMiscStat.className = "tt-e-stat";
-    let d1 = enemyIDs[i][2] != '3' ? enemyData[enemyIDs[i]].baseDaze[0] : enemyData[enemyIDs[i]].baseDaze;
-    let d2 = enemyIDs[i][2] != '3' ? enemyData[enemyIDs[i]].baseDaze[1] : enemyData[enemyIDs[i]].baseDaze;
-    ttMiscStat.innerHTML = `+<span class="tt-text">${generateEnemyStats(d1, d2, enemyData[enemyIDs[i]].stunMult, enemyData[enemyIDs[i]].stunTime, enemyData[enemyIDs[i]].baseAnom, eElementMult, enemyData[enemyIDs[i]].mods)}</span>`;
-    tt.appendChild(ttMiscStat);
-
-    t.appendChild(tt);
-  }
-}
-
-let elementsData = ["ice", "fire", "electric", "ether", "physical"];
-
-function generateWR(mult, wr) {
-  let weakImg1 = document.createElement("img");
-  let weakImg2 = document.createElement("img");
-  let resImg1 = document.createElement("img");
-  let resImg2 = document.createElement("img");
-  weakImg1.className = "wk";
-  weakImg2.className = "wk";
-  resImg1.className = "res";
-  resImg2.className = "res";
-  weakImg1.src = "../assets/elements/none.webp";
-  weakImg2.src = "../assets/elements/none.webp";
-  resImg1.src = "../assets/elements/none.webp";
-  resImg2.src = "../assets/elements/none.webp";
-  let wkCnt = 0, resCnt = 0;
-  for (let i = 0; i < 5; ++i) {
-    if (mult[i] < 1 && wkCnt == 0) { weakImg1.src = `../assets/elements/${elementsData[i]}.webp`; ++wkCnt;}
-    else if (mult[i] < 1 && wkCnt == 1) weakImg2.src = `../assets/elements/${elementsData[i]}.webp`;
-    else if (mult[i] > 1 && resCnt == 0) { resImg1.src = `../assets/elements/${elementsData[i]}.webp`; ++resCnt; }
-    else if (mult[i] > 1 && resCnt == 1) resImg2.src = `../assets/elements/${elementsData[i]}.webp`;
-  }
-  wr.appendChild(weakImg1);
-  wr.appendChild(weakImg2);
-  wr.appendChild(resImg1);
-  wr.appendChild(resImg2);
-}
-
-function alt(color, name, hpNew, hp) {
-  return `<span style="color:${color};">✦</span><span class="tt-text">
-    <span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
-    <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hpNew))}</span><br>
-    <span style="font-weight:bold;">(assume ${Math.round(hpNew / hp * 1000) / 10}% of HP)</span><br><br>`;
-}
-function hitch(hp) {
-  return `<span style="color:#ffffff;">✦</span><span class="tt-text">
-    <span style="font-weight:bold;text-decoration:underline;">Hitchspiker</span><br>
-    True <span style="color:#ff5555;font-weight:bold;">Raw HP</span>: <span style="color:#ff5555;font-weight:bold;">${numberFormat(hp)}</span><br><br>
-    technically doesn't<br>need to be killed</span>`;
-}
-function palicus() { return `hit both 50% of the time</span>`; }
-function instant(color, type, cnt) { return `<span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)</span>`; }
-
-function generateEnemyStats(daze1, daze2, stun, time, anom, dmg, mods) {
-  let anomMult = [1, 1, 1, 1, 1.2];
-  let color = ["#98eff0", "#ff5521", "#2eb6ff", "#fe437e", "#f0d12b"];
-  let stats = `<span style="font-weight:bold;">Max Daze: <span style="color:#ffe599;">${Math.round(daze1 * 10000) / 10000} / ${Math.round(daze2 * 10000) / 10000}</span></span><br>
-    (<span style="color:#ffe599;font-weight:bold;">${stun}%</span> DMG for <span style="color:#ffe599;font-weight:bold;">${time}s</span>)<br><br>`;
-  if (mods.includes("no-anom")) return stats + `<span style="font-weight:bold;">IMMUNE TO ANOMALY</span>`;
-  else {
-    stats += `<span style="font-weight:bold;">Max Anomaly Buildup:</span><br>`;
-    for (let i = 0; i < 5; ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * dmg[i] * 100) / 100}</span>/`;
-    stats = stats.slice(0, -1) + `<br>${mods.includes("no-freeze") ? `<span style="color:#98eff0;font-weight:bold;">UNFREEZABLE</span>` : ``}`;
-  }
-  return stats;
-}
-
-function toggleMenu() {
-  let menuBar = document.getElementById("mb");
-  let menuBarOverlay = document.getElementById("mb-o");
-  let fixedMenuButton = document.getElementById("open-mb-btn");
-  if (menuIsOpen) {
-    document.body.classList.remove("no-scroll");
-    menuBar.style.display = "none";
-    menuBarOverlay.style.display = "none";
-    fixedMenuButton.style.display = "none";
-  }
-  else {
-    document.body.classList.add("no-scroll");
-    menuBar.style.display = "block";
-    menuBarOverlay.style.display = "block";
-    fixedMenuButton.style.display = "block";
-  }
-  menuIsOpen = !menuIsOpen;
-}
-
-function updateNumberFormat(e) {
-  if (e) currNumberFormat = e.dataset.format;
-  let ex = document.getElementById("ex-num");
-  let numFormatButtons = document.querySelectorAll(".nfb");
-  ex.innerHTML = numberFormat(2222222);
-  numFormatButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == currNumberFormat));
-  showNode();
-  displayHPChart();
-}
-function numberFormat(num) {
-  if (currNumberFormat == "comma") return num.toLocaleString("en-US");
-  if (currNumberFormat == "period") return num.toLocaleString("de-DE");
-  return num;
-}
-
-document.addEventListener("keydown", (e) => {
-  e.stopPropagation();
-  if (e.key == "Escape") { e.preventDefault(); chartIsOpen ? toggleChart() : (versionSelectorIsOpen ? toggleVersionSelector() : toggleMenu()); }
-  else if (e.key == " " && !menuIsOpen && !chartIsOpen) { e.preventDefault(); toggleVersionSelector(); }
-  else if (e.key == "Backspace" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); toggleChart(); }
-  else if (e.key == "ArrowLeft" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }
-  else if (e.key == "ArrowRight" && !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(1); }
-  else if (e.key == "ArrowUp") { e.preventDefault(); !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen ? changeNode(1) : changeChartNode(1) }
-  else if (e.key == "ArrowDown") { e.preventDefault(); !menuIsOpen && !chartIsOpen && !versionSelectorIsOpen ? changeNode(-1) : changeChartNode(-1) }
-  return;
-});
-
-leaksToggle.addEventListener("change", () => {
-  if (!leaksToggle.checked) {
-    spoilersToggle.checked = false;
-    if (versionNum > cntNoLeaks) versionNum = cntNoLeaks;
-  }
-  showVersion();
-});
-spoilersToggle.addEventListener("change", () => {
-  if (spoilersToggle.checked) leaksToggle.checked = true;
-  showEnemies();
-});*/
-
-/* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
-
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let currNumberFormat = null, menuIsOpen = false;
@@ -197,7 +8,7 @@ let enemyData = null;
 let elementsData = ["ice", "fire", "electric", "ether", "physical"];
 
 /* load main page data from .json files, and display */
-async function loadShiyuPage() {
+async function loadPlaygroundPage() {
   enemyData = await (await fetch("../assets/enemies.json")).json();
   loadSavedState();
   updateNumberFormat();
@@ -228,7 +39,7 @@ function showEnemies() {
     /* define current enemy's various stats */
     let eHP1 = currEnemyData.baseHP[0];
     let eHP2 = currEnemyData.baseHP[1];
-    let eDef = currEnemyData.baseDef;
+    let eDEF = currEnemyData.baseDEF;
     let eDaze1 = currEnemyData.baseDaze[0];
     let eDaze2 = currEnemyData.baseDaze[1];
     let eStunMult = currEnemyData.stunMult;
@@ -326,6 +137,12 @@ function showEnemies() {
           color = "#b47ede";
           ttHP.innerHTML += instant(color, "SHUTDOWN!!", currEnemyID == "26300" ? 2 : 1) + `<br>`;
         }
+        if (eTags.includes("convert")) {
+          eHPNew1 -= eHP1 * 0.03;
+          eHPNew2 -= eHP2 * 0.03;
+          color = "#007bb8";
+          ttHP.innerHTML += instant(color, "CONVERT!!", 1) + `<br>`;
+        }
         ttHP.innerHTML = alt(color, currEnemyID == "25300" ? (eName.slice(0, 21) + "<br>" + eName.slice(21)) : eName, eHPNew1, eHPNew2, eHP1) + ttHP.innerHTML;
       }
       enemyHP.appendChild(ttHP);
@@ -335,7 +152,7 @@ function showEnemies() {
     /* add enemy def display */
     let enemyDef = document.createElement("div");
     enemyDef.className = "e-def";
-    enemyDef.innerHTML = Math.ceil(eDef);
+    enemyDef.innerHTML = Math.ceil(eDEF);
     enemy.appendChild(enemyDef);
 
     /* add enemy misc stat tooltip */
@@ -406,7 +223,7 @@ function generateEnemyStats(daze1, daze2, stun, time, anom, dmg, mods) {
   if (mods.includes("no-anom")) return stats + `<span style="font-weight:bold;">IMMUNE TO ANOMALY</span>`;
   else {
     stats += `<span style="font-weight:bold;">Max Anomaly Buildup:</span><br>`;
-    for (let i = 0; i < 5; ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * dmg[i] * 100) / 100}</span>/`;
+    for (let i = 0; i < 5; ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * (1 / (2 - dmg[i])) * 100) / 100}</span>/`;
     stats = stats.slice(0, -1) + `<br>${mods.includes("no-freeze") ? `<span style="color:#98eff0;font-weight:bold;">UNFREEZABLE</span>` : ``}`;
   }
   return stats;
@@ -487,4 +304,4 @@ spoilersToggle.addEventListener("change", () => {
 
 /* ----------------------------------------------------------------------------- MAIN ----------------------------------------------------------------------- */
 
-window.addEventListener("DOMContentLoaded", async () => { await loadShiyuPage(); });
+window.addEventListener("DOMContentLoaded", async () => { await loadPlaygroundPage(); });

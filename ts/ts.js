@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 2, oldModeNum = 2, modeNum = 2, v26 = 2;
+let cntNoLeaks = 2, oldModeNum = 2, modeNum = 2, v26 = 2, vBeta = 3;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let oldVersionNum, versionNum, nodeNum, maxNode, endingNum, currNumberFormat;
@@ -18,7 +18,7 @@ let post26HardNodeLvlData = [60, 65, 70, 70, 70];
 /* new full list of numbers thanks to Dimbreath's database */
 let nodeEnemyHPMult = [100,116,135,157,181,193,206,220,235,271,291,314,338,364,419,431,444,458,472,543,618,703,801,912,1049,1111,1176,1246,1320,1518,1609,1706,1809,1919,2207,2320,2440,2566,2698,3103,3404,3734,4097,4494,5169,5591,6049,6544,7079,8141,8826,9569,10374,11246,12934,13260,13595,13938,14290,16434,16774,17121,17475,17837,18206,18583,18968,19361,19761,21738];
 let nodeBossHPMult = [100,116,135,157,181,193,206,220,235,271,291,314,338,364,419,431,444,458,472,543,618,703,801,912,1049,1134,1227,1328,1437,1653,1792,1942,2106,2283,2626,2865,3126,3411,3722,4281,4717,5197,5727,6311,7258,7691,8151,8637,9153,10527,11227,11975,12772,13623,15667,15957,16252,16553,16860,19389,19716,20049,20387,20731,21081,21437,21799,22167,22541,24795];
-let nodeDefMult = [100,108,116,124,132,142,152,164,176,188,200,214,228,242,258,274,290,306,324,344,362,382,402,422,444,466,490,512,536,562,586,612,638,666,694,722,750,780,810,842,872,904,938,970,1004,1038,1074,1110,1146,1184,1220,1258,1298,1338,1378,1418,1460,1502,1544,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588];
+let nodeDEFMult = [100,108,116,124,132,142,152,164,176,188,200,214,228,242,258,274,290,306,324,344,362,382,402,422,444,466,490,512,536,562,586,612,638,666,694,722,750,780,810,842,872,904,938,970,1004,1038,1074,1110,1146,1184,1220,1258,1298,1338,1378,1418,1460,1502,1544,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588];
 let nodeDazeMult = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,101,102,103,104,104,105,106,107,108,110,113,115,118,120,123,125,128,130,133,137,142,146,151,155,160,164,169,173,178,180,183,186,189,192,195,197,200,203,206,209,212,215,217,220,223,226,229,232,235];
 
 let elementsData = ["ice", "fire", "electric", "ether", "physical"];
@@ -113,7 +113,7 @@ async function showVersion() {
   versionBossAnomMult = currVersion.versionBossAnomMult;
   versionEnemyAnomMult = currVersion.versionEnemyAnomMult;
   versionEnemies = currVersion.versionEnemies;
-  document.getElementById("v-name").innerHTML = currVersion.versionName + (modeNum == 2 && versionNum == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``);
+  document.getElementById("v-name").innerHTML = currVersion.versionName + (modeNum == 2 && versionNum == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``) + (modeNum == 2 && versionNum >= vBeta ? `<span style='color:#52a9f7;font-weight:bold;'> (BETA)</span>` : ``);
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
   showNode();
 }
@@ -238,6 +238,7 @@ function showEnemies() {
         let currEnemy = currWave.enemies[e - 1];
         let currEnemyID = currEnemy.id;
         let currEnemyType = currEnemy.type;
+        let currEnemyCount = currEnemy.count;
         let currEnemyData = enemyData[currEnemyID];
 
         /* define current enemy's parameters */
@@ -249,134 +250,138 @@ function showEnemies() {
 
         /* define current enemy's various stats */
         let eHP = (s == 1 ? Math.floor : Math.round)(sideHPMult * currEnemyData.baseHP[currEnemyType] * (s == 1 ? 8.74 : 1) * (s == 1 ? nodeBossHPMult : nodeEnemyHPMult)[nodeLvlData[nodeNum - 1] - 1] / 10000);
-        let eDef = currEnemyData.baseDef * nodeDefMult[nodeLvlData[nodeNum - 1] - 1] / 100;
+        let eDEF = currEnemyData.baseDEF * nodeDEFMult[nodeLvlData[nodeNum - 1] - 1] / 100;
         let eDaze = currEnemyData.baseDaze[currEnemyType] * nodeDazeMult[nodeLvlData[nodeNum - 1] - 1] * (currEnemyID == "24300" ? 0.8 : 1) / 100;
         let eStunMult = currEnemyData.stunMult;
         let eStunTime = currEnemyData.stunTime;
         let eAnom = currEnemyData.baseAnom;
         let eElementMult = currEnemyData.elementMult;
 
-        /* loop each enemy appearance */ 
-        for (let cnt = 1; cnt <= currEnemy.count; ++cnt) {
-          /* add enemy display */
-          let enemy = document.createElement("div");
-          enemy.className = "e";
-          
-          let enemyImg = document.createElement("img");
-          let enemyName = document.createElement("div");
-          let enemyHover = document.createElement("div");
-          enemyImg.className = "e-img";
+        /* add enemy display */
+        let enemy = document.createElement("div");
+        enemy.className = "e";
+        
+        let enemyImg = document.createElement("img");
+        let enemyName = document.createElement("div");
+        let enemyHover = document.createElement("div");
+        enemyImg.className = "e-img";
 
-          enemyName.className = "e-name";
-          enemyHover.className = "e-hover";
-          enemyImg.src = eImg;
-          enemyHover.appendChild(enemyImg);
-          enemyName.innerHTML = eName;
-          enemyHover.appendChild(enemyName);
-          enemy.appendChild(enemyHover);
+        enemyName.className = "e-name";
+        enemyHover.className = "e-hover";
+        enemyImg.src = eImg;
+        enemyHover.appendChild(enemyImg);
+        enemyName.innerHTML = eName;
+        enemyHover.appendChild(enemyName);
+        enemy.appendChild(enemyHover);
 
-          let enemyWR = document.createElement("div");
-          enemyWR.className = "wr";
-          generateWR(eElementMult, enemyWR, s);
-          enemy.appendChild(enemyWR);
+        if (currEnemyCount > 1) {
+          let enemyCount = document.createElement("div");
+          enemyCount.className = "e-count";
+          enemyCount.innerHTML = `x${currEnemyCount}`;
+          enemyHover.appendChild(enemyCount);
+        }
 
-          /* add enemy hp display */
-          let enemyHP = document.createElement("div");
-          enemyHP.className = "e-hp";
-          enemyHP.innerHTML = numberFormat(eHP);
-          /* add special enemy tooltip (if necessary) */
-          if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
-            let ttHP = document.createElement("div");
-            ttHP.className = "tt-e-hp";
+        let enemyWR = document.createElement("div");
+        enemyWR.className = "wr";
+        generateWR(eElementMult, enemyWR, s);
+        enemy.appendChild(enemyWR);
 
-            /* set tooltip to be smaller */
-            if (s >= 2) { ttHP.style.fontSize = "36px"; ttHP.style.top = "-19px"; ttHP.style.right = "87px"; }
+        /* add enemy hp display */
+        let enemyHP = document.createElement("div");
+        enemyHP.className = "e-hp";
+        enemyHP.innerHTML = numberFormat(eHP);
+        /* add special enemy tooltip (if necessary) */
+        if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
+          let ttHP = document.createElement("div");
+          ttHP.className = "tt-e-hp";
 
-            if (eTags.includes("hitch")) {
-              ttHP.innerHTML = hitch(eHP) + `<br>`;
-              enemyHP.innerHTML = numberFormat(1);
+          /* set tooltip to be smaller */
+          if (s >= 2) { ttHP.style.fontSize = "36px"; ttHP.style.top = "-19px"; ttHP.style.right = "87px"; }
+
+          if (eTags.includes("hitch")) {
+            ttHP.innerHTML = hitch(eHP) + `<br>`;
+            enemyHP.innerHTML = numberFormat(1);
+          }
+          else {
+            let eHPNew = eHP;
+            let color = "#ffffff";
+
+            if (eTags.includes("palicus")) {
+              eHPNew -= eHP * 0.25;
+              color = "#93c47d";
+              ttHP.innerHTML += palicus(eHPNew) + `<br>`;
             }
-            else {
-              let eHPNew = eHP;
-              let color = "#ffffff";
-
-              if (eTags.includes("palicus")) {
-                eHPNew -= eHP * 0.25;
-                color = "#93c47d";
-                ttHP.innerHTML += palicus(eHPNew) + `<br>`;
-              }
-              if (eTags.includes("robot")) {
-                eHPNew -= eHP * 0.1;
-                color = "#ca9a00";
-                ttHP.innerHTML += instant(color, "IMPAIRED!!", 2) + `<br>`;
-              }
-              if (eTags.includes("brute")) {
-                eHPNew -= eHP * 0.08;
-                color = "#ca9a00";
-                ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
-              }
-              if (eTags.includes("ucc")) {
-                eHPNew -= eHP * 0.036;
-                color = "#ca9a00";
-                ttHP.innerHTML += instant(color, "IMPAIRED!!", 3) + ` on<br>legs, 3 time(s) on core<br>`;
-              }
-              if (eTags.includes("hunter")) {
-                eHPNew -= eHP * 0.01;
-                color = "#ca9a00";
-                ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
-              }
-              if (eTags.includes("miasma")) {
-                eHPNew -= eHP * (currEnemyID[2] != '3' ? 0.15 : (currEnemyID == "25300" ? 0.045 : 0.025));
-                color = "#b4317b";
-                ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 3 : 1) + `<br>`;
-              }
-              if (eTags.includes("shutdown")) {
-                eHPNew -= eHP * (currEnemyID == "26300" ? 0.03 : 0.015);
-                color = "#b47ede";
-                ttHP.innerHTML += instant(color, "SHUTDOWN!!", (currEnemyID == "26300" ? 2 : 1)) + `<br>`;
-              }
-              if (eTags.includes("convert")) {
-                eHPNew -= eHP * 0.03;
-                color = "#007bb8";
-                ttHP.innerHTML += instant(color, "CONVERT!!", 1) + `<br>`;
-              }
-              ttHP.innerHTML = alt(color, currEnemyID == "25300" ? (eName.slice(0, 21) + "<br>" + eName.slice(21)) : eName, eHPNew, eHP) + ttHP.innerHTML;
+            if (eTags.includes("robot")) {
+              eHPNew -= eHP * 0.1;
+              color = "#ca9a00";
+              ttHP.innerHTML += instant(color, "IMPAIRED!!", 2) + `<br>`;
             }
-            enemyHP.appendChild(ttHP);
+            if (eTags.includes("brute")) {
+              eHPNew -= eHP * 0.08;
+              color = "#ca9a00";
+              ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
+            }
+            if (eTags.includes("ucc")) {
+              eHPNew -= eHP * 0.036;
+              color = "#ca9a00";
+              ttHP.innerHTML += instant(color, "IMPAIRED!!", 3) + ` on<br>legs, 3 time(s) on core<br>`;
+            }
+            if (eTags.includes("hunter")) {
+              eHPNew -= eHP * 0.01;
+              color = "#ca9a00";
+              ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
+            }
+            if (eTags.includes("miasma")) {
+              eHPNew -= eHP * (currEnemyID[2] != '3' ? 0.15 : (currEnemyID == "25300" ? 0.045 : 0.025));
+              color = "#b4317b";
+              ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 3 : 1) + `<br>`;
+            }
+            if (eTags.includes("shutdown")) {
+              eHPNew -= eHP * (currEnemyID == "26300" ? 0.03 : 0.015);
+              color = "#b47ede";
+              ttHP.innerHTML += instant(color, "SHUTDOWN!!", (currEnemyID == "26300" ? 2 : 1)) + `<br>`;
+            }
+            if (eTags.includes("convert")) {
+              eHPNew -= eHP * 0.03;
+              color = "#007bb8";
+              ttHP.innerHTML += instant(color, "CONVERT!!", 1) + `<br>`;
+            }
+            ttHP.innerHTML = alt(color, currEnemyID == "25300" ? (eName.slice(0, 21) + "<br>" + eName.slice(21)) : eName, eHPNew, eHP) + ttHP.innerHTML;
           }
-          enemy.appendChild(enemyHP);
+          enemyHP.appendChild(ttHP);
+        }
+        enemy.appendChild(enemyHP);
 
-          /* add enemy def display */
-          let enemyDef = document.createElement("div");
-          enemyDef.className = "e-def";
-          enemyDef.innerHTML = Math.ceil(eDef);
-          enemy.appendChild(enemyDef);
+        /* add enemy def display */
+        let enemyDef = document.createElement("div");
+        enemyDef.className = "e-def";
+        enemyDef.innerHTML = Math.ceil(eDEF);
+        enemy.appendChild(enemyDef);
 
-          /* add enemy misc stat tooltip */
-          let ttMiscStat = document.createElement("div");
-          ttMiscStat.className = "tt-e-stat";
-          ttMiscStat.innerHTML = `+</span><span class="tt-text">${generateEnemyStats((currEnemyID[2] == '3' ? versionBossDazeMult : versionEnemyDazeMult) / 100 * eDaze, eStunMult, eStunTime, (currEnemyID[2] == '3' ? versionBossAnomMult : versionEnemyAnomMult) / 100 * eAnom, eElementMult, eMods)}</span>`;
-          enemy.appendChild(ttMiscStat);
-          
-          /* change image formatting for bosses/enemies */
-          if (s >= 2) {
-            enemyImg.style.height = enemyHover.style.maxHeight = enemyHover.style.width = "108px";
-            enemyName.style.fontSize = enemyHP.style.fontSize = enemyDef.style.fontSize = "12px";
-            waveEnemies.style.padding = "15px";
-          }
+        /* add enemy misc stat tooltip */
+        let ttMiscStat = document.createElement("div");
+        ttMiscStat.className = "tt-e-stat";
+        ttMiscStat.innerHTML = `+</span><span class="tt-text">${generateEnemyStats((currEnemyID[2] == '3' ? versionBossDazeMult : versionEnemyDazeMult) / 100 * eDaze, eStunMult, eStunTime, (currEnemyID[2] == '3' ? versionBossAnomMult : versionEnemyAnomMult) / 100 * eAnom, eElementMult, eMods)}</span>`;
+        enemy.appendChild(ttMiscStat);
+        
+        /* change image formatting for bosses/enemies */
+        if (s >= 2) {
+          enemyImg.style.height = enemyHover.style.maxHeight = enemyHover.style.width = "108px";
+          enemyName.style.fontSize = enemyHP.style.fontSize = enemyDef.style.fontSize = "12px";
+          waveEnemies.style.padding = "15px";
+        }
 
-          waveEnemies.appendChild(enemy);
+        waveEnemies.appendChild(enemy);
 
-          /* add enemy stage description */
-          if (side == boss && currEnemyID[2] == '3') {
-            document.querySelector(".esd")?.remove();
-            let stageDesc = document.createElement("div");
-            stageDesc.className = "esd";
-            stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}` : `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}`;
-            stageDesc.innerHTML += `<br><br>• When an extra score multiplier is active in this stage, the <span style='color:#ffaf2c;font-weight:bold;'>Performance Points</span> cap will increase accordingly.`;
-            stageDesc.innerHTML += `${currEnemyID[0] == '2' || currEnemyID == "14303" || (currEnemyID == "14302") ? `<br><br>${currEnemyData.misc}` : ``}`;
-            boss.parentElement.appendChild(stageDesc);
-          }
+        /* add enemy stage description */
+        if (side == boss && currEnemyID[2] == '3') {
+          document.querySelector(".esd")?.remove();
+          let stageDesc = document.createElement("div");
+          stageDesc.className = "esd";
+          stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}` : `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}`;
+          stageDesc.innerHTML += `<br><br>• When an extra score multiplier is active in this stage, the <span style='color:#ffaf2c;font-weight:bold;'>Performance Points</span> cap will increase accordingly.`;
+          stageDesc.innerHTML += `${currEnemyID[0] == '2' || currEnemyID == "14303" || (currEnemyID == "14302") ? `<br><br>${currEnemyData.misc}` : ``}`;
+          boss.parentElement.appendChild(stageDesc);
         }
       }
       wave.appendChild(waveEnemies);
@@ -453,7 +458,7 @@ function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
   if (mods.includes("no-anom")) return stats + `<span style="font-weight:bold;">IMMUNE TO ANOMALY</span>`;
   else {
     stats += `<span style="font-weight:bold;">Max Anomaly Buildup:</span><br>`;
-    for (let i = 0; i < 5; ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * dmg[i] * 100) / 100}</span>/`;
+    for (let i = 0; i < 5; ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * (1 / (2 - dmg[i])) * 100) / 100}</span>/`;
     stats = stats.slice(0, -1) + `<br>${mods.includes("no-freeze") ? `<span style="color:#98eff0;font-weight:bold;">UNFREEZABLE</span>` : ``}`;
   }
   return stats;
@@ -595,7 +600,7 @@ function displayVersionSelectorGrid() {
       versionButton.className = "vg-c";
       nameDiv.className = "vg-c-name";
       timeDiv.className = "vg-c-time";
-      nameDiv.innerHTML = currVersion.versionName + (m == 2 && v == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``);
+      nameDiv.innerHTML = currVersion.versionName + (m == 2 && v == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``) + (m == 2 && v >= vBeta ? `<span style='color:#52a9f7;font-weight:bold;'> (BETA)</span>` : ``);
       timeDiv.innerHTML = currVersion.versionTime;
       versionButton.appendChild(nameDiv);
       versionButton.appendChild(timeDiv);

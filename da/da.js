@@ -124,7 +124,7 @@ function showEnemies() {
 
     /* define current enemy's various stats */
     let eHP = Math.floor(8.74 * currEnemyData.baseHP[currEnemyType] * 24795 * currEnemy.mult / 10000);
-    let eDef = currEnemyData.baseDef * 1588 / 100;
+    let eDEF = currEnemyData.baseDEF * 1588 / 100;
     let eDaze = currEnemyData.baseDaze[currEnemyType] * 2.35 * (currEnemyID == "24300" ? 0.8 : 1);
     let eStunMult = currEnemyData.stunMult;
     let eStunTime = currEnemyData.stunTime;
@@ -197,7 +197,7 @@ function showEnemies() {
     /* add enemy def display */
     let enemyDef = document.createElement("div");
     enemyDef.className = "e-def";
-    enemyDef.innerHTML = Math.ceil(eDef);
+    enemyDef.innerHTML = Math.ceil(eDEF);
     enemy.appendChild(enemyDef);
 
     /* add enemy misc stat tooltip */
@@ -274,7 +274,7 @@ function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
   if (mods.includes("no-anom")) return stats + `<span style="font-weight:bold;">IMMUNE TO ANOMALY</span>`;
   else {
     stats += `<span style="font-weight:bold;">Max Anomaly Buildup:</span><br>`;
-    for (let i = 0; i < 5; ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * dmg[i] * 100) / 100}</span>/`;
+    for (let i = 0; i < 5; ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * (1 / (2 - dmg[i])) * 100) / 100}</span>/`;
     stats = stats.slice(0, -1) + `<br>${mods.includes("no-freeze") ? `<span style="color:#98eff0;font-weight:bold;">UNFREEZABLE</span>` : ``}`;
   }
   return stats;

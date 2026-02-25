@@ -190,7 +190,9 @@ body.no-scroll {
 /* wave's enemies in a row */
 .e {
   padding: 5px;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
 }
 .e-img {

@@ -276,6 +276,6 @@
             "versionDazeMult": 100,
             "versionAnomMult": 110,
             "buffNames": ["Meditation", "Mutation", "2.7 Buff 3"],
-            "versionEnemies": [ {"id": "26300", "type": 0, "mult": 270}, {"id": "23300", "type": 0, "mult": 200}, {"id": "22300", "type": 1, "mult": 270} ]
+            "versionEnemies": [ {"id": "26300", "type": 1, "mult": 270}, {"id": "23300", "type": 0, "mult": 200}, {"id": "22300", "type": 1, "mult": 270} ]
           }
 }

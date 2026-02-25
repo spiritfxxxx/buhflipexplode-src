@@ -263,8 +263,21 @@ body.no-scroll {
 /* wave's enemies in a row */
 .e {
   padding: 5px;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
+}
+.e-count {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 2px 4px;
+  background: #dddddd;
+  color: #000000;
+  font-weight: bold;
+  border-radius: 4px;
+  font-size: 14px;
 }
 .e-img {
   height: 108px;

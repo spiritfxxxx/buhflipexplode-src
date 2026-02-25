@@ -19,7 +19,7 @@ let post25CriticalNodeLvlData = [50, 55, 60, 65, 70];
 
 /* new full list of numbers thanks to Dimbreath's database */
 let nodeHPMult = [100,116,135,157,181,193,206,220,235,271,291,314,338,364,419,431,444,458,472,543,618,703,801,912,1049,1134,1227,1328,1437,1653,1792,1942,2106,2283,2626,2865,3126,3411,3722,4281,4717,5197,5727,6311,7258,7691,8151,8637,9153,10527,11227,11975,12772,13623,15667,15957,16252,16553,16860,19389,19716,20049,20387,20731,21081,21437,21799,22167,22541,24795];
-let nodeDefMult = [100,108,116,124,132,142,152,164,176,188,200,214,228,242,258,274,290,306,324,344,362,382,402,422,444,466,490,512,536,562,586,612,638,666,694,722,750,780,810,842,872,904,938,970,1004,1038,1074,1110,1146,1184,1220,1258,1298,1338,1378,1418,1460,1502,1544,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588];
+let nodeDEFMult = [100,108,116,124,132,142,152,164,176,188,200,214,228,242,258,274,290,306,324,344,362,382,402,422,444,466,490,512,536,562,586,612,638,666,694,722,750,780,810,842,872,904,938,970,1004,1038,1074,1110,1146,1184,1220,1258,1298,1338,1378,1418,1460,1502,1544,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588];
 let nodeDazeMult = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,101,102,103,104,104,105,106,107,108,110,113,115,118,120,123,125,128,130,133,137,142,146,151,155,160,164,169,173,178,180,183,186,189,192,195,197,200,203,206,209,212,215,217,220,223,226,229,232,235];
 
 let elementsData = ["ice", "fire", "electric", "ether", "physical"];
@@ -243,6 +243,7 @@ function showEnemies() {
         let currEnemy = currWave.enemies[e - 1];
         let currEnemyID = currEnemy.id;
         let currEnemyType = currEnemy.type;
+        let currEnemyCount = currEnemy.count;
         let currEnemyData = enemyData[currEnemyID];
 
         /* define current enemy's parameters */
@@ -254,92 +255,96 @@ function showEnemies() {
 
         /* define current enemy's various stats */
         let eHP = Math.round(sideHPMult * currEnemyData.baseHP[currEnemyType] * nodeHPMult[nodeLvlData[nodeNum - 1] - 1] / 10000);
-        let eDef = currEnemyData.baseDef * nodeDefMult[nodeLvlData[nodeNum - 1] - 1] / 100;
+        let eDEF = currEnemyData.baseDEF * nodeDEFMult[nodeLvlData[nodeNum - 1] - 1] / 100;
         let eDaze = currEnemyData.baseDaze[currEnemyType] * nodeDazeMult[nodeLvlData[nodeNum - 1] - 1] / 100 * (modeNum == 1 && nodeNum == 7 ? 0.97 : 1);
         let eStunMult = currEnemyData.stunMult;
         let eStunTime = currEnemyData.stunTime;
         let eAnom = currEnemyData.baseAnom;
         let eElementMult = currEnemyData.elementMult;
 
-        /* loop each enemy appearance */ 
-        for (let cnt = 1; cnt <= currEnemy.count; ++cnt) {
-          /* add enemy display */
-          let enemy = document.createElement("div");
-          enemy.className = "e";
-          
-          let enemyImg = document.createElement("img");
-          let enemyName = document.createElement("div");
-          let enemyHover = document.createElement("div");
-          enemyImg.className = "e-img";
-          enemyName.className = "e-name";
-          enemyHover.className = "e-hover";
-          enemyImg.src = eImg;
-          enemyHover.appendChild(enemyImg);
-          enemyName.innerHTML = eName;
-          enemyHover.appendChild(enemyName);
-          enemy.appendChild(enemyHover);
+        /* add enemy display */
+        let enemy = document.createElement("div");
+        enemy.className = "e";
+        
+        let enemyImg = document.createElement("img");
+        let enemyName = document.createElement("div");
+        let enemyHover = document.createElement("div");
+        enemyImg.className = "e-img";
+        enemyName.className = "e-name";
+        enemyHover.className = "e-hover";
+        enemyImg.src = eImg;
+        enemyHover.appendChild(enemyImg);
+        enemyName.innerHTML = eName;
+        enemyHover.appendChild(enemyName);
+        enemy.appendChild(enemyHover);
 
-          let enemyWR = document.createElement("div");
-          enemyWR.className = "wr";
-          generateWR(eElementMult, enemyWR);
-          enemy.appendChild(enemyWR);
-
-          /* add enemy hp display */
-          let enemyHP = document.createElement("div");
-          enemyHP.className = "e-hp";
-          enemyHP.innerHTML = numberFormat(eHP);
-          /* add special enemy tooltip (if necessary) */
-          if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
-            let ttHP = document.createElement("div");
-            ttHP.className = "tt-e-hp";
-            if (eTags.includes("hitch")) {
-              ttHP.innerHTML = hitch(eHP) + `<br>`;
-              enemyHP.innerHTML = numberFormat(1);
-            }
-            else {
-              let eHPNew = eHP;
-              let color = "#ffffff";
-
-              if (eTags.includes("palicus")) {
-                eHPNew -= eHP * 0.25;
-                color = "#93c47d";
-                ttHP.innerHTML += palicus(eHPNew) + `<br>`;
-              }
-              if (eTags.includes("robot")) {
-                eHPNew -= eHP * 0.1;
-                color = "#ca9a00";
-                ttHP.innerHTML += instant(color, "IMPAIRED!!", 2) + `<br>`;
-              }
-              if (eTags.includes("brute")) {
-                eHPNew -= eHP * 0.08;
-                color = "#ca9a00";
-                ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
-              }
-              if (eTags.includes("miasma")) {
-                eHPNew -= eHP * (currEnemyID == "26202" ? 0.3 : 0.15);
-                color = "#b4317b";
-                ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "26202" ? 2 : 1) + `<br>`;
-              }
-              ttHP.innerHTML = alt(color, eName, eHPNew, eHP) + ttHP.innerHTML;
-            }
-            enemyHP.appendChild(ttHP);
-          }
-          enemy.appendChild(enemyHP);
-
-          /* add enemy def display */
-          let enemyDef = document.createElement("div");
-          enemyDef.className = "e-def";
-          enemyDef.innerHTML = Math.ceil(eDef);
-          enemy.appendChild(enemyDef);
-
-          /* add enemy misc stat tooltip */
-          let ttMiscStat = document.createElement("div");
-          ttMiscStat.className = "tt-e-stat";
-          ttMiscStat.innerHTML = `+<span class="tt-text">${generateEnemyStats(versionDazeMult / 100 * eDaze, eStunMult, eStunTime, eAnom, eElementMult, eMods)}</span>`;
-          enemy.appendChild(ttMiscStat);
-
-          waveEnemies.appendChild(enemy);
+        if (currEnemyCount > 1) {
+          let enemyCount = document.createElement("div");
+          enemyCount.className = "e-count";
+          enemyCount.innerHTML = `x${currEnemyCount}`;
+          enemyHover.appendChild(enemyCount);
         }
+
+        let enemyWR = document.createElement("div");
+        enemyWR.className = "wr";
+        generateWR(eElementMult, enemyWR);
+        enemy.appendChild(enemyWR);
+
+        /* add enemy hp display */
+        let enemyHP = document.createElement("div");
+        enemyHP.className = "e-hp";
+        enemyHP.innerHTML = numberFormat(eHP);
+        /* add special enemy tooltip (if necessary) */
+        if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
+          let ttHP = document.createElement("div");
+          ttHP.className = "tt-e-hp";
+          if (eTags.includes("hitch")) {
+            ttHP.innerHTML = hitch(eHP) + `<br>`;
+            enemyHP.innerHTML = numberFormat(1);
+          }
+          else {
+            let eHPNew = eHP;
+            let color = "#ffffff";
+
+            if (eTags.includes("palicus")) {
+              eHPNew -= eHP * 0.25;
+              color = "#93c47d";
+              ttHP.innerHTML += palicus(eHPNew) + `<br>`;
+            }
+            if (eTags.includes("robot")) {
+              eHPNew -= eHP * 0.1;
+              color = "#ca9a00";
+              ttHP.innerHTML += instant(color, "IMPAIRED!!", 2) + `<br>`;
+            }
+            if (eTags.includes("brute")) {
+              eHPNew -= eHP * 0.08;
+              color = "#ca9a00";
+              ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
+            }
+            if (eTags.includes("miasma")) {
+              eHPNew -= eHP * (currEnemyID == "26202" ? 0.3 : 0.15);
+              color = "#b4317b";
+              ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "26202" ? 2 : 1) + `<br>`;
+            }
+            ttHP.innerHTML = alt(color, eName, eHPNew, eHP) + ttHP.innerHTML;
+          }
+          enemyHP.appendChild(ttHP);
+        }
+        enemy.appendChild(enemyHP);
+
+        /* add enemy def display */
+        let enemyDef = document.createElement("div");
+        enemyDef.className = "e-def";
+        enemyDef.innerHTML = Math.ceil(eDEF);
+        enemy.appendChild(enemyDef);
+
+        /* add enemy misc stat tooltip */
+        let ttMiscStat = document.createElement("div");
+        ttMiscStat.className = "tt-e-stat";
+        ttMiscStat.innerHTML = `+<span class="tt-text">${generateEnemyStats(versionDazeMult / 100 * eDaze, eStunMult, eStunTime, eAnom, eElementMult, eMods)}</span>`;
+        enemy.appendChild(ttMiscStat);
+
+        waveEnemies.appendChild(enemy);
       }
       wave.appendChild(waveEnemies);
       side.appendChild(wave);
@@ -410,7 +415,7 @@ function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
   if (mods.includes("no-anom")) return stats + `<span style="font-weight:bold;">IMMUNE TO ANOMALY</span>`;
   else {
     stats += `<span style="font-weight:bold;">Max Anomaly Buildup:</span><br>`;
-    for (let i = 0; i < 5; ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * dmg[i] * 100) / 100}</span>/`;
+    for (let i = 0; i < 5; ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * (1 / (2 - dmg[i])) * 100) / 100}</span>/`;
     stats = stats.slice(0, -1) + `<br>${mods.includes("no-freeze") ? `<span style="color:#98eff0;font-weight:bold;">UNFREEZABLE</span>` : ``}`;
   }
   return stats;

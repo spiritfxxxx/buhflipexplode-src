@@ -194,7 +194,7 @@
                         { "enemies":[ {"id":"22300", "type":0, "mult": 170, "count":1} ] }  ]
                       },
                       { "sideElementMult":[1.0, 1.0, 1.0, 0.8, 1.2], "sideHPMult":300, "waves":[
-                        { "enemies":[ {"id":"23103", "type":0, "count":1}, {"id":"23102", "type":0, "count":1} ] }  ]
+                        { "enemies":[ {"id":"23102", "type":0, "count":1}, {"id":"23101", "type":0, "count":1} ] }  ]
                       },
                       { "sideElementMult":[1.0, 1.0, 1.2, 0.8, 1.0], "sideHPMult":240, "waves":[
                         { "enemies":[ {"id":"20000", "type":1, "count":5} ] },

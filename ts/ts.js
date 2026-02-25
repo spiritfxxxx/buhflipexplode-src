@@ -115,6 +115,7 @@ async function showVersion() {
   versionEnemies = currVersion.versionEnemies;
   document.getElementById("v-name").innerHTML = currVersion.versionName + (modeNum == 2 && versionNum == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``) + (modeNum == 2 && versionNum >= vBeta ? `<span style='color:#52a9f7;font-weight:bold;'> (BETA)</span>` : ``);
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
+  document.getElementById("v-id").innerHTML = modeNum == 2 ? `Version: ${versionIDs[modeNum - 1][versionNum - 1].slice(0, 3)} Phase ${versionIDs[modeNum - 1][versionNum - 1].slice(4)} - ID: ${versionNum}0${versionNum == 1 ? 2 : 1}` : `ID: 101`;
   showNode();
 }
 async function changeVersion(n) {
@@ -597,13 +598,17 @@ function displayVersionSelectorGrid() {
       let versionButton = document.createElement("div");
       let nameDiv = document.createElement("div");
       let timeDiv = document.createElement("div");
+      let idDiv = document.createElement("div");
       versionButton.className = "vg-c";
       nameDiv.className = "vg-c-name";
       timeDiv.className = "vg-c-time";
+      idDiv.className = "vg-c-id";
       nameDiv.innerHTML = currVersion.versionName + (m == 2 && v == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``) + (m == 2 && v >= vBeta ? `<span style='color:#52a9f7;font-weight:bold;'> (BETA)</span>` : ``);
       timeDiv.innerHTML = currVersion.versionTime;
+      idDiv.innerHTML = m == 2 ? `Version: ${versionIDs[m - 1][v - 1].slice(0, 3)} Phase ${versionIDs[m - 1][v - 1].slice(4)} - ID: ${v}0${v == 1 ? 2 : 1}` : `ID: 101`;
       versionButton.appendChild(nameDiv);
       versionButton.appendChild(timeDiv);
+      versionButton.appendChild(idDiv);
 
       /* make it clickable, and if clicked go to that version */
       versionButton.onclick = () => {

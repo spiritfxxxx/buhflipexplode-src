@@ -1,7 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Inconsolata', monospace;
+  font-family: "Inconsolata", monospace;
   background-color: #111111;
   color: #ffffff;
   text-align: center;
@@ -131,10 +131,33 @@ a.btn:hover {
   height: calc(100% - 51px);
 }
 
+/* menu bar home/about buttons */
+#mb-misc {
+  gap: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+#mb-misc a {
+  flex: 1;
+}
+
+/* menu bar section splitter */
+#mb-sec {
+  margin: 5px;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #f29e38;
+  font-weight: bold;
+  text-decoration: underline;
+  display: block;
+}
+
 /* menu bar navigation buttons to other pages */
 #mb a {
-  padding: 15px 15px;
-  font-size: 16px;
+  padding: 10px;
+  width: calc(100% - 30px);
+  font-size: 14px;
   color: #ffffff;
   text-decoration: none;
   display: block;
@@ -159,7 +182,7 @@ a.btn:hover {
 /* number format changer buttons */
 .nfb {
   padding: 4px 6px;
-  font-family: 'Inconsolata', monospace;
+  font-family: "Inconsolata", monospace;
   font-size: 14px;
   color: #ffffff;
   background-color: #222222;
@@ -194,8 +217,8 @@ a.btn:hover {
 /* menu bar toggles */
 #mb-t {
   width: 200px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 16px;
   display: flex;
   flex-direction: column;
@@ -204,8 +227,9 @@ a.btn:hover {
 }
 /* menu bar setting */
 #mb-stg {
-  margin-top: 5px;
+  margin: 5px 0px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
 }
@@ -342,12 +366,14 @@ input:checked + #st {
 /* ---------------------------------------------------------------------- VERY MISC ---------------------------------------------------------------------- */
 
 @font-face {
-  font-family: 'Inconsolata';
-  src: url('../assets/Inconsolata-Regular.ttf') format('truetype');
+  font-family: "Inconsolata";
+  src: url("../assets/Inconsolata-Regular.ttf") format("truetype");
+}
+@media (max-width: 1000px) {
+  #mb-nf { margin-top: 7.5vh; }
 }
 @media (max-width: 800px) {
   nav { gap: 5vh; flex-direction: column; align-items: center; }
   nav a { width: fit-content; }
   a.btn { width: auto; }
-  #mb-nf { margin-top: 25vh; }
 }

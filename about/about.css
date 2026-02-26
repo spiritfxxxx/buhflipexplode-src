@@ -1,7 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Inconsolata', monospace;
+  font-family: "Inconsolata", monospace;
   background-color: #111111;
   color: #ffffff;
   text-align: center;
@@ -231,15 +231,39 @@ a.btn:hover {
   display: flex;
   flex: 1;
   flex-direction: column;
+  align-items: center;
   overflow-y: auto;
   overscroll-behavior: contain;
   height: calc(100% - 51px);
 }
 
+/* menu bar home/about buttons */
+#mb-misc {
+  gap: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+#mb-misc a {
+  flex: 1;
+}
+
+/* menu bar section splitter */
+#mb-sec {
+  margin: 5px;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #f29e38;
+  font-weight: bold;
+  text-decoration: underline;
+  display: block;
+}
+
 /* menu bar navigation buttons to other pages */
 #mb a {
-  padding: 15px 15px;
-  font-size: 16px;
+  padding: 10px;
+  width: calc(100% - 30px);
+  font-size: 14px;
   color: #ffffff;
   text-decoration: none;
   display: block;
@@ -251,7 +275,6 @@ a.btn:hover {
 /* menu bar number format changer */
 #mb-nf {
   margin-top: auto;
-  padding: 0px 15px;
   gap: 10px;
   width: 220px;
   font-size: 16px;
@@ -265,7 +288,7 @@ a.btn:hover {
 /* number format changer buttons */
 .nfb {
   padding: 4px 6px;
-  font-family: 'Inconsolata', monospace;
+  font-family: "Inconsolata", monospace;
   font-size: 14px;
   color: #ffffff;
   background-color: #222222;
@@ -300,7 +323,8 @@ a.btn:hover {
 /* menu bar toggles */
 #mb-t {
   width: 200px;
-  padding: 20px 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 16px;
   display: flex;
   flex-direction: column;
@@ -309,8 +333,9 @@ a.btn:hover {
 }
 /* menu bar setting */
 #mb-stg {
-  margin-top: 5px;
+  margin: 5px 0px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
 }
@@ -447,15 +472,17 @@ input:checked + #st {
 /* ---------------------------------------------------------------------- VERY MISC ---------------------------------------------------------------------- */
 
 @font-face {
-  font-family: 'Inconsolata';
-  src: url('../assets/Inconsolata-Regular.ttf') format('truetype');
+  font-family: "Inconsolata";
+  src: url("../assets/Inconsolata-Regular.ttf") format("truetype");
 }
 @media (max-width: 1400px) {
   #about-img, #tid-display, #bl-display1, #bl-display2, #fav-display1, #fav-display2 { display: none; }
 }
+@media (max-width: 1000px) {
+  #mb-nf { margin-top: 7.5vh; }
+}
 @media (max-width: 800px) {
   p { margin-left: 17.5px; margin-right: 17.5px; line-height: 1.5; }
-  #mb-nf { margin-top: 25vh; }
   #other { flex-direction: column; }
   #site { flex-direction: column; }
   #site-hotkey { gap: 15px; }

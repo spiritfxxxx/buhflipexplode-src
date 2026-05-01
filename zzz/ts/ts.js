@@ -1,48 +1,48 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 2, oldModeNum = 2, modeNum = 2, v26 = 2, vBeta = 3;
+let vLive = 2, vBeta = 3, v26 = 2, v28 = 2, modeNumOld = 2, modeNum = 2;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
-let oldVersionNum, versionNum, nodeNum, maxNode, endingNum, currNumberFormat;
+let versionNumOld, versionNum, nodeNum, nodeMax, endingNum, currNumberFormat;
 let menuIsOpen = versionSelectorIsOpen = false;
 
-let versionData, enemyData;
-let buffNames, buffDescs, versionBossDazeMult, versionEnemyDazeMult, versionBossAnomMult, versionEnemyAnomMult, versionEnemies;
-let versionIDs = hpData = [];
+let versionData, enemyData, buffData;
+let versionBuffIDs, versionDazeMultBoss, versionDazeMultEnemy, versionAnomMultBoss, versionAnomMultEnemy, versionEnemies;
+let versionIDs = [], hpData = [];
 
 let nodeLvlData = [];
-let easyNodeLvlData = [55, 58, 60, 65];
-let pre26HardNodeLvlData = [60, 63, 65, 70, 70, 70];
-let post26HardNodeLvlData = [60, 65, 70, 70, 70];
+let nodeLvlDataEasy = [55, 58, 60, 65];
+let nodeLvlDataHardPre26 = [60, 63, 65, 70, 70, 70];
+let nodeLvlDataHardPost26 = [60, 65, 70, 70, 70];
 
-/* new full list of numbers thanks to Dimbreath's database */
-let nodeEnemyHPMult = [100,116,135,157,181,193,206,220,235,271,291,314,338,364,419,431,444,458,472,543,618,703,801,912,1049,1111,1176,1246,1320,1518,1609,1706,1809,1919,2207,2320,2440,2566,2698,3103,3404,3734,4097,4494,5169,5591,6049,6544,7079,8141,8826,9569,10374,11246,12934,13260,13595,13938,14290,16434,16774,17121,17475,17837,18206,18583,18968,19361,19761,21738];
-let nodeBossHPMult = [100,116,135,157,181,193,206,220,235,271,291,314,338,364,419,431,444,458,472,543,618,703,801,912,1049,1134,1227,1328,1437,1653,1792,1942,2106,2283,2626,2865,3126,3411,3722,4281,4717,5197,5727,6311,7258,7691,8151,8637,9153,10527,11227,11975,12772,13623,15667,15957,16252,16553,16860,19389,19716,20049,20387,20731,21081,21437,21799,22167,22541,24795];
+// full list of numbers thanks to Dimbreath's database
+let nodeHPMultBoss = [100,116,135,157,181,193,206,220,235,271,291,314,338,364,419,431,444,458,472,543,618,703,801,912,1049,1134,1227,1328,1437,1653,1792,1942,2106,2283,2626,2865,3126,3411,3722,4281,4717,5197,5727,6311,7258,7691,8151,8637,9153,10527,11227,11975,12772,13623,15667,15957,16252,16553,16860,19389,19716,20049,20387,20731,21081,21437,21799,22167,22541,24795];
+let nodeHPMultEnemy = [100,116,135,157,181,193,206,220,235,271,291,314,338,364,419,431,444,458,472,543,618,703,801,912,1049,1111,1176,1246,1320,1518,1609,1706,1809,1919,2207,2320,2440,2566,2698,3103,3404,3734,4097,4494,5169,5591,6049,6544,7079,8141,8826,9569,10374,11246,12934,13260,13595,13938,14290,16434,16774,17121,17475,17837,18206,18583,18968,19361,19761,21738];
 let nodeDEFMult = [100,108,116,124,132,142,152,164,176,188,200,214,228,242,258,274,290,306,324,344,362,382,402,422,444,466,490,512,536,562,586,612,638,666,694,722,750,780,810,842,872,904,938,970,1004,1038,1074,1110,1146,1184,1220,1258,1298,1338,1378,1418,1460,1502,1544,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588,1588];
 let nodeDazeMult = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,101,102,103,104,104,105,106,107,108,110,113,115,118,120,123,125,128,130,133,137,142,146,151,155,160,164,169,173,178,180,183,186,189,192,195,197,200,203,206,209,212,215,217,220,223,226,229,232,235];
 
-let elementsData = ["ice", "fire", "electric", "ether", "physical"];
+let elementsData = ["ice", "fire", "electric", "ether", "physical", "wind"];
 
-/* load main page data from .json files, and display */
-async function loadThresholdPage() {
+// build & display main page
+async function loadPage() {
   versionData = await (await fetch("ts-versions.json")).json();
   enemyData = await (await fetch("../../assets/zzz/enemies.json")).json();
-  buffDescs = await (await fetch("../../assets/zzz/buffs.json")).json();
+  buffData = await (await fetch("../../assets/zzz/buffs.json")).json();
   for (let m = 1; m <= 2; ++m) versionIDs.push(Object.keys(versionData[m - 1].versions));
-  buildHPData();
+  loadHPData();
   loadSavedState();
   await showVersion();
-  updateNumberFormat();
+  changeNumberFormat();
 }
 
-/* create hp database using 3D matrix */
-async function buildHPData() {
+// build hp database
+async function loadHPData() {
   hpData = [Array.from({length: 4}, () => Array.from({length: 7}, () => Array.from({length: 1}).fill(null))),
             Array.from({length: 6}, () => Array.from({length: 7}, () => Array.from({length: versionIDs[1].length}).fill(null))) ];
-  for (let m = 1; m <= 2; ++m) {
+  for (let m = 1; m <= hpData.length; ++m) {
     for (let v = 1; v <= versionIDs[m - 1].length; ++v) {
-      nodeLvlData = m == 1 ? easyNodeLvlData : (v < v26 ? pre26HardNodeLvlData : post26HardNodeLvlData);
-      versionEnemies = versionData[m - 1].versions[versionIDs[m - 1][v - 1]].versionEnemies;
+      nodeLvlData = m == 1 ? nodeLvlDataEasy : (v < v26 ? nodeLvlDataHardPre26 : nodeLvlDataHardPost26);
+      let versionEnemies = versionData[m - 1].versions[versionIDs[m - 1][v - 1]].versionEnemies;
       for (let n = 1; n <= versionEnemies.nodes.length; ++n) {
         let currNode = versionEnemies.nodes[n - 1];
         let raw60kEnemyHP = alt60kEnemyHP = rawHP = aoeHP = altHP = 0;
@@ -51,113 +51,130 @@ async function buildHPData() {
         let currEnemy = currNode.sides[0].waves[0].enemies[0];
         let currEnemyID = currEnemy.id;
         let currEnemyType = currEnemy.type;
+        let currEnemyHPMult = currEnemy.hpMult ? currEnemy.hpMult : currNode.sides[0].sideHPMult;
         let currEnemyData = enemyData[currEnemyID];
-        let eHP =  Math.floor(8.74 * currEnemyData.baseHP[currEnemyType] * nodeBossHPMult[nodeLvlData[n - 1] - 1] * currEnemy.mult / 10000);
+        let eHP =  currEnemyData.baseHP[currEnemyType] * nodeHPMultBoss[nodeLvlData[n - 1] - 1] * currEnemyHPMult * 8.74 / 10000;
         let eTags = currEnemyData.tags;
 
-        raw60kEnemyHP += eHP;
-        alt60kEnemyHP += eHP;
+        // calculate boss hp
+        raw60kEnemyHP = eHP;
+        alt60kEnemyHP = eHP;
         if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
           if (eTags.includes("ucc")) alt60kEnemyHP -= eHP * 0.036;
           if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
           if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.045 : 0.025);
-          if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * (currEnemyID == "26300" ? 0.03 : 0.015);
-          if (eTags.includes("convert")) alt60kEnemyHP -= eHP * 0.03;
+          if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * (currEnemyID == "28300" ? 0.02 : currEnemyID == "27300" ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015);
+          if (eTags.includes("convert")) alt60kEnemyHP += eHP * 0.003;
         }
-        hpData[m - 1][n - 1][0][v - 1] = Math.ceil(raw60kEnemyHP * 0.281083138);
-        hpData[m - 1][n - 1][1][v - 1] = Math.ceil(raw60kEnemyHP);
-        hpData[m - 1][n - 1][2][v - 1] = Math.ceil(alt60kEnemyHP * 0.281083138);
-        hpData[m - 1][n - 1][3][v - 1] = Math.ceil(alt60kEnemyHP);
 
-        for (let s = 2; s <= 5; ++s) {
+        // normalize hp for lower def bosses (from 60)
+        if (currEnemyData.baseDEF[currEnemyType] < 60) alt60kEnemyHP *= (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100);
+
+        hpData[m - 1][n - 1][0][v - 1] = Math.round(raw60kEnemyHP * 0.281083138);
+        hpData[m - 1][n - 1][1][v - 1] = Math.round(raw60kEnemyHP);
+        hpData[m - 1][n - 1][2][v - 1] = Math.round(alt60kEnemyHP * 0.281083138);
+        hpData[m - 1][n - 1][3][v - 1] = Math.round(alt60kEnemyHP);
+
+        // build enemy hp database
+        for (let s = 2; s <= currNode.sides.length; ++s) {
           let currSide = currNode.sides[s - 1];
-          if (currSide == null) continue;
+          if (!currSide) continue;
           let sideHPMult = currSide.sideHPMult;
           for (let w = 1; w <= currSide.waves.length; ++w) {
             let currWave = currSide.waves[w - 1];
             for (let e = 1; e <= currWave.enemies.length; ++e) {
               let currEnemy = currWave.enemies[e - 1];
-              let currEnemyData = enemyData[currEnemy.id];
-              let eHP = Math.round(currEnemyData.baseHP[currEnemyType] * sideHPMult * nodeEnemyHPMult[nodeLvlData[n - 1] - 1] / 10000);
+              let currEnemyID = currEnemy.id;
+              let currEnemyType = currEnemy.type;
+              let currEnemyCount = currEnemy.count;
+              let currEnemyHPMult = currEnemy.hpMult ? currEnemy.hpMult : sideHPMult;
+              let currEnemyData = enemyData[currEnemyID];
+              let eHP = currEnemyData.baseHP[currEnemyType] * nodeHPMultEnemy[nodeLvlData[n - 1] - 1] * currEnemyHPMult / 10000;
               let eTags = currEnemyData.tags;
-              for (let cnt = 1; cnt <= currEnemy.count; ++cnt) {
-                rawHP += currEnemy.id != "14000" ? eHP : 1;
-                aoeHP += addAOE ? eHP : 0;
-                altHP += eHP;
-                if (eTags.length >= 1 && !(eTags.length == 1 && (eTags.includes("spoiler") || eTags.includes("hitch")))) {
-                  if (eTags.includes("palicus")) altHP -= eHP * 0.25;
-                  if (eTags.includes("robot")) altHP -= eHP * 0.1;
-                  if (eTags.includes("brute")) altHP -= eHP * 0.08;
-                  if (eTags.includes("miasma")) altHP -= eHP * (currEnemy.id == "26202" ? 0.3 : 0.15);
-                }
-                else altHP -= addAOE ? 0 : eHP;
-                addAOE = false;
+
+              // normalize hp for lower def bosses (from 60)
+              if (currEnemyID[2] >= "2" && currEnemyData.baseDEF[currEnemyType] < 60) eHP *= (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100);
+
+              // calculate enemy hp
+              rawHP += (currEnemyID != "14000" ? eHP : 1) * currEnemyCount;
+              aoeHP += addAOE ? eHP : 0;
+              altHP += addAOE ? eHP : 0;
+              if (eTags.length >= 1 && !(eTags.length == 1 && (eTags.includes("spoiler") || eTags.includes("hitch")))) {
+                if (eTags.includes("palicus")) altHP += eHP * 0.5;
+                if (eTags.includes("robot")) altHP -= eHP * 0.1;
+                if (eTags.includes("brute")) altHP -= eHP * 0.08;
+                if (eTags.includes("miasma")) altHP -= eHP * (currEnemyID == "26202" ? 0.3 : 0.15);
+                if (eTags.includes("shutdown")) altHP -= eHP * 0.15;
+                if (eTags.includes("convert")) altHP += eHP * 0.05;
               }
+              addAOE = false;
             }
             addAOE = true;
           }
         }
-        hpData[m - 1][n - 1][4][v - 1] = rawHP;
-        hpData[m - 1][n - 1][5][v - 1] = aoeHP;
-        hpData[m - 1][n - 1][6][v - 1] = Math.ceil(altHP);
+        hpData[m - 1][n - 1][4][v - 1] = Math.round(rawHP);
+        hpData[m - 1][n - 1][5][v - 1] = Math.round(aoeHP);
+        hpData[m - 1][n - 1][6][v - 1] = Math.round(altHP);
       }
     }
   }
 }
 
-/* ◁ [version # + time] ▷ display */
+// display version/time/id
 async function showVersion() {
   let currVersion = versionData[modeNum - 1].versions[versionIDs[modeNum - 1][versionNum - 1]];
-  versionBossDazeMult = currVersion.versionBossDazeMult;
-  versionEnemyDazeMult = currVersion.versionEnemyDazeMult;
-  versionBossAnomMult = currVersion.versionBossAnomMult;
-  versionEnemyAnomMult = currVersion.versionEnemyAnomMult;
+  versionBuffIDs = currVersion.versionBuffIDs;
+  versionDazeMultBoss = currVersion.versionDazeMultBoss;
+  versionDazeMultEnemy = currVersion.versionDazeMultEnemy;
+  versionAnomMultBoss = currVersion.versionAnomMultBoss;
+  versionAnomMultEnemy = currVersion.versionAnomMultEnemy;
   versionEnemies = currVersion.versionEnemies;
-  document.getElementById("v-name").innerHTML = currVersion.versionName + (modeNum == 2 && versionNum == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``) + (modeNum == 2 && versionNum >= vBeta ? `<span style='color:#52a9f7;font-weight:bold;'> (BETA)</span>` : ``);
+  document.getElementById("v-l").style.display = document.getElementById("v-r").style.display = modeNum == 2 ? "flex" : "none";
+  document.getElementById("v-name").innerHTML = currVersion.versionName + (modeNum == 2 && versionNum == vLive ? `<span style="color:#ff0000;font-weight:bold;"> (LIVE)</span>` : versionNum >= vBeta ? `<span style="color:#52a9f7;font-weight:bold;"> (BETA)</span>` : ``);
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
-  document.getElementById("v-id").innerHTML = modeNum == 2 ? `Version: ${versionIDs[modeNum - 1][versionNum - 1].slice(0, 3)} Phase ${versionIDs[modeNum - 1][versionNum - 1].slice(4)} - ID: ${versionNum}0${versionNum == 1 ? 2 : 1}` : `ID: 101`;
+  document.getElementById("v-id").innerHTML = (modeNum == 2 ? `Version: ${versionIDs[modeNum - 1][versionNum - 1].slice(0, 3)} Phase ${versionIDs[modeNum - 1][versionNum - 1].slice(4)} - ` : ``) + `ID: ${versionNum}0${modeNum == 2 && versionNum == 1 ? `2` : `1`}`;
   showNode();
 }
 async function changeVersion(n) {
-  let lastVersion = parseInt(localStorage.getItem("lastTSVersion")), maxVersion = leaksToggle.checked ? versionIDs[modeNum - 1].length : cntNoLeaks;
-  if (modeNum == 2) versionNum = (versionNum - 1 + n + maxVersion) % maxVersion + 1;
-  else { modeNum = 2; versionNum = (!leaksToggle.checked && lastVersion > cntNoLeaks) ? cntNoLeaks : lastVersion; }
-  showVersion();
+  if (modeNum != 2) return;
+  let maxVersion = leaksToggle.checked ? versionIDs[modeNum - 1].length : vLive;
+  versionNum = (versionNum - 1 + n + maxVersion) % maxVersion + 1;
+  await showVersion();
 }
 
-/* ◁ node # ▷ display */
+// display node
 function showNode() {
-  if (oldModeNum != modeNum) {
-    nodeNum = modeNum == 2 ? parseInt(localStorage.getItem("lastTSNode")) : 4;
-    oldModeNum = modeNum;
+  if (modeNumOld != modeNum) {
+    nodeNum = modeNum == 2 ? parseInt(localStorage.getItem("lastTSNode")) : versionEnemies.nodes.length;
+    modeNumOld = modeNum;
   }
   if (modeNum == 2) changePrePostNode();
-  maxNode = versionNum < v26 ? 4 : 3;
-  nodeLvlData = modeNum == 1 ? easyNodeLvlData : (versionNum < v26 ? pre26HardNodeLvlData : post26HardNodeLvlData);
-  document.getElementById("n-text").innerHTML = `${nodeNum < maxNode ? nodeNum : maxNode}`;
+  nodeMax = versionNum < v26 ? 4 : 3;
+  nodeLvlData = modeNum == 1 ? nodeLvlDataEasy : (versionNum < v26 ? nodeLvlDataHardPre26 : nodeLvlDataHardPost26);
+  document.getElementById("n-text").innerHTML = Math.min(nodeNum, nodeMax);
   showEndings();
   showBuffs();
   showEnemies();
 }
 function changeNode(n) {
-  if (modeNum == 2 && nodeNum > maxNode) nodeNum = maxNode;
-  nodeNum = (nodeNum - 1 + n + maxNode) % maxNode + 1;
-  if (modeNum == 2 && nodeNum == maxNode) nodeNum += endingNum - 1;
+  if (modeNum == 2 && nodeNum > nodeMax) nodeNum = nodeMax;
+  nodeNum = (nodeNum - 1 + n + nodeMax) % nodeMax + 1;
+  if (modeNum == 2 && nodeNum == nodeMax) nodeNum += endingNum - 1;
   showNode();
 }
 function changePrePostNode() {
-  if (oldVersionNum < v26 && versionNum >= v26) {
-    if (nodeNum == 3 || (nodeNum >= maxNode && nodeNum - maxNode < 2)) nodeNum--;
-    else if (nodeNum >= maxNode && nodeNum - maxNode >= 2) nodeNum = 4;
+  if (versionNumOld < v26 && versionNum >= v26) {
+    if (nodeNum == 3 || (nodeNum >= nodeMax && nodeNum - nodeMax < 2)) nodeNum--;
+    else if (nodeNum >= nodeMax && nodeNum - nodeMax >= 2) nodeNum = 4;
   }
-  else if (oldVersionNum >= v26 && versionNum < v26 && nodeNum >= 2) nodeNum++;
-  oldVersionNum = versionNum;
+  else if (versionNumOld >= v26 && versionNum < v26 && nodeNum >= 2) nodeNum++;
+  versionNumOld = versionNum;
 }
 
-/* add ending choices to final node */
+// final node's endings display
 function showEndings() {
   if (versionNum >= v26 && endingNum > 2) endingNum = 2;
-  if (modeNum == 2 && nodeNum >= maxNode) {
+  if (modeNum == 2 && nodeNum >= nodeMax) {
     document.getElementById("end").style.display = "flex";
     document.getElementById("end-3").style.display = versionNum < v26 ? "flex" : "none";
     let endingButtons = document.querySelectorAll(".end-text");
@@ -165,73 +182,72 @@ function showEndings() {
   }
   else document.getElementById("end").style.display = "none";
 }
-/* show specific ending variant for final node */
 function changeEndings(n) { endingNum = n; nodeNum = (versionNum < v26 ? 3 : 2) + n; showNode(); }
 
-/* show node buffs */
+// display buffs
 function showBuffs() {
-  buffNames = versionEnemies.nodes[nodeNum - 1].buffNames;
-  for (let buff = 1; buff <= 4; ++buff) {
-    document.getElementById(`b${buff}`).innerHTML = ``;
+  for (let buff = 1; buff <= versionBuffIDs[0].length; ++buff) {
+    let b = document.getElementById(`b${buff}`);
     let buffImg = document.createElement("img");
     let buffName = document.createElement("div");
     let buffDesc = document.createElement("div");
     buffImg.className = "b-img";
     buffName.className = "b-name";
     buffDesc.className = "b-desc";
-    buffImg.src = `../../assets/zzz/buffs/${buffNames[buff - 1].toLowerCase().replaceAll(" ", "-")}.webp`;
-    buffName.innerHTML = buffNames[buff - 1];
-    buffDesc.innerHTML = buffDescs[buffNames[buff - 1]];
-    document.getElementById(`b${buff}`).appendChild(buffImg);
-    document.getElementById(`b${buff}`).appendChild(buffName);
-    document.getElementById(`b${buff}`).appendChild(buffDesc);
+    b.innerHTML = ``;
+    buffImg.src = `../../assets/zzz/buffs/${buffData[versionBuffIDs[nodeNum - 1][buff - 1]][1]}.webp`;
+    buffName.innerHTML = buffData[versionBuffIDs[nodeNum - 1][buff - 1]][0];
+    buffDesc.innerHTML = buffData[versionBuffIDs[nodeNum - 1][buff - 1]][2];
+    b.appendChild(buffImg);
+    b.appendChild(buffName);
+    b.appendChild(buffDesc);
   }
 }
 
-/* place and display elements/enemies/weaknesses/resistances/HP/count on screen */
+// display enemies
 function showEnemies() {
   let currNode = versionEnemies.nodes[nodeNum - 1];
 
-  /* add side 1 & 2 displays */
-  let boss = document.querySelector("#boss");
-  let side1 = document.querySelector("#s1"), side2 = document.querySelector("#s2"), side3 = document.querySelector("#s3"), side4 = document.querySelector("#s4");;
-  boss.innerHTML = ``; side1.innerHTML = ``; side2.innerHTML = ``; side3.innerHTML = ``; side4.innerHTML = ``;
+  // display sides
+  let sideB = document.getElementById("sb");
+  let side1 = document.getElementById("s1"), side2 = document.getElementById("s2"), side3 = document.getElementById("s3"), side4 = document.getElementById("s4");;
+  sideB.innerHTML = ``; side1.innerHTML = ``; side2.innerHTML = ``; side3.innerHTML = ``; side4.innerHTML = ``;
 
-  /* loop version's sides */
- for (let s = 1; s <= 5; ++s) {
-    let side = s == 1 ? boss : s == 2 ? side1 : s == 3 ? side2 : s == 4 ? side3 : side4;
+  // loop sides
+  for (let s = 1; s <= currNode.sides.length; ++s) {
+    let side = s == 1 ? sideB : s == 2 ? side1 : s == 3 ? side2 : s == 4 ? side3 : side4;
     let currSide = currNode.sides[s - 1];
 
-    /* add side x-x LvXX title */
+    // display side title
     let sideHeader = document.createElement("div");
     sideHeader.className = "s-header";
-    sideHeader.innerHTML = `${s == 1 ? `Final BATTLE` : s <= 4 ? `Required` : `Optional`} ${nodeNum < maxNode ? nodeNum : maxNode}${modeNum != 2 || nodeNum < maxNode ? `` : `.${nodeNum - maxNode + 1}`}${s != 1 ? `-${s - 1}` : ``} Lv${nodeLvlData[nodeNum - 1]}`;
+    sideHeader.innerHTML = `${s == 1 ? `Final BATTLE` : s <= 4 ? `Required` : `Optional`} ${Math.min(nodeNum, nodeMax)}${modeNum != 2 || nodeNum < nodeMax ? `` : `.${nodeNum - nodeMax + 1}`}${s != 1 ? `-${s - 1}` : ``} Lv${nodeLvlData[nodeNum - 1]}`;
 
-    /* add side supposed equal HP multiplier */
-    let combHPMult = document.createElement("div");
-    combHPMult.className = "s-hp-daze-anom-mult";
-    combHPMult.innerHTML = `HP: <span style="color:#ff5555;">N/A</span> | Daze: <span style="color:#ffe599;">N/A</span> | Anom: <span style="color:#7756c6;">N/A</span>`;
-    sideHeader.appendChild(combHPMult);
+    // display side HP multiplier
+    let hpMult = document.createElement("div");
+    hpMult.className = "s-hp-daze-anom-mult";
+    hpMult.innerHTML = `HP: <span style="color:#ff5555;">N/A</span> | Daze: <span style="color:#ffe599;">N/A</span> | Anom: <span style="color:#7b78ff;">N/A</span>`;
+    sideHeader.appendChild(hpMult);
 
-    /* add side combined weaknesses/resistances */
+    // display side weaknesses/resistances
     if (s >= 2) {
       let combWR = document.createElement("div");
       combWR.className = "wr";
-      generateWR(currSide != null ? currNode.sides[s - 1].sideElementMult : [1.0, 1.0, 1.0, 1.0, 1.0], combWR);
+      generateWR(currSide != null ? currNode.sides[s - 1].sideElementMult : [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], combWR, null, 0);
       sideHeader.appendChild(combWR);
     }
     side.appendChild(sideHeader);
 
-    if (currSide == null) continue;
-    let sideHPMult = s == 1 ? currSide.waves[0].enemies[0].mult : currSide.sideHPMult;
-    combHPMult.innerHTML = `HP: <span style="color:#ff5555;">${modeNum == 1 ? Math.round(sideHPMult * 100) / 100 : sideHPMult}%</span> | Daze: <span style="color:#ffe599;">${s == 1 ? versionBossDazeMult : versionEnemyDazeMult}%</span> | Anom: <span style="color:#7756c6;">${s == 1 ? versionBossAnomMult : versionEnemyAnomMult}%</span>`;
+    if (!currSide) continue;
+    let sideHPMult = currSide.sideHPMult, sideDazeMult = s == 1 ? versionDazeMultBoss[nodeNum - 1] : versionDazeMultEnemy;
+    hpMult.innerHTML = `HP: <span style="color:#ff5555;">${sideHPMult}%</span> | Daze: <span style="color:#ffe599;">${sideDazeMult}%</span> | Anom: <span style="color:#7b78ff;">${s == 1 ? versionAnomMultBoss : versionAnomMultEnemy}%</span>`;
 
-    /* loop side's waves */
+    // loop waves
     for (let w = 1; w <= currSide.waves.length; ++w) {
       let wave = document.createElement("div");
       wave.className = "w";
 
-      /* add wave WAVE # title */
+      // display wave title
       if (s >= 2) {
         let waveHeader = document.createElement("div");
         waveHeader.className = "w-num";
@@ -239,44 +255,44 @@ function showEnemies() {
         wave.appendChild(waveHeader);
       }
 
-      /* add wave enemy display */
+      // display wave
       let currWave = currSide.waves[w - 1];
       let waveEnemies = document.createElement("div");
       waveEnemies.className = "w-e";
 
-      /* loop wave's enemies */
+      // loop enemies
       for (let e = 1; e <= currWave.enemies.length; ++e) {
         let currEnemy = currWave.enemies[e - 1];
         let currEnemyID = currEnemy.id;
         let currEnemyType = currEnemy.type;
         let currEnemyCount = currEnemy.count;
+        let currEnemyHPMult = currEnemy.hpMult ? currEnemy.hpMult : sideHPMult;
         let currEnemyData = enemyData[currEnemyID];
 
-        /* define current enemy's parameters */
+        // define enemy parameters
         let eTags = currEnemyData.tags;
         let eMods = currEnemyData.mods;
         let showEnemySpoilers = spoilersToggle.checked || !eTags.includes("spoiler");
-        let eName = showEnemySpoilers ? currEnemyData.name : (s >= 2 ? "SPOILER ENEMY" : "SPOILER BOSS");
+        let eName = showEnemySpoilers ? currEnemyData.name : (s == 1 ? "SPOILER BOSS" : "SPOILER ENEMY");
         let eImg = showEnemySpoilers ? `../../assets/zzz/enemies/${currEnemyData.image}.webp` : `../../assets/zzz/enemies/doppelganger-i.webp`;
 
-        /* define current enemy's various stats */
-        let eHP = (s == 1 ? Math.floor : Math.round)(sideHPMult * currEnemyData.baseHP[currEnemyType] * (s == 1 ? 8.74 : 1) * (s == 1 ? nodeBossHPMult : nodeEnemyHPMult)[nodeLvlData[nodeNum - 1] - 1] / 10000);
-        let eDEF = currEnemyData.baseDEF * nodeDEFMult[nodeLvlData[nodeNum - 1] - 1] / 100;
-        let eDaze = currEnemyData.baseDaze[currEnemyType] * nodeDazeMult[nodeLvlData[nodeNum - 1] - 1] * (currEnemyID == "24300" ? 0.8 : 1) / 100;
+        // define enemy stats
+        let eHP = (s == 1 ? Math.floor : Math.round)((s == 1 ? 8.74 : 1) * currEnemyHPMult * currEnemyData.baseHP[currEnemyType] * (s == 1 ? nodeHPMultBoss : nodeHPMultEnemy)[nodeLvlData[nodeNum - 1] - 1] / 10000);
+        let eDEF = Math.ceil(currEnemyData.baseDEF[currEnemyType] * nodeDEFMult[nodeLvlData[nodeNum - 1] - 1] / 100);
+        let eDaze = currEnemyData.baseDaze[currEnemyType] * nodeDazeMult[nodeLvlData[nodeNum - 1] - 1] / 100;
         let eStunMult = currEnemyData.stunMult;
         let eStunTime = currEnemyData.stunTime;
         let eAnom = currEnemyData.baseAnom;
         let eElementMult = currEnemyData.elementMult;
 
-        /* add enemy display */
+        // display enemy
         let enemy = document.createElement("div");
         enemy.className = "e";
-        
+
         let enemyImg = document.createElement("img");
         let enemyName = document.createElement("div");
         let enemyHover = document.createElement("div");
         enemyImg.className = "e-img";
-
         enemyName.className = "e-name";
         enemyHover.className = "e-hover";
         enemyImg.src = eImg;
@@ -285,6 +301,7 @@ function showEnemies() {
         enemyHover.appendChild(enemyName);
         enemy.appendChild(enemyHover);
 
+        // display enemy count (≥ 1)
         if (currEnemyCount > 1) {
           let enemyCount = document.createElement("div");
           enemyCount.className = "e-count";
@@ -292,26 +309,28 @@ function showEnemies() {
           enemyHover.appendChild(enemyCount);
         }
 
+        // display enemy weaknesses/resistances
         let enemyWR = document.createElement("div");
         enemyWR.className = "wr";
-        generateWR(eElementMult, enemyWR, s);
+        generateWR(eElementMult, enemyWR, currEnemyID, s);
         enemy.appendChild(enemyWR);
 
-        /* add enemy hp display */
+        // display enemy hp
+        let hp = document.createElement("div");
         let enemyHP = document.createElement("div");
+        hp.className = "hp";
         enemyHP.className = "e-hp";
-        enemyHP.innerHTML = numberFormat(eHP);
-        /* add special enemy tooltip (if necessary) */
+        enemyHP.innerHTML = showNumberFormat(eHP);
+        hp.appendChild(enemyHP);
+
+        // display special enemy tooltip
         if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
           let ttHP = document.createElement("div");
           ttHP.className = "tt-e-hp";
 
-          /* set tooltip to be smaller */
-          if (s >= 2) { ttHP.style.fontSize = "36px"; ttHP.style.top = "-19px"; ttHP.style.right = "87px"; }
-
           if (eTags.includes("hitch")) {
             ttHP.innerHTML = hitch(eHP) + `<br>`;
-            enemyHP.innerHTML = numberFormat(1);
+            enemyHP.innerHTML = showNumberFormat(1);
           }
           else {
             let eHPNew = eHP;
@@ -343,56 +362,82 @@ function showEnemies() {
               ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
             }
             if (eTags.includes("miasma")) {
-              eHPNew -= eHP * (currEnemyID[2] != '3' ? 0.15 : (currEnemyID == "25300" ? 0.045 : 0.025));
+              eHPNew -= eHP * (currEnemyID[2] != "3" ? (currEnemyID == "26202" ? 0.3 : 0.15) : (currEnemyID == "25300" ? 0.045 : 0.025));
               color = "#b4317b";
-              ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 3 : 1) + `<br>`;
+              ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 3 : currEnemyID == "26202" ? 2 : 1) + `<br>`;
             }
             if (eTags.includes("shutdown")) {
-              eHPNew -= eHP * (currEnemyID == "26300" ? 0.03 : 0.015);
+              eHPNew -= eHP * (currEnemyID[2] != "3" ? 0.15 : (currEnemyID == "28300" ? 0.02 : currEnemyID == "27300" ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015));
               color = "#b47ede";
-              ttHP.innerHTML += instant(color, "SHUTDOWN!!", (currEnemyID == "26300" ? 2 : 1)) + `<br>`;
+              ttHP.innerHTML += instant(color, "SHUTDOWN!!", currEnemyID == "26300" ? 2 : 1) + `<br>`;
             }
             if (eTags.includes("convert")) {
-              eHPNew -= eHP * 0.03;
+              eHPNew += eHP * (currEnemyID[2] != "3" ? 0.05 : 0.003);
               color = "#007bb8";
               ttHP.innerHTML += instant(color, "CONVERT!!", 1) + `<br>`;
             }
-            ttHP.innerHTML = alt(color, currEnemyID == "25300" ? (eName.slice(0, 21) + "<br>" + eName.slice(21)) : eName, eHPNew, eHP) + ttHP.innerHTML;
+
+            // normalize hp for lower def bosses (from 60)
+            if (currEnemyID[2] >= "2" && currEnemyData.baseDEF[currEnemyType] < 60) eHPNew *= (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100);
+
+            // display tooltip text
+            ttHP.innerHTML = alt(color, currEnemyID == "25300" ? (eName.slice(0, 21) + "<br>" + eName.slice(21)) : eName, eHPNew, eHP, currEnemyData.baseDEF[currEnemyType]) + ttHP.innerHTML;
           }
-          enemyHP.appendChild(ttHP);
+
+          // change styling for bosses
+          if (s == 1) {
+            ttHP.style.bottom = "95%";
+            ttHP.style.right = "91.5%";
+            ttHP.style.fontSize = "32px";
+            ttHP.querySelector(".tt-text").style.bottom = "42.5px";
+          }
+          
+          hp.appendChild(ttHP);
         }
-        enemy.appendChild(enemyHP);
 
-        /* add enemy def display */
-        let enemyDef = document.createElement("div");
-        enemyDef.className = "e-def";
-        enemyDef.innerHTML = Math.ceil(eDEF);
-        enemy.appendChild(enemyDef);
+        // display enemy specific hp multiplier
+        if (sideHPMult != currEnemyHPMult) {
+          let specificHPMult = document.createElement("div");
+          specificHPMult.className = "e-hp-mult";
+          specificHPMult.innerHTML = `[${currEnemyHPMult}%]`;
+          hp.appendChild(specificHPMult);
+        }
+        enemy.appendChild(hp);
 
-        /* add enemy misc stat tooltip */
+        // display enemy def
+        let enemyDEF = document.createElement("div");
+        enemyDEF.className = "e-def";
+        enemyDEF.innerHTML = eDEF;
+        enemy.appendChild(enemyDEF);
+
+        // display enemy misc stats
         let ttMiscStat = document.createElement("div");
         ttMiscStat.className = "tt-e-stat";
-        ttMiscStat.innerHTML = `+</span><span class="tt-text">${generateEnemyStats((currEnemyID[2] == '3' ? versionBossDazeMult : versionEnemyDazeMult) / 100 * eDaze, eStunMult, eStunTime, (currEnemyID[2] == '3' ? versionBossAnomMult : versionEnemyAnomMult) / 100 * eAnom, eElementMult, eMods)}</span>`;
+        ttMiscStat.innerHTML = `+<span class="tt-text">${generateEnemyStats(sideDazeMult / 100 * eDaze, eStunMult, eStunTime, (currEnemyID[2] == "3" ? versionAnomMultBoss : versionAnomMultEnemy) / 100 * eAnom, eElementMult, eMods)}</span>`;
+        if (s == 1) ttMiscStat.querySelector(".tt-text").style.top = "320px";
         enemy.appendChild(ttMiscStat);
-        
-        /* change image formatting for bosses/enemies */
-        if (s >= 2) {
-          enemyImg.style.height = enemyHover.style.maxHeight = enemyHover.style.width = "108px";
-          enemyName.style.fontSize = enemyHP.style.fontSize = enemyDef.style.fontSize = "12px";
-          waveEnemies.style.padding = "15px";
-        }
+
+        // display enemy 40%+ resistances
+        let enemyR = document.createElement("div");
+        enemyR.className = "res-40plus";
+        generateR(eElementMult, enemyR, s, currEnemyID, enemy);
 
         waveEnemies.appendChild(enemy);
 
-        /* add enemy stage description */
-        if (side == boss && currEnemyID[2] == '3') {
-          document.querySelector(".esd")?.remove();
-          let stageDesc = document.createElement("div");
-          stageDesc.className = "esd";
-          stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>${currEnemyData.spoilerPerf}` : `${currEnemyData.desc[currEnemyType]}<br><br>${currEnemyData.perf[currEnemyType]}`;
-          stageDesc.innerHTML += `<br><br>• When an extra score multiplier is active in this stage, the <span style='color:#ffaf2c;font-weight:bold;'>Performance Points</span> cap will increase accordingly.`;
-          stageDesc.innerHTML += `${currEnemyID[0] == '2' || currEnemyID == "14303" || (currEnemyID == "14302") ? `<br><br>${currEnemyData.misc}` : ``}`;
-          boss.parentElement.appendChild(stageDesc);
+        // change styling for bosses
+        if (s == 1) {
+          enemyImg.style.height = enemyHover.style.height = "192px";
+          enemyName.style.fontSize = enemyHP.style.fontSize = enemyDEF.style.fontSize = "14px";
+        }
+
+        // add enemy stage description
+        if (side == sideB && currEnemyID[2] == "3") {
+          let traitTitle = document.getElementById("t-title");
+          let traitDesc = document.getElementById("t-desc");
+          traitTitle.innerHTML = `Final BATTLE ${Math.min(nodeNum, nodeMax)}${modeNum != 2 || nodeNum < nodeMax ? `` : `.${nodeNum - nodeMax + 1}`}${s != 1 ? `-${s - 1}` : ``} Boss Traits`;
+          traitDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br>${currEnemyData.spoilerPerf}` : `${currEnemyData.desc[currEnemyType]}<br>${currEnemyData.perf[currEnemyType]}`;
+          traitDesc.innerHTML += `<li>When an extra score multiplier is active in this stage, the <span style="color:#ffaf2c;font-weight:bold;">Performance Points</span> cap will increase accordingly.</li>`;
+          traitDesc.innerHTML += `${currEnemyID[0] == "2" || currEnemyID == "14303" || (currEnemyID == "14302") ? `<br>${currEnemyData.misc}` : ``}`;
         }
       }
       wave.appendChild(waveEnemies);
@@ -400,76 +445,109 @@ function showEnemies() {
     }
   }
 
-  /* add raw + alt HP display */
-  document.getElementById("n-hp-b-raw-20000").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][0][versionNum - 1]);
-  document.getElementById("n-hp-b-raw-60000").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
-  document.getElementById("n-hp-b-alt-20000").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][2][versionNum - 1]);
-  document.getElementById("n-hp-b-alt-60000").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][3][versionNum - 1]);
-  document.getElementById("n-hp-raw").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][4][versionNum - 1]);
-  document.getElementById("n-hp-aoe").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][5][versionNum - 1]);
-  document.getElementById("n-hp-alt").innerHTML = numberFormat(hpData[modeNum - 1][nodeNum - 1][6][versionNum - 1]);
+  // display HP values
+  document.getElementById("v-hp-raw-b-20000").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][0][versionNum - 1]);
+  document.getElementById("v-hp-raw-b-60000").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
+  document.getElementById("v-hp-alt-b-20000").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][2][versionNum - 1]);
+  document.getElementById("v-hp-alt-b-60000").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][3][versionNum - 1]);
+  document.getElementById("v-hp-raw-e").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][4][versionNum - 1]);
+  document.getElementById("v-hp-aoe-e").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][5][versionNum - 1]);
+  document.getElementById("v-hp-alt-e").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][6][versionNum - 1]);
 
-  /* save current page + settings */
+  // save current page/settings
   if (modeNum == 2) saveLastPage();
   saveSettings();
 }
 
 /* -------------------------------------------------------------------- INFO GENERATOR -------------------------------------------------------------------- */
 
-/* add 2 weakness/resistance display */
-function generateWR(mult, wr, s) {
+// display weaknesses/resistances
+function generateWR(mult, wr, id, s) {
   let weakImg1 = document.createElement("img");
   let weakImg2 = document.createElement("img");
   let resImg1 = document.createElement("img");
   let resImg2 = document.createElement("img");
-  weakImg1.className = "wk";
-  weakImg2.className = "wk";
-  resImg1.className = "res";
-  resImg2.className = "res";
-  if (s == 1) { weakImg1.style.width = "24px"; weakImg2.style.width = "24px"; resImg1.style.width = "24px"; resImg2.style.width = "24px"; }
-  weakImg1.src = "../../assets/zzz/elements/none.webp";
-  weakImg2.src = "../../assets/zzz/elements/none.webp";
-  resImg1.src = "../../assets/zzz/elements/none.webp";
-  resImg2.src = "../../assets/zzz/elements/none.webp";
+  weakImg1.className = weakImg2.className = "wk";
+  resImg1.className = resImg2.className = "res";
+  weakImg1.src = weakImg2.src = "../../assets/zzz/elements/none.webp";
+  resImg1.src = resImg2.src = "../../assets/zzz/elements/none.webp";
+  if (s == 1) weakImg1.style.height = weakImg2.style.height = resImg1.style.height = resImg2.style.height = "24px";
   let wkCnt = resCnt = 0;
-  for (let i = 0; i < 5; ++i) {
-    if (mult[i] < 1 && wkCnt == 0) { weakImg1.src = `../../assets/zzz/elements/${elementsData[i]}.webp`; ++wkCnt;}
-    else if (mult[i] < 1 && wkCnt == 1) weakImg2.src = `../../assets/zzz/elements/${elementsData[i]}.webp`;
-    else if (mult[i] > 1 && resCnt == 0) { resImg1.src = `../../assets/zzz/elements/${elementsData[i]}.webp`; ++resCnt; }
-    else if (mult[i] > 1 && resCnt == 1) resImg2.src = `../../assets/zzz/elements/${elementsData[i]}.webp`;
+  for (let e = 0; e < elementsData.length - (modeNum == 2 && versionNum < v28); ++e) {
+    if (mult[e] < 1) { (wkCnt == 0 ? weakImg1 : weakImg2).src = `../../assets/zzz/elements/${elementsData[e]}.webp`; ++wkCnt;}
+    else if (mult[e] > 1) { (resCnt == 0 ? resImg1 : resImg2).src = `../../assets/zzz/elements/${elementsData[e]}.webp`; ++resCnt; }
   }
   wr.appendChild(weakImg1);
+  if (versionNum >= v28 && id == "24300") {
+    let weakImg3 = document.createElement("img");
+    weakImg3.className = "wk";
+    weakImg3.src = "../../assets/zzz/elements/physical.webp";
+    weakImg3.style.height = "24px";
+    wr.appendChild(weakImg3);
+  }
   wr.appendChild(weakImg2);
   wr.appendChild(resImg1);
   wr.appendChild(resImg2);
 }
 
-/* add special enemy tooltip text */
-function alt(color, name, hpNew, hp) {
+// display 40%+ resistances
+function generateR(mult, r, s, id, enemy) {
+  let hasRES = false;
+  let bossRES = document.createElement("div");
+  let resEle = document.createElement("div");
+  bossRES.className = "e-res-title";
+  resEle.className = "e-res-ele";
+  bossRES.innerHTML = "Boss DMG RES";
+
+  for (let e = 0; e < elementsData.length - (modeNum == 2 && versionNum < v28); ++e) {
+    if (mult[e] > 1.2) {
+      hasRES = true;
+      let res = document.createElement("div");
+      let resImg = document.createElement("img");
+      let resMult = document.createElement("div");
+      res.className = "e-res";
+      resImg.className = "res";
+      resMult.className = "e-res-mult";
+      resImg.style.borderWidth = "0px";
+      resImg.src = `../../assets/zzz/elements/${elementsData[e]}.webp`;
+      if (s == 1) resImg.style.height = "24px";
+      resMult.innerHTML = `${Math.round(mult[e] * 100) - 100}%`;
+      res.appendChild(resImg);
+      res.appendChild(resMult);
+      resEle.appendChild(res);
+    }
+  }
+
+  // display only for bosses
+  if (id[2] >= "2" && hasRES) { r.appendChild(bossRES); r.appendChild(resEle); enemy.appendChild(r); }
+}
+
+// display special tooltip
+function alt(color, name, hpNew, hp, def) {
   return `<span style="color:${color};">✦</span><span class="tt-text">
           <span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
-          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hpNew))}</span><br>
-          <span style="font-weight:bold;">(assume ${Math.round(hpNew / hp * 1000) / 10}% of HP)</span><br><br>`;
+          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${showNumberFormat(Math.ceil(hpNew))}</span><br>
+          <span style="font-weight:bold;">(${def < 60 ? `normalized → ` : ``}${Math.round(hpNew / hp * 1000) / 10}% of Base HP)</span><br><br>`;
 }
 function hitch(hp) {
   return `<span style="color:#ffffff;">✦</span><span class="tt-text">
           <span style="font-weight:bold;text-decoration:underline;">Hitchspiker</span><br>
-          True <span style="color:#ff5555;font-weight:bold;">Raw HP</span>: <span style="color:#ff5555;font-weight:bold;">${numberFormat(hp)}</span><br><br>
+          True <span style="color:#ff5555;font-weight:bold;">Raw HP</span>: <span style="color:#ff5555;font-weight:bold;">${showNumberFormat(hp)}</span><br><br>
           technically doesn't<br>need to be killed</span>`;
 }
 function palicus() { return `hit both 50% of the time</span>`; }
 function instant(color, type, cnt) { return `<span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)</span>`; }
 
-/* add enemy stat tooltip text */
+// display misc stats
 function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
-  let anomMult = [1, 1, 1, 1, 1.2];
-  let color = ["#98eff0", "#ff5521", "#2eb6ff", "#fe437e", "#f0d12b"];
+  let anomMult = [1, 1, 1, 1, 1.2, 0.5];
+  let color = ["#98eff0", "#ff5521", "#2eb6ff", "#fe437e", "#f0d12b", "#a6c5fd"];
   let stats = `<span style="font-weight:bold;">Max Daze: <span style="color:#ffe599;">${Math.round(daze * 10000) / 10000}</span></span><br>
               (<span style="color:#ffe599;font-weight:bold;">${stun}%</span> DMG for <span style="color:#ffe599;font-weight:bold;">${time}s</span>)<br><br>`;
   if (mods.includes("no-anom")) return stats + `<span style="font-weight:bold;">IMMUNE TO ANOMALY</span>`;
   else {
-    stats += `<span style="font-weight:bold;">Max Anomaly Buildup:</span><br>`;
-    for (let i = 0; i < 5; ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * (1 / (2 - dmg[i])) * 100) / 100}</span>/`;
+    stats += `<span style="font-weight:bold;">Min Anomaly Buildup:</span><br>`;
+    for (let i = 0; i < elementsData.length - (modeNum == 2 && versionNum < v28); ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * (1 / (2 - Math.min(dmg[i], 1.2))) * 100) / 100}</span>/` + (window.innerWidth < 480 && i == 2 ? `<br>`: ``);
     stats = stats.slice(0, -1) + `<br>${mods.includes("no-freeze") ? `<span style="color:#98eff0;font-weight:bold;">UNFREEZABLE</span>` : ``}`;
   }
   return stats;
@@ -477,22 +555,22 @@ function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
 
 /* ------------------------------------------------------------ MISCELLANEOUS + QOL + NAVIGATION ------------------------------------------------------------ */
 
-/* load last saved page location + settings */
-/* !!!!!!!!!!!!!!!!!! DEFAULT TO LATEST TS !!!!!!!!!!!!!!!!!! */
+// load last page/settings
+// !!!!!!!!!!!!!!!!!! DEFAULT TO LATEST TS 3.1 !!!!!!!!!!!!!!!!!!
 function loadSavedState() {
   if (localStorage.getItem("leaksEnabled") == "true") leaksToggle.checked = true;
   if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
-  versionNum = parseInt(localStorage.getItem("lastTSVersion") || `${cntNoLeaks}`);
-  oldVersionNum = versionNum;
+  versionNum = parseInt(localStorage.getItem("lastTSVersion") || `${vLive}`);
+  versionNumOld = versionNum;
   nodeNum = parseInt(localStorage.getItem("lastTSNode") || "3");
   endingNum = parseInt(localStorage.getItem("lastTSEnding") || "1");
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
-  if (!leaksToggle.checked) versionNum = Math.min(versionNum, cntNoLeaks);
+  if (!leaksToggle.checked) versionNum = Math.min(versionNum, vLive);
   saveLastPage();
   saveSettings();
 }
 
-/* save current page location + settings */
+// save current page/settings
 function saveLastPage() {
   localStorage.setItem("lastTSVersion", versionNum);
   localStorage.setItem("lastTSNode", nodeNum);
@@ -504,62 +582,56 @@ function saveSettings() {
   localStorage.setItem("spoilersEnabled", spoilersToggle.checked);
 }
 
-/* keyboard shortcuts to navigate main page */
+// go to top of page
+function jumpToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+// navigation keyboard shortcuts
 document.addEventListener("keydown", (e) => {
   e.stopPropagation();
   if (e.shiftKey || e.ctrlKey || e.metaKey || e.altKey) return;
   if (e.key == "Escape") { e.preventDefault(); versionSelectorIsOpen ? toggleVersionSelector() : toggleMenu(); }
+  else if (e.key == "Enter" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); jumpToTop(); }
   else if (e.key == " " && !menuIsOpen) { e.preventDefault(); toggleVersionSelector(); }
   else if (e.key == "ArrowLeft" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }
   else if (e.key == "ArrowRight" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(1); }
   else if (e.key == "ArrowUp" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeNode(1); }
   else if (e.key == "ArrowDown" && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeNode(-1); }
-  return;
 });
 
 /* ------------------------------------------------------------------------ MENU BAR ----------------------------------------------------------------------- */
 
-/* enables/disables menu bar */
+// display/hide menu bar
 function toggleMenu() {
+  menuIsOpen = !menuIsOpen;
   let menuBar = document.getElementById("mb");
   let menuBarOverlay = document.getElementById("mb-o");
-  let fixedMenuButton = document.getElementById("open-mb-btn");
-  if (menuIsOpen) {
-    document.body.classList.remove("no-scroll");
-    menuBar.style.display = "none";
-    menuBarOverlay.style.display = "none";
-    fixedMenuButton.style.display = "none";
-  }
-  else {
-    document.body.classList.add("no-scroll");
-    menuBar.style.display = "block";
-    menuBarOverlay.style.display = "block";
-    fixedMenuButton.style.display = "block";
-  }
-  menuIsOpen = !menuIsOpen;
+  document.body.style.overflow = menuIsOpen ? "hidden" : "auto";
+  menuBar.style.display = menuBarOverlay.style.display = menuIsOpen ? "flex" : "none";
 }
 
-/* highlights selected number format button and updates example number */
-/* 2222222 2,222,222 2.222.222 */
-function updateNumberFormat(e) {
-  if (e) currNumberFormat = e.dataset.format;
-  let ex = document.getElementById("ex-num");
-  let numFormatButtons = document.querySelectorAll(".nfb");
-  ex.innerHTML = numberFormat(2222222);
-  numFormatButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == currNumberFormat));
-  showEnemies();
-}
-function numberFormat(num) {
+// display number format & example: 2222222 2,222,222 2.222.222
+function showNumberFormat(num) {
   if (currNumberFormat == "comma") return num.toLocaleString("en-US");
   if (currNumberFormat == "period") return num.toLocaleString("de-DE");
   return num;
 }
+function changeNumberFormat(e) {
+  if (e) currNumberFormat = e.dataset.format;
+  let ex = document.getElementById("mb-ex-num");
+  let numFormatButtons = document.querySelectorAll(".nfb");
+  ex.innerHTML = showNumberFormat(2222222);
+  numFormatButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == currNumberFormat));
+  showEnemies();
+}
 
-/* enables/disables leaks/spoilers slider + access */
+// display/hide leaks/spoilers
 leaksToggle.addEventListener("change", () => {
   if (!leaksToggle.checked) {
     spoilersToggle.checked = false;
-    if (versionNum > cntNoLeaks) versionNum = cntNoLeaks;
+    if (versionNum > vLive) versionNum = vLive;
   }
   showVersion();
 });
@@ -570,41 +642,32 @@ spoilersToggle.addEventListener("change", () => {
 
 /* -------------------------------------------------------------------- VERSION SELECTOR -------------------------------------------------------------------- */
 
-/* enables/disables version selector menu */
+// display/hide version selector
 function toggleVersionSelector() {
+  versionSelectorIsOpen = !versionSelectorIsOpen;
   let versionSelector = document.getElementById("vs");
   let versionSelectorOverlay = document.getElementById("vs-o");
-  if (versionSelectorIsOpen) {
-    document.body.classList.remove("no-scroll");
-    versionSelector.style.display = "none";
-    versionSelectorOverlay.style.display = "none";
-  }
-  else {
-    document.body.classList.add("no-scroll");
-    versionSelector.style.display = "flex";
-    versionSelectorOverlay.style.display = "block";
-    displayVersionSelectorGrid();
-  }
-  versionSelectorIsOpen = !versionSelectorIsOpen;
+  document.body.style.overflow = versionSelectorIsOpen ? "hidden" : "auto";
+  versionSelector.style.display = versionSelectorOverlay.style.display = versionSelectorIsOpen ? "flex" : "none";
+  if (versionSelectorIsOpen) showVersionSelector();
 }
 
-/* displays version selector */
-function displayVersionSelectorGrid() {
-  let versionSelector = document.getElementById("vs");
-  let gridContent = versionSelector.querySelector("#vg");
-  let row1 = versionSelector.querySelector("#vg-row1");
-  let title = versionSelector.querySelector("#vg-title");
-  let row2 = versionSelector.querySelector("#vg-row2");
+// display version selector
+function showVersionSelector() {
+  let gridContent = document.getElementById("vg");
+  let row1 = document.getElementById("vg-misc");
+  let title = document.getElementById("vg-title");
+  let row2 = document.getElementById("vg-main");
   row1.innerHTML = ``;
   title.innerHTML = `Hard Mode`;
   row2.innerHTML = ``;
 
-  /* loop enabled versions to add it to the selector */
+  // display allowed versions
   for (let m = 1; m <= 2; ++m) {
-    for (let v = 1; v <= (m == 2 ? (leaksToggle.checked ? versionIDs[m - 1].length : cntNoLeaks) : 1); ++v) {
+    for (let v = 1; v <= (m == 2 ? (leaksToggle.checked ? versionIDs[m - 1].length : vLive) : 1); ++v) {
       let currVersion = versionData[m - 1].versions[versionIDs[m - 1][v - 1]];
 
-      /* create a new version selection button */
+      // display version selection button
       let versionButton = document.createElement("div");
       let nameDiv = document.createElement("div");
       let timeDiv = document.createElement("div");
@@ -613,23 +676,21 @@ function displayVersionSelectorGrid() {
       nameDiv.className = "vg-c-name";
       timeDiv.className = "vg-c-time";
       idDiv.className = "vg-c-id";
-      nameDiv.innerHTML = currVersion.versionName + (m == 2 && v == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``) + (m == 2 && v >= vBeta ? `<span style='color:#52a9f7;font-weight:bold;'> (BETA)</span>` : ``);
+      nameDiv.innerHTML = currVersion.versionName + (m == 2 && v == vLive ? `<span style="color:#ff0000;font-weight:bold;"> (LIVE)</span>` : m == 2 && v >= vBeta ? `<span style="color:#52a9f7;font-weight:bold;"> (BETA)</span>` : ``);
       timeDiv.innerHTML = currVersion.versionTime;
       idDiv.innerHTML = m == 2 ? `Version: ${versionIDs[m - 1][v - 1].slice(0, 3)} Phase ${versionIDs[m - 1][v - 1].slice(4)} - ID: ${v}0${v == 1 ? 2 : 1}` : `ID: 101`;
       versionButton.appendChild(nameDiv);
       versionButton.appendChild(timeDiv);
       versionButton.appendChild(idDiv);
+      m != 2 ? row1.appendChild(versionButton) : row2.appendChild(versionButton);
 
-      /* make it clickable, and if clicked go to that version */
+      // go to version on click
       versionButton.onclick = () => {
         modeNum = m;
         versionNum = modeNum == 2 ? v : 1;
         toggleVersionSelector();
         showVersion();
       };
-
-      /* add button to selector */
-      m != 2 ? row1.appendChild(versionButton) : row2.appendChild(versionButton);
     }
   }
 
@@ -640,4 +701,4 @@ function displayVersionSelectorGrid() {
 
 /* ----------------------------------------------------------------------------- MAIN ----------------------------------------------------------------------- */
 
-window.addEventListener("DOMContentLoaded", async () => { await loadThresholdPage(); });
+window.addEventListener("DOMContentLoaded", async () => { await loadPage(); });

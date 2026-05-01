@@ -1,150 +1,168 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let cntNoLeaks = 31, vBeta = 33;
-let leaksToggle = document.getElementById("lks"), spoilersToggle = document.getElementById("spl");
-let bossDropdown = document.getElementById("b-dd");
-let bossHPCalc1 = document.getElementById("b-hp1"), bossScoreCalc1 = document.getElementById("b-score1"), bossVerDropdown1 = document.getElementById("b-v-dd1");
-let bossHPCalc2 = document.getElementById("b-hp2"), bossScoreCalc2 = document.getElementById("b-score2"), bossVerDropdown2 = document.getElementById("b-v-dd2");
-let versionNum, chartScoreNum, currNumberFormat;
-let currCalcBossID, currCalcData1, currCalcData2, currCalcMaxBossHP1, currCalcMaxBossHP2, currCalcVersion1, currCalcVersion2;
-let menuIsOpen = versionSelectorIsOpen = chartIsOpen = calcIsOpen = false;
+let vLive = 35, vBeta = 36, v22 = 19, v28 = 36;
+let leaksToggle = document.getElementById("lks")
+let spoilersToggle = document.getElementById("spl");
+let bossDropdown = document.getElementById("cc-b-dd");
+let bossVerDropdown1 = document.getElementById("cc-b-v-dd1"), bossScoreCalc1 = document.getElementById("cc-b-score1"), bossHPCalc1 = document.getElementById("cc-b-hp1");
+let bossVerDropdown2 = document.getElementById("cc-b-v-dd2"), bossScoreCalc2 = document.getElementById("cc-b-score2"), bossHPCalc2 = document.getElementById("cc-b-hp2");
+let versionNum, chartScoreNum, currCalcBossID, currCalcData1, currCalcData2, currCalcVersion1, currCalcVersion2, currCalcMaxBossHP1, currCalcMaxBossHP2, currNumberFormat;
+let menuIsOpen = versionSelectorIsOpen = calcIsOpen = chartIsOpen = false;
 
-let versionData, enemyData, hpChart;
-let buffNames, buffDescs, versionDazeMult, versionAnomMult, versionEnemies;
-let versionIDs = hpData = [], specificHPData = Object.create(null);
-let elementsData = ["ice", "fire", "electric", "ether", "physical"];
+let versionData, enemyData, buffData, hpChart;
+let versionBuffIDs, versionHPMult, versionDazeMult, versionAnomMult, versionEnemies;
+let versionIDs = [], hpData = [], hpDataSpecific = Object.create(null);
+let elementsData = ["ice", "fire", "electric", "ether", "physical", "wind"];
 
-/* load main page data from .json files, and display */
-async function loadDeadlyPage() {
+// build & display main page
+async function loadPage() {
   versionData = await (await fetch("da-versions.json")).json();
   enemyData = await (await fetch("../../assets/zzz/enemies.json")).json();
-  buffDescs = await (await fetch("../../assets/zzz/buffs.json")).json();
+  buffData = await (await fetch("../../assets/zzz/buffs.json")).json();
   versionIDs = Object.keys(versionData);
-  buildHPData();
+  loadHPData();
   loadSavedState();
   await showVersion();
-  displayHPChart();
-  updateNumberFormat();
+  changeNumberFormat();
 }
 
-/* create hp database using 3D matrix */
-function buildHPData() {
+// build hp database
+function loadHPData() {
   hpData = Array.from({length: 4}, () => Array.from({length: versionIDs.length}).fill(null));
   for (let v = 1; v <= versionIDs.length; ++v) {
-    let raw60kEnemyHP = 0, alt60kEnemyHP = 0;
-    versionEnemies = versionData[versionIDs[v - 1]].versionEnemies;
-    for (let b = 1; b <= 3; ++b) {
-      let currEnemy = versionEnemies[b - 1];
+    let versionEnemies = versionData[versionIDs[v - 1]].versionEnemies;
+    let raw60kEnemyHP = alt60kEnemyHP = 0;
+
+    // build boss hp database
+    for (let s = 1; s <= 3; ++s) {
+      let sideHPMult = versionData[versionIDs[v - 1]].versionHPMult[s - 1];
+
+      let currEnemy = versionEnemies[s - 1];
       let currEnemyID = currEnemy.id;
       let currEnemyType = currEnemy.type;
+      let currEnemyHPMult = currEnemy.hpMult ? currEnemy.hpMult : sideHPMult;
       let currEnemyData = enemyData[currEnemyID];
-      let eHP = Math.floor(8.74 * currEnemyData.baseHP[currEnemyType] * 24795 * currEnemy.mult / 10000);
+      let eHP = currEnemyData.baseHP[currEnemyType] * 24795 * currEnemyHPMult * 8.74 / 10000;
       let eTags = currEnemyData.tags;
+
+      // calculate boss hp
       raw60kEnemyHP += eHP;
       alt60kEnemyHP += eHP;
       if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
         if (eTags.includes("ucc")) alt60kEnemyHP -= eHP * 0.036;
         if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
-        if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.045 : (v >= 19 ? 0.025 : 0.03));
-        if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * (currEnemyID == "26300" ? 0.03 : 0.015);
-        if (eTags.includes("convert")) alt60kEnemyHP -= eHP * 0.03;
+        if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.045 : (v >= v22 ? 0.025 : 0.03));
+        if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * (currEnemyID == "28300" ? 0.02 : currEnemyID == "27300" ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015);
+        if (eTags.includes("convert")) alt60kEnemyHP += eHP * 0.003;
       }
 
-      /* add boss appearance to boss hp map */
-      if (!specificHPData[currEnemyID]) specificHPData[currEnemyID] = [];
-      specificHPData[currEnemyID].push([versionIDs[v - 1], eHP]);
+      // normalize hp for lower def bosses (from 60)
+      if (currEnemyData.baseDEF[currEnemyType] < 60) alt60kEnemyHP *= (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100);
+
+      // add boss appearance to boss hp map
+      if (!hpDataSpecific[currEnemyID]) hpDataSpecific[currEnemyID] = [];
+      hpDataSpecific[currEnemyID].push([versionIDs[v - 1], eHP]);
     }
-    hpData[0][v - 1] = Math.ceil(raw60kEnemyHP * 0.281083138);
-    hpData[1][v - 1] = Math.ceil(raw60kEnemyHP);
-    hpData[2][v - 1] = Math.ceil(alt60kEnemyHP * 0.281083138);
-    hpData[3][v - 1] = Math.ceil(alt60kEnemyHP);
+    hpData[0][v - 1] = Math.round(raw60kEnemyHP * 0.281083138);
+    hpData[1][v - 1] = Math.round(raw60kEnemyHP);
+    hpData[2][v - 1] = Math.round(alt60kEnemyHP * 0.281083138);
+    hpData[3][v - 1] = Math.round(alt60kEnemyHP);
   }
 }
 
-/* ◁ [version # + time] ▷ display */
+// display version/time/id
 async function showVersion() {
   let currVersion = versionData[versionIDs[versionNum - 1]];
+  versionBuffIDs = currVersion.versionBuffIDs;
+  versionHPMult = currVersion.versionHPMult;
   versionDazeMult = currVersion.versionDazeMult;
   versionAnomMult = currVersion.versionAnomMult;
   versionEnemies = currVersion.versionEnemies;
-  buffNames = currVersion.buffNames;
-  document.getElementById("v-name").innerHTML = currVersion.versionName + (versionNum == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``) + (versionNum >= vBeta ? `<span style='color:#52a9f7;font-weight:bold;'> (BETA)</span>` : ``);
+  document.getElementById("v-name").innerHTML = currVersion.versionName + (versionNum == vLive ? `<span style="color:#ff0000;font-weight:bold;"> (LIVE)</span>` : versionNum >= vBeta ? `<span style="color:#52a9f7;font-weight:bold;"> (BETA)</span>` : ``);
   document.getElementById("v-time").innerHTML = currVersion.versionTime;
-  document.getElementById("v-id").innerHTML = `ID: 690${versionNum.toString().padStart(2, '0')}${versionNum >= vBeta ? `1` : ``}`;
+  document.getElementById("v-id").innerHTML = `ID: 69${versionNum.toString().padStart(3, `0`)}${versionNum >= vBeta ? `1` : ``}`;
   showBuffs();
   showEnemies();
 }
 async function changeVersion(n) {
-  let maxVersion = leaksToggle.checked ? versionIDs.length : cntNoLeaks;
+  let maxVersion = leaksToggle.checked ? versionIDs.length : vLive;
   versionNum = (versionNum - 1 + n + maxVersion) % maxVersion + 1;
   await showVersion();
 }
 
-/* show version buffs */
+// display buffs
 function showBuffs() {
-  for (let buff = 1; buff <= 3; ++buff) {
-    document.getElementById(`b${buff}`).innerHTML = ``;
+  for (let buff = 1; buff <= versionBuffIDs.length; ++buff) {
+    let b = document.getElementById(`b${buff}`);
     let buffImg = document.createElement("img");
     let buffName = document.createElement("div");
     let buffDesc = document.createElement("div");
     buffImg.className = "b-img";
     buffName.className = "b-name";
-    buffDesc.className = "b-desc";
-    buffImg.src = `../../assets/zzz/buffs/${buffNames[buff - 1].toLowerCase().replaceAll(" ", "-")}.webp`;
-    buffName.innerHTML = buffNames[buff - 1];
-    buffDesc.innerHTML = buffDescs[buffNames[buff - 1]];
-    document.getElementById(`b${buff}`).appendChild(buffImg);
-    document.getElementById(`b${buff}`).appendChild(buffName);
-    document.getElementById(`b${buff}`).appendChild(buffDesc);
+    buffDesc.className = "bt-desc";
+    b.innerHTML = ``;
+    buffImg.src = `../../assets/zzz/buffs/${buffData[versionBuffIDs[buff - 1]][1]}.webp`;
+    buffName.innerHTML = buffData[versionBuffIDs[buff - 1]][0];
+    buffDesc.innerHTML = buffData[versionBuffIDs[buff - 1]][2];
+    b.appendChild(buffImg);
+    b.appendChild(buffName);
+    b.appendChild(buffDesc);
   }
 }
 
-/* place and display elements/enemies/weaknesses/resistances/HP/count on screen */
+// display enemies
 function showEnemies() {
-  /* add side 1 & 2 displays */
-  let side1 = document.querySelector("#s1"), side2 = document.querySelector("#s2"), side3 = document.querySelector("#s3");
+  // display sides
+  let side1 = document.getElementById("s1"), side2 = document.getElementById("s2"), side3 = document.getElementById("s3");
   side1.innerHTML = side2.innerHTML = side3.innerHTML = ``;
 
-  /* loop version's sides */
-  for (let s = 1; s <= 3; ++s) {
-    let side = s == 1 ? side1 : (s == 2 ? side2 : side3);
-    /* add side x-x LvXX title */
+  // loop sides
+  for (let s = 1; s <= versionEnemies.length; ++s) {
+    let side = s == 1 ? side1 : s == 2 ? side2 : side3;
+
+    // display side title
     let sideHeader = document.createElement("div");
     sideHeader.className = "s-header";
     sideHeader.innerHTML = `Side ${s} Lv70`;
 
-    let currEnemy = versionEnemies[s - 1];
-    let currEnemyID = currEnemy.id;
-    let currEnemyType = currEnemy.type;
-    let currEnemyData = enemyData[currEnemyID];
-
-    /* add side HP multiplier */
+    // display side HP multiplier
     let hpMult = document.createElement("div");
+    let sideHPMult = versionHPMult[s - 1], sideDazeMult = versionDazeMult[s - 1];
     hpMult.className = "s-hp-daze-anom-mult";
-    hpMult.innerHTML = `HP: <span style="color:#ff5555;">${currEnemy.mult}%</span> | Daze: <span style="color:#ffe599;">${versionDazeMult}%</span> | Anom: <span style="color:#7756c6;">${versionAnomMult}%</span>`;
+    hpMult.innerHTML = `HP: <span style="color:#ff5555;">${sideHPMult}%</span> | Daze: <span style="color:#ffe599;">${sideDazeMult}%</span> | Anom: <span style="color:#7b78ff;">${versionAnomMult}%</span>`;
     sideHeader.appendChild(hpMult);
     side.appendChild(sideHeader);
 
-    /* define current enemy's parameters */
+    // display wave
+    let waveEnemies = document.createElement("div");
+    waveEnemies.className = "w-e";
+
+    let currEnemy = versionEnemies[s - 1];
+    let currEnemyID = currEnemy.id;
+    let currEnemyType = currEnemy.type;
+    let currEnemyHPMult = currEnemy.hpMult ? currEnemy.hpMult : sideHPMult;
+    let currEnemyData = enemyData[currEnemyID];
+
+    // define enemy parameters
     let eTags = currEnemyData.tags;
     let eMods = currEnemyData.mods;
     let showEnemySpoilers = spoilersToggle.checked || !eTags.includes("spoiler");
     let eName = showEnemySpoilers ? currEnemyData.name : "SPOILER BOSS";
     let eImg = showEnemySpoilers ? `../../assets/zzz/enemies/${currEnemyData.image}.webp` : `../../assets/zzz/enemies/doppelganger-i.webp`;
 
-    /* define current enemy's various stats */
-    let eHP = Math.floor(8.74 * currEnemyData.baseHP[currEnemyType] * 24795 * currEnemy.mult / 10000);
-    let eDEF = currEnemyData.baseDEF * 1588 / 100;
-    let eDaze = currEnemyData.baseDaze[currEnemyType] * 2.35 * (currEnemyID == "24300" ? 0.8 : 1);
+    // define enemy stats
+    let eHP = Math.floor(8.74 * sideHPMult * currEnemyData.baseHP[currEnemyType] * 24795 / 10000);
+    let eDEF = Math.ceil(currEnemyData.baseDEF[currEnemyType] * 1588 / 100);
+    let eDaze = currEnemyData.baseDaze[currEnemyType] * 2.35;
     let eStunMult = currEnemyData.stunMult;
     let eStunTime = currEnemyData.stunTime;
     let eAnom = currEnemyData.baseAnom;
     let eElementMult = currEnemyData.elementMult;
 
-    /* add enemy display */
+    // display enemy
     let enemy = document.createElement("div");
     enemy.className = "e";
-    
+
     let enemyImg = document.createElement("img");
     let enemyName = document.createElement("div");
     let enemyHover = document.createElement("div");
@@ -157,16 +175,21 @@ function showEnemies() {
     enemyHover.appendChild(enemyName);
     enemy.appendChild(enemyHover);
 
+    // display enemy weaknesses/resistances
     let enemyWR = document.createElement("div");
     enemyWR.className = "wr";
-    generateWR(eElementMult, enemyWR);
+    generateWR(eElementMult, enemyWR, currEnemyID);
     enemy.appendChild(enemyWR);
 
-    /* add enemy hp display */
+    // display enemy hp
+    let hp = document.createElement("div");
     let enemyHP = document.createElement("div");
+    hp.className = "hp";
     enemyHP.className = "e-hp";
-    enemyHP.innerHTML = numberFormat(eHP);
-    /* add special enemy tooltip (if necessary) */
+    enemyHP.innerHTML = showNumberFormat(eHP);
+    hp.appendChild(enemyHP);
+
+    // display special enemy tooltip
     if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
       let ttHP = document.createElement("div");
       ttHP.className = "tt-e-hp";
@@ -185,106 +208,164 @@ function showEnemies() {
         ttHP.innerHTML += instant(color, "IMPAIRED!!", 1) + `<br>`;
       }
       if (eTags.includes("miasma")) {
-        eHPNew -= eHP * (currEnemyID == "25300" ? 0.045 : (versionNum >= 19 ? 0.025 : 0.03));
+        eHPNew -= eHP * (currEnemyID == "25300" ? 0.045 : (versionNum >= v22 ? 0.025 : 0.03));
         color = "#b4317b";
         ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 3 : 1) + `<br>`;
       }
       if (eTags.includes("shutdown")) {
-        eHPNew -= eHP * (currEnemyID == "26300" ? 0.03 : 0.015);
+        eHPNew -= eHP * (currEnemyID == "28300" ? 0.02 : currEnemyID == "27300" ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015);
         color = "#b47ede";
-        ttHP.innerHTML += instant(color, "SHUTDOWN!!", (currEnemyID == "26300" ? 2 : 1)) + `<br>`;
+        ttHP.innerHTML += instant(color, "SHUTDOWN!!", currEnemyID == "26300" ? 2 : 1) + `<br>`;
       }
       if (eTags.includes("convert")) {
-        eHPNew -= eHP * 0.03;
+        eHPNew += eHP * 0.003;
         color = "#007bb8";
         ttHP.innerHTML += instant(color, "CONVERT!!", 1) + `<br>`;
       }
-      ttHP.innerHTML = alt(color, currEnemyID == "25300" ? (eName.slice(0, 21) + "<br>" + eName.slice(21)) : eName, eHPNew, eHP) + ttHP.innerHTML;
-      enemyHP.appendChild(ttHP);
+
+      // normalize hp for lower def bosses (from 60)
+      if (currEnemyID[2] >= "2" && currEnemyData.baseDEF[currEnemyType] < 60) eHPNew *= (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100);
+
+      // display tooltip text
+      ttHP.innerHTML = alt(color, currEnemyID == "25300" ? (eName.slice(0, 21) + "<br>" + eName.slice(21)) : eName, eHPNew, eHP, currEnemyData.baseDEF[currEnemyType]) + ttHP.innerHTML;
+      hp.appendChild(ttHP);
     }
-    enemy.appendChild(enemyHP);
 
-    /* add enemy def display */
-    let enemyDef = document.createElement("div");
-    enemyDef.className = "e-def";
-    enemyDef.innerHTML = Math.ceil(eDEF);
-    enemy.appendChild(enemyDef);
+    // display enemy specific hp multiplier
+    if (sideHPMult != currEnemyHPMult) {
+      let specificHPMult = document.createElement("div");
+      specificHPMult.className = "e-hp-mult";
+      specificHPMult.innerHTML = `[${currEnemyHPMult}%]`;
+      hp.appendChild(specificHPMult);
+    }
+    enemy.appendChild(hp);
 
-    /* add enemy misc stat tooltip */
+    // display enemy def
+    let enemyDEF = document.createElement("div");
+    enemyDEF.className = "e-def";
+    enemyDEF.innerHTML = eDEF;
+    enemy.appendChild(enemyDEF);
+
+    // display enemy misc stats
     let ttMiscStat = document.createElement("div");
     ttMiscStat.className = "tt-e-stat";
-    ttMiscStat.innerHTML = `+</span><span class="tt-text">${generateEnemyStats(eDaze, eStunMult, eStunTime, versionAnomMult / 100 * eAnom, eElementMult, eMods)}</span>`;
+    ttMiscStat.innerHTML = `+<span class="tt-text">${generateEnemyStats(sideDazeMult / 100 * eDaze, eStunMult, eStunTime, versionAnomMult / 100 * eAnom, eElementMult, eMods)}</span>`;
     enemy.appendChild(ttMiscStat);
 
-    side.appendChild(enemy);
+    // display enemy 40%+ resistances
+    let enemyR = document.createElement("div");
+    enemyR.className = "res-40plus";
+    generateR(eElementMult, enemyR, currEnemyID, enemy);
 
-    /* add enemy stage description */
-    let stageDesc = document.createElement("div");
-    stageDesc.className = "esd";
-    stageDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br><br>` : `${currEnemyData.desc[currEnemyType]}<br><br>`;
-    stageDesc.innerHTML += (currEnemyID == "14301" && versionNum == 6) ? `• Successfully triggering <span style='font-weight:bold;'>Perfect Assist</span> grants <span style='color:#ffaf2c;font-weight:bold;'>300 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.` : (eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerPerf}` : `${currEnemyData.perf[currEnemyType]}`);
-    stageDesc.innerHTML += `${(currEnemyID[0] == '2' || (currEnemyID == "14303" && versionNum >= 4)) ? `<br><br>${currEnemyData.misc}` : ``}`;
-    side.appendChild(stageDesc);
+    waveEnemies.appendChild(enemy);
+
+    // add enemy stage description
+    let trait = document.createElement("div");
+    let traitTitle = document.createElement("div");
+    let traitDesc = document.createElement("div");
+    trait.className = "t";
+    traitTitle.className = "t-title";
+    traitDesc.className = "bt-desc";
+    traitTitle.innerHTML = `Side ${s} Boss Traits`;
+    trait.appendChild(traitTitle);
+    traitDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br>` : `${currEnemyData.desc[currEnemyType]}<br>`;
+    traitDesc.innerHTML += (currEnemyID == "14301" && versionNum == 6) ? `• Successfully triggering <span style="font-weight:bold;">Perfect Assist</span> grants <span style="color:#ffaf2c;font-weight:bold;">300 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.` : (eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerPerf}` : `${currEnemyData.perf[currEnemyType]}`);
+    traitDesc.innerHTML += `${(currEnemyID[0] == "2" || (currEnemyID == "14303" && versionNum >= 4)) ? `<br>${currEnemyData.misc}` : ``}`;
+    trait.appendChild(traitDesc);
+
+    side.appendChild(waveEnemies);
+    side.appendChild(trait);
   }
 
-  /* add raw + alt HP display */
-  document.getElementById("v-hp-raw-20000").innerHTML = numberFormat(hpData[0][versionNum - 1]);
-  document.getElementById("v-hp-raw-60000").innerHTML = numberFormat(hpData[1][versionNum - 1]);
-  document.getElementById("v-hp-alt-20000").innerHTML = numberFormat(hpData[2][versionNum - 1]);
-  document.getElementById("v-hp-alt-60000").innerHTML = numberFormat(hpData[3][versionNum - 1]);
+  // display HP values
+  document.getElementById("v-hp-raw-20000").innerHTML = showNumberFormat(hpData[0][versionNum - 1]);
+  document.getElementById("v-hp-raw-60000").innerHTML = showNumberFormat(hpData[1][versionNum - 1]);
+  document.getElementById("v-hp-alt-20000").innerHTML = showNumberFormat(hpData[2][versionNum - 1]);
+  document.getElementById("v-hp-alt-60000").innerHTML = showNumberFormat(hpData[3][versionNum - 1]);
 
-  /* save current page + settings */
+  // save current page/settings
   saveProgress();
 }
 
 /* -------------------------------------------------------------------- INFO GENERATOR -------------------------------------------------------------------- */
 
-/* add 2 weakness/resistance display */
-function generateWR(mult, wr) {
+// display weaknesses/resistances
+function generateWR(mult, wr, id) {
   let weakImg1 = document.createElement("img");
   let weakImg2 = document.createElement("img");
   let resImg1 = document.createElement("img");
   let resImg2 = document.createElement("img");
-  weakImg1.className = "wk";
-  weakImg2.className = "wk";
-  resImg1.className = "res";
-  resImg2.className = "res";
-  weakImg1.src = "../../assets/zzz/elements/none.webp";
-  weakImg2.src = "../../assets/zzz/elements/none.webp";
-  resImg1.src = "../../assets/zzz/elements/none.webp";
-  resImg2.src = "../../assets/zzz/elements/none.webp";
+  weakImg1.className = weakImg2.className = "wk";
+  resImg1.className = resImg2.className = "res";
+  weakImg1.src = weakImg2.src = "../../assets/zzz/elements/none.webp";
+  resImg1.src = resImg2.src = "../../assets/zzz/elements/none.webp";
   let wkCnt = resCnt = 0;
-  for (let i = 0; i < 5; ++i) {
-    if (mult[i] < 1 && wkCnt == 0) { weakImg1.src = `../../assets/zzz/elements/${elementsData[i]}.webp`; ++wkCnt;}
-    else if (mult[i] < 1 && wkCnt == 1) weakImg2.src = `../../assets/zzz/elements/${elementsData[i]}.webp`;
-    else if (mult[i] > 1 && resCnt == 0) { resImg1.src = `../../assets/zzz/elements/${elementsData[i]}.webp`; ++resCnt; }
-    else if (mult[i] > 1 && resCnt == 1) resImg2.src = `../../assets/zzz/elements/${elementsData[i]}.webp`;
+  for (let e = 0; e < elementsData.length - (versionNum < v28); ++e) {
+    if (mult[e] < 1) { (wkCnt == 0 ? weakImg1 : weakImg2).src = `../../assets/zzz/elements/${elementsData[e]}.webp`; ++wkCnt;}
+    else if (mult[e] > 1) { (resCnt == 0 ? resImg1 : resImg2).src = `../../assets/zzz/elements/${elementsData[e]}.webp`; ++resCnt; }
   }
   wr.appendChild(weakImg1);
+  if (versionNum >= v28 && id == "24300") {
+    let weakImg3 = document.createElement("img");
+    weakImg3.className = "wk";
+    weakImg3.src = "../../assets/zzz/elements/physical.webp";
+    wr.appendChild(weakImg3);
+  }
   wr.appendChild(weakImg2);
   wr.appendChild(resImg1);
   wr.appendChild(resImg2);
 }
 
-/* add special enemy tooltip text */
-function alt(color, name, hpNew, hp) {
+// display 40%+ resistances
+function generateR(mult, r, id, enemy) {
+  let hasRES = false;
+  let bossRES = document.createElement("div");
+  let resEle = document.createElement("div");
+  bossRES.className = "e-res-title";
+  resEle.className = "e-res-ele";
+  bossRES.innerHTML = "Boss DMG RES";
+
+  for (let e = 0; e < elementsData.length - (versionNum < v28); ++e) {
+    if (mult[e] > 1.2) {
+      hasRES = true;
+      let res = document.createElement("div");
+      let resImg = document.createElement("img");
+      let resMult = document.createElement("div");
+      res.className = "e-res";
+      resImg.className = "res";
+      resMult.className = "e-res-mult";
+      resImg.style.borderWidth = "0px";
+      resImg.src = `../../assets/zzz/elements/${elementsData[e]}.webp`;
+      resMult.innerHTML = `${Math.round(mult[e] * 100) - 100}%`;
+      res.appendChild(resImg);
+      res.appendChild(resMult);
+      resEle.appendChild(res);
+    }
+  }
+
+  // display only for bosses
+  if (id[2] >= "2" && hasRES) { r.appendChild(bossRES); r.appendChild(resEle); enemy.appendChild(r); }
+}
+
+// display special tooltip
+function alt(color, name, hpNew, hp, def) {
   return `<span style="color:${color};">✦</span><span class="tt-text">
           <span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
-          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${numberFormat(Math.ceil(hpNew))}</span><br>
-          <span style="font-weight:bold;">(assume ${Math.round(hpNew / hp * 1000) / 10}% of HP)</span><br><br>`;
+          <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${showNumberFormat(Math.ceil(hpNew))}</span><br>
+          <span style="font-weight:bold;">(${def < 60 ? `normalized → ` : ``}${Math.round(hpNew / hp * 1000) / 10}% of Base HP)</span><br><br>`;
 }
 function instant(color, type, cnt) { return `<span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)</span>`; }
 
-/* add enemy stat tooltip text */
+// display misc stats
 function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
-  let anomMult = [1, 1, 1, 1, 1.2];
-  let color = ["#98eff0", "#ff5521", "#2eb6ff", "#fe437e", "#f0d12b"];
+  let anomMult = [1, 1, 1, 1, 1.2, 0.5];
+  let color = ["#98eff0", "#ff5521", "#2eb6ff", "#fe437e", "#f0d12b", "#a6c5fd"];
   let stats = `<span style="font-weight:bold;">Max Daze: <span style="color:#ffe599;">${Math.round(daze * 10000) / 10000}</span></span><br>
               (<span style="color:#ffe599;font-weight:bold;">${stun}%</span> DMG for <span style="color:#ffe599;font-weight:bold;">${time}s</span>)<br><br>`;
   if (mods.includes("no-anom")) return stats + `<span style="font-weight:bold;">IMMUNE TO ANOMALY</span>`;
   else {
-    stats += `<span style="font-weight:bold;">Max Anomaly Buildup:</span><br>`;
-    for (let i = 0; i < 5; ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * (1 / (2 - dmg[i])) * 100) / 100}</span>/`;
+    stats += `<span style="font-weight:bold;">Min Anomaly Buildup:</span><br>`;
+    for (let i = 0; i < elementsData.length - (versionNum < v28); ++i) stats += `<span style="color:${color[i]};font-weight:bold;">${Math.round(anom * anomMult[i] * (1 / (2 - Math.min(dmg[i], 1.2))) * 100) / 100}</span>/`;
     stats = stats.slice(0, -1) + `<br>${mods.includes("no-freeze") ? `<span style="color:#98eff0;font-weight:bold;">UNFREEZABLE</span>` : ``}`;
   }
   return stats;
@@ -292,86 +373,79 @@ function generateEnemyStats(daze, stun, time, anom, dmg, mods) {
 
 /* ------------------------------------------------------------ MISCELLANEOUS + QOL + NAVIGATION ------------------------------------------------------------ */
 
-/* load last saved page location + settings */
-/* !!!!!!!!!!!!!!!!!! DEFAULT TO LATEST DA !!!!!!!!!!!!!!!!!! */
+// load last page/settings
+// !!!!!!!!!!!!!!!!!! DEFAULT TO LATEST DA !!!!!!!!!!!!!!!!!!
 function loadSavedState() {
   if (localStorage.getItem("leaksEnabled") == "true") leaksToggle.checked = true;
   if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
-  versionNum = parseInt(localStorage.getItem("lastDAVersion") || `${cntNoLeaks}`);
-  chartScoreNum = localStorage.getItem("lastDAChartScore") || "60k";
+  versionNum = parseInt(localStorage.getItem("lastDAVersion") || `${vLive}`);
+  chartScoreNum = localStorage.getItem("lastDAChartType") || "60k";
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
-  if (!leaksToggle.checked) versionNum = Math.min(versionNum, cntNoLeaks);
+  if (!leaksToggle.checked) versionNum = Math.min(versionNum, vLive);
   saveProgress();
 }
 
-/* save current page location + settings */
+// save current page/settings
 function saveProgress() {
   localStorage.setItem("lastDAVersion", versionNum);
-  localStorage.setItem("lastDAChartScore", chartScoreNum);
+  localStorage.setItem("lastDAChartType", chartScoreNum);
   localStorage.setItem("numberFormat", currNumberFormat);
   localStorage.setItem("leaksEnabled", leaksToggle.checked);
   localStorage.setItem("spoilersEnabled", spoilersToggle.checked);
 }
 
-/* keyboard shortcuts to navigate main page */
+// go to top of page
+function jumpToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+// navigation keyboard shortcuts
 document.addEventListener("keydown", (e) => {
   e.stopPropagation();
   if (e.shiftKey || e.ctrlKey || e.metaKey || e.altKey) return;
-  if (e.key == "Escape") { e.preventDefault(); calcIsOpen ? toggleCalc() : chartIsOpen ? toggleChart() : versionSelectorIsOpen ? toggleVersionSelector() : toggleMenu(); }
-  else if (e.key == " " && !calcIsOpen && !chartIsOpen && !menuIsOpen) { e.preventDefault(); toggleVersionSelector(); }
-  else if (e.key == "Backspace" && !calcIsOpen && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); toggleChart(); }
-  else if (e.key == "=" && !chartIsOpen && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); toggleCalc(); }
-  else if (e.key == "ArrowLeft" && !calcIsOpen && !chartIsOpen && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(-1); }
-  else if (e.key == "ArrowRight" && !calcIsOpen && !chartIsOpen && !menuIsOpen && !versionSelectorIsOpen) { e.preventDefault(); changeVersion(1); }
+  if (e.key == "Escape") { e.preventDefault(); versionSelectorIsOpen ? toggleVersionSelector() : chartIsOpen ? toggleChart() : calcIsOpen ? toggleCalc() : toggleMenu(); }
+  else if (e.key == "`" && !menuIsOpen && !versionSelectorIsOpen && !calcIsOpen) { e.preventDefault(); toggleChart(); }
+  else if (e.key == "Tab" && !menuIsOpen && !versionSelectorIsOpen && !chartIsOpen) { e.preventDefault(); toggleCalc(); }
+  else if (e.key == "Enter" && !menuIsOpen && !versionSelectorIsOpen && !chartIsOpen && !calcIsOpen) { e.preventDefault(); jumpToTop(); }
+  else if (e.key == " " && !menuIsOpen && !chartIsOpen && !calcIsOpen) { e.preventDefault(); toggleVersionSelector(); }
+  else if (e.key == "ArrowLeft" && !menuIsOpen && !versionSelectorIsOpen && !chartIsOpen && !calcIsOpen) { e.preventDefault(); changeVersion(-1); }
+  else if (e.key == "ArrowRight" && !menuIsOpen && !versionSelectorIsOpen && !chartIsOpen && !calcIsOpen) { e.preventDefault(); changeVersion(1); }
   else if (e.key == "ArrowUp") { e.preventDefault(); }
   else if (e.key == "ArrowDown") { e.preventDefault(); }
-  return;
 });
 
 /* ------------------------------------------------------------------------ MENU BAR ----------------------------------------------------------------------- */
 
-/* enables/disables menu bar */
+// display/hide menu bar
 function toggleMenu() {
+  menuIsOpen = !menuIsOpen;
   let menuBar = document.getElementById("mb");
   let menuBarOverlay = document.getElementById("mb-o");
-  let fixedMenuButton = document.getElementById("open-mb-btn");
-  if (menuIsOpen) {
-    document.body.classList.remove("no-scroll");
-    menuBar.style.display = "none";
-    menuBarOverlay.style.display = "none";
-    fixedMenuButton.style.display = "none";
-  }
-  else {
-    document.body.classList.add("no-scroll");
-    menuBar.style.display = "block";
-    menuBarOverlay.style.display = "block";
-    fixedMenuButton.style.display = "block";
-  }
-  menuIsOpen = !menuIsOpen;
+  document.body.style.overflow = menuIsOpen ? "hidden" : "auto";
+  menuBar.style.display = menuBarOverlay.style.display = menuIsOpen ? "flex" : "none";
 }
 
-/* highlights selected number format button and updates example number */
-/* 2222222 2,222,222 2.222.222 */
-function updateNumberFormat(e) {
-  if (e) currNumberFormat = e.dataset.format;
-  let ex = document.getElementById("ex-num");
-  let numFormatButtons = document.querySelectorAll(".nfb");
-  ex.innerHTML = numberFormat(2222222);
-  numFormatButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == currNumberFormat));
-  showEnemies();
-  displayHPChart();
-}
-function numberFormat(num) {
+// display number format & example: 2222222 2,222,222 2.222.222
+function showNumberFormat(num) {
   if (currNumberFormat == "comma") return num.toLocaleString("en-US");
   if (currNumberFormat == "period") return num.toLocaleString("de-DE");
   return num;
 }
+function changeNumberFormat(e) {
+  if (e) currNumberFormat = e.dataset.format;
+  let ex = document.getElementById("mb-ex-num");
+  let numFormatButtons = document.querySelectorAll(".nfb");
+  ex.innerHTML = showNumberFormat(2222222);
+  numFormatButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == currNumberFormat));
+  showEnemies();
+}
 
-/* enables/disables leaks/spoilers slider + access */
+// display/hide leaks/spoilers
 leaksToggle.addEventListener("change", () => {
   if (!leaksToggle.checked) {
     spoilersToggle.checked = false;
-    if (versionNum > cntNoLeaks) versionNum = cntNoLeaks;
+    if (versionNum > vLive) versionNum = vLive;
   }
   showVersion();
 });
@@ -382,35 +456,26 @@ spoilersToggle.addEventListener("change", () => {
 
 /* -------------------------------------------------------------------- VERSION SELECTOR -------------------------------------------------------------------- */
 
-/* enables/disables version selector menu */
+// display/hide version selector
 function toggleVersionSelector() {
+  versionSelectorIsOpen = !versionSelectorIsOpen;
   let versionSelector = document.getElementById("vs");
   let versionSelectorOverlay = document.getElementById("vs-o");
-  if (versionSelectorIsOpen) {
-    document.body.classList.remove("no-scroll");
-    versionSelector.style.display = "none";
-    versionSelectorOverlay.style.display = "none";
-  }
-  else {
-    document.body.classList.add("no-scroll");
-    versionSelector.style.display = "flex";
-    versionSelectorOverlay.style.display = "block";
-    displayVersionSelectorGrid();
-  }
-  versionSelectorIsOpen = !versionSelectorIsOpen;
+  document.body.style.overflow = versionSelectorIsOpen ? "hidden" : "auto";
+  versionSelector.style.display = versionSelectorOverlay.style.display = versionSelectorIsOpen ? "flex" : "none";
+  if (versionSelectorIsOpen) showVersionSelector();
 }
 
-/* displays version selector */
-function displayVersionSelectorGrid() {
-  let versionSelector = document.getElementById("vs");
-  let gridContent = versionSelector.querySelector("#vg");
+// display version selector
+function showVersionSelector() {
+  let gridContent = document.getElementById("vg");
   gridContent.innerHTML = ``;
 
-  /* loop enabled versions to add it to the selector */
-  for (let v = 1; v <= (leaksToggle.checked ? versionIDs.length : cntNoLeaks); ++v) {
+  // display allowed versions
+  for (let v = 1; v <= (leaksToggle.checked ? versionIDs.length : vLive); ++v) {
     let currVersion = versionData[versionIDs[v - 1]];
 
-    /* create a new version selection button */
+    // display version selection button
     let versionButton = document.createElement("div");
     let nameDiv = document.createElement("div");
     let timeDiv = document.createElement("div");
@@ -419,96 +484,81 @@ function displayVersionSelectorGrid() {
     nameDiv.className = "vg-c-name";
     timeDiv.className = "vg-c-time";
     idDiv.className = "vg-c-id";
-    nameDiv.innerHTML = currVersion.versionName + (v == cntNoLeaks ? `<span style='color:#ff0000;font-weight:bold;'> (LIVE)</span>` : ``) + (v >= vBeta ? `<span style='color:#52a9f7;font-weight:bold;'> (BETA)</span>` : ``);
+    nameDiv.innerHTML = currVersion.versionName + (v == vLive ? `<span style="color:#ff0000;font-weight:bold;"> (LIVE)</span>` : v >= vBeta ? `<span style="color:#52a9f7;font-weight:bold;"> (BETA)</span>` : ``);
     timeDiv.innerHTML = currVersion.versionTime;
-    idDiv.innerHTML = `ID: 690${v.toString().padStart(2, '0')}${v >= vBeta ? `1` : ``}`;
+    idDiv.innerHTML = `ID: 69${v.toString().padStart(3, `0`)}${v >= vBeta ? `1` : ``}`;
     versionButton.appendChild(nameDiv);
     versionButton.appendChild(timeDiv);
     versionButton.appendChild(idDiv);
+    gridContent.appendChild(versionButton);
 
-    /* make it clickable, and if clicked go to that version */
+    // go to version on click
     versionButton.onclick = () => {
       versionNum = v;
       toggleVersionSelector();
       showVersion();
     };
-
-    gridContent.appendChild(versionButton);
   }
 }
 
 /* -------------------------------------------------------------------------- CALCULATOR -------------------------------------------------------------------- */
 
+// display/hide calculator
 function toggleCalc() {
+  calcIsOpen = !calcIsOpen;
   let calc = document.getElementById("cc");
   let calcOverlay = document.getElementById("cc-o");
-  let fixedCalcButton = document.getElementById("open-mb-btn");
+  document.body.style.overflow = calcIsOpen ? "hidden" : "auto";
+  calc.style.display = calcOverlay.style.display = calcIsOpen ? "flex" : "none";
 
-  /* enables/disables calculator */
-  if (calcIsOpen) {
-    document.body.classList.remove("no-scroll");
-    calc.style.display = "none";
-    calcOverlay.style.display = "none";
-    fixedCalcButton.style.display = "none";
-  }
-  else {
-    document.body.classList.add("no-scroll");
-    calc.style.display = "block";
-    calcOverlay.style.display = "block";
-    fixedCalcButton.style.display = "block";
-  }
-
-  /* put boss options into a dropdown */
+  // build boss dropdown
   let enemyIDs = Object.keys(enemyData);
-  let select = document.getElementById("b-dd");
+  let select = document.getElementById("cc-b-dd");
   select.innerHTML = ``;
   for (let i = 0; i < enemyIDs.length; ++i) {
-    if (enemyIDs[i][2] == '3' && enemyIDs[i] != "10301" && enemyIDs[i] != "10302" && enemyIDs[i] != "10303" && enemyIDs[i] != "16300") {
+    if (enemyIDs[i][2] == "3" && enemyIDs[i] != "10301" && enemyIDs[i] != "10302" && enemyIDs[i] != "10303" && enemyIDs[i] != "16300") {
       let option = document.createElement("option");
       option.text = (spoilersToggle.checked || !enemyData[enemyIDs[i]].tags.includes("spoiler")) ? enemyData[enemyIDs[i]].name : "SPOILER BOSS";
       option.value = enemyIDs[i];
       select.appendChild(option);
     }
   }
-
-  calcIsOpen = !calcIsOpen;
   changeBoss();
 }
 
-/* specific boss hp/score display */
+// display specific boss
 function changeBoss() {
-  let bossDropdownResize = document.getElementById("b-dd-resize");
+  let bossDropdownResize = document.getElementById("cc-b-dd-resize");
 
-  /* change display image to selected boss */
-  let bImg = document.getElementById("cc-b-img");
-  bImg.src = (spoilersToggle.checked || !enemyData[bossDropdown.value].tags.includes("spoiler")) ? `../../assets/zzz/enemies/${enemyData[bossDropdown.value].image}.webp` : `../../assets/zzz/enemies/doppelganger-i.webp`;;
-  
-  /* resize boss dropdown based off of name length (to look nicer) */
-  if (bossDropdown.selectedIndex == -1) bossDropdown.selectedIndex = 0;
+  // display specific boss image
+  let bossImg = document.getElementById("cc-b-img");
+  bossImg.src = (spoilersToggle.checked || !enemyData[bossDropdown.value].tags.includes("spoiler")) ? `../../assets/zzz/enemies/${enemyData[bossDropdown.value].image}.webp` : `../../assets/zzz/enemies/doppelganger-i.webp`;;
+
+  // resize boss dropdown based on name length (to look nicer)
+  bossDropdown.selectedIndex = Math.max(bossDropdown.selectedIndex, 0);
   bossDropdownResize.textContent = bossDropdown.options[bossDropdown.selectedIndex].text;
   bossDropdown.style.width = bossDropdownResize.offsetWidth + 30 + "px";
 
-  /* compile all version appearances in into both dropdowns */
+  // build boss versions dropdowns
   bossVerDropdown1.innerHTML = ``, bossVerDropdown2.innerHTML = ``;
-  for (let v = 0; v < specificHPData[bossDropdown.value].length; ++v) {
+  for (let v = 0; v < hpDataSpecific[bossDropdown.value].length; ++v) {
     let option1 = document.createElement("option"), option2 = document.createElement("option");
-    let verHP = specificHPData[bossDropdown.value][v][0];
-    option1.text = option1.value = `${verHP[0]}.${verHP[2]} Phase ${verHP[4]}`;
-    option2.text = option2.value = `${verHP[0]}.${verHP[2]} Phase ${verHP[4]}`;
+    let versionHP = hpDataSpecific[bossDropdown.value][v][0];
+    option1.text = option1.value = option2.text = option2.value = `${versionHP[0]}.${versionHP[2]} Phase ${versionHP[4]}`;
     bossVerDropdown1.appendChild(option1);
     bossVerDropdown2.appendChild(option2);
   }
 
-  /* set current boss data to first version values */
+  // display boss first version
   currCalcBossID = bossDropdown.value;
-  currCalcData1 = specificHPData[currCalcBossID][bossVerDropdown1.selectedIndex];
-  currCalcData2 = specificHPData[currCalcBossID][bossVerDropdown2.selectedIndex];
+  currCalcData1 = hpDataSpecific[currCalcBossID][bossVerDropdown1.selectedIndex];
+  currCalcData2 = hpDataSpecific[currCalcBossID][bossVerDropdown2.selectedIndex];
   currCalcVersion1 = currCalcData1[0];
   currCalcVersion2 = currCalcData2[0];
   currCalcMaxBossHP1 = currCalcData1[1];
   currCalcMaxBossHP2 = currCalcData2[1];
 
-  /* fill in 100% hp and 60000 score into the input boxes */
+  // display max hp/score
   bossHPCalc1.value = currCalcMaxBossHP1;
   bossHPCalc2.value = currCalcMaxBossHP2;
   bossScoreCalc1.value = bossScoreCalc2.value = 60000;
@@ -516,28 +566,28 @@ function changeBoss() {
   calculateBoss(currCalcMaxBossHP2, 60000, 2);
 }
 
-/* shows new specific boss/version on edit */
+// display new specific boss/version
 bossDropdown.addEventListener("change", () => { changeBoss(); });
 bossVerDropdown1.addEventListener("change", () => {
-  currCalcData1 = specificHPData[currCalcBossID][bossVerDropdown1.selectedIndex];
+  currCalcData1 = hpDataSpecific[currCalcBossID][bossVerDropdown1.selectedIndex];
   currCalcVersion1 = currCalcData1[0];
   currCalcMaxBossHP1 = currCalcData1[1];
   calculateBoss(currCalcMaxBossHP1, 60000, 1);
 });
 bossVerDropdown2.addEventListener("change", () => {
-  currCalcData2 = specificHPData[currCalcBossID][bossVerDropdown2.selectedIndex];
+  currCalcData2 = hpDataSpecific[currCalcBossID][bossVerDropdown2.selectedIndex];
   currCalcVersion2 = currCalcData2[0];
   currCalcMaxBossHP2 = currCalcData2[1];
   calculateBoss(currCalcMaxBossHP2, 60000, 2);
 });
 
-/* runs new calculation for boss hp/score on edit */
+// display specific boss version hp/score
 bossHPCalc1.addEventListener("change", () => { calculateBoss(parseInt(bossHPCalc1.value.replaceAll(".", "").replaceAll(",", "")), 60000, 1); });
 bossHPCalc2.addEventListener("change", () => { calculateBoss(parseInt(bossHPCalc2.value.replaceAll(".", "").replaceAll(",", "")), 60000, 2); });
 bossScoreCalc1.addEventListener("change", () => { calculateBoss(currCalcMaxBossHP1, parseInt(bossScoreCalc1.value), 1); });
 bossScoreCalc2.addEventListener("change", () => { calculateBoss(currCalcMaxBossHP2, parseInt(bossScoreCalc2.value), 2); });
 
-/* calculate new boss hp/score and display in input boxes */
+// calculate specific boss version hp/score
 function calculateBoss(hp, score, option) {
   let finalHP = option == 1 ? currCalcMaxBossHP1 : currCalcMaxBossHP2, finalScore = 60000;
   let bossHP = option == 1 ? bossHPCalc1 : bossHPCalc2;
@@ -546,7 +596,7 @@ function calculateBoss(hp, score, option) {
 
   if (!Number.isInteger(hp) || !Number.isInteger(score)) { bossHP.value = ""; bossScore.value = ""; return; }
 
-  /* limits hp and score within the bounds of 0-maxHP and 0-60000 */
+  // constrains hp/score within 0-maxHP/0-60000
   if (hp < 0) hp = 0;
   else if (option == 1 && hp > currCalcMaxBossHP1) hp = currCalcMaxBossHP1;
   else if (option == 2 && hp > currCalcMaxBossHP2) hp = currCalcMaxBossHP2;
@@ -556,66 +606,67 @@ function calculateBoss(hp, score, option) {
   let bossValues = Array.from({length: 7}, () => Array.from({length: 3}).fill(null));
   bossValues = [[0, 0, 0], [1200, 4, 4000], [1700, 4, 4800], [2200, 4, 7200], [2500, 4, 9600], [3000, 4, 10400], [5000, 3, 7800], [5000, 6, 16200]];
 
-  /* calculate both hp/score to the floor threshold */
-  let calcHP = 0, calcScore = 0, thres;
-  for (thres = 0; thres < 8; ++thres) {
-    let hpToNextThreshold = bossValues[thres][0] * bossValues[thres][1] * bossData[1] / (874 * 100);
-    let scoreToNextThreshold = bossValues[thres][2];
+  // calculate hp/score to the floored threshold
+  let calcHP = 0, calcScore = 0, threshold;
+  let hpToNextThreshold, scoreToNextThreshold;
+  for (threshold = 0; threshold < 8; ++threshold) {
+    hpToNextThreshold = bossValues[threshold][0] * bossValues[threshold][1] * bossData[1] / 874 / 100;
+    scoreToNextThreshold = bossValues[threshold][2];
     if (calcHP + hpToNextThreshold > hp + 1) break;
     if (calcScore + scoreToNextThreshold > score) break;
     calcHP += hpToNextThreshold;
     calcScore += scoreToNextThreshold;
   }
 
-  /* adds on last needed reamining hp/score to fit the parameters */
-  if (thres < 8) {
-    let hpToNextThreshold = bossValues[thres][0] * bossValues[thres][1] * bossData[1] / (874 * 100);
-    let scoreToNextThreshold = bossValues[thres][2];
+  // add remaining needed hp/score
+  if (threshold < 8) {
     finalHP = calcHP + (score - calcScore) / scoreToNextThreshold * hpToNextThreshold;
-    finalScore = calcScore + (hp - calcHP) / hpToNextThreshold * bossValues[thres][2];
+    finalScore = calcScore + (hp - calcHP) / hpToNextThreshold * bossValues[threshold][2];
   }
 
-  /* set input boxes to their respective calculated hp/score values */
-  bossHP.value = numberFormat(score != 60000 ? Math.floor(finalHP) : hp);
+  // display hp/score
+  bossHP.value = showNumberFormat(score != 60000 ? Math.floor(finalHP) : hp);
   bossScore.value = score != 60000 ? score : Math.floor(finalScore);
 }
 
 /* ----------------------------------------------------------------------------- CHART ----------------------------------------------------------------------- */
 
-/* enables/disables version menu */
+// display/hide chart
 function toggleChart() {
-  let chart = document.getElementById("c");
-  if (chartIsOpen) { document.body.classList.remove("no-scroll"); chart.style.display = "none"; }
-  else { document.body.classList.add("no-scroll"); chart.style.display = "flex"; }
   chartIsOpen = !chartIsOpen;
+  let chart = document.getElementById("c");
+  document.body.style.overflow = chartIsOpen ? "hidden" : "auto";
+  chart.style.display = chartIsOpen ? "flex" : "none";
+  if (chartIsOpen) showHPChart();
 }
-function toggleChartPoints(points) {
-  if (chartScoreNum == points) return;
-  chartScoreNum = points;
+function changeChartPoints(n) {
+  if (chartScoreNum == n) return;
+  chartScoreNum = n;
   saveProgress();
-  displayHPChart();
+  showHPChart();
 }
 
-/* download the chart with the middle button in the chart top bar */
+// download chart
 function downloadChart() {
   let downloadButton = document.createElement("a");
   downloadButton.href = hpChart.toBase64Image("image/png", 1.0);
-  downloadButton.download = `Deadly Assault HP (${chartScoreNum})`;
+  downloadButton.download = `Deadly Assault HP - ${chartScoreNum} Score`;
   downloadButton.click();
 }
 
-/* format 3 hp dataset */
-function createHPDataset(label, data, color) {
+// build chart hp dataset
+function generateHPDataset(label, data, color) {
   return { label, data, pointRadius: 2, borderWidth: 2, borderColor: color, pointHoverRadius: 4, pointHoverBorderWidth: 2, pointHoverBorderColor: color, backgroundColor: "#ffffff" };
 }
 
-function displayHPChart() {
-  /* change color of selected score value */
+// display chart
+function showHPChart() {
+  // change color of selected score value
   let chartScoreButtons = document.querySelectorAll(".c-k");
   chartScoreButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == chartScoreNum));
 
-  /* various plugins thanks to Chart.js documentation + videos + Stack Overflow */
-  /* position hover line highlighting respective hp points */
+  // various plugins thanks to Chart.js documentation + videos + Stack Overflow
+  // hover dotted line
   const verticalHoverLine = {
     id: "verticalHoverLine",
     beforeDatasetsDraw(chart, args, plugins) {
@@ -635,7 +686,7 @@ function displayHPChart() {
       ctx.restore();
     }
   }
-  /* add padding below legend */
+  // legend padding
   const legendPadding = {
     id: "legendPadding",
     beforeInit(chart) {
@@ -643,7 +694,7 @@ function displayHPChart() {
       chart.legend.fit = function fit() { newLegend.bind(chart.legend)(); chart.legend.height += 15; }
     }
   };
-  /* force hide tooltip + vertical hover line if moved out of ACTUAL chart area */
+  // hide info outside of chart
   const hideTooltipOutside = {
     id: "hideTooltipOutside",
     afterEvent(chart, args) {
@@ -657,8 +708,8 @@ function displayHPChart() {
       }
     }
   };
-  
-  /* position hover tooltip */
+
+  // hover tooltip
   Chart.Tooltip.positioners.cursor = function(elements, eventPosition) {
     if (!eventPosition) return false;
     let {top, bottom} = this.chart.chartArea;
@@ -667,47 +718,47 @@ function displayHPChart() {
     return {x, y};
   };
 
-  /* update chart data if a chart is already loaded */
+  // display new chart
   if (!hpChart) {
     hpChart = new Chart("hpChart", {
-      /* import plugin data */
+      // import plugins
       type: "line", plugins: [verticalHoverLine, legendPadding, hideTooltipOutside],
 
-      /* add chart settings */
+      // chart settings
       options: {
-        /* disable chart animations, fit to screen, detect cursor position, positioning */
+        // fit & position chart, detect cursor, disable animations
         animation: false, responsive: true, maintainAspectRatio: false,
         interaction: { mode: "nearest", axis: "x", intersect: false },
         layout: { padding: {top: 10, bottom: 15, left: 10, right: 25} },
-        
-        /* add x/y-axis formatting */
+
+        // format x & y axis
         scales: {
           x: {
             offset: true,
             border: { display: false },
             grid: { color: "transparent" },
             ticks: {
-              padding: 10, font: { family: "Inconsolata", size: 12 }, color: "#888888", maxRotation: 0, 
-              callback: function(value, index) { return index % 2 == 0 ? this.getLabelForValue(value) : ""; }
+              padding: 10, font: { family: "Inconsolata", size: 12 }, color: "#888888", maxRotation: 0,
+              callback: function(value, index) { return index % 4 == 0 ? this.getLabelForValue(value) : ""; }
             }
           },
           y: {
             border: { display: false },
             grid: { color: function(context) { return context.tick.value % 40000000 == 0 ? "#888888" : "#444444"; } },
             ticks: {
-              padding: 15, font: { family: "Inconsolata", size: 12 }, color: "#888888", 
-              callback: function(value, index) { return index % 2 == 0 ? numberFormat(value) : ""; }
+              padding: 15, font: { family: "Inconsolata", size: 12 }, color: "#888888",
+              callback: function(value, index) { return index % 2 == 0 ? showNumberFormat(value) : ""; }
             }
           }
         },
 
-        /* add chart, legend, hover tooltip formatting */
+        // format title, legend, tooltip
         plugins: {
           title: { display: true, color: "#ffffff", font: { family: "Inconsolata", size: 20, weight: "bold" } },
           legend: {
             labels: { usePointStyle: true, boxHeight: 8,
               font: { family: "Inconsolata", size: 14 },
-              /* make legend element grayscale if disabled */
+              // grayscale disabled legend element
               generateLabels: function(chart) {
                 let hpLegend = Chart.defaults.plugins.legend.labels.generateLabels(chart);
                 hpLegend.forEach((label, index) => {
@@ -722,30 +773,30 @@ function displayHPChart() {
             titleFont: { family: "Inconsolata", size: 12, weight: "bold", lineHeight: 0.75 },
             bodyFont: { family: "Inconsolata", size: 12 },
             callbacks: {
-              /* add tooltip text colors */
+              // format tooltip text
               labelTextColor: function(context) { return context.dataset.borderColor; },
-              label: function(context) { return context.dataset.label + ": " + numberFormat(context.parsed.y); }
+              label: function(context) { return context.dataset.label + ": " + showNumberFormat(context.parsed.y); }
             }
           }
         }
       }
     });
   }
-  
-  /* add global chart settings */
+
+  // global chart settings
   hpChart.data.labels = versionIDs;
   hpChart.data.datasets = [
-    createHPDataset(`Raw HP`, chartScoreNum == "20k" ? hpData[0] : hpData[1], "#e06666"),
-    createHPDataset(`Alt HP`, chartScoreNum == "20k" ? hpData[2] : hpData[3], "#f6b26b")
+    generateHPDataset(`Raw HP`, chartScoreNum == "20k" ? hpData[0] : hpData[1], "#e06666"),
+    generateHPDataset(`Alt HP`, chartScoreNum == "20k" ? hpData[2] : hpData[3], "#f6b26b")
   ];
   hpChart.options.scales.y.min = chartScoreNum == "20k" ? 40000000 : 120000000;
-  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 200000000 : 720000000;
-  hpChart.options.scales.y.ticks.stepSize = chartScoreNum == "20k" ? 10000000 : 30000000;
-  hpChart.options.plugins.title.text = `Deadly Assault HP (${chartScoreNum})`;
+  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 280000000 : 840000000;
+  hpChart.options.scales.y.ticks.stepSize = chartScoreNum == "20k" ? 20000000 : 60000000;
+  hpChart.options.plugins.title.text = `Deadly Assault HP - ${chartScoreNum} Score`;
   hpChart.update();
   saveProgress();
 }
 
 /* ----------------------------------------------------------------------------- MAIN ----------------------------------------------------------------------- */
 
-window.addEventListener("DOMContentLoaded", async () => { await loadDeadlyPage(); });
+window.addEventListener("DOMContentLoaded", async () => { await loadPage(); });

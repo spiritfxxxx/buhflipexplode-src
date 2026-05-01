@@ -1,124 +1,236 @@
+/* Z-INDEX TRACKER:
+  - 999: sidebar
+  - 1000: menu bar overlay
+  - 1001: menu bar
+  - 2000: version selector overlay
+  - 2001: version selector
+  - 3000: chart
+  - 4000: calculator overlay
+  - 4001: calculator
+  - 9999: tooltip text
+*/
+
+/* main page initial styling */
 html, body {
-  margin: 0;
-  padding: 0;
-  font-family: "Inconsolata", monospace;
+  margin: 0px;
+  padding: 0px;
   background-color: #111111;
   color: #ffffff;
+  font-family: Inconsolata, monospace;
   text-align: center;
+  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
+body:after {
+  z-index: -1;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+  content: url(../../assets/misc/home-hover.webp) url(../../assets/misc/top-hover.webp) url(../../assets/misc/calc-hover.webp) url(../../assets/misc/chart-hover.webp) url(../../assets/misc/download-hover.webp);
+}
+li {
+  margin-left: 15px;
+}
 
-/* site version tracker */
+/* ----------------------------------------------------------------------- PAGE ELEMENTS ----------------------------------------------------------------------- */
+
+#sidebar {
+  z-index: 999;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  width: 45px;
+  height: 100vh;
+  background-color: #222222;
+  border-right: 2.5px solid #444444;
+}
+#page {
+  margin-left: 47.5px;
+  position: relative;
+}
+
+/* ---------------------------------------------------------------------- HOME PAGE ---------------------------------------------------------------------- */
+
+/* last update */
+#last-v {
+  top: 15px;
+  right: 15px;
+  position: absolute;
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: underline;
+}
+/* site version */
 #site-v {
-  color: #aaaaaa;
-  position: absolute;
-  top: 10px;
+  top: 35px;
   right: 15px;
-  user-select: none;
-}
-/* beta version tracker */
-#beta-v {
-  color: #aaaaaa;
   position: absolute;
-  top: 30px;
-  right: 15px;
-  user-select: none;
+  color: #888888;
 }
+/* beta versions */
+#zbeta-v {
+  top: 55px;
+  right: 15px;
+  position: absolute;
+  color: #888888;
+}
+#hbeta-v {
+  top: 75px;
+  right: 15px;
+  position: absolute;
+  color: #888888;
+}
+
+/* home */
+#home {
+  min-height: 100vh;
+  gap: 5vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 /* buh */
+#buhbout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 #buh {
-  margin-top: 12.5vh;
   width: 275px;
+  height: 275px;
   border: 2px solid #b2cee7;
   user-select: none;
 }
 /* welcome message */
 #msg {
-  padding: 1vh;
+  padding: 15px;
   font-size: 32px;
+  font-weight: bold;
   user-select: none;
 }
 #sub-msg {
-  font-size: 16px;
   color: #aaaaaa;
+  font-size: 16px;
   user-select: none;
 }
 
 /* ------------------------------------------------------------------ NAVIGATION BUTTONS ------------------------------------------------------------------ */
 
-nav {
-  margin: 5vh;
-  gap: 30px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-a.link {
-  margin-left: 2px;
-  margin-right: 2px;
-  color: #b2cee7;
-}
-a.btn {
-  width: 100px;
-  padding: 10px 20px;
-  display: inline-block;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 18px;
-  border: 2px solid #b2cee7;
-  border-radius: 8px;
+.nav-title {
+  margin-top: 30px;
+  color: #f29e38;
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: underline;
   user-select: none;
 }
-a.btn:hover {
+#nav-zh {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#nav-z, #nav-h {
+  margin: 15px;
+  gap: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#nav-mobile {
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  display: none;
+}
+#home a {
+  padding: 10px 20px;
+  width: 100px;
+  border: 2px solid #b2cee7;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 18px;
+  text-decoration: none;
+  user-select: none;
+}
+#home a:hover {
   color: #000000;
   background-color: #b2cee7;
   transition: all 0.1s ease-in-out;
 }
 
-/* ------------------------------------------------------------------ MENU BUTTON + BAR ------------------------------------------------------------------ */
+/* ---------------------------------------------------------------------- GO TO TOP ----------------------------------------------------------------------- */
 
-/* menu button stays at top left, moves away when scroll */
-/* fixed menu button when bar is open */
-#mb-btn, #open-mb-btn {
-  top: 7px;
-  left: 11px;
+#top-btn {
+  bottom: 10px;
+  left: 10px;
+  position: absolute;
+  width: 27.5px;
+  height: 27.5px;
+  cursor: pointer;
+  user-select: none;
+  background-size: 27.5px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#top-btn {
+  background-image: url(../../assets/misc/top.webp);
+}
+#top-btn:hover {
+  background-image: url(../../assets/misc/top-hover.webp);
+}
+
+/* ----------------------------------------------------------------------- MENU BAR ----------------------------------------------------------------------- */
+
+/* menu bar toggle buttons */
+#mb-btn, #mb-btn-open {
+  top: 7.5px;
+  left: 10px;
+  position: absolute;
   font-size: 28px;
-  font-weight: bold;
   cursor: pointer;
   user-select: none;
 }
-#mb-btn {
-  z-index: 1100;
-  position: absolute;
-}
-#open-mb-btn {
-  z-index: 1104;
-  position: relative;
-  display: none;
-}
-#mb-btn:hover, #open-mb-btn:hover{
+#mb-btn:hover, #mb-btn-open:hover {
   color: #b2cee7;
   transition: all 0.1s ease-in-out;
 }
 
-/* menu bar on the side when opened */
-#mb {
-  z-index: 1102;
-  width: 250px;
-  height: 100%;
+/* menu bar outside overlay */
+#mb-o {
+  z-index: 1000;
   top: 0px;
   left: 0px;
   position: fixed;
-  background-color: #222222;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  opacity: 0.5;
   display: none;
+}
+
+/* menu bar */
+#mb {
+  z-index: 1001;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  width: 250px;
+  height: 100vh;
+  background-color: #222222;
+  border-right: 2.5px solid #444444;
   user-select: none;
+  display: none;
+  flex-direction: column;
 }
 #mb-bar {
-  z-index: 1103;
   height: 50px;
-  display: flex;
   border-bottom: 2.5px solid #444444;
 }
 #mb-c {
@@ -128,70 +240,86 @@ a.btn:hover {
   align-items: center;
   overflow-y: auto;
   overscroll-behavior: contain;
-  height: calc(100% - 51px);
 }
 
 /* menu bar home/about buttons */
-#mb-misc {
-  gap: 30px;
-  width: 100%;
+#mb-bar-misc {
+  right: 0px;
+  position: absolute;
+  height: 50px;
   display: flex;
-  flex-direction: row;
 }
-#mb-misc a {
-  flex: 1;
+#mb-bar a {
+  width: 20px;
+  height: 20px;
+  padding: 15px;
+  color: #ffffff;
+  text-decoration: none;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#mb-bar a:hover {
+  color: #b2cee7;
+}
+#mb-home-btn {
+  background-image: url(../../assets/misc/home-hover.webp);
+}
+#mb-home-btn:hover {
+  background-image: url(../../assets/misc/home-hover.webp);
+}
+#mb-about-btn {
+  font-size: 20px;
 }
 
 /* menu bar section splitter */
 #mb-sec {
   margin: 5px;
   margin-top: 25px;
-  font-size: 14px;
+  width: calc(100% - 10px);
   color: #f29e38;
+  font-size: 14px;
   font-weight: bold;
   text-decoration: underline;
-  display: block;
 }
 
 /* menu bar navigation buttons to other pages */
-#mb a {
+#mb-c a {
   padding: 10px;
-  width: calc(100% - 30px);
-  font-size: 14px;
+  width: calc(100% - 20px);
   color: #ffffff;
   text-decoration: none;
-  display: block;
 }
-#mb a:hover {
+#mb-c a:hover {
   color: #b2cee7;
 }
 
 /* menu bar number format changer */
 #mb-nf {
   margin-top: auto;
+  padding: 15px;
   gap: 10px;
-  width: 220px;
+  width: calc(100% - 30px);
   font-size: 16px;
   display: flex;
   flex-direction: column;
 }
 #mb-nfb {
-  display: flex;
   gap: 10px;
+  display: flex;
 }
-/* number format changer buttons */
+/* number format buttons */
 .nfb {
-  padding: 4px 6px;
-  font-family: "Inconsolata", monospace;
-  font-size: 14px;
-  color: #ffffff;
-  background-color: #222222;
+  padding: 5px;
   border: 1px solid #b2cee7;
   border-radius: 4px;
-  flex: 1;
+  background-color: #222222;
+  color: #ffffff;
+  font-family: Inconsolata, monospace;
+  font-size: 14px;
   cursor: pointer;
-  justify-content: space-between;
   user-select: none;
+  flex: 1;
 }
 .nfb:hover {
   border-color: #ffffff;
@@ -200,180 +328,166 @@ a.btn:hover {
   transition: all 0.1s ease-in-out;
 }
 .nfb.selected {
-  font-weight: bold;
-  text-decoration: underline;
   background-color: #b2cee7;
   color: #000000;
+  font-weight: bold;
+  text-decoration: underline;
   transition: all 0.1s ease-in-out;
 }
-/* example number for testing purposes */
-#ex-num {
+/* example number */
+#mb-ex-num {
   color: #ff5555;
-  font-size: 16px;
   font-weight: bold;
-  margin-top: 2px;
 }
 
 /* menu bar toggles */
 #mb-t {
-  width: 200px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  gap: 10px;
   font-size: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 }
 /* menu bar setting */
 #mb-stg {
-  margin: 5px 0px;
+  margin: 0px 25px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
 }
-
-/* menu bar leaks toggle */
-#mb-lt {
-  width: 44px;
-  height: 22px;
+/* leaks/spoilers toggle */
+#mb-lt, #mb-st {
+  width: 45px;
+  height: 22.5px;
   position: relative;
 }
-#lt {
+#lt, #st {
   inset: 0px;
   position: absolute;
+  border-radius: 25px;
   background-color: #444444;
-  border-radius: 24px;
   cursor: pointer;
-  transition: 0.1s;
 }
-#lt:before {
-  left: 2px;
-  bottom: 2px;
-  width: 18px;
-  height: 18px;
+#lt:before, #st:before {
+  left: 2.5px;
+  bottom: 2.5px;
   position: absolute;
-  content: "";
+  width: 17.5px;
+  height: 17.5px;
+  border-radius: 12.5px;
   background-color: #ffffff;
-  border-radius: 10px;
-  transition: 0.1s;
+  content: "";
+  transition: all 0.1s ease-in-out;
 }
-input:checked + #lt:before {
-  transform: translateX(22px);
+input:checked + #lt:before, input:checked + #st:before {
+  transform: translateX(22.5px);
 }
-input:checked + #lt {
+input:checked + #lt, input:checked + #st {
   background-color: #b2cee7;
 }
 
-/* menu bar spoilers toggle */
-#mb-st {
-  width: 44px;
-  height: 22px;
+/* ----------------------------------------------------------------------- TOOLTIPS ----------------------------------------------------------------------- */
+
+/* menu bar/enemy tooltips */
+.tt-menu, .tt-v-hp {
+  margin-left: 7.5px;
   position: relative;
-}
-#st {
-  inset: 0px;
-  position: absolute;
-  background-color: #444444;
-  border-radius: 24px;
-  cursor: pointer;
-  transition: 0.1s;
-}
-#st:before {
-  left: 2px;
-  bottom: 2px;
-  width: 18px;
-  height: 18px;
-  position: absolute;
-  content: "";
-  background-color: #ffffff;
-  border-radius: 10px;
-  transition: 0.1s;
-}
-input:checked + #st:before {
-  transform: translateX(22px);
-}
-input:checked + #st {
-  background-color: #b2cee7;
-}
-
-/* out-of-menu-bar screen darken overlay */
-#mb-o {
-  z-index: 1101;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background-color: #000000;
-  opacity: 0.5;
-  display: none;
-}
-
-/* -------------------------------------------------------------------- MISC TOOLTIPS -------------------------------------------------------------------- */
-
-/* menu, buff hp, special enemy hp, misc stats tooltips */
-.tt-menu {
-  margin-left: 8px;
+  font-family: Arial;
+  font-size: 14px;
   display: inline-block;
-  position: relative;
-  cursor: pointer;
   user-select: none;
 }
-
-/* tooltip placements */
-/* menu: top, buff: side, star: top, stat: bottom */
-.tt-menu .tt-text {
-  z-index: 1000;
-  padding: 7.5px;
-  width: 120px;
-  bottom: 160%;
-  left: 50%;
-  transform: translateX(-50%);
+.tt-e-hp {
+  bottom: 92.5%;
+  right: 77.5%;
   position: absolute;
-  text-align: center;
-  font-size: 12px;
-  background-color: #444444;
-  color: #ffffff;
-  border-radius: 4px;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.1s ease-in-out;
-  line-height: 1.5;
+  font-family: Arial;
+  font-size: 24px;
+  user-select: none;
 }
-.tt-menu:hover {
+.tt-e-stat {
+  width: 25px;
+  margin-top: 2.5px;
+  color: #888888;
+  font-size: 16px;
+  user-select: none;
+}
+.tt-menu:hover, .tt-v-hp:hover, .tt-e-stat:hover {
   color: #b2cee7;
 }
-.tt-menu:hover .tt-text {
+
+/* tooltip text */
+.tt-text {
+  z-index: 9999;
+  padding: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  border-radius: 4px;
+  background-color: #444444;
   color: #ffffff;
-  visibility: visible;
+  font-family: Inconsolata, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.1s ease-in-out;
+  user-select: text;
+}
+.tt-menu .tt-text {
+  bottom: 25px;
+  width: 120px;
+}
+.tt-v-hp .tt-text {
+  bottom: 27.5px;
+  width: 225px;
+}
+.tt-e-hp .tt-text {
+  bottom: 37.5px;
+  white-space: nowrap;
+}
+.tt-e-stat .tt-text {
+  top: 190px;
+  white-space: nowrap;
+}
+.tt-menu:hover .tt-text, .tt-v-hp:hover .tt-text, .tt-e-hp:hover .tt-text, .tt-e-stat:hover .tt-text {
   opacity: 1;
+  visibility: visible;
 }
 
-/* tooltip arrow placements */
-.tt-menu .tt-text::after {
-  content: "";
-  top: 100%;
+/* tooltip arrow */
+.tt-menu .tt-text::after, .tt-v-hp .tt-text::after, .tt-e-hp .tt-text::after, .tt-e-stat .tt-text::after {
   left: 50%;
-  position: absolute;
-  border-color: #444444 transparent transparent transparent;
-  border-width: 5px;
   transform: translateX(-50%);
-  border-style: solid;
+  position: absolute;
+  border: 5px solid;
+  content: "";
+}
+.tt-menu .tt-text::after, .tt-v-hp .tt-text::after, .tt-e-hp .tt-text::after {
+  top: 100%;
+  border-color: #444444 transparent transparent transparent;
+}
+.tt-e-stat .tt-text::after {
+  bottom: 100%;
+  border-color: transparent transparent #444444 transparent;
 }
 
 /* ---------------------------------------------------------------------- VERY MISC ---------------------------------------------------------------------- */
 
 @font-face {
-  font-family: "Inconsolata";
-  src: url("../assets/Inconsolata-Regular.ttf") format("truetype");
+  font-family: Inconsolata, monospace;
+  src: url(../assets/Inconsolata-Regular.ttf) format("truetype");
 }
-@media (max-width: 1000px) {
-  #mb-nf { margin-top: 7.5vh; }
+@media (max-width: 1080px) {
+  #buhbout { margin: 60px; }
+  #buh { margin-top: 60px; }
+  #nav-zh { display: none; }
+  #nav-mobile { display: flex; }
+  #home a { width: auto; }
 }
-@media (max-width: 800px) {
-  nav { gap: 5vh; flex-direction: column; align-items: center; }
-  nav a { width: fit-content; }
-  a.btn { width: auto; }
+@media (max-width: 480px) {
+  #sidebar { width: 100vw; height: 50px; border-right: 0px; border-bottom: 2.5px solid #444444; }
+  #top-btn { left: auto; right: 10px; }
+  #page { margin-left: 0px; margin-top: 52.5px; }
 }

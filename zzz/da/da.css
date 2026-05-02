@@ -902,7 +902,7 @@ input:checked + #lt, input:checked + #st {
   font-size: 12px;
 }
 #cc-b-hp1, #cc-b-hp2 {
-  width: 70px;
+  width: 80px;
   font-family: Inconsolata, monospace;
   font-size: 12px;
 }
@@ -1023,7 +1023,7 @@ input:checked + #lt, input:checked + #st {
   #cc-btn { top: 10px; left: 110px; }
   #top-btn { left: auto; right: 10px; }
   #page { margin-left: 0px; margin-top: 52.5px; }
-  #v-text { width: 200px; }
+  #v-text { width: 215px; }
   #v-hp { flex-direction: column; gap: 15px; }
   #vs { inset: calc(5vh + 52.5px) 5vw 5vh 5vw; }
   .vg-c { width: 100%; }

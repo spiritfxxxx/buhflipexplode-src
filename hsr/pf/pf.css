@@ -935,7 +935,7 @@ input:checked + #lt, input:checked + #st {
   #page { margin-left: 0px; margin-top: 52.5px; }
   #b-surg { margin-bottom: 0px; }
   #v-hp { margin-top: 15px; }
-  #v-text { width: 200px; }
+  #v-text { width: 215px; }
   #vs { inset: calc(5vh + 52.5px) 5vw 5vh 5vw; }
   .vg-c { width: 100%; }
   .b-title { margin-bottom: 0px; }

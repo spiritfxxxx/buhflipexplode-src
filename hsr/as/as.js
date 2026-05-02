@@ -109,7 +109,7 @@ function showBuffs() {
       buffName.className = "bte-name";
       buffDesc.className = "bte-desc";
       if (versionNum >= v43 && nodeNum == 4) buffOption.style.minHeight = window.innerWidth > 1360 ? "128px" : window.innerWidth > 1080 ? "170px" : "0px";
-      else buffOption.style.height = "87.5px";
+      else buffOption.style.minHeight = window.innerWidth > 1080 ? "87.5px" : "0px";
       buffImg.src = `../../assets/hsr/buffs/${buffData[versionBuffIDs[s][buff - 1]][1]}.webp`;
       buffName.innerHTML = buffData[versionBuffIDs[s][buff - 1]][0];
       buffDesc.innerHTML = buffData[versionBuffIDs[s][buff - 1]][2];

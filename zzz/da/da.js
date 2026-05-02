@@ -61,7 +61,7 @@ function loadHPData() {
 
       // add boss appearance to boss hp map
       if (!hpDataSpecific[currEnemyID]) hpDataSpecific[currEnemyID] = [];
-      hpDataSpecific[currEnemyID].push([versionIDs[v - 1], eHP]);
+      hpDataSpecific[currEnemyID].push([versionIDs[v - 1], Math.round(eHP)]);
     }
     hpData[0][v - 1] = Math.round(raw60kEnemyHP * 0.281083138);
     hpData[1][v - 1] = Math.round(raw60kEnemyHP);

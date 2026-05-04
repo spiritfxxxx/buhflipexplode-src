@@ -47,7 +47,7 @@ function loadHPData() {
 
       // calculate boss hp
       raw60kEnemyHP += eHP;
-      alt60kEnemyHP += eHP;
+      alt60kEnemyHP += eHP * (currEnemyID[2] >= "2" && currEnemyData.baseDEF[currEnemyType] < 60 ? (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100) : 1);
       if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
         if (eTags.includes("ucc")) alt60kEnemyHP -= eHP * 0.036;
         if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
@@ -55,9 +55,6 @@ function loadHPData() {
         if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * (currEnemyID == "28300" ? 0.02 : currEnemyID == "27300" ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015);
         if (eTags.includes("convert")) alt60kEnemyHP += eHP * (currEnemyID == "30300" ? 0.006 : 0.003);
       }
-
-      // normalize hp for lower def bosses (from 60)
-      if (currEnemyData.baseDEF[currEnemyType] < 60) alt60kEnemyHP *= (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100);
 
       // add boss appearance to boss hp map
       if (!hpDataSpecific[currEnemyID]) hpDataSpecific[currEnemyID] = [];
@@ -194,7 +191,8 @@ function showEnemies() {
       let ttHP = document.createElement("div");
       ttHP.className = "tt-e-hp";
 
-      let eHPNew = eHP;
+      let lowDEF = currEnemyID[2] >= "2" && currEnemyData.baseDEF[currEnemyType] < 60;
+      let eHPNew = eHP * (lowDEF ? (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100) : 1);
       let color = "#ffffff";
 
       if (eTags.includes("ucc")) {
@@ -223,11 +221,8 @@ function showEnemies() {
         ttHP.innerHTML += instant(color, "CONVERT!!", currEnemyID == "30300" ? 2 : 1) + `<br>`;
       }
 
-      // normalize hp for lower def bosses (from 60)
-      if (currEnemyID[2] >= "2" && currEnemyData.baseDEF[currEnemyType] < 60) eHPNew *= (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100);
-
       // display tooltip text
-      ttHP.innerHTML = alt(color, currEnemyID == "25300" ? (eName.slice(0, 21) + "<br>" + eName.slice(21)) : eName, eHPNew, eHP, currEnemyData.baseDEF[currEnemyType]) + ttHP.innerHTML;
+      ttHP.innerHTML = alt(color, currEnemyID == "25300" ? (eName.slice(0, 21) + "<br>" + eName.slice(21)) : eName, eHPNew, eHP, lowDEF) + ttHP.innerHTML;
       hp.appendChild(ttHP);
     }
 
@@ -352,7 +347,7 @@ function alt(color, name, hpNew, hp, def) {
   return `<span style="color:${color};">✦</span><span class="tt-text">
           <span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
           <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${showNumberFormat(Math.ceil(hpNew))}</span><br>
-          <span style="font-weight:bold;">(${def < 60 ? `normalized → ` : ``}${Math.round(hpNew / hp * 1000) / 10}% of Base HP)</span><br><br>`;
+          <span style="font-weight:bold;">(${def ? `normalized → ` : ``}${Math.round(hpNew / hp * 1000) / 10}% of Base HP)</span><br><br>`;
 }
 function instant(color, type, cnt) { return `<span style="font-weight:bold;"><span style="color:${color};">${type}</span></span> ${cnt} time(s)</span>`; }
 

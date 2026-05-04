@@ -69,13 +69,10 @@ function loadHPData() {
               let eHP = currEnemyData.baseHP[currEnemyType] * nodeHPMult[nodeLvlData[n - 1] - 1] * currEnemyHPMult / 10000;
               let eTags = currEnemyData.tags;
 
-              // normalize hp for lower def bosses (from 60)
-              if (currEnemyID[2] >= "2" && currEnemyData.baseDEF[currEnemyType] < 60) eHP *= (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100);
-
               // calculate enemy hp
               rawHP += (currEnemyID != "14000" ? eHP : 1) * currEnemyCount;
               aoeHP += addAOE ? eHP : 0;
-              altHP += addAOE ? eHP : 0;
+              altHP += addAOE ? eHP * (currEnemyID[2] >= "2" && currEnemyData.baseDEF[currEnemyType] < 60 ? (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100) : 1) : 0;
               if (eTags.length >= 1 && !(eTags.length == 1 && (eTags.includes("spoiler") || eTags.includes("hitch")))) {
                 if (eTags.includes("palicus")) altHP += eHP * 0.5;
                 if (eTags.includes("robot")) altHP -= eHP * 0.1;
@@ -311,7 +308,8 @@ function showEnemies() {
             enemyHP.innerHTML = showNumberFormat(1);
           }
           else {
-            let eHPNew = eHP;
+            let lowDEF = currEnemyID[2] >= "2" && currEnemyData.baseDEF[currEnemyType] < 60;
+            let eHPNew = eHP * (lowDEF ? (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100) : 1);
             let color = "#ffffff";
 
             if (eTags.includes("palicus")) {
@@ -345,11 +343,8 @@ function showEnemies() {
               ttHP.innerHTML += instant(color, "CONVERT!!", 1) + `<br>`;
             }
 
-            // normalize hp for lower def bosses (from 60)
-            if (currEnemyID[2] >= "2" && currEnemyData.baseDEF[currEnemyType] < 60) eHPNew *= (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100);
-
             // display tooltip text
-            ttHP.innerHTML = alt(color, eName, eHPNew, eHP, currEnemyData.baseDEF[currEnemyType]) + ttHP.innerHTML;
+            ttHP.innerHTML = alt(color, eName, eHPNew, eHP, lowDEF) + ttHP.innerHTML;
           }
           hp.appendChild(ttHP);
         }
@@ -456,7 +451,7 @@ function alt(color, name, hpNew, hp, def) {
   return `<span style="color:${color};">✦</span><span class="tt-text">
           <span style="font-weight:bold;text-decoration:underline;">${name}</span><br>
           <span style="color:#f6b26b;font-weight:bold;">Alt HP</span>: <span style="color:${color};font-weight:bold;">${showNumberFormat(Math.ceil(hpNew))}</span><br>
-          <span style="font-weight:bold;">(${def < 60 ? `normalized → ` : ``}${Math.round(hpNew / hp * 1000) / 10}% of Base HP)</span><br><br>`;
+          <span style="font-weight:bold;">(${def ? `normalized → ` : ``}${Math.round(hpNew / hp * 1000) / 10}% of Base HP)</span><br><br>`;
 }
 function hitch(hp) {
   return `<span style="color:#ffffff;">✦</span><span class="tt-text">

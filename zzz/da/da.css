@@ -226,7 +226,7 @@ li {
 
 /* wave display */
 .w-e {
-  min-height: 428.5px;
+  min-height: 403.5px;
   gap: 15px;
   display: flex;
   justify-content: center;
@@ -973,7 +973,7 @@ input:checked + #lt, input:checked + #st {
   white-space: nowrap;
 }
 .tt-e-stat .tt-text {
-  top: 320px;
+  top: 295px;
   white-space: nowrap;
 }
 .tt-menu:hover .tt-text, .tt-v-hp:hover .tt-text, .tt-e-hp:hover .tt-text, .tt-e-stat:hover .tt-text {

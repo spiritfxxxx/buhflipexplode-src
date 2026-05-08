@@ -245,21 +245,21 @@
           },
 
   "2.8.1":{ "versionName":"2.8 Phase 1",
-            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionTime":"08/05/2026 - 22/05/2026",
             "versionBuffIDs":["69000033", "69000054", "69000055"],
             "versionHPMult":[165, 200, 220], "versionDazeMult":[100, 100, 100], "versionAnomMult":110,
             "versionEnemies":[ {"id":"28300", "type":0}, {"id":"23300", "type":0}, {"id":"22300", "type":1} ]
           },
 
   "2.8.2":{ "versionName":"2.8 Phase 2",
-            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionTime":"22/05/2026 - 05/06/2026",
             "versionBuffIDs":["69000054", "69000056", "69000057"],
             "versionHPMult":[500, 220, 270], "versionDazeMult":[100, 80, 100], "versionAnomMult":110,
             "versionEnemies":[ {"id":"15300", "type":2}, {"id":"24300", "type":0}, {"id":"26300", "type":1} ]
           },
 
   "2.8.3":{ "versionName":"2.8 Phase 3",
-            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionTime":"05/06/2026 - 19/06/2026",
             "versionBuffIDs":["69000048", "69000056", "69000058"],
             "versionHPMult":[255, 220, 220], "versionDazeMult":[100, 80, 100], "versionAnomMult":110,
             "versionEnemies":[ {"id":"21300", "type":0}, {"id":"24300", "type":0}, {"id":"22300", "type":0} ]

@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let vLive = 22, vBeta = 24, v27 = 10, v43 = 24;
+let vLive = 23, vBeta = 24, v27 = 10, v43 = 24;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let versionNum, nodeNum, chartNodeNum, currNumberFormat;

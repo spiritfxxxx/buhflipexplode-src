@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let vLive = 36, vBeta = 39, v22 = 19, v28 = 36;
+let vLive = 36, vBeta = 39, v22 = 19, v28 = 35;
 let leaksToggle = document.getElementById("lks")
 let spoilersToggle = document.getElementById("spl");
 let bossDropdown = document.getElementById("cc-b-dd");
@@ -53,7 +53,7 @@ function loadHPData() {
         if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
         if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.045 : (v >= v22 ? 0.025 : 0.03));
         if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * (currEnemyID == "28300" ? 0.02 : currEnemyID == "27300" ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015);
-        if (eTags.includes("convert")) alt60kEnemyHP += eHP * (currEnemyID == "30300" ? 0.006 : 0.003);
+        if (eTags.includes("convert")) alt60kEnemyHP += eHP * (currEnemyID == "30300" ? 0.08 : 0.003);
       }
 
       // add boss appearance to boss hp map
@@ -216,7 +216,7 @@ function showEnemies() {
         ttHP.innerHTML += instant(color, "SHUTDOWN!!", currEnemyID == "26300" ? 2 : 1) + `<br>`;
       }
       if (eTags.includes("convert")) {
-        eHPNew += eHP * (currEnemyID == "30300" ? 0.006 : 0.003);
+        eHPNew += eHP * (currEnemyID == "30300" ? 0.08 : 0.003);
         color = "#007bb8";
         ttHP.innerHTML += instant(color, "CONVERT!!", currEnemyID == "30300" ? 2 : 1) + `<br>`;
       }
@@ -265,7 +265,7 @@ function showEnemies() {
     trait.appendChild(traitTitle);
     traitDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br>` : `${currEnemyData.desc[currEnemyType]}<br>`;
     traitDesc.innerHTML += (currEnemyID == "14301" && versionNum == 6) ? `• Successfully triggering <span style="font-weight:bold;">Perfect Assist</span> grants <span style="color:#ffaf2c;font-weight:bold;">300 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.` : (eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerPerf}` : `${currEnemyData.perf[currEnemyType]}`);
-    traitDesc.innerHTML += `${(currEnemyID[0] == "2" || (currEnemyID == "14303" && versionNum >= 4)) ? `<br>${currEnemyData.misc}` : ``}`;
+    traitDesc.innerHTML += `${(currEnemyID[0] >= "2" || (currEnemyID == "14303" && versionNum >= 4)) ? `<br>${currEnemyData.misc}` : ``}`;
     trait.appendChild(traitDesc);
 
     side.appendChild(waveEnemies);
@@ -511,7 +511,7 @@ function toggleCalc() {
   let select = document.getElementById("cc-b-dd");
   select.innerHTML = ``;
   for (let i = 0; i < enemyIDs.length; ++i) {
-    if (enemyIDs[i][2] == "3" && enemyIDs[i] != "10301" && enemyIDs[i] != "10302" && enemyIDs[i] != "10303" && enemyIDs[i] != "16300") {
+    if (enemyIDs[i][2] == "3" && enemyIDs[i] != "10301" && enemyIDs[i] != "10302" && enemyIDs[i] != "10303" && enemyIDs[i] != "16300" && enemyIDs[i] != "28301") {
       let option = document.createElement("option");
       option.text = (spoilersToggle.checked || !enemyData[enemyIDs[i]].tags.includes("spoiler")) ? enemyData[enemyIDs[i]].name : "SPOILER BOSS";
       option.value = enemyIDs[i];

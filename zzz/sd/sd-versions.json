@@ -3419,7 +3419,7 @@
                       { "enemies":[ {"id":"22001", "type":1, "count":3, "hpMult":240} ] },
                       { "enemies":[ {"id":"25100", "type":1, "count":1, "hpMult":260}, {"id":"22000", "type":1, "count":2, "hpMult":240} ] },
                       { "enemies":[ {"id":"22200", "type":0, "count":1} ] } ] },
-                    { "sideElementMult":[1.0, 1.0, 1.2, 0.8, 1.0, 1.0], "sideHPMult":500, "waves":[
+                    { "sideElementMult":[1.0, 1.0, 1.2, 0.8, 1.0, 0.8], "sideHPMult":500, "waves":[
                       { "enemies":[ {"id":"10127", "type":1, "count":1, "hpMult":280}, {"id":"10102", "type":1, "count":1, "hpMult":280} ] },
                       { "enemies":[ {"id":"26202", "type":0, "count":1} ] } ] } ] }
                 ]

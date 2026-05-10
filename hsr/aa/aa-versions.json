@@ -187,24 +187,22 @@
                                  ["41000008", "41000014"], ["41000013.1"], ["41000015"] ],
             "versionEnemies":{
               "sides":[
-                { "sideElementMult":[1.0, 1.2, 1.0, 1.2, 1.2, 1.2, 1.0], "sideHPMult":570, "waves":[
-                  { "enemies":[ {"id":"42000", "count":1}, {"id":"41100", "count":1}, {"id":"40005", "count":1} ] },
-                  { "enemies":[ {"id":"42100", "count":1} ] },
+                { "sideElementMult":[1.0, 1.2, 1.0, 1.2, 1.2, 1.2, 1.0], "sideHPMult":720, "waves":[
+                  { "enemies":[ {"id":"41100", "count":1}, {"id":"37100", "count":1}, {"id":"42000", "count":1} ] },
                   { "enemies":[ {"id":"16300.1", "count":1, "phase":2} ] } ]
                 },
-                { "sideElementMult":[1.0, 1.2, 1.0, 1.2, 1.2, 1.2, 1.0], "sideHPMult":540, "waves":[
-                  { "enemies":[ {"id":"42000", "count":1}, {"id":"41100", "count":1}, {"id":"40005", "count":1} ] },
-                  { "enemies":[ {"id":"42100", "count":1} ] },
+                { "sideElementMult":[1.0, 1.2, 1.0, 1.2, 1.2, 1.2, 1.0], "sideHPMult":660, "waves":[
+                  { "enemies":[ {"id":"41100", "count":1}, {"id":"37100", "count":1}, {"id":"42000", "count":1} ] },
                   { "enemies":[ {"id":"16300.1", "count":1, "phase":2} ] } ]
                 },
-                { "sideElementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.2], "sideHPMult":600, "waves":[
+                { "sideElementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.2], "sideHPMult":550, "waves":[
                   { "enemies":[ {"id":"43100", "count":4}, {"id":"41001", "count":6}, {"id":"40004", "count":6} ] } ]
                 },
-                { "sideElementMult":[1.2, 1.0, 1.2, 1.2, 1.2, 1.2, 1.0], "sideHPMult":650, "waves":[
+                { "sideElementMult":[1.2, 1.0, 1.2, 1.2, 1.2, 1.2, 1.0], "sideHPMult":720, "waves":[
                   { "enemies":[ {"id":"40005", "count":1}, {"id":"40100", "count":1}, {"id":"41100", "count":1}, {"id":"40005", "count":1} ] },
                   { "enemies":[ {"id":"41200", "count":1, "phase":2} ] } ]
                 },
-                { "sideElementMult":[1.2, 1.2, 1.0, 1.2, 1.2, 1.0, 1.2], "sideHPMult":800, "waves":[
+                { "sideElementMult":[1.2, 1.2, 1.0, 1.2, 1.2, 1.0, 1.2], "sideHPMult":860, "waves":[
                   { "enemies":[ {"id":"41101", "count":1}, {"id":"30100", "count":1} ] },
                   { "enemies":[ {"id":"30201", "count":1, "phase":2} ] } ]
                 }

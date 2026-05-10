@@ -3635,23 +3635,23 @@
                       { "enemies":[ {"id":"12105", "type":1, "count":1} ] },
                       { "enemies":[ {"id":"12101", "type":1, "count":1}, {"id":"12103", "type":1, "count":1} ] } ] } ] },
                   { "sides":[
-                    { "sideElementMult":[1.2, 1.0, 0.8, 1.0, 1.0, 0.8], "sideHPMult":350, "waves":[
-                      { "enemies":[ {"id":"30100", "type":0, "count":2} ] },
-                      { "enemies":[ {"id":"30203", "type":0, "count":1} ] } ] },
-                    { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8, 1.0], "sideHPMult":350, "waves":[
-                      { "enemies":[ {"id":"10134", "type":1, "count":1}, {"id":"10135", "type":1, "count":1} ] },
+                    { "sideElementMult":[1.2, 1.0, 0.8, 1.0, 1.0, 0.8], "sideHPMult":250, "waves":[
+                      { "enemies":[ {"id":"30100", "type":0, "count":2, "hpMult":210} ] },
+                      { "enemies":[ {"id":"30202", "type":0, "count":1} ] } ] },
+                    { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8, 1.0], "sideHPMult":250, "waves":[
+                      { "enemies":[ {"id":"10134", "type":1, "count":1, "hpMult":210}, {"id":"10135", "type":1, "count":1, "hpMult":210} ] },
                       { "enemies":[ {"id":"11202", "type":0, "count":1} ] } ] } ] },
                   { "sides":[
-                    { "sideElementMult":[0.8, 1.0, 1.0, 1.2, 1.0, 0.8], "sideHPMult":530, "waves":[
-                      { "enemies":[ {"id":"30001", "type":0, "count":3, "hpMult":260} ] },
-                      { "enemies":[ {"id":"30100", "type":0, "count":1, "hpMult":280}, {"id":"30006", "type":0, "count":2, "hpMult":260} ] },
-                      { "enemies":[ {"id":"30200", "type":0, "count":1} ] } ] },
+                    { "sideElementMult":[1.0, 1.0, 1.0, 1.2, 0.8, 0.8], "sideHPMult":440, "waves":[
+                      { "enemies":[ {"id":"30001", "type":0, "count":3, "hpMult":220} ] },
+                      { "enemies":[ {"id":"30100", "type":1, "count":1, "hpMult":230}, {"id":"30003", "type":0, "count":2, "hpMult":220} ] },
+                      { "enemies":[ {"id":"20202", "type":0, "count":1} ] } ] },
                     { "sideElementMult":[1.0, 1.2, 1.0, 0.8, 0.8, 1.0], "sideHPMult":530, "waves":[
                       { "enemies":[ {"id":"10029", "type":1, "count":3, "hpMult":260} ] },
                       { "enemies":[ {"id":"10116", "type":1, "count":1, "hpMult":280}, {"id":"10010", "type":1, "count":2, "hpMult":260} ] },
                       { "enemies":[ {"id":"26200", "type":0, "count":1} ] } ] },
-                    { "sideElementMult":[0.8, 1.0, 1.0, 1.0, 1.2, 1.0], "sideHPMult":530, "waves":[
-                      { "enemies":[ {"id":"30102", "type":0, "count":1, "hpMult":280}, {"id":"30103", "type":0, "count":1, "hpMult":280} ] },
+                    { "sideElementMult":[0.8, 1.0, 1.0, 1.0, 1.2, 1.0], "sideHPMult":440, "waves":[
+                      { "enemies":[ {"id":"30102", "type":1, "count":1, "hpMult":230}, {"id":"30103", "type":1, "count":1, "hpMult":230} ] },
                       { "enemies":[ {"id":"23203", "type":0, "count":1} ] } ] } ] }
                 ]
               }
@@ -3659,7 +3659,7 @@
 
     "3.0.2":{ "versionName":"3.0 Phase 2",
               "versionTime":"xx/xx/20xx - xx/xx/20xx",
-              "versionBuffMain":1, "versionBuffIDs":["62000066", "62000067", "62000047"],
+              "versionBuffMain":1, "versionBuffIDs":["62000066", "62000067", "62000037"],
               "versionDazeMult":100, "versionAnomMult":100,
               "versionEnemies":{
                 "nodes":[
@@ -3694,20 +3694,20 @@
                       { "enemies":[ {"id":"12105", "type":1, "count":1} ] },
                       { "enemies":[ {"id":"12101", "type":1, "count":1}, {"id":"12103", "type":1, "count":1} ] } ] } ] },
                   { "sides":[
-                    { "sideElementMult":[1.2, 1.0, 0.8, 1.0, 1.0, 0.8], "sideHPMult":350, "waves":[
-                      { "enemies":[ {"id":"30103", "type":0, "count":2} ] },
+                    { "sideElementMult":[1.2, 1.0, 0.8, 1.0, 1.0, 0.8], "sideHPMult":250, "waves":[
+                      { "enemies":[ {"id":"30100", "type":0, "count":2, "hpMult":210} ] },
                       { "enemies":[ {"id":"30202", "type":0, "count":1} ] } ] },
                     { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8, 1.0], "sideHPMult":350, "waves":[
                       { "enemies":[ {"id":"10004", "type":0, "count":2}, {"id":"10033", "type":0, "count":2} ] },
                       { "enemies":[ {"id":"10216", "type":0, "count":1} ] } ] } ] },
                   { "sides":[
-                    { "sideElementMult":[1.0, 1.0, 1.2, 0.8, 1.0, 0.8], "sideHPMult":530, "waves":[
-                      { "enemies":[ {"id":"24101", "type":1, "count":1, "hpMult":280}, {"id":"25101", "type":1, "count":1, "hpMult":280} ] },
-                      { "enemies":[ {"id":"20204", "type":0, "count":1} ] } ] },
-                    { "sideElementMult":[1.2, 0.8, 0.8, 1.0, 1.2, 1.0], "sideHPMult":530, "waves":[
-                      { "enemies":[ {"id":"22000", "type":1, "count":2, "hpMult":260}, {"id":"22001", "type":1, "count":3, "hpMult":260} ] },
-                      { "enemies":[ {"id":"12105", "type":1, "count":1, "hpMult":280} ] },
-                      { "enemies":[ {"id":"30204", "type":0, "count":1} ] } ] },
+                    { "sideElementMult":[1.0, 1.0, 1.2, 0.8, 1.0, 0.8], "sideHPMult":440, "waves":[
+                      { "enemies":[ {"id":"24101", "type":1, "count":1, "hpMult":230}, {"id":"25101", "type":1, "count":1, "hpMult":230} ] },
+                      { "enemies":[ {"id":"26202", "type":0, "count":1} ] } ] },
+                    { "sideElementMult":[1.2, 0.8, 0.8, 1.0, 1.2, 1.0], "sideHPMult":440, "waves":[
+                      { "enemies":[ {"id":"22001", "type":1, "count":3, "hpMult":220} ] },
+                      { "enemies":[ {"id":"12105", "type":1, "count":1, "hpMult":230}, {"id":"22000", "type":1, "count":2, "hpMult":220} ] },
+                      { "enemies":[ {"id":"30203", "type":0, "count":1} ] } ] },
                     { "sideElementMult":[1.2, 1.0, 0.8, 1.2, 0.8, 1.0], "sideHPMult":530, "waves":[
                       { "enemies":[ {"id":"25100", "type":1, "count":1, "hpMult":280}, {"id":"25102", "type":1, "count":1, "hpMult":280} ] },
                       { "enemies":[ {"id":"25200", "type":0, "count":1} ] } ] } ] }
@@ -3748,24 +3748,24 @@
                     { "sideElementMult":[1.2, 0.8, 1.0, 1.0, 0.8, 1.0], "sideHPMult":350, "waves":[
                       { "enemies":[ {"id":"10004", "type":1, "count":2}, {"id":"10033", "type":1, "count":2} ] },
                       { "enemies":[ {"id":"12105", "type":1, "count":1} ] },
-                      { "enemies":[ {"id":"12101", "type":1, "count":1}, {"id":"12103", "type":1, "count":1} ] } ] } ] },
+                      { "enemies":[ {"id":"12101", "type":1, "count":1}, {"id":"12103", "type":0, "count":1} ] } ] } ] },
                   { "sides":[
                     { "sideElementMult":[0.8, 1.0, 1.0, 0.8, 1.0, 1.0], "sideHPMult":350, "waves":[
                       { "enemies":[ {"id":"10117", "type":1, "count":2} ] },
                       { "enemies":[ {"id":"10212", "type":0, "count":1} ] } ] },
-                    { "sideElementMult":[0.8, 1.0, 1.0, 1.2, 1.0, 0.8], "sideHPMult":350, "waves":[
-                      { "enemies":[ {"id":"30100", "type":0, "count":2} ] },
-                      { "enemies":[ {"id":"30201", "type":0, "count":1} ] } ] } ] },
+                    { "sideElementMult":[0.8, 1.0, 1.0, 1.2, 1.0, 0.8], "sideHPMult":250, "waves":[
+                      { "enemies":[ {"id":"30100", "type":0, "count":2, "hpMult":210} ] },
+                      { "enemies":[ {"id":"30200", "type":0, "count":1} ] } ] } ] },
                   { "sides":[
-                    { "sideElementMult":[1.0, 0.8, 1.0, 1.2, 0.8, 1.0], "sideHPMult":530, "waves":[
-                      { "enemies":[ {"id":"30103", "type":0, "count":2, "hpMult":280} ] },
+                    { "sideElementMult":[1.0, 0.8, 1.0, 1.2, 0.8, 1.0], "sideHPMult":440, "waves":[
+                      { "enemies":[ {"id":"30103", "type":1, "count":2, "hpMult":230} ] },
                       { "enemies":[ {"id":"22203", "type":0, "count":1} ] } ] },
-                    { "sideElementMult":[1.0, 1.0, 1.2, 0.8, 1.2, 0.8], "sideHPMult":530, "waves":[
-                      { "enemies":[ {"id":"23102", "type":0, "count":1, "hpMult":280}, {"id":"23101", "type":0, "count":1, "hpMult":280} ] },
+                    { "sideElementMult":[1.0, 1.0, 1.2, 0.8, 1.2, 0.8], "sideHPMult":580, "waves":[
+                      { "enemies":[ {"id":"23102", "type":0, "count":1, "hpMult":350}, {"id":"23101", "type":0, "count":1, "hpMult":350} ] },
                       { "enemies":[ {"id":"26202", "type":0, "count":1} ] } ] },
-                    { "sideElementMult":[0.8, 1.0, 1.2, 1.0, 1.2, 1.0], "sideHPMult":530, "waves":[
-                      { "enemies":[ {"id":"21000", "type":1, "count":3, "hpMult":260} ] },
-                      { "enemies":[ {"id":"25101", "type":1, "count":1, "hpMult":280}, {"id":"20001", "type":1, "count":2, "hpMult":260} ] },
+                    { "sideElementMult":[0.8, 1.0, 1.2, 1.0, 1.2, 1.0], "sideHPMult":440, "waves":[
+                      { "enemies":[ {"id":"21000", "type":1, "count":3, "hpMult":220} ] },
+                      { "enemies":[ {"id":"25101", "type":1, "count":1, "hpMult":230}, {"id":"20001", "type":1, "count":2, "hpMult":220} ] },
                       { "enemies":[ {"id":"23203", "type":0, "count":1} ] } ] } ] }
                 ]
               }

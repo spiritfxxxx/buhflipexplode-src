@@ -275,7 +275,7 @@
   "3.0.2":{ "versionName":"3.0 Phase 2",
             "versionTime":"xx/xx/20xx - xx/xx/20xx",
             "versionBuffIDs":["69000059", "69000062", "69000063"],
-            "versionHPMult":[200, 310, 240], "versionDazeMult":[100, 100, 100], "versionAnomMult":110,
+            "versionHPMult":[200, 310, 240], "versionDazeMult":[100, 100, 80], "versionAnomMult":110,
             "versionEnemies":[ {"id":"30300", "type":0}, {"id":"25300", "type":0}, {"id":"24300", "type":0} ]
           },
 

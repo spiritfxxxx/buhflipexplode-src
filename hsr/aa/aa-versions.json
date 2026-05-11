@@ -189,11 +189,11 @@
               "sides":[
                 { "sideElementMult":[1.0, 1.2, 1.0, 1.2, 1.2, 1.2, 1.0], "sideHPMult":720, "waves":[
                   { "enemies":[ {"id":"41100", "count":1}, {"id":"37100", "count":1}, {"id":"42000", "count":1} ] },
-                  { "enemies":[ {"id":"16300.1", "count":1, "phase":2} ] } ]
+                  { "enemies":[ {"id":"16300.1", "count":1, "phase":2.4} ] } ]
                 },
                 { "sideElementMult":[1.0, 1.2, 1.0, 1.2, 1.2, 1.2, 1.0], "sideHPMult":660, "waves":[
                   { "enemies":[ {"id":"41100", "count":1}, {"id":"37100", "count":1}, {"id":"42000", "count":1} ] },
-                  { "enemies":[ {"id":"16300.1", "count":1, "phase":2} ] } ]
+                  { "enemies":[ {"id":"16300.1", "count":1, "phase":2.4} ] } ]
                 },
                 { "sideElementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.2], "sideHPMult":550, "waves":[
                   { "enemies":[ {"id":"43100", "count":4}, {"id":"41001", "count":6}, {"id":"40004", "count":6} ] } ]

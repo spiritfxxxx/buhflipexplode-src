@@ -38,10 +38,10 @@
             "versionEnemies":{
               "sides":[
                 { "sideElementMult":[1.0, 1.2, 1.0, 1.2, 1.2, 1.0, 1.2], "sideHPMult":225, "waves":[
-                  { "enemies":[ {"id":"33300", "count":1, "phase":4.6} ] } ]
+                  { "enemies":[ {"id":"33300", "count":1, "phase":4.4} ] } ]
                 },
                 { "sideElementMult":[1.0, 1.2, 1.0, 1.2, 1.2, 1.0, 1.2], "sideHPMult":250, "waves":[
-                  { "enemies":[ {"id":"33300", "count":1, "phase":4.6} ] } ]
+                  { "enemies":[ {"id":"33300", "count":1, "phase":4.4} ] } ]
                 },
                 { "sideElementMult":[1.0, 1.2, 1.2, 1.0, 1.2, 1.2, 1.2], "sideHPMult":500, "waves":[
                   { "enemies":[ {"id":"15100", "count":2}, {"id":"24100", "count":2}, {"id":"20001", "count":6} ] } ]

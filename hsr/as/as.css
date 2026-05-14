@@ -16,7 +16,7 @@ html, body {
   padding: 0px;
   background-color: #111111;
   color: #ffffff;
-  font-family: Inconsolata, monospace;
+  font-family: "Inconsolata", monospace;
   text-align: center;
   scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
@@ -569,7 +569,7 @@ li {
   border-radius: 4px;
   background-color: #222222;
   color: #ffffff;
-  font-family: Inconsolata, monospace;
+  font-family: "Inconsolata", monospace;
   font-size: 14px;
   cursor: pointer;
   user-select: none;
@@ -833,7 +833,7 @@ input:checked + #lt, input:checked + #st {
   top: 15px;
   left: 15px;
   position: absolute;
-  font-family: Inconsolata, monospace;
+  font-family: "Inconsolata", monospace;
   font-size: 14px;
   cursor: pointer;
 }
@@ -885,7 +885,7 @@ input:checked + #lt, input:checked + #st {
   border-radius: 4px;
   background-color: #444444;
   color: #ffffff;
-  font-family: Inconsolata, monospace;
+  font-family: "Inconsolata", monospace;
   font-size: 12px;
   line-height: 1.5;
   opacity: 0;
@@ -934,7 +934,7 @@ input:checked + #lt, input:checked + #st {
 /* ---------------------------------------------------------------------- VERY MISC ---------------------------------------------------------------------- */
 
 @font-face {
-  font-family: Inconsolata, monospace;
+  font-family: "Inconsolata", monospace;
   src: url(../../assets/Inconsolata-Regular.ttf) format("truetype");
 }
 @media (max-width: 1080px) {

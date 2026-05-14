@@ -64,7 +64,7 @@ async function loadHPData() {
           if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
           if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.045 : 0.025);
           if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * (currEnemyID == "28300" ? 0.02 : currEnemyID == "27300" ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015);
-          if (eTags.includes("convert")) alt60kEnemyHP += eHP * (currEnemyID == "30300" ? 0.006 : 0.003);
+          if (eTags.includes("convert")) alt60kEnemyHP += eHP * (currEnemyID == "30300" ? 0.09 : 0.003);
         }
 
         hpData[m - 1][n - 1][0][v - 1] = Math.round(raw60kEnemyHP * 0.281083138);
@@ -367,7 +367,7 @@ function showEnemies() {
               ttHP.innerHTML += instant(color, "SHUTDOWN!!", currEnemyID == "26300" ? 2 : 1) + `<br>`;
             }
             if (eTags.includes("convert")) {
-              eHPNew += eHP * (currEnemyID[2] != "3" ? 0.05 : (currEnemyID == "30300" ? 0.006 : 0.003));
+              eHPNew += eHP * (currEnemyID[2] != "3" ? 0.05 : (currEnemyID == "30300" ? 0.09 : 0.003));
               color = "#007bb8";
               ttHP.innerHTML += instant(color, "CONVERT!!", currEnemyID == "30300" ? 2 : 1) + `<br>`;
             }

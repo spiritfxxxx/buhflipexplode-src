@@ -16,7 +16,7 @@ html, body {
   padding: 0px;
   background-color: #111111;
   color: #ffffff;
-  font-family: "Inconsolata", monospace;
+  font-family: "Inconsolata";
   text-align: center;
   scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
@@ -502,7 +502,7 @@ li {
   border-radius: 4px;
   background-color: #222222;
   color: #ffffff;
-  font-family: "Inconsolata", monospace;
+  font-family: "Inconsolata";
   font-size: 14px;
   cursor: pointer;
   user-select: none;
@@ -766,7 +766,7 @@ input:checked + #lt, input:checked + #st {
   top: 15px;
   left: 15px;
   position: absolute;
-  font-family: "Inconsolata", monospace;
+  font-family: "Inconsolata";
   font-size: 14px;
   cursor: pointer;
 }
@@ -878,7 +878,7 @@ input:checked + #lt, input:checked + #st {
 /* calculator boss dropdown */
 #cc-b-dd {
   margin-top: 15px;
-  font-family: "Inconsolata", monospace;
+  font-family: "Inconsolata";
   font-size: 14px;
 }
 #cc-b-dd-resize {
@@ -898,17 +898,17 @@ input:checked + #lt, input:checked + #st {
 }
 #cc-b-v-dd1, #cc-b-v-dd2 {
   width: 110px;
-  font-family: "Inconsolata", monospace;
+  font-family: "Inconsolata";
   font-size: 12px;
 }
 #cc-b-hp1, #cc-b-hp2 {
   width: 80px;
-  font-family: "Inconsolata", monospace;
+  font-family: "Inconsolata";
   font-size: 12px;
 }
 #cc-b-score1, #cc-b-score2 {
   width: 50px;
-  font-family: "Inconsolata", monospace;
+  font-family: "Inconsolata";
   font-size: 12px;
 }
 
@@ -918,7 +918,7 @@ input:checked + #lt, input:checked + #st {
 .tt-menu, .tt-v-hp {
   margin-left: 7.5px;
   position: relative;
-  font-family: Arial;
+  font-family: "Arial";
   font-size: 14px;
   display: inline-block;
   user-select: none;
@@ -927,7 +927,7 @@ input:checked + #lt, input:checked + #st {
   bottom: 95.5%;
   right: 91.5%;
   position: absolute;
-  font-family: Arial;
+  font-family: "Arial";
   font-size: 32px;
   user-select: none;
 }
@@ -952,7 +952,7 @@ input:checked + #lt, input:checked + #st {
   border-radius: 4px;
   background-color: #444444;
   color: #ffffff;
-  font-family: "Inconsolata", monospace;
+  font-family: "Inconsolata";
   font-size: 12px;
   line-height: 1.5;
   opacity: 0;
@@ -1001,7 +1001,7 @@ input:checked + #lt, input:checked + #st {
 /* ---------------------------------------------------------------------- VERY MISC ---------------------------------------------------------------------- */
 
 @font-face {
-  font-family: "Inconsolata", monospace;
+  font-family: "Inconsolata";
   src: url(../../assets/Inconsolata-Regular.ttf) format("truetype");
 }
 @media (max-width: 1360px) {

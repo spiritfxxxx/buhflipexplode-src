@@ -802,10 +802,10 @@ function showHPChart() {
     aoeHPData = newHPData[1];
     altHPData = newHPData[2];
     hpChart.options.plugins.title.text = `Shiyu Defense HP - Critical Node ${chartNodeNum} HP - ${chartDisplayType}`;
-    hpChart.options.scales.y.min = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 0 : 60000000;
-    hpChart.options.scales.y.max = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 80000000 : 200000000;
+    hpChart.options.scales.y.min = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 0 : 70000000;
+    hpChart.options.scales.y.max = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 70000000 : 210000000;
     hpChart.options.scales.y.ticks.stepSize = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 5000000 : 10000000;
-    hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % (chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 10000000 : 20000000) == 0 ? "#888888" : "#444444"; } };
+    hpChart.options.scales.y.grid = { color: function(context) { return (chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? (context.tick.value % 10000000 == 0) : (context.tick.value % 20000000 == 10000000)) ? "#888888" : "#444444"; } };
   }
 
   // global chart settings

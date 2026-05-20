@@ -31,14 +31,14 @@ async function loadPage() {
   for (let m = 1; m <= 2; ++m) versionIDs.push(Object.keys(versionData[m - 1].versions));
   loadHPData();
   loadSavedState();
-  await showVersion();
+  showVersion();
   changeNumberFormat();
 }
 
 // build hp database
 async function loadHPData() {
-  hpData = [Array.from({length: 4}, () => Array.from({length: 7}, () => Array.from({length: 1}).fill(null))),
-            Array.from({length: 6}, () => Array.from({length: 7}, () => Array.from({length: versionIDs[1].length}).fill(null))) ];
+  hpData = [Array.from({length: 4}, () => Array.from({length: 5}, () => Array.from({length: 1}).fill(null))),
+            Array.from({length: 6}, () => Array.from({length: 5}, () => Array.from({length: versionIDs[1].length}).fill(null))) ];
   for (let m = 1; m <= hpData.length; ++m) {
     for (let v = 1; v <= versionIDs[m - 1].length; ++v) {
       nodeLvlData = m == 1 ? nodeLvlDataEasy : (v < v26 ? nodeLvlDataHardPre26 : nodeLvlDataHardPost26);
@@ -66,11 +66,6 @@ async function loadHPData() {
           if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * (currEnemyID == "28300" ? 0.02 : currEnemyID == "27300" ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015);
           if (eTags.includes("convert")) alt60kEnemyHP += eHP * (currEnemyID == "30300" ? 0.09 : 0.003);
         }
-
-        hpData[m - 1][n - 1][0][v - 1] = Math.round(raw60kEnemyHP * 0.281083138);
-        hpData[m - 1][n - 1][1][v - 1] = Math.round(raw60kEnemyHP);
-        hpData[m - 1][n - 1][2][v - 1] = Math.round(alt60kEnemyHP * 0.281083138);
-        hpData[m - 1][n - 1][3][v - 1] = Math.round(alt60kEnemyHP);
 
         // build enemy hp database
         for (let s = 2; s <= currNode.sides.length; ++s) {
@@ -106,16 +101,18 @@ async function loadHPData() {
             addAOE = true;
           }
         }
-        hpData[m - 1][n - 1][4][v - 1] = Math.round(rawHP);
-        hpData[m - 1][n - 1][5][v - 1] = Math.round(aoeHP);
-        hpData[m - 1][n - 1][6][v - 1] = Math.round(altHP);
+        hpData[m - 1][n - 1][0][v - 1] = Math.round(raw60kEnemyHP);
+        hpData[m - 1][n - 1][1][v - 1] = Math.round(alt60kEnemyHP);
+        hpData[m - 1][n - 1][2][v - 1] = Math.round(rawHP);
+        hpData[m - 1][n - 1][3][v - 1] = Math.round(aoeHP);
+        hpData[m - 1][n - 1][4][v - 1] = Math.round(altHP);
       }
     }
   }
 }
 
 // display version/time/id
-async function showVersion() {
+function showVersion() {
   let currVersion = versionData[modeNum - 1].versions[versionIDs[modeNum - 1][versionNum - 1]];
   versionBuffIDs = currVersion.versionBuffIDs;
   versionDazeMultBoss = currVersion.versionDazeMultBoss;
@@ -129,11 +126,11 @@ async function showVersion() {
   document.getElementById("v-id").innerHTML = (modeNum == 2 ? `Version: ${versionIDs[modeNum - 1][versionNum - 1].slice(0, 3)} Phase ${versionIDs[modeNum - 1][versionNum - 1].slice(4)} - ` : ``) + `ID: ${versionNum}0${modeNum == 2 && versionNum == 1 ? `2` : `1`}`;
   showNode();
 }
-async function changeVersion(n) {
+function changeVersion(n) {
   if (modeNum != 2) return;
   let maxVersion = leaksToggle.checked ? versionIDs[modeNum - 1].length : vLive;
   versionNum = (versionNum - 1 + n + maxVersion) % maxVersion + 1;
-  await showVersion();
+  showVersion();
 }
 
 // display node
@@ -373,7 +370,7 @@ function showEnemies() {
             }
 
             // display tooltip text
-            ttHP.innerHTML = alt(color, currEnemyID == "25300" ? (eName.slice(0, 21) + "<br>" + eName.slice(21)) : eName, eHPNew, eHP, lowDEF) + ttHP.innerHTML;
+            ttHP.innerHTML = alt(color, eName, eHPNew, eHP, lowDEF) + ttHP.innerHTML;
           }
 
           // change styling for bosses
@@ -438,13 +435,11 @@ function showEnemies() {
   }
 
   // display HP values
-  document.getElementById("v-hp-raw-b-20000").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][0][versionNum - 1]);
-  document.getElementById("v-hp-raw-b-60000").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
-  document.getElementById("v-hp-alt-b-20000").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][2][versionNum - 1]);
-  document.getElementById("v-hp-alt-b-60000").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][3][versionNum - 1]);
-  document.getElementById("v-hp-raw-e").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][4][versionNum - 1]);
-  document.getElementById("v-hp-aoe-e").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][5][versionNum - 1]);
-  document.getElementById("v-hp-alt-e").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][6][versionNum - 1]);
+  document.getElementById("v-hp-raw-b").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][0][versionNum - 1]);
+  document.getElementById("v-hp-alt-b").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][1][versionNum - 1]);
+  document.getElementById("v-hp-raw-e").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][2][versionNum - 1]);
+  document.getElementById("v-hp-aoe-e").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][3][versionNum - 1]);
+  document.getElementById("v-hp-alt-e").innerHTML = showNumberFormat(hpData[modeNum - 1][nodeNum - 1][4][versionNum - 1]);
 
   // save current page/settings
   if (modeNum == 2) saveLastPage();

@@ -16,7 +16,7 @@ html, body {
   padding: 0px;
   background-color: #111111;
   color: #ffffff;
-  font-family: "Inconsolata";
+  font-family: "Inconsolata", monospace;
   text-align: center;
   scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
@@ -236,18 +236,24 @@ li {
 }
 
 /* boss hp display */
-#v-hp-raw-b-20000, #v-hp-raw-b-60000 {
+#v-hp-b {
+  align-content: center;
+}
+#v-hp-raw-b {
   color: #e06666;
   font-weight: bold;
   user-select: all;
 }
-#v-hp-alt-b-20000, #v-hp-alt-b-60000 {
+#v-hp-alt-b {
   color: #f6b26b;
   font-weight: bold;
   user-select: all;
 }
 
 /* enemy hp display */
+#v-hp-e {
+  align-content: center;
+}
 #v-hp-raw-e {
   color: #e06666;
   font-weight: bold;
@@ -582,7 +588,7 @@ li {
   border-radius: 4px;
   background-color: #222222;
   color: #ffffff;
-  font-family: "Inconsolata";
+  font-family: "Inconsolata", monospace;
   font-size: 14px;
   cursor: pointer;
   user-select: none;
@@ -787,7 +793,7 @@ input:checked + #lt, input:checked + #st {
   border-radius: 4px;
   background-color: #444444;
   color: #ffffff;
-  font-family: "Inconsolata";
+  font-family: "Inconsolata", monospace;
   font-size: 12px;
   line-height: 1.5;
   opacity: 0;
@@ -837,7 +843,7 @@ input:checked + #lt, input:checked + #st {
 
 @font-face {
   font-family: "Inconsolata";
-  src: url(../../assets/Inconsolata-Regular.ttf) format("truetype");
+  src: url(../../assets/Inconsolata-Regular.woff2) format("woff2");
 }
 @media (max-width: 1360px) {
   #b1, #b2, #b3, #b4 { min-height: 323.5px; }

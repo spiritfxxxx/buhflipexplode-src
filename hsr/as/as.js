@@ -24,7 +24,7 @@ async function loadPage() {
   versionIDs = Object.keys(versionData);
   loadHPData();
   loadSavedState();
-  await showVersion();
+  showVersion();
   changeNumberFormat();
 }
 
@@ -60,7 +60,7 @@ function loadHPData() {
 }
 
 // display version/time/id
-async function showVersion() {
+function showVersion() {
   let currVersion = versionData[versionIDs[versionNum - 1]];
   versionHPMult = currVersion.versionHPMult;
   versionBuffIDs = currVersion.versionBuffIDs;
@@ -70,10 +70,10 @@ async function showVersion() {
   document.getElementById("v-id").innerHTML = `Version: ${versionIDs[versionNum - 1].slice(0, 3)} Phase ${versionIDs[versionNum - 1].slice(4)} - ID: 3${versionNum.toString().padStart(3, `0`)}`;
   showNode();
 }
-async function changeVersion(n) {
+function changeVersion(n) {
   let maxVersion = leaksToggle.checked ? versionIDs.length : vLive;
   versionNum = (versionNum - 1 + n + maxVersion) % maxVersion + 1;
-  await showVersion();
+  showVersion();
 }
 
 // display node

@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let vLive = 36, vBeta = 39, v22 = 19, v28 = 35;
+let vLive = 37, vBeta = 39, v22 = 19, v28 = 35;
 let leaksToggle = document.getElementById("lks")
 let spoilersToggle = document.getElementById("spl");
 let bossDropdown = document.getElementById("cc-b-dd");

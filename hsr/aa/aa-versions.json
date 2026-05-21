@@ -187,11 +187,11 @@
                                  ["41000008", "41000014"], ["41000013.1"], ["41000015"] ],
             "versionEnemies":{
               "sides":[
-                { "sideElementMult":[1.0, 1.2, 1.0, 1.2, 1.2, 1.2, 1.0], "sideHPMult":720, "waves":[
+                { "sideElementMult":[1.0, 1.2, 1.0, 1.2, 1.2, 1.2, 1.0], "sideHPMult":680, "waves":[
                   { "enemies":[ {"id":"41100", "count":1}, {"id":"37100", "count":1}, {"id":"42000", "count":1} ] },
                   { "enemies":[ {"id":"16300.1", "count":1, "phase":2.4} ] } ]
                 },
-                { "sideElementMult":[1.0, 1.2, 1.0, 1.2, 1.2, 1.2, 1.0], "sideHPMult":660, "waves":[
+                { "sideElementMult":[1.0, 1.2, 1.0, 1.2, 1.2, 1.2, 1.0], "sideHPMult":620, "waves":[
                   { "enemies":[ {"id":"41100", "count":1}, {"id":"37100", "count":1}, {"id":"42000", "count":1} ] },
                   { "enemies":[ {"id":"16300.1", "count":1, "phase":2.4} ] } ]
                 },

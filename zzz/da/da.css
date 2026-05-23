@@ -132,7 +132,7 @@ li {
 .t {
   padding: 15px;
   width: 100%;
-  min-height: 463px;
+  min-height: 484px;
   border-radius: 4px;
   background-color: #27363e;
   text-align: left;
@@ -1006,7 +1006,7 @@ input:checked + #lt, input:checked + #st {
 }
 @media (max-width: 1360px) {
   #b1, #b2, #b3 { min-height: 260.5px; }
-  .t { min-height: 567px; }
+  .t { min-height: 588px; }
 }
 @media (max-width: 1080px) {
   #v-hp { margin: 15px; }

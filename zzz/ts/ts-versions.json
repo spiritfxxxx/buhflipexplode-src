@@ -172,7 +172,7 @@
                                  ["69000017", "69000020", "69000039", "69000038"],
                                  ["69000005", "69000021", "69000046", "69000038"],
                                  ["69000024", "69000031", "69000046", "69000038"] ],
-              "versionDazeMultBoss":[100, 80, 100, 100], "versionDazeMultEnemy":100, "versionAnomMultBoss":110, "versionAnomMultEnemy":100,
+              "versionDazeMultBoss":[100, 100, 100, 100], "versionDazeMultEnemy":100, "versionAnomMultBoss":110, "versionAnomMultEnemy":100,
               "versionEnemies":{
               "nodes":[
                 { "sides":[

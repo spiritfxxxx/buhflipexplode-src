@@ -204,7 +204,7 @@
           },
 
   "4.3.1":{ "versionName":"Gale of Forgetting",
-            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionTime":"08/06/2026 - 20/07/2026",
             "versionBuffIDs":[ ["30000016"], ["31000072", "31000076", "31000077"], ["31000054", "31000071", "31000075"], ["31000047", "31000059", "31000066"] ],
             "versionHPMult":[ [20, 40, 60.5, 110], [40, 80, 140, 500], [0, 0, 0, 280] ],
             "versionEnemies":{
@@ -212,6 +212,19 @@
                 { "enemies":[ {"id":"43400", "phase":2} ] },
                 { "enemies":[ {"id":"23400", "phase":2}, {"id":"10203.7", "phase":1} ] },
                 { "enemies":[ {"id":"34400", "phase":2} ] }
+              ]
+            }
+          },
+
+  "4.4.1":{ "versionName":"Vanguard Knight",
+            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionBuffIDs":[ ["30000017"], ["31000063", "31000064", "31000078"], ["31000056", "31000065", "31000069"], ["31000066", "31000068", "31000071"] ],
+            "versionHPMult":[ [40, 80, 140, 620], [20, 40, 55, 180], [0, 0, 0, 590] ],
+            "versionEnemies":{
+              "sides":[
+                { "enemies":[ {"id":"23401", "phase":2} ] },
+                { "enemies":[ {"id":"40400", "phase":2} ] },
+                { "enemies":[ {"id":"27400", "phase":2} ] }
               ]
             }
           }

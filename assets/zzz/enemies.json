@@ -174,7 +174,7 @@
   "30001":{"name":"Aerial Scout Drape",               "baseHP":[1067,1067],     "baseDEF":[43,43],    "baseDaze":[450,450],      "stunMult":150,     "stunTime":6.5,     "baseAnom":780,      "image":"aerial-scout-drape",           "elementMult":[1.0, 0.8, 1.0, 1.0, 1.0, 0.8],     "tags":["spoiler"],                 "mods":[]                          },
   "30002":{"name":"Rewritten: Aerial Scout Drape",    "baseHP":[1067,1067],     "baseDEF":[43,43],    "baseDaze":[450,450],      "stunMult":150,     "stunTime":6.5,     "baseAnom":780,      "image":"aerial-scout-drape-r",         "elementMult":[1.0, 1.0, 1.0, 0.8, 1.0, 0.8],     "tags":["spoiler"],                 "mods":[]                          },
   "30003":{"name":"Kulullu",                          "baseHP":[1754,1754],     "baseDEF":[36,36],    "baseDaze":[540,540],      "stunMult":150,     "stunTime":6.5,     "baseAnom":780,      "image":"kulullu",                      "elementMult":[0.8, 1.0, 1.0, 1.0, 1.0, 0.8],     "tags":["spoiler"],                 "mods":[]                          },
-  "30004":{"name":"Rewritten: Beholder Engine",       "baseHP":[2134,2609],     "baseDEF":[43,43],    "baseDaze":[900,1350],     "stunMult":150,     "stunTime":6.5,     "baseAnom":780,      "image":"TBD",                          "elementMult":[1.0, 1.0, 1.0, 1.0, 0.8, 0.8],     "tags":["spoiler"],                 "mods":[]                          },
+  "30004":{"name":"Rewritten: Beholder Engine",       "baseHP":[2134,2609],     "baseDEF":[43,43],    "baseDaze":[900,1350],     "stunMult":150,     "stunTime":6.5,     "baseAnom":780,      "image":"beholder-engine-r",            "elementMult":[1.0, 1.0, 1.0, 1.0, 0.8, 0.8],     "tags":["spoiler"],                 "mods":[]                          },
   "30005":{"name":"Special Anti-Riotboo",             "baseHP":[2134,2134],     "baseDEF":[43,43],    "baseDaze":[900,900],      "stunMult":150,     "stunTime":6.5,     "baseAnom":780,      "image":"special-anti-riotboo",         "elementMult":[1.0, 0.8, 1.0, 1.0, 1.0, 0.8],     "tags":["spoiler"],                 "mods":[]                          },
   "30006":{"name":"Rewritten: Special Anti-Riotboo",  "baseHP":[2134,2134],     "baseDEF":[43,43],    "baseDaze":[900,900],      "stunMult":150,     "stunTime":6.5,     "baseAnom":780,      "image":"special-anti-riotboo-r",       "elementMult":[1.0, 1.0, 0.8, 1.0, 1.0, 0.8],     "tags":["spoiler"],                 "mods":[]                          },
   "30100":{"name":"City Guardboo",                    "baseHP":[13484,13967],   "baseDEF":[54,54],    "baseDaze":[5253,5958],    "stunMult":150,     "stunTime":10,      "baseAnom":2925,     "image":"city-guardboo",                "elementMult":[1.0, 1.0, 0.8, 1.0, 1.0, 0.8],     "tags":["spoiler"],                 "mods":[]                          },
@@ -186,8 +186,7 @@
   "30201":{"name":"Rewritten: Avarus",                "baseHP":[29959,29959],   "baseDEF":[60,60],    "baseDaze":[6590,6590],    "stunMult":150,     "stunTime":12,      "baseAnom":3600,     "image":"avarus-r",                     "elementMult":[1.0, 1.2, 1.0, 1.0, 0.8, 0.8],     "tags":["spoiler", "miasma"],       "mods":["no-freeze"]               },
   "30202":{"name":"Rewritten: Scorpse",               "baseHP":[28297,28297],   "baseDEF":[60,60],    "baseDaze":[8315,8315],    "stunMult":125,     "stunTime":12,      "baseAnom":3900,     "image":"scorpse-r",                    "elementMult":[1.2, 1.0, 0.8, 1.0, 1.0, 0.8],     "tags":["spoiler", "miasma"],       "mods":["no-freeze"]               },
   "30203":{"name":"Starlight: Billy",                 "baseHP":[34044,34044],   "baseDEF":[60,60],    "baseDaze":[8315,8315],    "stunMult":200,     "stunTime":7,       "baseAnom":3900,     "image":"sbilly",                       "elementMult":[1.0, 0.8, 0.8, 1.0, 1.2, 1.0],     "tags":["spoiler"],                 "mods":["no-freeze"]               },
-  "30204":{"name":"Ionized: Billy",                   "baseHP":[34044,34044],   "baseDEF":[60,60],    "baseDaze":[8315,8315],    "stunMult":200,     "stunTime":7,       "baseAnom":3900,     "image":"TBD",                          "elementMult":[1.0, 0.8, 0.8, 1.0, 1.2, 1.0],     "tags":["spoiler"],                 "mods":["no-freeze"]               },
-  "30205":{"name":"Miasmic: Billy",                   "baseHP":[34044,34044],   "baseDEF":[60,60],    "baseDaze":[8315,8315],    "stunMult":200,     "stunTime":7,       "baseAnom":3900,     "image":"TBD",                          "elementMult":[1.0, 0.8, 0.8, 1.0, 1.2, 1.0],     "tags":["spoiler", "miasma"],       "mods":["no-freeze"]               },
+  "30204":{"name":"Ionized: Billy",                   "baseHP":[34044,34044],   "baseDEF":[60,60],    "baseDaze":[8315,8315],    "stunMult":200,     "stunTime":7,       "baseAnom":3900,     "image":"sbilly-i",                     "elementMult":[1.0, 0.8, 0.8, 1.0, 1.2, 1.0],     "tags":["spoiler"],                 "mods":["no-freeze"]               },
 
 
 
@@ -197,25 +196,25 @@
               "perf":["<li>Successfully triggering <span style='font-weight:bold;'>Perfect Dodge</span> grants <span style='color:#ffaf2c;font-weight:bold;'>150 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.</li>",
                       "<li>Successfully triggering <span style='font-weight:bold;'>Perfect Assist</span> grants <span style='color:#ffaf2c;font-weight:bold;'>300 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.</li>"],
               "misc":""
-           },
+          },
 
   "10301":{"name":"Newborn Dead End Butcher",                "baseHP":[17218,17218,17218],     "baseDEF":[60,60,60],        "baseDaze":[5991,5991,5991],        "stunMult":150,     "stunTime":12,    "baseAnom":3000,      "image":"dead-end-butcher-newborn",       "elementMult":[0.8, 1.0, 1.0, 0.8, 1.0, 1.0],     "tags":[],                           "mods":[],
               "desc":["", "", ""],
               "perf":["", "", ""],
               "misc":""
-           },
+          },
 
   "10302":{"name":"Nineveh",                                 "baseHP":[21539,21539,21539],     "baseDEF":[60,60,60],        "baseDaze":[10028,10028,10028],     "stunMult":150,     "stunTime":12,    "baseAnom":3000,      "image":"nineveh",                        "elementMult":[1.0, 1.0, 1.0, 1.0, 1.0, 1.0],     "tags":[],                           "mods":[],
               "desc":["", "", ""],
               "perf":["", "", ""],
               "misc":""
-           },
+          },
 
   "10303":{"name":"Twin Marionettes",                        "baseHP":[17918,17918,17918],     "baseDEF":[60,60,60],        "baseDaze":[5543,5543,5543],        "stunMult":200,     "stunTime":7,     "baseAnom":3000,      "image":"marionettes",                    "elementMult":[0.8, 1.0, 1.0, 0.8, 1.0, 1.0],     "tags":[],                           "mods":[],
               "desc":["", "", ""],
               "perf":["", "", ""],
               "misc":""
-           },
+          },
 
   "10304":{"name":"Unknown Corruption Complex",              "baseHP":[22383,22383,22383],     "baseDEF":[60,60,60],        "baseDaze":[7189,7189,7189],        "stunMult":150,     "stunTime":12,    "baseAnom":3000,      "image":"unknown-corruption-complex",     "elementMult":[1.0, 1.0, 0.8, 0.8, 1.0, 1.0],     "tags":["ucc"],                      "mods":["no-freeze"],
               "desc":["<li>When dealing sufficient DMG to the boss enemy's legs, <span style='color:#ca9a00;font-weight:bold;'>IMPAIRED!!</span> will be triggered. Upon successfully breaking the boss enemy's legs, the Agent restores <span style='color:#2bad00;font-weight:bold;'>1000</span> Decibels, and the boss gains 1 stack of <span style='font-weight:bold;'>Disintegration</span> for 20 seconds, up to a maximum of 4 stacks. When the Agent's attacks hit an enemy, for each stack of <span style='font-weight:bold;'>Disintegration</span> the target has, CRIT DMG is increased by <span style='color:#2bad00;font-weight:bold;'>25%</span>.</li>",
@@ -225,7 +224,7 @@
                       "",
                       ""],
               "misc":""
-           },
+          },
 
   "12300":{"name":"Corrupted Overlord: Pompey",              "baseHP":[20728,20728,20728],     "baseDEF":[60,60,60],        "baseDaze":[7084,7084,7084],        "stunMult":150,     "stunTime":12,    "baseAnom":3300,      "image":"pompey",                         "elementMult":[1.0, 0.8, 1.4, 1.0, 1.0, 1.0],     "tags":[],                           "mods":["no-freeze"],
               "desc":["<li>Boss enemies gain 1 stack of <span style='font-weight:bold;'>Battle-Hardened</span> every 10s, increasing their DMG dealt by <span style='color:#cc0000;font-weight:bold;'>20%</span> and stacking up to 3 times. When inflicting <span style='color:#7b78ff;font-weight:bold;'>Attribute Anomaly</span>, removes 1 stack of <span style='font-weight:bold;'>Battle-Hardened</span> and increases their DMG taken by <span style='color:#2bad00;font-weight:bold;'>15%</span> for 20s.</li>",
@@ -235,7 +234,7 @@
                       "<li>Successfully triggering <span style='font-weight:bold;'>Perfect Dodge</span> grants <span style='color:#ffaf2c;font-weight:bold;'>200 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.</li>",
                       ""],
               "misc":""
-           },
+          },
 
   "14300":{"name":"Notorious: Marionette",                   "baseHP":[26787,26787,26787],     "baseDEF":[60,60,60],        "baseDaze":[6097,6097,6097],        "stunMult":200,     "stunTime":7,     "baseAnom":3300,      "image":"marionettes-not",                "elementMult":[0.8, 1.0, 1.0, 0.8, 1.0, 1.0],     "tags":[],                           "mods":[],
               "desc":["<li>DMG dealt by Boss enemies increases by <span style='color:#cc0000;font-weight:bold;'>25%</span>. When a clone is destroyed</span> or when the main body is <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, 1/5 stacks of <span style='font-weight:bold;'>On Thin Ice</span> is inflicted on Boss enemies respectively. Each stack of <span style='font-weight:bold;'>On Thin Ice</span> decreases the DMG dealt by the Boss by <span style='color:#2bad00;font-weight:bold;'>5%</span> and increases the <span style='color:#98eff0;font-weight:bold;'>Ice DMG</span> and <span style='color:#2eb6ff;font-weight:bold;'>Electric DMG</span> dealt to the Boss by Agents by <span style='color:#2bad00;font-weight:bold;'>10%</span>. <span style='font-weight:bold;'>On Thin Ice</span> stacks will be reset when the enemy recovers from <span style='color:#ffe599;font-weight:bold;'>Stun</span>.</li>",
@@ -245,7 +244,7 @@
                       "<li>Successfully destroying a dance partner grants <span style='color:#ffaf2c;font-weight:bold;'>200 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.</li>",
                       ""],
               "misc":""
-           },
+          },
 
   "14301":{"name":"Notorious: Pompey",                       "baseHP":[20728,20728,20728],     "baseDEF":[60,60,60],        "baseDaze":[7084,7084,7084],        "stunMult":150,     "stunTime":12,    "baseAnom":3300,      "image":"pompey-not",                     "elementMult":[1.0, 0.8, 1.4, 1.0, 1.0, 1.0],     "tags":[],                           "mods":["no-freeze"],
               "desc":["<li>When not in a <span style='color:#ffe599;font-weight:bold;'>Stunned</span> state, Boss enemies gain 1 stack of <span style='font-weight:bold;'>All or Nothing</span> every 6s, stacking up to 3 stacks. Each stack of <span style='font-weight:bold;'>All or Nothing</span> increases the damage dealt by the Boss enemy by <span style='color:#cc0000;font-weight:bold;'>10%</span>. When an Agent's attack hits an enemy, the Agent's CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>25%</span> for each stack of <span style='font-weight:bold;'>All or Nothing</span> the target has. <span style='font-weight:bold;'>All or Nothing</span> stacks will be reset when the enemy recovers from being Stunned.</li>",
@@ -255,7 +254,7 @@
                       "<li>Successfully triggering a <span style='font-weight:bold;'>Perfect Assist</span> grants <span style='color:#ffaf2c;font-weight:bold;'>350 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.</li>",
                       "<li>Successfully triggering a <span style='font-weight:bold;'>Perfect Assist</span> grants <span style='color:#ffaf2c;font-weight:bold;'>350 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.</li>"],
               "misc":""
-           },
+          },
 
   "14302":{"name":"Sacrifice: Bringer",                      "baseHP":[20728,20728,20728],     "baseDEF":[60,60,60],        "baseDaze":[7084,7084,7084],        "stunMult":150,     "stunTime":12,    "baseAnom":3300,      "image":"bringer",                        "elementMult":[0.8, 1.0, 1.0, 1.0, 1.2, 1.0],     "tags":[],                           "mods":[],
               "desc":["<li>When inflicting an <span style='color:#7b78ff;font-weight:bold;'>Attribute Anomaly</span> or <span style='color:#7b78ff;font-weight:bold;'>Disorder</span> on a boss enemy, all squad members gain <span style='font-weight:bold;'>Laser Focus</span>, which stacks up to 6 times. Each stack of <span style='font-weight:bold;'>Laser Focus</span> increases the agent's CRIT Rate by <span style='color:#2bad00;font-weight:bold;'>5%</span>. When having at least 3 stacks of <span style='font-weight:bold;'>Laser Focus</span>, inflicting an <span style='color:#7b78ff;font-weight:bold;'>Attribute Anomaly</span> will increase its duration by 5s. When Sacrifice: Bringer attacks with his Sacrificial Knife, all squad members' <span style='font-weight:bold;'>Laser Focus</span> stacks will be reset.</li>",
@@ -265,7 +264,7 @@
                       "<li>Successfully interrupting a chant grants <span style='color:#ffaf2c;font-weight:bold;'>2000 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.</li>",
                       ""],
               "misc":"<li>Suitable for Agents with <span style='font-weight:bold;'>Anomaly</span> specialty.</li>"
-           },
+          },
 
   "14303":{"name":"Typhon Destroyer",                        "baseHP":[23630,23630,23630],     "baseDEF":[60,60,60],        "baseDaze":[6097,6097,6097],        "stunMult":200,     "stunTime":12,    "baseAnom":3300,      "image":"typhon-destroyer",               "elementMult":[1.0, 1.2, 0.8, 1.0, 1.0, 0.8],     "tags":[],                           "mods":[],
               "desc":["<li>Agents inflict <span style='font-weight:bold;'>Overwhelmed</span> when landing a <span style='font-weight:bold;'>Defensive Assist</span> hit against a Boss enemy, and 3 stacks of <span style='font-weight:bold;'>Overwhelmed</span> when accumulating 3 <span style='font-weight:bold;'>Defensive Assist</span> hits and triggering <span style='color:#ca9a00;font-weight:bold;'>IMPAIRED!!</span>. Each stack of <span style='font-weight:bold;'>Overwhelmed</span> increases <span style='color:#ffe599;font-weight:bold;'>Daze</span> by <span style='color:#2bad00;font-weight:bold;'>15%</span>, and <span style='font-weight:bold;'>Chain Attack</span> and <span style='font-weight:bold;'>Ultimate DMG</span> taken while <span style='color:#ffe599;font-weight:bold;'>Stunned</span> by <span style='color:#2bad00;font-weight:bold;'>10%</span>. The enemy will fix the impaired parts and reset the impairment level while charging, and will reset its <span style='font-weight:bold;'>Overwhelmed</span> stacks after recovering from <span style='color:#ffe599;font-weight:bold;'>Stun</span>.</li>",
@@ -275,7 +274,7 @@
                       "<li>Successfully triggering a <span style='font-weight:bold;'>Perfect Assist</span> grants <span style='color:#ffaf2c;font-weight:bold;'>200 Performance Points</span>.</li><li>Successfully causing <span style='color:#ca9a00;font-weight:bold;'>IMPAIRED!!</span> grants <span style='color:#ffaf2c;font-weight:bold;'>600 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.</li>",
                       ""],
               "misc":"<li><span style='font-weight:bold;'>Assist Points</span> are not consumed for this battle.</li>"
-           },
+          },
 
   "15300":{"name":"Notorious: Dead End Butcher",             "baseHP":[20662,20662,20662],     "baseDEF":[60,60,60],        "baseDaze":[6590,6590,6590],        "stunMult":150,     "stunTime":12,    "baseAnom":3300,      "image":"dead-end-butcher-not",           "elementMult":[0.8, 1.0, 1.0, 0.8, 1.0, 1.0],     "tags":[],                           "mods":[],
               "desc":["<li>DMG dealt to boss enemies by <span style='color:#7b78ff;font-weight:bold;'>Attribute Anomaly</span> is increased by <span style='color:#2bad00;font-weight:bold;'>50%</span>. While Notorious: Dead End Butcher is in <span style='font-weight:bold;'>Ether Enhanced</span> state, the DMG it takes is reduced by <span style='color:#cc0000;font-weight:bold;'>15%</span>, and the <span style='color:#ffe599;font-weight:bold;'>Daze</span> value dealt by Agents to it is reduced by <span style='color:#cc0000;font-weight:bold;'>30%</span>. Triggering <span style='color:#7b78ff;font-weight:bold;'>Disorder</span> on Notorious: Dead End Butcher immediately forces it to exit the <span style='font-weight:bold;'>Ether Enhanced</span> state.</li>",
@@ -285,13 +284,13 @@
                       "<li>Successfully inflicting <span style='color:#7b78ff;font-weight:bold;'>Disorder</span> grants <span style='color:#ffaf2c;font-weight:bold;'>200 Performance Points</span>, up to a maximum of 5000.</li>",
                       "<li>Successfully inflicting <span style='color:#7b78ff;font-weight:bold;'>Disorder</span> grants <span style='color:#ffaf2c;font-weight:bold;'>300 Performance Points</span>, up to a maximum of 5000.</li>"],
               "misc":""
-           },
+          },
 
   "16300":{"name":"Geppetto",                                "baseHP":[26924,26924,26924],     "baseDEF":[60,60,60],        "baseDaze":[11031,11031,11031],     "stunMult":150,     "stunTime":12,    "baseAnom":3300,      "image":"geppetto",                       "elementMult":[1.0, 1.0, 1.0, 1.0, 1.0, 1.0],     "tags":[],                           "mods":[],
               "desc":["", "", ""],
               "perf":["", "", ""],
               "misc":""
-           },
+          },
 
   "20300":{"name":"Miasma Priest",                           "baseHP":[42163,42163,42163],     "baseDEF":[60,60,60],        "baseDaze":[7084,7084,7084],        "stunMult":150,     "stunTime":12,    "baseAnom":3600,      "image":"miasma-priest",                  "elementMult":[1.4, 1.0, 1.0, 0.8, 1.0, 1.0],     "tags":["miasma"],                   "mods":["no-freeze"],
               "desc":["<li>When the Miasma Priest switches phase, their <span style='color:#7b78ff;font-weight:bold;'>Anomaly Buildup RES</span> increases by <span style='color:#cc0000;font-weight:bold;'>10%</span> and CRIT DMG taken increases by <span style='color:#2bad00;font-weight:bold;'>30%</span>. This effect can stack up to 2 times and is cleared when Miasmic Shield breaks.</li>",
@@ -301,7 +300,7 @@
                       "",
                       ""],
               "misc":"<li>Suitable for Agents with <span style='font-weight:bold;'>Rupture</span> specialty.</li>"
-           },
+          },
 
   "21300":{"name":"Miasmic Fiend: Unfathomable",             "baseHP":[30307,30307,30307],     "baseDEF":[60,60,60],        "baseDaze":[7084,7084,7084],        "stunMult":125,     "stunTime":12,    "baseAnom":3600,      "image":"miasmic-fiend",                  "elementMult":[1.0, 1.4, 1.0, 0.8, 0.8, 1.0],     "tags":["miasma"],                   "mods":["no-freeze"],
               "desc":["<li>When Miasmic Fiend is affected by <span style='color:#7b78ff;font-weight:bold;'>Attribute Anomaly</span>, it takes <span style='color:#2bad00;font-weight:bold;'>8%</span> bonus <span style='color:#7b78ff;font-weight:bold;'>Anomaly DMG</span> from Agents, stacking up to 6 times; activating Miasmic Shield clears all stacks, with each stack increasing the reduction efficiency of Miasmic Shield by <span style='color:#2bad00;font-weight:bold;'>2.5%</span>.</li>",
@@ -311,7 +310,7 @@
                       "",
                       ""],
               "misc":"<li>Suitable for Agents with <span style='font-weight:bold;'>Anomaly</span> specialty.</li>"
-           },
+          },
 
   "22300":{"name":"The Defiler",                             "baseHP":[32638,32638,32638],     "baseDEF":[60,60,60],        "baseDaze":[8501,8501,8501],        "stunMult":125,     "stunTime":12,    "baseAnom":3960,      "image":"the-defiler",                    "elementMult":[1.4, 1.0, 0.8, 1.0, 0.8, 1.0],     "tags":["miasma"],                   "mods":["no-freeze"],
               "desc":["<li>When an Agent hits The Defiler with <span style='font-weight:bold;'>Defensive Assist</span>, the whole squad gains 1 stack of <span style='font-weight:bold;'>Adjudication</span>; when an Agent knocks down The Defiler attacking in mid-air, the whole squad gains 4 stacks of <span style='font-weight:bold;'>Adjudication</span>. <span style='font-weight:bold;'>Adjudication</span> can stack up to 6 times and lasts for 30 seconds. Repeated triggers reset the duration.</li><li>For each stack of <span style='font-weight:bold;'>Adjudication</span>, the Agent's CRIT DMG increases by <span style='color:#2bad00;font-weight:bold;'>8%</span>.</li><li>The Defiler receives <span style='color:#cc0000;font-weight:bold;'>25%</span> less <span style='color:#7b78ff;font-weight:bold;'>Attribute Anomaly DMG</span>.</li>",
@@ -321,7 +320,7 @@
                       "<li>When an Agent causes <span style='color:#ca9a00;font-weight:bold;'>IMPAIRED!!</span> status, they gain <span style='color:#ffaf2c;font-weight:bold;'>2500 Performance Points</span>; when an Agent shoots down The Defiler while it's attacking in mid-air, they gain <span style='color:#ffaf2c;font-weight:bold;'>1500 Performance Points</span>, up to a maximum of 5000 Performance Points.</li>",
                       ""],
               "misc":"<li>Suitable for Agents with <span style='font-weight:bold;'>Attack</span> specialty.</li>"
-           },
+          },
 
   "23300":{"name":"Wandering Hunter",                        "baseHP":[40267,40267,40267],     "baseDEF":[100,100,100],     "baseDaze":[6929,6929,6929],        "stunMult":150,     "stunTime":12,    "baseAnom":4140,      "image":"wandering-hunter",               "elementMult":[0.8, 0.8, 1.0, 1.0, 1.4, 1.0],     "tags":["hunter", "miasma"],         "mods":["no-freeze"],
               "desc":["<li>Wandering Hunter's Base <span style='color:#5555ff;font-weight:bold;'>DEF</span> increases by <span style='color:#cc0000;font-weight:bold;'>40%</span> in Miasmic Field; when an Agent hits Wandering Hunter with <span style='font-weight:bold;'>Assist Follow-Up</span> or <span style='font-weight:bold;'>Dodge Counter</span>, 1 stack of <span style='font-weight:bold;'>Wavering</span> is applied. <span style='font-weight:bold;'>Wavering</span> can stack up to 5 times and lasts 15 seconds. Repeated triggers reset the duration.</li><li>When an Agent's attacks hit Wandering Hunter, for each stack of <span style='font-weight:bold;'>Wavering</span>, the Agent's <span style='color:#b4317b;font-weight:bold;'>Sheer DMG</span> is increased by <span style='color:#2bad00;font-weight:bold;'>7%</span>.</li>",
@@ -331,7 +330,7 @@
                       "",
                       ""],
               "misc":"<li>Suitable for Agents with <span style='font-weight:bold;'>Rupture</span> specialty.</li>"
-           },
+          },
 
   "24300":{"name":"Ye Shiyuan the Thrall",                   "baseHP":[41404,41404,41404],     "baseDEF":[60,60,60],        "baseDaze":[7483,7483,7483],      "stunMult":200,     "stunTime":12,    "baseAnom":3960,      "image":"the-thrall",                     "elementMult":[0.8, 1.0, 1.4, 1.0, 0.8, 0.8],     "tags":["miasma"],                   "mods":["no-freeze"],
               "desc":["<li>When Sobek and The Thrall alternate turns, The Thrall gains 1 stack of <span style='font-weight:bold;'>Contract</span> and <span style='font-weight:bold;'>Self-Sacrifice</span>. <span style='font-weight:bold;'>Contract</span> and <span style='font-weight:bold;'>Self-Sacrifice</span> can stack up to 3 times. Each stack of <span style='font-weight:bold;'>Contract</span> increases All-Attribute <span style='color:#7b78ff;font-weight:bold;'>Anomaly Buildup RES</span> by <span style='color:#cc0000;font-weight:bold;'>15%</span>, each stack of <span style='font-weight:bold;'>Self-Sacrifice</span> increases The Thrall's <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> by <span style='color:#2bad00;font-weight:bold;'>10%</span>. When The Thrall is <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, CRIT DMG taken increases by <span style='color:#2bad00;font-weight:bold;'>50%</span>.</li>",
@@ -341,7 +340,7 @@
                       "<li>When Agents inflict <span style='font-weight:bold;'>Weakened</span> on Sobek and The Thrall, <span style='color:#ffaf2c;font-weight:bold;'>1500 Performance Points</span> will be awarded. When an Agent eliminates Sobek, <span style='color:#ffaf2c;font-weight:bold;'>2000 Performance Points</span> will be awarded. Up to a maximum of 5000 Performance Points can be earned.</li>",
                       ""],
               "misc":"<li>Suitable for Agents with <span style='font-weight:bold;'>Stun</span> specialty.</li>"
-           },
+          },
 
   "25300":{"name":"Primordial Nightmare: \"The Creator\"",   "baseHP":[48789,48789,48789],     "baseDEF":[30,30,30],        "baseDaze":[7760,7760,7760],        "stunMult":150,     "stunTime":15,    "baseAnom":4500,      "image":"primordial-nightmare",           "elementMult":[1.4, 1.0, 1.0, 1.4, 0.8, 1.0],     "tags":["miasma", "shutdown"],       "mods":["no-freeze"],
               "desc":["<li>Boss <span style='color:#7b78ff;font-weight:bold;'>Anomaly DMG</span> taken is reduced by <span style='color:#cc0000;font-weight:bold;'>30%</span>. When switching from Miasmic Shield state to normal state, or from normal state to Miasmic Shield state, Agent CRIT DMG against them is increased by <span style='color:#2bad00;font-weight:bold;'>20%</span>. This effect can stack up to 3 times and resets when the boss recovers from <span style='color:#ffe599;font-weight:bold;'>Stun</span>.</li>",
@@ -351,7 +350,7 @@
                       "",
                       ""],
               "misc":"<li>Suitable for Agents with <span style='font-weight:bold;'>Attack</span> specialty.</li>"
-           },
+          },
 
   "26300":{"name":"Discordant Solo: Vesper",                 "baseHP":[52977,52977,52977],     "baseDEF":[30,30,30],        "baseDaze":[8501,8501,8501],        "stunMult":150,     "stunTime":15,    "baseAnom":3750,      "image":"discordant-solo",                "elementMult":[1.4, 1.4, 1.0, 0.8, 1.0, 0.8],     "tags":["shutdown"],                 "mods":["no-freeze"],
               "desc":["<li>When Discordant Solo is being attacked, the CRIT DMG of this attack decreases by <span style='color:#cc0000;font-weight:bold;'>40%</span>. When an Agent deploys or extends the duration of Ether Veil in battle, the whole squad gains 1 stack of <span style='font-weight:bold;'>Sonic Resonance</span>. <span style='font-weight:bold;'>Sonic Resonance</span> stacks up to 3 times, and each stack increases <span style='color:#7b78ff;font-weight:bold;'>Anomaly Buildup Rate</span> by <span style='color:#2bad00;font-weight:bold;'>8%</span>, as well as <span style='color:#7b78ff;font-weight:bold;'>Anomaly DMG</span> by <span style='color:#2bad00;font-weight:bold;'>15%</span>.</li>",
@@ -361,7 +360,7 @@
                       "<li>During a Control Skill, every successful counter of a Boss attack grants <span style='color:#ffaf2c;font-weight:bold;'>350 Performance Points</span>. A <span style='color:#b47ede;font-weight:bold;'>SHUTDOWN!!</span> of the Boss's Control Skill or counter of the final strike of certain skills inflicts on the Boss the <span style='color:#ca9a00;font-weight:bold;'>IMPAIRED!!</span> effect and grants <span style='color:#ffaf2c;font-weight:bold;'>750 Performance Points</span>. Earn up to 5000 Performance Points from the above.</li>",
                       ""],
               "misc":"<li>Suitable for Agents with <span style='font-weight:bold;'>Anomaly</span> specialty.</li>"
-           },
+          },
 
   "27300":{"name":"Sanguine Sweeper",                        "baseHP":[60775,60775,60775],     "baseDEF":[30,30,30],        "baseDaze":[7607,7607,7607],        "stunMult":150,     "stunTime":15,    "baseAnom":3187.5,    "image":"sanguine-sweeper",               "elementMult":[1.0, 1.4, 0.8, 0.8, 1.0, 1.4],     "tags":["shutdown", "convert"],      "mods":["no-freeze"],
               "desc":["<li>While Corruptive Barrier is active, <span style='color:#7b78ff;font-weight:bold;'>Anomaly DMG</span> dealt by Agents is increased by <span style='color:#2bad00;font-weight:bold;'>50%</span>, and <span style='color:#7b78ff;font-weight:bold;'>Anomaly Buildup</span> is increased by <span style='color:#2bad00;font-weight:bold;'>30%</span>. When the Boss is <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, <span style='color:#7b78ff;font-weight:bold;'>Anomaly DMG</span> taken is increased by <span style='color:#2bad00;font-weight:bold;'>15%</span>, and <span style='color:#7b78ff;font-weight:bold;'>Anomaly Buildup</span> inflicted by Agents is increased by <span style='color:#2bad00;font-weight:bold;'>15%</span>. When the Boss is not <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, DMG taken is reduced by <span style='color:#cc0000;font-weight:bold;'>15%</span>.</li>",
@@ -371,7 +370,7 @@
                       "",
                       ""],
               "misc":"<li>Suitable for Agents with <span style='font-weight:bold;'>Anomaly</span> specialty.</li>"
-           },
+          },
 
   "28300":{"name":"Phaethon of the Scorched Horizon",        "baseHP":[41599,41599,41599],     "baseDEF":[60,60,60],         "baseDaze":[8315,8315,8315],        "stunMult":150,     "stunTime":12,    "baseAnom":3750,      "image":"scorched-horizon",               "elementMult":[0.8, 1.0, 1.0, 1.0, 1.4, 0.8],     "tags":["shutdown"],                "mods":["no-freeze"],
               "desc":["<li>After Scorched Horizon activates <span style='font-weight:bold;'>Gale Scorcher</span>, they gain 5 stacks of <span style='font-weight:bold;'>Into Flames</span>. Each stack of <span style='font-weight:bold;'>Into Flames</span> increases DMG dealt by <span style='color:#cc0000;font-weight:bold;'>10%</span> and reduces CRIT DMG taken by <span style='color:#cc0000;font-weight:bold;'>25%</span>. With <span style='font-weight:bold;'>Into Flames</span> stacks, every time Scorched Horizon is inflicted with an <span style='color:#7b78ff;font-weight:bold;'>Anomaly</span>, one stack of <span style='font-weight:bold;'>Into Flames</span> is lost, and subsequent <span style='color:#7b78ff;font-weight:bold;'>Abloom DMG</span> taken increases by <span style='color:#2bad00;font-weight:bold;'>10%</span> for 15s (max 3 stacks). Repeated triggers reset the duration.</li>",
@@ -381,7 +380,7 @@
                       "",
                       ""],
               "misc":"<li>Suitable for Agents with <span style='font-weight:bold;'>Anomaly</span> specialty.</li>"
-           },
+          },
 
   "30300":{"name":"Girtablullu",                             "baseHP":[40438,40438,40438],     "baseDEF":[60,60,60],        "baseDaze":[8952,8952,8952],        "stunMult":150,     "stunTime":12,    "baseAnom":3900,      "image":"girtablullu",                     "elementMult":[1.0, 1.0, 1.0, 1.0, 1.0, 0.8],     "tags":["spoiler", "convert"],       "mods":["no-freeze"],
               "spoilerDesc":"<li>When Agents inflict an <span style='color:#7b78ff;font-weight:bold;'>Attribute Anomaly</span>, apply 1 stack of <span style='font-weight:bold;'>Fragile</span>, reduce Corruptive Barrier by <span style='color:#2bad00;font-weight:bold;'>20%</span> of its maximum value, and increase <span style='color:#ffe599;font-weight:bold;'>Daze</span> by <span style='color:#2bad00;font-weight:bold;'>15%</span> of its maximum value. This effect can trigger once every 15s.</li><li>Each stack of <span style='font-weight:bold;'>Fragile</span> increases <span style='color:#7b78ff;font-weight:bold;'>Attribute Anomaly DMG</span> taken by <span style='color:#2bad00;font-weight:bold;'>7.5%</span> and <span style='color:#a6c5fd;font-weight:bold;'>Vortex</span> DMG taken by an additional <span style='color:#2bad00;font-weight:bold;'>5%</span> for 10s, stacking up to 3 times. When Corruptive Barrier is broken, the boss gains the max <span style='font-weight:bold;'>Fragile</span> stacks.</li><li>When the boss is <span style='color:#ffe599;font-weight:bold;'>Stunned</span>, all <span style='font-weight:bold;'>Fragile</span> stacks become <span style='font-weight:bold;'>Weakened</span> stacks. Each stack of <span style='font-weight:bold;'>Weakened</span> decreases the boss's <span style='color:#7b78ff;font-weight:bold;'>Anomaly Buildup RES</span> by <span style='color:#2bad00;font-weight:bold;'>5%</span> and <span style='color:#ffe599;font-weight:bold;'>Stun DMG Multiplier</span> by <span style='color:#2bad00;font-weight:bold;'>10%</span>. This effect resets when the boss recovers from <span style='color:#ffe599;font-weight:bold;'>Stun</span>.</li>",
@@ -393,7 +392,7 @@
                       "",
                       ""],
               "misc":"<li>Suitable for Agents with <span style='font-weight:bold;'>Anomaly</span> specialty.</li>"
-           },
+          },
 
   "xxxxx":{"name":"Phaethon of the Scorched Horizon",        "baseHP":[41599,41599,41599],     "baseDEF":[60,60,60],        "baseDaze":[8315,8315,8315],        "stunMult":150,     "stunTime":12,    "baseAnom":3750,      "image":"scorched-horizon+",               "elementMult":[0.8, 1.0, 1.0, 1.0, 1.4, 0.8],     "tags":["spoiler", "shutdown"],       "mods":["no-freeze"],
               "spoilerDesc":"",

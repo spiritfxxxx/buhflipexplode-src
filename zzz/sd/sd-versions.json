@@ -3707,7 +3707,7 @@
                     { "sideElementMult":[1.2, 0.8, 0.8, 1.0, 1.2, 1.0], "sideHPMult":380, "waves":[
                       { "enemies":[ {"id":"22001", "type":1, "count":3, "hpMult":180} ] },
                       { "enemies":[ {"id":"12105", "type":1, "count":1, "hpMult":200}, {"id":"22000", "type":1, "count":2, "hpMult":180} ] },
-                      { "enemies":[ {"id":"30203", "type":0, "count":1} ] } ] },
+                      { "enemies":[ {"id":"30204", "type":0, "count":1} ] } ] },
                     { "sideElementMult":[1.2, 1.0, 0.8, 1.2, 0.8, 1.0], "sideHPMult":530, "waves":[
                       { "enemies":[ {"id":"25100", "type":1, "count":1, "hpMult":280}, {"id":"25102", "type":1, "count":1, "hpMult":280} ] },
                       { "enemies":[ {"id":"25200", "type":0, "count":1} ] } ] } ] }

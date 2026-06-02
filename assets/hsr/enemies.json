@@ -383,17 +383,17 @@
   "41102":{"name":"Daybreak Squadron: Cinderborne",                            "baseHP":15,          "baseSPD":120,        "toughness":"160",                        "image":"cinderborne",                          "elementMult":[1.8, 1.0, 1.2, 1.2, 1.2, 1.0, 1.0],             "tags":[],                  "mods":[]                   },
   "41103":{"name":"Daybreak Squadron: Dawnlance",                              "baseHP":15,          "baseSPD":120,        "toughness":"160",                        "image":"dawnlance",                            "elementMult":[1.0, 1.0, 1.2, 1.2, 1.2, 1.0, 1.8],             "tags":[],                  "mods":[]                   },
   "41200":{"name":"Alloy Mechatron: King Pom-Pom",                             "baseHP":37.5,        "baseSPD":120,        "toughness":"240",                        "image":"king-pom-pom",                         "elementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.0],             "tags":[],                  "mods":["adv50"]            },
+    "41200.1":{"name":"Alloy Mechatron: King Pom-Pom",                         "baseHP":82.5,        "baseSPD":120,        "toughness":"200",                        "image":"king-pom-pom",                         "elementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.0],             "tags":[],                  "mods":["adv50"]            },
   "42000":{"name":"Magical Girl Troupe",                                       "baseHP":3,           "baseSPD":100,        "toughness":"30",                         "image":"magical-girl-troupe",                  "elementMult":[1.0, 1.0, 1.0, 1.2, 1.2, 1.2, 1.2],             "tags":[],                  "mods":[]                   },
   "42100":{"name":"Joy Ascendant",                                             "baseHP":6,           "baseSPD":144,        "toughness":"140",                        "image":"joy-ascendant",                        "elementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.0],             "tags":[],                  "mods":[]                   },
   "42200":{"name":"Paramount Bliss Inverted: Illwish Archlotus",               "baseHP":48,          "baseSPD":144,        "toughness":"240",                        "image":"illwish-lotus",                        "elementMult":[1.0, 1.4, 1.4, 1.0, 1.4, 1.4, 1.0],             "tags":[],                  "mods":["adv50"]            },
-  "43100":{"name":"God-Devourer Offspring",                                    "baseHP":16,          "baseSPD":120,        "toughness":"180",                        "image":"god-devourer-offspring",               "elementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.0],             "tags":["spoiler"],          "mods":[]                   },
-  "43200":{"name":"TBD",                                                       "baseHP":32.5,        "baseSPD":120,        "toughness":"360",                        "image":"idk",                                  "elementMult":[1.4, 1.0, 1.4, 1.0, 1.4, 1.0, 1.4],             "tags":["spoiler"],          "mods":[]                   },
-
-
-
-
-
-
+  "43100":{"name":"God-Devourer Offspring",                                    "baseHP":16,          "baseSPD":120,        "toughness":"180",                        "image":"god-devourer-offspring",               "elementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.0],             "tags":[],                  "mods":[]                   },
+  "43200":{"name":"Murata Graphia, Founding Artist",                           "baseHP":32.5,        "baseSPD":120,        "toughness":"360",                        "image":"graphia",                              "elementMult":[1.4, 1.0, 1.4, 1.0, 1.4, 1.0, 1.4],             "tags":[],                  "mods":[]                   },
+    "43200.1":{"name":"Murata Graphia, Founding Artist",                       "baseHP":41,          "baseSPD":120,        "toughness":"360",                        "image":"graphia",                              "elementMult":[1.4, 1.0, 1.4, 1.0, 1.4, 1.0, 1.4],             "tags":[],                  "mods":[]                   },
+  "44000":{"name":"Comediologist",                                             "baseHP":3,           "baseSPD":167,        "toughness":"30",                         "image":"comediologist",                        "elementMult":[1.0, 1.0, 1.2, 1.2, 1.2, 1.2, 1.0],             "tags":["spoiler"],         "mods":[]                   },
+  "44300":{"name":"TBD",                                                       "baseHP":160,         "baseSPD":140,        "toughness":"360",                        "image":"idk1",                                 "elementMult":[1.2, 1.0, 1.2, 1.2, 1.0, 1.2, 1.0],             "tags":["spoiler"],         "mods":[]                   },
+  "44301":{"name":"TBD",                                                       "baseHP":160,         "baseSPD":140,        "toughness":"360",                        "image":"idk2",                                 "elementMult":[1.2, 1.0, 1.2, 1.2, 1.0, 1.2, 1.0],             "tags":["spoiler"],         "mods":[]                   },
+  "44302":{"name":"TBD",                                                       "baseHP":160,         "baseSPD":130,        "toughness":"360",                        "image":"idk3",                                 "elementMult":[1.2, 1.0, 1.2, 1.2, 1.0, 1.2, 1.0],             "tags":["spoiler"],         "mods":[]                   },
 
 
 
@@ -401,11 +401,11 @@
             "traitNames":["Steadfast Safeguard", "Battlefield Transfer", "Nowhere to Escape", "Tenacious Resolve"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, action gets additionally delayed and DMG taken increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "Gepard will join the battle and provide protection for Boss Mirage. Boss Mirage will <span style='font-weight:bold;text-decoration:underline;'>Transfer</span> its own Weakness Type to summons, but when those summons are defeated, Boss Mirage's <span style='color:#f08b83;font-weight:bold;'>Toughness</span> will be additionally reduced.",
+                          "Gepard will join the battle and provide protection for Boss Mirage. Boss Mirage will <span style='font-weight:bold;text-decoration:underline;'>Transfer</span> its own Weakness Type to summons, but when those summons are defeated, Boss Mirage's <span style='color:#f08b83;font-weight:bold;'>Toughness</span> will be additionally reduced.",
 
-                           "Boss Mirage's summon will mark 1 target. After Boss Mirage uses a single-target ability, it will deliver a <span style='font-weight:bold;text-decoration:underline;'>Follow-Up Usage</span> on the marked target.",
+                          "Boss Mirage's summon will mark 1 target. After Boss Mirage uses a single-target ability, it will deliver a <span style='font-weight:bold;text-decoration:underline;'>Follow-Up Usage</span> on the marked target.",
 
-                           "All enemies receive <span style='color:#f29e38;font-weight:bold;'>20%</span> less DMG, but for every Weakness Type, DMG taken is increased by <span style='color:#f29e38;font-weight:bold;'>5%</span>."],
+                          "All enemies receive <span style='color:#f29e38;font-weight:bold;'>20%</span> less DMG, but for every Weakness Type, DMG taken is increased by <span style='color:#f29e38;font-weight:bold;'>5%</span>."],
             "extraNames":["", "Transfer", "Follow-Up Usage", ""],
             "extraDescs":["",
 
@@ -420,11 +420,11 @@
             "traitNames":["Steadfast Safeguard", "Reversal of Fortune", "Turn Back the Tide", "Stellar Aegis"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, action gets additionally delayed and DMG taken increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "Boss Mirage can switch its own <span style='font-weight:bold;text-decoration:underline;'>Combat Stance</span> in battle and summon different statues to fight. When characters defeat statues in the <span style='font-weight:bold;'>Soulfreed</span> state, DMG dealt by the team in this battle will be increased.",
+                          "Boss Mirage can switch its own <span style='font-weight:bold;text-decoration:underline;'>Combat Stance</span> in battle and summon different statues to fight. When characters defeat statues in the <span style='font-weight:bold;'>Soulfreed</span> state, DMG dealt by the team in this battle will be increased.",
 
-                           "When Boss Mirage uses <span style='font-weight:bold;'>Soulfreed</span> in Phase II, it will target all statues.",
+                          "When Boss Mirage uses <span style='font-weight:bold;'>Soulfreed</span> in Phase II, it will target all statues.",
 
-                           "For every unit on the enemy's side of the field aside from the Boss, all enemies receive <span style='color:#f29e38;font-weight:bold;'>5%</span> less DMG and deal <span style='color:#f29e38;font-weight:bold;'>3%</span> more DMG."],
+                          "For every unit on the enemy's side of the field aside from the Boss, all enemies receive <span style='color:#f29e38;font-weight:bold;'>5%</span> less DMG and deal <span style='color:#f29e38;font-weight:bold;'>3%</span> more DMG."],
             "extraNames":["", "Combat Stance", "", ""],
             "extraDescs":["",
 
@@ -433,18 +433,17 @@
                           "",
 
                           ""]
-
            },
 
   "24400":{"name":"Soulhook Sovereign",                                        "baseHP":77.5,        "baseSPD":150,        "toughness":["300", "300", "300", "300"],                   "image":"kafka",                   "elementMult":[1.0, 1.0, 1.4, 1.4, 1.0, 1.4, 1.0],             "tags":[],                  "mods":["adv-50"],
             "traitNames":["Steadfast Safeguard", "Battlefield Transfer", "Stellar Aegis", "Turn Back the Tide"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, action gets additionally delayed and DMG taken increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "Boss Mirage summons 2 Elite Enemies to assist in battle. Boss Mirage will <span style='font-weight:bold;text-decoration:underline;'>transmit</span> its own Weakness Type to summons, but when those summons are defeated, Boss Mirage's <span style='color:#f08b83;font-weight:bold;'>Toughness</span> will be additionally reduced.",
+                          "Boss Mirage summons 2 Elite Enemies to assist in battle. Boss Mirage will <span style='font-weight:bold;text-decoration:underline;'>transmit</span> its own Weakness Type to summons, but when those summons are defeated, Boss Mirage's <span style='color:#f08b83;font-weight:bold;'>Toughness</span> will be additionally reduced.",
 
-                           "For every unit on the enemy's side of the field aside from Boss Mirage, all enemies receive less DMG.",
+                          "For every unit on the enemy's side of the field aside from Boss Mirage, all enemies receive less DMG.",
 
-                           "When the Boss Mirage uses <span style='font-weight:bold;'>Puppet Understudy</span> in its second phase, it will apply Enhancement effects to <span style='color:#f29e38;font-weight:bold;'>all summons</span>."],
+                          "When the Boss Mirage uses <span style='font-weight:bold;'>Puppet Understudy</span> in its second phase, it will apply Enhancement effects to <span style='color:#f29e38;font-weight:bold;'>all summons</span>."],
             "extraNames":["", "Transmit", "", ""],
             "extraDescs":["",
 
@@ -453,18 +452,17 @@
                           "",
 
                           ""]
-
            },
 
   "24401":{"name":"Starbane Doombringer",                                      "baseHP":82.5,        "baseSPD":120,        "toughness":["100", "100", "100", "100"],                   "image":"doomsday-beast",          "elementMult":[1.0, 1.0, 1.0, 1.2, 1.0, 1.2, 1.2],             "tags":[],                  "mods":[],
             "traitNames":["Steadfast Safeguard", "Battlefield Transfer", "Battle Hardened", "Tenacious Resolve"],
             "traitDescs":["The Boss Mirage cannot be attacked directly. When all three <span style='font-weight:bold;text-decoration:underline;'>parts</span> of the Boss Mirage are in <span style='font-weight:bold;'>Feigned Death</span> simultaneously, the Boss Mirage enters <span style='color:#f08b83;font-weight:bold;'>Weakness Break</span> state and can be attacked. During this state, its actions are additionally delayed, and the DMG it receives increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "The Antimatter Engine <span style='font-weight:bold;text-decoration:underline;'>transfers</span> its own weakness type to Disaster's Right Hand and Dawn's Left Hand. However, when Disaster's Right Hand or Dawn's Left Hand is defeated, the Antimatter Engine's <span style='color:#f08b83;font-weight:bold;'>Toughness</span> is additionally reduced.",
+                          "The Antimatter Engine <span style='font-weight:bold;text-decoration:underline;'>transfers</span> its own weakness type to Disaster's Right Hand and Dawn's Left Hand. However, when Disaster's Right Hand or Dawn's Left Hand is defeated, the Antimatter Engine's <span style='color:#f08b83;font-weight:bold;'>Toughness</span> is additionally reduced.",
 
-                           "After using a single-target ability, enemy units gain increased <span style='color:#5555ff;font-weight:bold;'>SPD</span> for <span style='color:#f29e38;font-weight:bold;'>1</span> turn. After using an <span style='font-weight:bold;'>AoE</span> ATK ability, their ATK increases for <span style='color:#f29e38;font-weight:bold;'>1</span> turn. Using a <span style='font-weight:bold;'>Support</span> ability recovers HP to the target of the ability.",
+                          "After using a single-target ability, enemy units gain increased <span style='color:#5555ff;font-weight:bold;'>SPD</span> for <span style='color:#f29e38;font-weight:bold;'>1</span> turn. After using an <span style='font-weight:bold;'>AoE</span> ATK ability, their ATK increases for <span style='color:#f29e38;font-weight:bold;'>1</span> turn. Using a <span style='font-weight:bold;'>Support</span> ability recovers HP to the target of the ability.",
 
-                           "Reduces DMG received by all enemies, but every Weakness Type they have increases DMG received."],
+                          "Reduces DMG received by all enemies, but every Weakness Type they have increases DMG received."],
             "extraNames":["Body Part", "Transfer", "", ""],
             "extraDescs":["Attacks to the parts will also reduce HP on the main body.",
 
@@ -473,18 +471,17 @@
                           "",
 
                           ""]
-
            },
 
   "25400":{"name":"Daring Diceroller",                                         "baseHP":87.5,        "baseSPD":120,        "toughness":["170", "170", "170", "190"],                   "image":"aventurine",              "elementMult":[1.0, 1.4, 1.0, 1.0, 1.0, 1.4, 1.4],             "tags":[],                  "mods":[],
             "traitNames":["Steadfast Safeguard", "Points Competition", "House Advantage", "Preemptive Advantage"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After its Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, its action is additionally delayed and the DMG it receives increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "Boss Mirage's ability will grant all allies and enemies <span style='font-weight:bold;text-decoration:underline;'>Points</span>.",
+                          "Boss Mirage's ability will grant all allies and enemies <span style='font-weight:bold;text-decoration:underline;'>Points</span>.",
 
-                           "When allies have fewer <span style='font-weight:bold;'>Points</span> than the summon's <span style='font-weight:bold;'>Points</span>, the DMG taken by the summons greatly decreases.",
+                          "When allies have fewer <span style='font-weight:bold;'>Points</span> than the summon's <span style='font-weight:bold;'>Points</span>, the DMG taken by the summons greatly decreases.",
 
-                           "The higher the summons' <span style='font-weight:bold;'>Points</span>, the higher their Max HP."],
+                          "The higher the summons' <span style='font-weight:bold;'>Points</span>, the higher their Max HP."],
             "extraNames":["", "Points", "", ""],
             "extraDescs":["",
 
@@ -493,18 +490,17 @@
                           "",
 
                           ""]
-
            },
 
   "25401":{"name":"Opportunistic Provocateur",                                 "baseHP":80,          "baseSPD":120,        "toughness":["380", "380", "380", "380"],                   "image":"phantylia",               "elementMult":[1.4, 1.0, 1.4, 1.0, 1.0, 1.4, 1.0],             "tags":[],                  "mods":[],
             "traitNames":["Steadfast Safeguard", "Flower By Another Name", "Withered Tree's Revival", "Hollowflower Blaze"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After its Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, its action is additionally delayed and the DMG it receives increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "When a new Lotus is summoned, Boss Mirage will enter the <span style='font-weight:bold;text-decoration:underline;'>Toughness Protection</span> state. Defeating any summon will dispel the Boss Mirage's <span style='color:#f08b83;font-weight:bold;'>Toughness Protection</span> and deal additional <span style='color:#f08b83;font-weight:bold;'>Toughness</span> Reduction to the Boss Mirage.",
+                          "When a new Lotus is summoned, Boss Mirage will enter the <span style='font-weight:bold;text-decoration:underline;'>Toughness Protection</span> state. Defeating any summon will dispel the Boss Mirage's <span style='color:#f08b83;font-weight:bold;'>Toughness Protection</span> and deal additional <span style='color:#f08b83;font-weight:bold;'>Toughness</span> Reduction to the Boss Mirage.",
 
-                           "In Phase I, when Boss Mirage changes form, the summons will restore <span style='color:#f29e38;font-weight:bold;'>25%</span> HP.",
+                          "In Phase I, when Boss Mirage changes form, the summons will restore <span style='color:#f29e38;font-weight:bold;'>25%</span> HP.",
 
-                           "In Phase II, the summons' Max HP increases by <span style='color:#f29e38;font-weight:bold;'>20%</span>."],
+                          "In Phase II, the summons' Max HP increases by <span style='color:#f29e38;font-weight:bold;'>20%</span>."],
             "extraNames":["", "Toughness Protection", "", ""],
             "extraDescs":["",
 
@@ -513,18 +509,17 @@
                           "",
 
                           ""]
-
            },
 
   "26400":{"name":"Cacophonic Conductor",                                      "baseHP":175,         "baseSPD":150,        "toughness":["80x10", "80x10", "80x10", "80x10"],           "image":"sunday",                  "elementMult":[1.4, 1.0, 1.4, 1.0, 1.4, 1.0, 1.0],             "tags":["share5"],          "mods":[],
             "traitNames":["Steadfast Safeguard", "Rhythm Without End", "Grief and Joy Shared", "Great One's Benediction"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After its Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, its action is additionally delayed and the DMG it receives increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "Summons take <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After Boss Mirage's Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, the DMG it receives increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
+                          "Summons take <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After Boss Mirage's Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, the DMG it receives increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "Boss Mirage <span style='font-weight:bold;text-decoration:underline;'>shares</span> its own Weakness Type to summons, and at the same time, increases RES that does not correspond to Weakness Type by <span style='color:#f29e38;font-weight:bold;'>40%</span>.",
+                          "Boss Mirage <span style='font-weight:bold;text-decoration:underline;'>shares</span> its own Weakness Type to summons, and at the same time, increases RES that does not correspond to Weakness Type by <span style='color:#f29e38;font-weight:bold;'>40%</span>.",
 
-                           "Summons' Max <span style='color:#f08b83;font-weight:bold;'>Toughness</span> increases by <span style='color:#f29e38;font-weight:bold;'>10</span>."],
+                          "Summons' Max <span style='color:#f08b83;font-weight:bold;'>Toughness</span> increases by <span style='color:#f29e38;font-weight:bold;'>10</span>."],
             "extraNames":["", "", "Something to Share", ""],
             "extraDescs":["",
 
@@ -533,18 +528,17 @@
                           "Shares the Weakness Type with the target. The Weakness Type will be applied to all enemy targets after the target is <span style='color:#f08b83;font-weight:bold;'>Weakness Broken</span>, and additionally reduces <span style='color:#f08b83;font-weight:bold;'>Toughness</span>.",
 
                           ""]
-
            },
 
   "27400":{"name":"Blaznana Monkey Trick",                                     "baseHP":210,         "baseSPD":50,         "toughness":["130", "130", "130", "160"],                   "image":"wonder-forest-staff",     "elementMult":[1.4, 1.0, 1.0, 1.0, 1.4, 1.4, 1.0],             "tags":["share5"],          "mods":[],
             "traitNames":["Steadfast Safeguard", "United Front", "Tally Loss", "SPD Boost"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After its Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, its action is additionally delayed and the DMG it receives increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "All enemy units take <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG and possesses <span style='font-weight:bold;text-decoration:underline;'>Switch Tally</span> while in <span style='font-weight:bold;'>Classroom Channel</span>. After Boss Mirage's Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, the DMG it receives increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
+                          "All enemy units take <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG and possesses <span style='font-weight:bold;text-decoration:underline;'>Switch Tally</span> while in <span style='font-weight:bold;'>Classroom Channel</span>. After Boss Mirage's Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, the DMG it receives increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "At the beginning of every turn, enemy units in <span style='font-weight:bold;'>Classroom Channel</span> will lose a certain number in the <span style='font-weight:bold;'>Switch Tally</span>.",
+                          "At the beginning of every turn, enemy units in <span style='font-weight:bold;'>Classroom Channel</span> will lose a certain number in the <span style='font-weight:bold;'>Switch Tally</span>.",
 
-                           "Increases <span style='color:#5555ff;font-weight:bold;'>SPD</span> for <span style='font-weight:bold;'>End-of-Semester Dinner</span>."],
+                          "Increases <span style='color:#5555ff;font-weight:bold;'>SPD</span> for <span style='font-weight:bold;'>End-of-Semester Dinner</span>."],
             "extraNames":["", "Switch Tally", "", ""],
             "extraDescs":["",
 
@@ -553,18 +547,17 @@
                           "",
 
                           ""]
-
            },
 
   "30400":{"name":"Sky-Shrouding Stardevourer Swarm",                          "baseHP":160,         "baseSPD":120,        "toughness":["200x3", "200x3", "200x3", "200x3"],           "image":"skaracabaz",              "elementMult":[1.0, 1.4, 1.0, 1.4, 1.4, 1.0, 1.0],             "tags":[],                  "mods":[],
             "traitNames":["Steadfast Safeguard", "Insect Egg Fission", "Hormone Secretion", "Egg Burst"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After its Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, its action is additionally delayed and increases its DMG taken by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "At the end of Boss Mirage's turn, Boss Mirage will gain a certain number of <span style='font-weight:bold;text-decoration:underline;'>Insect Eggs</span>. Boss Mirage can consume <span style='font-weight:bold;'>Insect Egg</span> to enhance its Swarm summons and grant them <span style='color:#f29e38;font-weight:bold;'>1</span> stack of <span style='font-weight:bold;'>Growth Hormone<span>.",
+                          "At the end of Boss Mirage's turn, Boss Mirage will gain a certain number of <span style='font-weight:bold;text-decoration:underline;'>Insect Eggs</span>. Boss Mirage can consume <span style='font-weight:bold;'>Insect Egg</span> to enhance its Swarm summons and grant them <span style='color:#f29e38;font-weight:bold;'>1</span> stack of <span style='font-weight:bold;'>Growth Hormone<span>.",
 
-                           "Every time Boss Mirage summons a certain number of Swarm summons, the next summon it summons will come automatically with <span style='color:#f29e38;font-weight:bold;'>1</span> stack of <span style='font-weight:bold;text-decoration:underline;'>Growth Hormone</span>.",
+                          "Every time Boss Mirage summons a certain number of Swarm summons, the next summon it summons will come automatically with <span style='color:#f29e38;font-weight:bold;'>1</span> stack of <span style='font-weight:bold;text-decoration:underline;'>Growth Hormone</span>.",
 
-                           "At the end of Boss Mirage's turn, the number of <span style='font-weight:bold;'>Insect Eggs</span> gained through <span style='font-weight:bold;'>Nesting Incubation</span> increases."],
+                          "At the end of Boss Mirage's turn, the number of <span style='font-weight:bold;'>Insect Eggs</span> gained through <span style='font-weight:bold;'>Nesting Incubation</span> increases."],
             "extraNames":["", "Insect Egg", "Growth Hormones", ""],
             "extraDescs":["",
 
@@ -573,18 +566,17 @@
                           "Every stack of <span style='font-weight:bold;'>Growth Hormones</span> increases ATK by a certain amount, stacking up to <span style='color:#f29e38;font-weight:bold;'>3</span> times. When <span style='color:#f29e38;font-weight:bold;'>3</span> stacks are reached, Swarm summons will unlock Bonus Abilities.",
 
                           ""]
-
            },
 
   "32400":{"name":"Fulminating Wolflord",                                      "baseHP":110,         "baseSPD":160,        "toughness":["380", "380", "380", "380"],                   "image":"hoolay",                  "elementMult":[1.0, 1.0, 1.4, 1.4, 1.0, 1.0, 1.4],             "tags":[],                  "mods":[],
             "traitNames":["Steadfast Safeguard", "Better Safe Than Sorry", "Apex Predator", "Till Death"],
             "traitDescs":["Decreases DMG taken by Boss Mirage by <span style='color:#f29e38;font-weight:bold;'>50%</span>. After its Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, its action is additionally delayed and increases its DMG taken by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "When the Boss Mirage uses <span style='font-weight:bold;'>Barrenness of Earth Gouged</span>, all other Wolftroopers will be eliminated.",
+                          "When the Boss Mirage uses <span style='font-weight:bold;'>Barrenness of Earth Gouged</span>, all other Wolftroopers will be eliminated.",
 
-                           "After Boss Mirage enters Phase II, it gains extra action per turn during <span style='font-weight:bold;'>Going Solo</span>.",
+                          "After Boss Mirage enters Phase II, it gains extra action per turn during <span style='font-weight:bold;'>Going Solo</span>.",
 
-                           "After Boss Mirage enters <span style='font-weight:bold;'>Going Solo</span>, reduces its DMG taken by an additional <span style='color:#f29e38;font-weight:bold;'>15%</span>."],
+                          "After Boss Mirage enters <span style='font-weight:bold;'>Going Solo</span>, reduces its DMG taken by an additional <span style='color:#f29e38;font-weight:bold;'>15%</span>."],
             "extraNames":["", "", "", ""],
             "extraDescs":["",
 
@@ -593,18 +585,17 @@
                           "",
 
                           ""]
-
            },
 
   "34400":{"name":"Flame Reaver of Doomsday Led Astray",                       "baseHP":110,         "baseSPD":132,        "toughness":["300x2", "300x2", "300x2", "300x2"],           "image":"flame-reaver",            "elementMult":[1.0, 1.4, 1.0, 1.0, 1.4, 1.0, 1.4],             "tags":[],                  "mods":[],
             "traitNames":["Steadfast Safeguard", "Shackle Shatter", "Creeping Haze", "Vessel Enhancement"],
             "traitDescs":["Decreases DMG taken by Boss Mirage by <span style='color:#f29e38;font-weight:bold;'>50%</span>. After its Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, its action is additionally delayed and increases its DMG taken by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "After losing the first layer of <span style='color:#f08b83;font-weight:bold;'>Toughness</span> or after taking a certain number of actions, Boss Mirage enters the <span style='font-weight:bold;text-decoration:underline;'>Shackle Shatter</span> state, changes their attack patterns.",
+                          "After losing the first layer of <span style='color:#f08b83;font-weight:bold;'>Toughness</span> or after taking a certain number of actions, Boss Mirage enters the <span style='font-weight:bold;text-decoration:underline;'>Shackle Shatter</span> state, changes their attack patterns.",
 
-                           "Defeating Complete Vessel no longer reduces Boss Mirage's <span style='color:#f08b83;font-weight:bold;'>Toughness</span>.",
+                          "Defeating Complete Vessel no longer reduces Boss Mirage's <span style='color:#f08b83;font-weight:bold;'>Toughness</span>.",
 
-                           "Max HP of all Long-Shattered Vessels and Complete Vessels increases."],
+                          "Max HP of all Long-Shattered Vessels and Complete Vessels increases."],
             "extraNames":["", "Shackle Shatter", "", ""],
             "extraDescs":["",
 
@@ -613,18 +604,17 @@
                           "",
 
                           ""]
-
            },
 
   "35400":{"name":"Sanerot Hearteater",                                        "baseHP":385,         "baseSPD":144,        "toughness":["280", "280", "280", "280"],                   "image":"feixiao+",                "elementMult":[1.0, 1.0, 1.4, 1.0, 1.4, 1.0, 1.4],             "tags":["share4"],          "mods":[],
             "traitNames":["Steadfast Safeguard", "Steelbone Summit", "Sickleclawed Sawteeth", "Beastly Rage"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After its Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, its action is additionally delayed and the DMG it receives increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "Parts take <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After Boss Mirage's Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, the DMG they receive increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
+                          "Parts take <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After Boss Mirage's Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, the DMG they receive increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "Boss Mirage's <span style='color:#f08b83;font-weight:bold;'>Toughness</span> increases by <span style='color:#f29e38;font-weight:bold;'>40</span>.",
+                          "Boss Mirage's <span style='color:#f08b83;font-weight:bold;'>Toughness</span> increases by <span style='color:#f29e38;font-weight:bold;'>40</span>.",
 
-                           "The duration of <span style='font-weight:bold;'>Malediction</span> state increases by <span style='color:#f29e38;font-weight:bold;'>1</span> turn(s)."],
+                          "The duration of <span style='font-weight:bold;'>Malediction</span> state increases by <span style='color:#f29e38;font-weight:bold;'>1</span> turn(s)."],
             "extraNames":["", "", "", ""],
             "extraDescs":["",
 
@@ -633,18 +623,17 @@
                           "",
 
                           ""]
-
            },
 
   "36400":{"name":"Guide of Withering and Decay",                              "baseHP":500,         "baseSPD":144,        "toughness":["800", "800", "800", "800"],                   "image":"pollux",                  "elementMult":[1.2, 1.2, 1.0, 1.2, 1.0, 1.0, 1.0],             "tags":["share3"],          "mods":[],
             "traitNames":["Steadfast Safeguard", "Withered Verdure", "Tender the Rigid", "Tenacious Resolve"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After its Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, its action is additionally delayed and the DMG it receives increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "In this combat, ally units' HP will not drop below 1, and any DMG taken exceeding a certain amount of their current HP will be converted into <span style='font-weight:bold;'>HP Overload</span>. Ally units in the <span style='font-weight:bold;'>HP Overload</span> state will have their DMG dealt and <span style='color:#f08b83;font-weight:bold;'>Weakness Break Efficiency</span> greatly reduced.",
+                          "In this combat, ally units' HP will not drop below 1, and any DMG taken exceeding a certain amount of their current HP will be converted into <span style='font-weight:bold;'>HP Overload</span>. Ally units in the <span style='font-weight:bold;'>HP Overload</span> state will have their DMG dealt and <span style='color:#f08b83;font-weight:bold;'>Weakness Break Efficiency</span> greatly reduced.",
 
-                           "The Long Arms of Sorrow's Max <span style='color:#f08b83;font-weight:bold;'>Toughness</span> increases.",
+                          "The Long Arms of Sorrow's Max <span style='color:#f08b83;font-weight:bold;'>Toughness</span> increases.",
 
-                           "Reduces DMG received by all enemies, but every Weakness Type they have increases DMG received."],
+                          "Reduces DMG received by all enemies, but every Weakness Type they have increases DMG received."],
             "extraNames":["", "", "", ""],
             "extraDescs":["",
 
@@ -653,18 +642,17 @@
                           "",
 
                           ""]
-
            },
 
   "40400":{"name":"The Ravaged Unconquerable",                                 "baseHP":350,         "baseSPD":120,        "toughness":["480", "480", "480", "480"],                   "image":"nikador+",                "elementMult":[1.4, 1.0, 1.0, 1.0, 1.4, 1.0, 1.4],             "tags":[],                  "mods":[],
             "traitNames":["Steadfast Safeguard", "Ironclad Renitence", "Taint of the Sublime", "Protective Formation"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After its Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, its action is additionally delayed and increases its DMG taken by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "Boss Mirage and its summons have <span style='font-weight:bold;text-decoration:underline;'>War Armor</span>, reducing DMG taken by them. In phase two, <span style='font-weight:bold;text-decoration:underline;'>War Armor</span> will be enhanced to <span style='font-weight:bold;text-decoration:underline;'>Centirefined War Armor</span>, greatly increasing the maximum stack limit, and Boss Mirage will gain additional <span style='color:#f08b83;font-weight:bold;'>Toughness Protection</span>.",
+                          "Boss Mirage and its summons have <span style='font-weight:bold;text-decoration:underline;'>War Armor</span>, reducing DMG taken by them. In phase two, <span style='font-weight:bold;text-decoration:underline;'>War Armor</span> will be enhanced to <span style='font-weight:bold;text-decoration:underline;'>Centirefined War Armor</span>, greatly increasing the maximum stack limit, and Boss Mirage will gain additional <span style='color:#f08b83;font-weight:bold;'>Toughness Protection</span>.",
 
-                           "In Phase 2, the max stack of Boss Mirage's <span style='font-weight:bold;'>Centirefined War Armor</span> will increase.",
+                          "In Phase 2, the max stack of Boss Mirage's <span style='font-weight:bold;'>Centirefined War Armor</span> will increase.",
 
-                           "For every unit on the enemy's side of the field aside from Boss Mirage, all enemies receive less DMG and deal more DMG."],
+                          "For every unit on the enemy's side of the field aside from Boss Mirage, all enemies receive less DMG and deal more DMG."],
             "extraNames":["War Armor", "Centirefined War Armor", "", ""],
             "extraDescs":["Decreases DMG taken. Loses stacks of <span style='font-weight:bold;'>War Armor</span> based on the attacker's <span style='font-weight:bold;'>Glory</span> stacks when attacked. When at <span style='color:#f29e38;font-weight:bold;'>0</span> stacks, <span style='font-weight:bold;'>War Armor</span> will be destroyed, dealing massive <span style='color:#d8c732;font-weight:bold;'>Imaginary DMG</span> to this unit, reducing their <span style='color:#f08b83;font-weight:bold;'>Toughness</span>, delaying their action, and restoring Skill Point(s) to targets. After <span style='font-weight:bold;'>War Armor</span> is destroyed, this unit will also additionally take minor <span style='color:#d8c732;font-weight:bold;'>Imaginary DMG</span> when attacked. <span style='font-weight:bold;'>War Armor</span> will be restored to maximum stacks at the end of this unit's turn.",
 
@@ -673,18 +661,17 @@
                           "",
 
                           ""]
-
            },
 
   "42400":{"name":"Super Idol: Center of Attention",                           "baseHP":220,         "baseSPD":120,        "toughness":["440", "440", "440", "440"],                  "image":"sparxiconofficial",      "elementMult":[1.0, 1.0, 1.4, 1.4, 1.4, 1.0, 1.0],             "tags":[],                  "mods":["adv50"],
             "traitNames":["Steadfast Safeguard", "Biphasic Battlefield", "Popularity Burst", "Basking in Popularity"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, action gets additionally delayed and DMG taken increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "The Boss Mirage will initiate a <span style='font-weight:bold;text-decoration:underline;'>Live Showdown</span> during combat, selecting one ally character to battle on the sub-field while the remaining characters stay on the prime-field to provide Support. Once the <span style='font-weight:bold;text-decoration:underline;'>Live Showdown</span> begins, enemy targets on the prime-field take reduced DMG and become immune to Crowd Control debuffs, and the Boss Mirage enters the <span style='font-weight:bold;text-decoration:underline;'>Toughness Lock</span> state. When the Boss Mirage's turn starts, both <span style='font-weight:bold;'>Ally Popularity</span> and <span style='font-weight:bold;'>Enemy Popularity</span> reset to their initial states.",
+                          "The Boss Mirage will initiate a <span style='font-weight:bold;text-decoration:underline;'>Live Showdown</span> during combat, selecting one ally character to battle on the sub-field while the remaining characters stay on the prime-field to provide Support. Once the <span style='font-weight:bold;text-decoration:underline;'>Live Showdown</span> begins, enemy targets on the prime-field take reduced DMG and become immune to Crowd Control debuffs, and the Boss Mirage enters the <span style='font-weight:bold;text-decoration:underline;'>Toughness Lock</span> state. When the Boss Mirage's turn starts, both <span style='font-weight:bold;'>Ally Popularity</span> and <span style='font-weight:bold;'>Enemy Popularity</span> reset to their initial states.",
 
-                           "Increases the max <span style='font-weight:bold;'>Ally Popularity</span> and <span style='font-weight:bold;'>Enemy Popularity</span>.",
+                          "Increases the max <span style='font-weight:bold;'>Ally Popularity</span> and <span style='font-weight:bold;'>Enemy Popularity</span>.",
 
-                           "For each <span style='font-weight:bold;'>Ally Popularity</span> or <span style='font-weight:bold;'>Enemy Popularity</span> that hasn't hit the Limit, DMG taken by all enemies is reduced."],
+                          "For each <span style='font-weight:bold;'>Ally Popularity</span> or <span style='font-weight:bold;'>Enemy Popularity</span> that hasn't hit the Limit, DMG taken by all enemies is reduced."],
             "extraNames":["Live Showdown", "Toughness Lock", "", ""],
             "extraDescs":["All ally targets will engage in combat in prime-field and sub-field respectively. Aside the <span style='color:#ffbd88;font-weight:bold;'>Aha Instant</span>, targets from different battlefields cannot attack targets on the other battlefield. During the <span style='color:#ffbd88;font-weight:bold;'>Aha Instant</span>, <span style='color:#ffbd88;font-weight:bold;'>Elation Skills</span> can only be used to attack enemy targets that are on the sub-field. <span style='font-weight:bold;'>Live Showdown</span> will be dispelled when any of these conditions are met: <span style='font-weight:bold;'>Live Showdown</span> countdown ends, an sub-field ally character is knocked down, all sub-field enemy targets are defeated, or there are no sub-field ally characters remaining who can battle.",
 
@@ -693,27 +680,24 @@
                           "",
 
                           ""]
-
            },
 
   "43400":{"name":"Arbiter of the Lost Abyss",                                 "baseHP":300,         "baseSPD":144,        "toughness":["120x8", "120x8", "120x8", "120x8"],          "image":"judge-of-oblivion",      "elementMult":[1.0, 1.0, 1.2, 1.0, 1.2, 1.2, 1.0],             "tags":[],                  "mods":[],
             "traitNames":["Steadfast Safeguard", "Singularity Split", "Mutual Complement", "Economies of Scale"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, action gets additionally delayed and DMG taken increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                           "At the start of combat and during phase transitions, the Boss Mirage splits into 5 Ichor Memosprites and applies <span style='font-weight:bold;text-decoration:underline;'>Monoform Merger</span> to these summons. When all Ichor Memosprites with <span style='font-weight:bold;'>Monoform Merger</span> enter the <span style='font-weight:bold;text-decoration:underline;'>Feigned Death</span> state, they merge back into the Boss Mirage.",
+                          "At the start of combat and during phase transitions, the Boss Mirage splits into 5 Ichor Memosprites and applies <span style='font-weight:bold;text-decoration:underline;'>Monoform Merger</span> to these summons. When all Ichor Memosprites with <span style='font-weight:bold;'>Monoform Merger</span> enter the <span style='font-weight:bold;text-decoration:underline;'>Feigned Death</span> state, they merge back into the Boss Mirage.",
 
-                           "Increases the Max HP of the Ichor Memosprites summoned after the Boss Mirage's split, and the Ichor Memosprites summoned after the split in the second phase have Shared HP.",
+                          "Increases the Max HP of the Ichor Memosprites summoned after the Boss Mirage's split, and the Ichor Memosprites summoned after the split in the second phase have Shared HP.",
 
-                           "For every unit on the enemy's side of the field that is not in the <span style='font-weight:bold;'>Feigned Death</span> state aside from Boss Mirage, all enemies receive less DMG and deal more DMG."],
+                          "For every unit on the enemy's side of the field that is not in the <span style='font-weight:bold;'>Feigned Death</span> state aside from Boss Mirage, all enemies receive less DMG and deal more DMG."],
             "extraNames":["Monoform Merger", "Feigned Death", "", ""],
-            "extraDescs":["TBD",
+            "extraDescs":["When receiving fatal damage, enters the <span style='font-weight:bold;'>Feigned Death</span> state. When all Ichor Memosprites possessing <span style='font-weight:bold;'>Monoform Merger</span> enter the <span style='font-weight:bold;'>Feigned Death</span> state, they merge back into the Arbiter of the Lost Abyss.",
 
-                          "TBD",
+                          "Cannot be selected, cannot take action.",
 
                           "",
 
                           ""]
-
            }
-
 }

@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let vLive = 23, vBeta = 24, v27 = 10, v43 = 24;
+let vLive = 23, vBeta = 25, v27 = 10, v43 = 24;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let versionNum, nodeNum, chartNodeNum, currNumberFormat;
@@ -643,7 +643,7 @@ function showHPChart() {
   hpChart.data.datasets = [ generateHPDataset("AOE HP", hpData[chartNodeNum - 1][1], "#6d9eeb") ];
   if (chartNodeNum == 4) hpChart.data.datasets.push(generateHPDataset("AOE 4-3 HP", hpData[4][1], "#6d9eeb"));
   hpChart.options.scales.y.min = 0;
-  hpChart.options.scales.y.max = 80000000;
+  hpChart.options.scales.y.max = 100000000;
   hpChart.options.scales.y.ticks.stepSize = 10000000;
   hpChart.options.plugins.title.text = `Pure Fiction HP - Node ${chartNodeNum}`;
   hpChart.update();

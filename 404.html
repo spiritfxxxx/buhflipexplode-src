@@ -8,15 +8,18 @@
   <body>
     <img id="buh" src="/assets/misc/buhFlipExplodeLoop.webp">
     <div id="msg">buhbooooom! this page doesn't exist!</div>
-    <nav> <a href="/home/">Home</a> </nav>
+    <nav>
+      <a href="/home/">Home</a>
+    </nav>
     <style>
       html, body {
         margin: 0px;
         padding: 0px;
-        font-family: "Inconsolata";
         background-color: #111111;
         color: #ffffff;
+        font-family: "Inconsolata", monospace;
         text-align: center;
+        scrollbar-gutter: stable;
         -webkit-text-size-adjust: 100%;
         -moz-text-size-adjust: 100%;
         -ms-text-size-adjust: 100%;
@@ -60,7 +63,7 @@
       }
       @font-face {
         font-family: "Inconsolata";
-        src: url("/assets/Inconsolata-Regular.ttf") format("truetype");
+        src: url(/assets/Inconsolata-Regular.woff2) format("woff2");
       }
     </style>
   </body>

@@ -139,6 +139,7 @@
 
   "12000041":"<li>Increases <span style='font-weight:bold;'>Ultimate</span> and <span style='font-weight:bold;'>Follow-Up ATK</span> DMG dealt by ally targets by <span style='color:#f29e38;font-weight:bold;'>50%</span>. After an ally character uses an <span style='font-weight:bold;'>Ultimate</span> or <span style='font-weight:bold;'>Follow-Up ATK</span>, adds <span style='color:#f29e38;font-weight:bold;'>1</span> hit(s) to <span style='font-weight:bold;'>Memory Turbulence</span>, stacking up to <span style='color:#f29e38;font-weight:bold;'>15</span> hit(s).</li><li>At the start of each Cycle, each hit of <span style='font-weight:bold;'>Memory Turbulence</span> deals <span style='color:#f29e38;font-weight:bold;'>1</span> instance of True DMG to one random enemy target.</li>",
 
+  "12000042":"<li>At the beginning of each Cycle, randomly causes an ally target following the Path of <span style='font-weight:bold;'>The Hunt</span> or the Path of <span style='font-weight:bold;'>Erudition</span> to take action immediately, and increases their DMG dealt by <span style='color:#f29e38;font-weight:bold;'>80%</span> for <span style='color:#f29e38;font-weight:bold;'>1</span> turn(s).</li>",
 
 
 
@@ -165,6 +166,7 @@
 
   "20000010":[ "Debuff Application",                         "When an ally target inflicts a debuff on an enemy target, allies additionally accumulate <span style='color:#f29e38;font-weight:bold;'>1</span> Grit Value. This effect can be triggered up to <span style='color:#f29e38;font-weight:bold;'>10</span> time(s) per enemy target." ],
 
+  "20000011":[ "Follow-Up ATK",                              "After ally targets use a <span style='font-weight:bold;'>Follow-Up ATK</span> to attack enemy targets, every enemy target hit additionally accumulates <span style='color:#f29e38;font-weight:bold;'>8</span> Grit Value for allies." ],
 
 
 
@@ -291,6 +293,11 @@
 
   "21000060":[ "Variation",                                  "082",                "<li>After an ally target uses a <span style='font-weight:bold;'>Basic ATK</span>, <span style='font-weight:bold;'>Skill</span>, or <span style='font-weight:bold;'>Ultimate</span> to attack an enemy target, there is a <span style='color:#f29e38;font-weight:bold;'>100%</span> base chance to reduce the attacked enemy target's DEF by <span style='color:#f29e38;font-weight:bold;'>3%</span>, lasting for <span style='color:#f29e38;font-weight:bold;'>2</span> turn(s). This effect can stack up to <span style='color:#f29e38;font-weight:bold;'>10</span> times.</li><li>After allies attack enemy targets, additionally accumulates <span style='color:#f29e38;font-weight:bold;'>1</span> Grit Value.</li>" ],
 
+  "21000061":[ "Smack Talk",                                 "TBD",                "<li>Increases the All-Type RES PEN of <span style='font-weight:bold;'>Follow-Up ATK</span> DMG dealt by <span style='color:#f29e38;font-weight:bold;'>30%</span>. During <span style='font-weight:bold;'>Surging Grit</span>, after an ally target uses a <span style='font-weight:bold;'>Follow-Up ATK</span> to attack enemy targets, deals Additional DMG equal to <span style='color:#f29e38;font-weight:bold;'>40%</span> of the attacker's ATK plus <span style='color:#f29e38;font-weight:bold;'>20%</span> of the attacker's Max HP to targets adjacent to each attacked enemy target. This DMG is considered as <span style='font-weight:bold;'>Follow-Up ATK</span> DMG.</li><li>TBD</li>" ],
+
+  "21000062":[ "Grand Rhetoric",                             "TBD",                "<li>During <span style='font-weight:bold;'>Surging Grit</span>, CRIT DMG dealt by ally targets when using their <span style='font-weight:bold;'>Ultimate</span> increases by <span style='color:#f29e38;font-weight:bold;'>60%</span>. When <span style='font-weight:bold;'>Surging Grit</span> ends, all allies regenerate <span style='color:#f29e38;font-weight:bold;'>20%</span> Energy.</li><li>TBD</li>" ],
+
+  "21000063":[ "Motormouth",                                 "TBD",                "<li>Increases the <span style='color:#5555ff;font-weight:bold;'>SPD</span> of all allies by <span style='color:#f29e38;font-weight:bold;'>20%</span>. During <span style='font-weight:bold;'>Surging Grit</span>, DMG received by enemy targets additionally increases by <span style='color:#f29e38;font-weight:bold;'>30%</span>.</li><li>TBD</li>" ],
 
 
 
@@ -319,6 +326,9 @@
 
   "22000011":"Upon entering <span style='font-weight:bold;'>Surging Grit</span>, deals a set amount of DMG to enemy targets <span style='color:#f29e38;font-weight:bold;'>1</span> time for every debuff they are inflicted with. During <span style='font-weight:bold;'>Surging Grit</span>, DMG received by enemy targets increases by <span style='color:#f29e38;font-weight:bold;'>50%</span>. After each time an enemy target is inflicted with a debuff, inflicts <span style='color:#f29e38;font-weight:bold;'>1</span> stack of <span style='font-weight:bold;'>Dejection</span> on them, decreasing their All-Type RES by <span style='color:#f29e38;font-weight:bold;'>1%</span> for <span style='color:#f29e38;font-weight:bold;'>2</span> turn(s). This effect can stack up to <span style='color:#f29e38;font-weight:bold;'>20</span> time(s).",
 
+  "22000012":"After an ally target uses a <span style='font-weight:bold;'>Follow-Up ATK</span> or <span style='font-weight:bold;'>Ultimate</span>, deals Additional DMG equal to <span style='color:#f29e38;font-weight:bold;'>80%</span> of the attacking character's ATK plus <span style='color:#f29e38;font-weight:bold;'>40%</span> of their Max HP to each attacked enemy target.",
+
+  "22000013":"Upon entering <span style='font-weight:bold;'>Surging Grit</span>, all allies regenerate <span style='color:#f29e38;font-weight:bold;'>20%</span> Energy. During <span style='font-weight:bold;'>Surging Grit</span>, enemy targets take <span style='color:#f29e38;font-weight:bold;'>50%</span> more DMG, the Additional DMG dealt by <span style='font-weight:bold;'>Concordant Truce</span> increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>, and this DMG is considered as <span style='font-weight:bold;'>Follow-Up ATK</span> DMG.",
 
 
 
@@ -357,6 +367,7 @@
 
   "30000016":"<li>When an enemy target with <span style='font-weight:bold;'>Steadfast Safeguard</span> is inflicted with <span style='color:#f08b83;font-weight:bold;'>Weakness Break</span>, dispels control states from all allies, action advances, and grants <span style='color:#ffbd88;font-weight:bold;'>Aha</span> an extra turn (this turn will count as <span style='color:#f29e38;font-weight:bold;'>10</span> fixed <span style='color:#ffbd88;font-weight:bold;'>Punchline</span> points).</li><li>Increases <span style='font-weight:bold;'>Ultimate</span> DMG dealt to all enemies by <span style='color:#f29e38;font-weight:bold;'>25%</span> and <span style='color:#ffbd88;font-weight:bold;'>Elation DMG</span> by <span style='color:#f29e38;font-weight:bold;'>15%</span>.</li>",
 
+  "30000017":"<li>When an enemy with <span style='font-weight:bold;'>Steadfast Safeguard</span> is <span style='color:#f08b83;font-weight:bold;'>Weakness Broken</span>, dispels control states for all allies, recovers their Skill Points, and activates their <span style='font-weight:bold;'>Ultimates</span>.</li><li>Increases the <span style='font-weight:bold;'>Skill</span> DMG taken by all enemies by <span style='color:#f29e38;font-weight:bold;'>25%</span> and increases <span style='font-weight:bold;'>Ultimate</span> DMG taken by <span style='color:#f29e38;font-weight:bold;'>15%</span>.</li>",
 
 
 
@@ -517,6 +528,7 @@
 
   "31000077":[ "Exploit Opening",                            "043",                "After any ally target inflicts a debuff to an enemy target, increases their CRIT DMG by <span style='color:#f29e38;font-weight:bold;'>75%</span> for <span style='color:#f29e38;font-weight:bold;'>2</span> turn(s)." ],
 
+  "31000078":[ "Blighted to the Bone",                       "021",                "After an ally target deals <span style='color:#a59ddd;font-weight:bold;'>DoT</span> to an enemy, <span style='color:#f29e38;font-weight:bold;'>1</span> Energy is regenerated. <span style='color:#a59ddd;font-weight:bold;'>DoT</span> dealt by all allies ignores <span style='color:#f29e38;font-weight:bold;'>40%</span> of enemy targets' All-Type RES." ],
 
 
 
@@ -563,6 +575,9 @@
 
   "40000020":[ "Shatter the Adamant",                        "059",                "Increases DMG dealt by all ally targets by <span style='color:#f29e38;font-weight:bold;'>30%</span>. After each time an ally target defeats an enemy target, additionally increases the DMG dealt by this unit by <span style='color:#f29e38;font-weight:bold;'>3%</span>. This effect is stackable." ],
 
+  "40000021":[ "Navigator's Oath",                           "TBD",                "Increases the All-Type RES PEN for the <span style='font-weight:bold;'>Skill</span> DMG and <span style='font-weight:bold;'>Ultimate</span> DMG dealt by the character in position 1 by <span style='color:#f29e38;font-weight:bold;'>50%</span>." ],
+
+  "40000022":[ "Endless Euphoria",                           "TBD",                "All ally targets' All-Type RES PEN increases by <span style='color:#f29e38;font-weight:bold;'>20%</span>, and the All-Type RES PEN of <span style='color:#ffbd88;font-weight:bold;'>Elation DMG</span> dealt additionally increases by <span style='color:#f29e38;font-weight:bold;'>20%</span>." ],
 
 
 

@@ -403,7 +403,7 @@ function showEnemies() {
         let ttMiscStat = document.createElement("div");
         ttMiscStat.className = "tt-e-stat";
         ttMiscStat.innerHTML = `+<span class="tt-text">${generateEnemyStats(sideDazeMult / 100 * eDaze, eStunMult, eStunTime, (currEnemyID[2] == "3" ? versionAnomMultBoss : versionAnomMultEnemy) / 100 * eAnom, eElementMult, eMods)}</span>`;
-        if (s == 1) ttMiscStat.querySelector(".tt-text").style.top = "320px";
+        if (s == 1) ttMiscStat.querySelector(".tt-text").style.top = "292.5px";
         enemy.appendChild(ttMiscStat);
 
         // display enemy 40%+ resistances

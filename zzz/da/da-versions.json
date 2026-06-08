@@ -275,14 +275,14 @@
   "3.0.2":{ "versionName":"3.0 Phase 2",
             "versionTime":"xx/xx/20xx - xx/xx/20xx",
             "versionBuffIDs":["69000059", "69000062", "69000063"],
-            "versionHPMult":[190, 330, 220], "versionDazeMult":[100, 100, 80], "versionAnomMult":110,
+            "versionHPMult":[190, 320, 220], "versionDazeMult":[100, 100, 80], "versionAnomMult":110,
             "versionEnemies":[ {"id":"30300", "type":0}, {"id":"25300", "type":0}, {"id":"24300", "type":0} ]
           },
 
   "3.0.3":{ "versionName":"3.0 Phase 3",
             "versionTime":"xx/xx/20xx - xx/xx/20xx",
             "versionBuffIDs":["69000063", "69000064", "69000065"],
-            "versionHPMult":[185, 300, 290], "versionDazeMult":[100, 100, 100], "versionAnomMult":110,
+            "versionHPMult":[185, 330, 290], "versionDazeMult":[100, 100, 100], "versionAnomMult":110,
             "versionEnemies":[ {"id":"28300", "type":0}, {"id":"14301", "type":2}, {"id":"21300", "type":0} ]
           }
 }

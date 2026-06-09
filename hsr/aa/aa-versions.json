@@ -178,16 +178,16 @@
   "4.4.1":{ "versionName":"TBD",
             "versionTime":"xx/xx/20xx - xx/xx/20xx",
             "versionBuffIDs":["40000013", "40000021", "40000022"],
-            "versionDebuffIDs":[ ["41000006", "41000012"], ["41000006.1", "41000012.1"],
+            "versionDebuffIDs":[ ["41000012", "41000016"], ["41000012.1", "41000016.1"],
                                  ["41000006"], ["41000008", "41000014"], ["41000015"] ],
             "versionEnemies":{
               "sides":[
-                { "sideElementMult":[1.2, 1.0, 1.2, 1.2, 1.2, 1.0, 1.2], "sideHPMult":760, "waves":[
+                { "sideElementMult":[1.2, 1.0, 1.2, 1.2, 1.2, 1.0, 1.2], "sideHPMult":840, "waves":[
                   { "enemies":[ {"id":"31100.1", "count":1}, {"id":"33101", "count":1} ] },
-                  { "enemies":[ {"id":"31100", "count":1}, {"id":"43200.1", "count":1, "phase":2}, {"id":"31100", "count":1} ] } ] },
+                  { "enemies":[ {"id":"31100.1", "count":1}, {"id":"43200.1", "count":1, "phase":2}, {"id":"31100.1", "count":1} ] } ] },
                 { "sideElementMult":[1.2, 1.0, 1.2, 1.2, 1.2, 1.0, 1.2], "sideHPMult":800, "waves":[
                   { "enemies":[ {"id":"31100.1", "count":1}, {"id":"33101", "count":1} ] },
-                  { "enemies":[ {"id":"31100", "count":1}, {"id":"43200.1", "count":1, "phase":2}, {"id":"31100", "count":1} ] } ] },
+                  { "enemies":[ {"id":"31100.1", "count":1}, {"id":"43200.1", "count":1, "phase":2}, {"id":"31100.1", "count":1} ] } ] },
                 { "sideElementMult":[1.2, 1.0, 1.0, 1.2, 1.2, 1.2, 1.2], "sideHPMult":620, "waves":[
                   { "enemies":[ {"id":"12100", "count":1}, {"id":"14100", "count":1} ] },
                   { "enemies":[ {"id":"15200.1", "count":1, "phase":2, "hpMult":680} ] } ] },

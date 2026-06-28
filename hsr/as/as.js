@@ -585,7 +585,7 @@ function showHPChart() {
           },
           y: {
             border: { display: false },
-            grid: { color: function(context) { return context.tick.value % 10000000 == 0 ? "#888888" : "#444444"; } },
+            grid: { color: function(context) { return context.index % 2 == 0 ? "#888888" : "#444444"; } },
             ticks: {
               padding: 15, font: { family: "Inconsolata", size: 12 }, color: "#888888",
               callback: function(value, index) { return index % 2 == 0 ? showNumberFormat(value) : ""; }
@@ -629,7 +629,7 @@ function showHPChart() {
   hpChart.data.datasets = [ generateHPDataset("Raw HP", hpData[chartNodeNum - 1], "#e06666") ];
   if (chartNodeNum == 4) hpChart.data.datasets.push(generateHPDataset("Raw 4-3 HP", hpData[4], "#e06666"));
   hpChart.options.scales.y.min = 0;
-  hpChart.options.scales.y.max = 60000000;
+  hpChart.options.scales.y.max = 70000000;
   hpChart.options.scales.y.ticks.stepSize = 5000000;
   hpChart.options.plugins.title.text = `Apocalyptic Shadow HP - Node ${chartNodeNum}`;
   hpChart.update();

@@ -177,7 +177,7 @@
 
   "4.4.1":{ "versionName":"TBD",
             "versionTime":"xx/xx/20xx - xx/xx/20xx",
-            "versionBuffIDs":["40000013", "40000021", "40000022"],
+            "versionBuffIDs":["40000021", "40000022", "40000023"],
             "versionDebuffIDs":[ ["41000012", "41000016"], ["41000012.1", "41000016.1"],
                                  ["41000006"], ["41000008", "41000014"], ["41000015"] ],
             "versionEnemies":{
@@ -188,15 +188,15 @@
                 { "sideElementMult":[1.2, 1.0, 1.2, 1.2, 1.2, 1.0, 1.2], "sideHPMult":800, "waves":[
                   { "enemies":[ {"id":"31100.1", "count":1}, {"id":"33101", "count":1} ] },
                   { "enemies":[ {"id":"31100.1", "count":1}, {"id":"43200.1", "count":1, "phase":2}, {"id":"31100.1", "count":1} ] } ] },
-                { "sideElementMult":[1.2, 1.0, 1.0, 1.2, 1.2, 1.2, 1.2], "sideHPMult":620, "waves":[
+                { "sideElementMult":[1.2, 1.0, 1.0, 1.2, 1.2, 1.2, 1.2], "sideHPMult":680, "waves":[
                   { "enemies":[ {"id":"12100", "count":1}, {"id":"14100", "count":1} ] },
-                  { "enemies":[ {"id":"15200.1", "count":1, "phase":2, "hpMult":680} ] } ] },
+                  { "enemies":[ {"id":"15200.1", "count":1, "phase":2} ] } ] },
                 { "sideElementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.2], "sideHPMult":600, "waves":[
                   { "enemies":[ {"id":"42100", "count":1}, {"id":"43100", "count":1} ] },
                   { "enemies":[ {"id":"10205.5", "count":1, "phase":1, "hpMult":860}, {"id":"43100", "count":1, "hpMult":860} ] } ] },
-                { "sideElementMult":[1.0, 1.2, 1.2, 1.2, 1.2, 1.2, 1.0], "sideHPMult":470, "waves":[
+                { "sideElementMult":[1.0, 1.2, 1.2, 1.2, 1.2, 1.2, 1.0], "sideHPMult":500, "waves":[
                   { "enemies":[ {"id":"41100", "count":1}, {"id":"31101.1", "count":1} ] },
-                  { "enemies":[ {"id":"42200", "count":1, "phase":2, "hpMult":380} ] } ] }
+                  { "enemies":[ {"id":"42200", "count":1, "phase":2, "hpMult":400} ] } ] }
               ]
             }
           }

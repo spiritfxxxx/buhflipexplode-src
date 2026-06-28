@@ -1,12 +1,14 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let vLive = 38, vBeta = 39, v22 = 19, v28 = 35;
+let vLive = 39, vBeta = 42, v22 = 19, v28 = 35, v31 = 42;
 let leaksToggle = document.getElementById("lks")
 let spoilersToggle = document.getElementById("spl");
-let bossDropdown = document.getElementById("cc-b-dd");
-let bossVerDropdown1 = document.getElementById("cc-b-v-dd1"), bossScoreCalc1 = document.getElementById("cc-b-score1"), bossHPCalc1 = document.getElementById("cc-b-hp1");
-let bossVerDropdown2 = document.getElementById("cc-b-v-dd2"), bossScoreCalc2 = document.getElementById("cc-b-score2"), bossHPCalc2 = document.getElementById("cc-b-hp2");
-let versionNum, chartScoreNum, currCalcBossID, currCalcData1, currCalcData2, currCalcVersion1, currCalcVersion2, currCalcMaxBossHP1, currCalcMaxBossHP2, currNumberFormat;
+let chartDropdown = document.getElementById("c-dd");
+let calcDropdown = document.getElementById("cc-dd");
+let calcBossDropdown = document.getElementById("cc-b-dd");
+let calcVerDropdown1 = document.getElementById("cc-b-v-dd1"), calcScore1 = document.getElementById("cc-b-score1"), calcHP1 = document.getElementById("cc-b-hp1");
+let calcVerDropdown2 = document.getElementById("cc-b-v-dd2"), calcScore2 = document.getElementById("cc-b-score2"), calcHP2 = document.getElementById("cc-b-hp2");
+let versionNum, chartScoreNum, chartDisplayType, currCalcBossID, currCalcData1, currCalcData2, currCalcVersion1, currCalcVersion2, currCalcMaxHP1, currCalcMaxHP2, currNumberFormat;
 let menuIsOpen = versionSelectorIsOpen = calcIsOpen = chartIsOpen = false;
 
 let versionData, enemyData, buffData, hpChart;
@@ -28,13 +30,14 @@ async function loadPage() {
 
 // build hp database
 function loadHPData() {
-  hpData = Array.from({length: 4}, () => Array.from({length: versionIDs.length}).fill(null));
+  hpData = Array.from({length: 8}, () => Array.from({length: versionIDs.length}).fill(null));
   for (let v = 1; v <= versionIDs.length; ++v) {
     let versionEnemies = versionData[versionIDs[v - 1]].versionEnemies;
-    let raw60kEnemyHP = alt60kEnemyHP = 0;
+    let raw60kNormalEnemyHP = alt60kNormalEnemyHP = 0;
+    let raw60kHardEnemyHP = alt60kHardEnemyHP = 0;
 
     // build boss hp database
-    for (let s = 1; s <= 3; ++s) {
+    for (let s = 1; s <= versionEnemies.length; ++s) {
       let sideHPMult = versionData[versionIDs[v - 1]].versionHPMult[s - 1];
 
       let currEnemy = versionEnemies[s - 1];
@@ -42,28 +45,41 @@ function loadHPData() {
       let currEnemyType = currEnemy.type;
       let currEnemyHPMult = currEnemy.hpMult ? currEnemy.hpMult : sideHPMult;
       let currEnemyData = enemyData[currEnemyID];
-      let eHP = currEnemyData.baseHP[currEnemyType] * 24795 * currEnemyHPMult * 8.74 / 10000;
+      let eHP = currEnemyData.baseHP[currEnemyType] * 24795 * currEnemyHPMult * (s != 4 ? 8.74 : 12) / 10000;
       let eTags = currEnemyData.tags;
 
-      // calculate boss hp
-      raw60kEnemyHP += eHP;
-      alt60kEnemyHP += eHP * (currEnemyID[2] >= "2" && currEnemyData.baseDEF[currEnemyType] < 60 ? (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100) : 1);
+      // calculate boss raw hp
+      if (s != 4) raw60kNormalEnemyHP += eHP;
+      else raw60kHardEnemyHP += eHP;
+
+      // calculate boss alt hp
+      let altHP = eHP * (currEnemyID[2] >= "2" && currEnemyData.baseDEF[currEnemyType] < 60 ? (794 + currEnemyData.baseDEF[currEnemyType] * 1588 / 100) / (794 + 60 * 1588 / 100) : 1);
       if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
-        if (eTags.includes("ucc")) alt60kEnemyHP -= eHP * 0.036;
-        if (eTags.includes("hunter")) alt60kEnemyHP -= eHP * 0.01;
-        if (eTags.includes("miasma")) alt60kEnemyHP -= eHP * (currEnemyID == "25300" ? 0.045 : (v >= v22 ? 0.025 : 0.03));
-        if (eTags.includes("shutdown")) alt60kEnemyHP -= eHP * (currEnemyID == "28300" ? 0.02 : currEnemyID == "27300" ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015);
-        if (eTags.includes("convert")) alt60kEnemyHP += eHP * (currEnemyID == "30300" ? 0.045 : 0.003);
+        if (eTags.includes("ucc")) altHP -= eHP * 0.036;
+        if (eTags.includes("hunter")) altHP -= eHP * 0.01;
+        if (eTags.includes("miasma")) altHP -= eHP * (currEnemyID == "25300" ? 0.045 : (v >= v22 ? 0.025 : 0.03));
+        if (eTags.includes("shutdown")) altHP -= eHP * (currEnemyID == "28300" ? 0.02 : (currEnemyID == "27300" || currEnemyID == "31300") ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015);
+        if (eTags.includes("convert")) altHP += eHP * (currEnemyID == "30300" ? 0.045 : 0.003);
       }
+      if (s != 4) alt60kNormalEnemyHP += altHP;
+      else alt60kHardEnemyHP += altHP;
 
       // add boss appearance to boss hp map
       if (!hpDataSpecific[currEnemyID]) hpDataSpecific[currEnemyID] = [];
       hpDataSpecific[currEnemyID].push([versionIDs[v - 1], Math.round(eHP)]);
     }
-    hpData[0][v - 1] = Math.round(raw60kEnemyHP * 0.281083138);
-    hpData[1][v - 1] = Math.round(raw60kEnemyHP);
-    hpData[2][v - 1] = Math.round(alt60kEnemyHP * 0.281083138);
-    hpData[3][v - 1] = Math.round(alt60kEnemyHP);
+
+    // normal mode hp data
+    hpData[0][v - 1] = Math.round(raw60kNormalEnemyHP * 0.281083138);
+    hpData[1][v - 1] = Math.round(raw60kNormalEnemyHP);
+    hpData[2][v - 1] = Math.round(alt60kNormalEnemyHP * 0.281083138);
+    hpData[3][v - 1] = Math.round(alt60kNormalEnemyHP);
+
+    // hard mode hp data
+    hpData[4][v - 1] = Math.round(raw60kHardEnemyHP * 0.571428571);
+    hpData[5][v - 1] = Math.floor(raw60kHardEnemyHP);
+    hpData[6][v - 1] = Math.round(alt60kHardEnemyHP * 0.571428571);
+    hpData[7][v - 1] = Math.round(alt60kHardEnemyHP);
   }
 }
 
@@ -110,17 +126,18 @@ function showBuffs() {
 // display enemies
 function showEnemies() {
   // display sides
-  let side1 = document.getElementById("s1"), side2 = document.getElementById("s2"), side3 = document.getElementById("s3");
-  side1.innerHTML = side2.innerHTML = side3.innerHTML = ``;
+  let side1 = document.getElementById("s1"), side2 = document.getElementById("s2"), side3 = document.getElementById("s3"), sideH = document.getElementById("sh");
+  side1.innerHTML = side2.innerHTML = side3.innerHTML = sideH.innerHTML = ``;
+  document.getElementById("s-h").style.display = versionNum < v31 ? "none" : "flex";
 
   // loop sides
   for (let s = 1; s <= versionEnemies.length; ++s) {
-    let side = s == 1 ? side1 : s == 2 ? side2 : side3;
+    let side = s == 1 ? side1 : s == 2 ? side2 : s == 3 ? side3 : sideH;
 
     // display side title
     let sideHeader = document.createElement("div");
     sideHeader.className = "s-header";
-    sideHeader.innerHTML = `Side ${s} Lv70`;
+    sideHeader.innerHTML = (s != 4 ? `Side ${s}` : `Hard Mode`) + ` Lv70`;
 
     // display side HP multiplier
     let hpMult = document.createElement("div");
@@ -148,7 +165,7 @@ function showEnemies() {
     let eImg = showEnemySpoilers ? `../../assets/zzz/enemies/${currEnemyData.image}.webp` : `../../assets/zzz/enemies/doppelganger-i.webp`;
 
     // define enemy stats
-    let eHP = Math.floor(8.74 * sideHPMult * currEnemyData.baseHP[currEnemyType] * 24795 / 10000);
+    let eHP = Math.floor((s != 4 ? 8.74 : 12) * sideHPMult * currEnemyData.baseHP[currEnemyType] * 24795 / 10000);
     let eDEF = Math.ceil(currEnemyData.baseDEF[currEnemyType] * 1588 / 100);
     let eDaze = currEnemyData.baseDaze[currEnemyType] * 2.35;
     let eStunMult = currEnemyData.stunMult;
@@ -211,12 +228,12 @@ function showEnemies() {
         ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 3 : 1) + `<br>`;
       }
       if (eTags.includes("shutdown")) {
-        eHPNew -= eHP * (currEnemyID == "28300" ? 0.02 : currEnemyID == "27300" ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015);
+        eHPNew -= eHP * (currEnemyID == "28300" ? 0.02 : (currEnemyID == "27300" || currEnemyID == "31300") ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015);
         color = "#b47ede";
         ttHP.innerHTML += instant(color, "SHUTDOWN!!", currEnemyID == "26300" ? 2 : 1) + `<br>`;
       }
       if (eTags.includes("convert")) {
-        eHPNew += eHP * (currEnemyID == "30300" ? 0.045 : 0.003);
+        eHPNew += eHP * (currEnemyID == "31300" ? 0.01 : currEnemyID == "30300" ? 0.045 : 0.003);
         color = "#007bb8";
         ttHP.innerHTML += instant(color, "CONVERT!!", 1) + `<br>`;
       }
@@ -253,30 +270,47 @@ function showEnemies() {
     generateR(eElementMult, enemyR, currEnemyID, enemy);
 
     waveEnemies.appendChild(enemy);
+    side.appendChild(waveEnemies);
 
     // add enemy stage description
-    let trait = document.createElement("div");
-    let traitTitle = document.createElement("div");
-    let traitDesc = document.createElement("div");
-    trait.className = "t";
-    traitTitle.className = "t-title";
-    traitDesc.className = "bt-desc";
-    traitTitle.innerHTML = `Side ${s} Boss Traits`;
-    trait.appendChild(traitTitle);
-    traitDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br>` : `${currEnemyData.desc[currEnemyType]}<br>`;
-    traitDesc.innerHTML += (currEnemyID == "14301" && versionNum == 6) ? `• Successfully triggering <span style="font-weight:bold;">Perfect Assist</span> grants <span style="color:#ffaf2c;font-weight:bold;">300 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.` : (eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerPerf}` : `${currEnemyData.perf[currEnemyType]}`);
-    traitDesc.innerHTML += `${(currEnemyID[0] >= "2" || (currEnemyID == "14303" && versionNum >= 4)) ? `<br>${currEnemyData.misc}` : ``}`;
-    trait.appendChild(traitDesc);
-
-    side.appendChild(waveEnemies);
-    side.appendChild(trait);
+    if (side == sideH && currEnemyID[2] == "4") {
+      let traitTitle = document.getElementById("t-title");
+      let traitDesc = document.getElementById("t-desc");
+      traitTitle.innerHTML = `Hard Mode Boss Traits`;
+      traitDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br>` : `${currEnemyData.desc[currEnemyType]}<br>`;
+      traitDesc.innerHTML += eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerPerf}` : `${currEnemyData.perf[currEnemyType]}`;
+      traitDesc.innerHTML += `<br>${currEnemyData.misc}`;
+    }
+    else {
+      let trait = document.createElement("div");
+      let traitTitle = document.createElement("div");
+      let traitDesc = document.createElement("div");
+      trait.className = "t";
+      traitTitle.className = "t-title";
+      traitDesc.className = "bt-desc";
+      traitTitle.innerHTML = `Side ${s} Boss Traits`;
+      trait.appendChild(traitTitle);
+      traitDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br>` : `${currEnemyData.desc[currEnemyType]}<br>`;
+      traitDesc.innerHTML += (currEnemyID == "14301" && versionNum == 6) ? `<li>Successfully triggering <span style="font-weight:bold;">Perfect Assist</span> grants <span style="color:#ffaf2c;font-weight:bold;">300 Performance Points</span>. A maximum of 5000 Performance Points can be obtained.</li>` : (eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerPerf}` : `${currEnemyData.perf[currEnemyType]}`);
+      traitDesc.innerHTML += (currEnemyID[0] >= "2" || (currEnemyID == "14303" && versionNum >= 4)) ? `<br>${currEnemyData.misc}` : ``;
+      trait.appendChild(traitDesc);
+      side.appendChild(trait);
+    }
   }
 
-  // display HP values
-  document.getElementById("v-hp-raw-20000").innerHTML = showNumberFormat(hpData[0][versionNum - 1]);
-  document.getElementById("v-hp-raw-60000").innerHTML = showNumberFormat(hpData[1][versionNum - 1]);
-  document.getElementById("v-hp-alt-20000").innerHTML = showNumberFormat(hpData[2][versionNum - 1]);
-  document.getElementById("v-hp-alt-60000").innerHTML = showNumberFormat(hpData[3][versionNum - 1]);
+  // display normal HP values
+  document.getElementById("v-hp-raw-20000-norm").innerHTML = showNumberFormat(hpData[0][versionNum - 1]);
+  document.getElementById("v-hp-raw-60000-norm").innerHTML = showNumberFormat(hpData[1][versionNum - 1]);
+  document.getElementById("v-hp-alt-20000-norm").innerHTML = showNumberFormat(hpData[2][versionNum - 1]);
+  document.getElementById("v-hp-alt-60000-norm").innerHTML = showNumberFormat(hpData[3][versionNum - 1]);
+
+  // display hard HP values
+  document.getElementById("norm").style.display = versionNum < v31 ? "none" : "inline";
+  document.getElementById("v-hp-hard").style.display = versionNum < v31 ? "none" : "flex";
+  document.getElementById("v-hp-raw-20000-hard").innerHTML = showNumberFormat(hpData[4][versionNum - 1]);
+  document.getElementById("v-hp-raw-60000-hard").innerHTML = showNumberFormat(hpData[5][versionNum - 1]);
+  document.getElementById("v-hp-alt-20000-hard").innerHTML = showNumberFormat(hpData[6][versionNum - 1]);
+  document.getElementById("v-hp-alt-60000-hard").innerHTML = showNumberFormat(hpData[7][versionNum - 1]);
 
   // save current page/settings
   saveProgress();
@@ -374,7 +408,9 @@ function loadSavedState() {
   if (localStorage.getItem("leaksEnabled") == "true") leaksToggle.checked = true;
   if (localStorage.getItem("spoilersEnabled") == "true") spoilersToggle.checked = true;
   versionNum = parseInt(localStorage.getItem("lastDAVersion") || `${vLive}`);
-  chartScoreNum = localStorage.getItem("lastDAChartType") || "60k";
+  chartScoreNum = localStorage.getItem("lastDAChartScore") || "60k";
+  chartDisplayType = localStorage.getItem("lastDAChartType") || "Normal Mode";
+  chartDropdown.value = chartDisplayType;
   currNumberFormat = localStorage.getItem("numberFormat") || "period";
   if (!leaksToggle.checked) versionNum = Math.min(versionNum, vLive);
   saveProgress();
@@ -383,7 +419,8 @@ function loadSavedState() {
 // save current page/settings
 function saveProgress() {
   localStorage.setItem("lastDAVersion", versionNum);
-  localStorage.setItem("lastDAChartType", chartScoreNum);
+  localStorage.setItem("lastDAChartScore", chartScoreNum);
+  localStorage.setItem("lastDAChartType", chartDisplayType);
   localStorage.setItem("numberFormat", currNumberFormat);
   localStorage.setItem("leaksEnabled", leaksToggle.checked);
   localStorage.setItem("spoilersEnabled", spoilersToggle.checked);
@@ -505,13 +542,15 @@ function toggleCalc() {
   let calcOverlay = document.getElementById("cc-o");
   document.body.style.overflow = calcIsOpen ? "hidden" : "auto";
   calc.style.display = calcOverlay.style.display = calcIsOpen ? "flex" : "none";
-
+  showHPCalc();
+}
+function showHPCalc() {
   // build boss dropdown
   let enemyIDs = Object.keys(enemyData);
   let select = document.getElementById("cc-b-dd");
   select.innerHTML = ``;
   for (let i = 0; i < enemyIDs.length; ++i) {
-    if (enemyIDs[i][2] == "3" && enemyIDs[i] != "10301" && enemyIDs[i] != "10302" && enemyIDs[i] != "10303" && enemyIDs[i] != "16300" && enemyIDs[i] != "28301") {
+    if (calcDropdown.value == "Normal Mode" ? (enemyIDs[i][2] == "3" && enemyIDs[i] != "10301" && enemyIDs[i] != "10302" && enemyIDs[i] != "10303" && enemyIDs[i] != "16300") : (enemyIDs[i][2] == "4" && enemyIDs[i] != "30400")) {
       let option = document.createElement("option");
       option.text = (spoilersToggle.checked || !enemyData[enemyIDs[i]].tags.includes("spoiler")) ? enemyData[enemyIDs[i]].name : "SPOILER BOSS";
       option.value = enemyIDs[i];
@@ -523,89 +562,89 @@ function toggleCalc() {
 
 // display specific boss
 function changeBoss() {
-  let bossDropdownResize = document.getElementById("cc-b-dd-resize");
+  let calcBossDropdownResize = document.getElementById("cc-b-dd-resize");
 
   // display specific boss image
-  let bossImg = document.getElementById("cc-b-img");
-  bossImg.src = (spoilersToggle.checked || !enemyData[bossDropdown.value].tags.includes("spoiler")) ? `../../assets/zzz/enemies/${enemyData[bossDropdown.value].image}.webp` : `../../assets/zzz/enemies/doppelganger-i.webp`;;
+  let calcBossImg = document.getElementById("cc-b-img");
+  calcBossImg.src = (spoilersToggle.checked || !enemyData[calcBossDropdown.value].tags.includes("spoiler")) ? `../../assets/zzz/enemies/${enemyData[calcBossDropdown.value].image}.webp` : `../../assets/zzz/enemies/doppelganger-i.webp`;;
 
   // resize boss dropdown based on name length (to look nicer)
-  bossDropdown.selectedIndex = Math.max(bossDropdown.selectedIndex, 0);
-  bossDropdownResize.textContent = bossDropdown.options[bossDropdown.selectedIndex].text;
-  bossDropdown.style.width = bossDropdownResize.offsetWidth + 30 + "px";
+  calcBossDropdown.selectedIndex = Math.max(calcBossDropdown.selectedIndex, 0);
+  calcBossDropdownResize.textContent = calcBossDropdown.options[calcBossDropdown.selectedIndex].text;
+  calcBossDropdown.style.width = calcBossDropdownResize.offsetWidth + 30 + "px";
 
   // build boss versions dropdowns
-  bossVerDropdown1.innerHTML = ``, bossVerDropdown2.innerHTML = ``;
-  for (let v = 0; v < hpDataSpecific[bossDropdown.value].length; ++v) {
+  calcVerDropdown1.innerHTML = ``, calcVerDropdown2.innerHTML = ``;
+  for (let v = 0; v < hpDataSpecific[calcBossDropdown.value].length; ++v) {
     let option1 = document.createElement("option"), option2 = document.createElement("option");
-    let versionHP = hpDataSpecific[bossDropdown.value][v][0];
+    let versionHP = hpDataSpecific[calcBossDropdown.value][v][0];
     option1.text = option1.value = option2.text = option2.value = `${versionHP[0]}.${versionHP[2]} Phase ${versionHP[4]}`;
-    bossVerDropdown1.appendChild(option1);
-    bossVerDropdown2.appendChild(option2);
+    calcVerDropdown1.appendChild(option1);
+    calcVerDropdown2.appendChild(option2);
   }
 
   // display boss first version
-  currCalcBossID = bossDropdown.value;
-  currCalcData1 = hpDataSpecific[currCalcBossID][bossVerDropdown1.selectedIndex];
-  currCalcData2 = hpDataSpecific[currCalcBossID][bossVerDropdown2.selectedIndex];
+  currCalcBossID = calcBossDropdown.value;
+  currCalcData1 = hpDataSpecific[currCalcBossID][calcVerDropdown1.selectedIndex];
+  currCalcData2 = hpDataSpecific[currCalcBossID][calcVerDropdown2.selectedIndex];
   currCalcVersion1 = currCalcData1[0];
   currCalcVersion2 = currCalcData2[0];
-  currCalcMaxBossHP1 = currCalcData1[1];
-  currCalcMaxBossHP2 = currCalcData2[1];
+  currCalcMaxHP1 = currCalcData1[1];
+  currCalcMaxHP2 = currCalcData2[1];
 
   // display max hp/score
-  bossHPCalc1.value = currCalcMaxBossHP1;
-  bossHPCalc2.value = currCalcMaxBossHP2;
-  bossScoreCalc1.value = bossScoreCalc2.value = 60000;
-  calculateBoss(currCalcMaxBossHP1, 60000, 1);
-  calculateBoss(currCalcMaxBossHP2, 60000, 2);
+  calcHP1.value = currCalcMaxHP1;
+  calcHP2.value = currCalcMaxHP2;
+  calcScore1.value = calcScore2.value = 60000;
+  calculateBoss(currCalcMaxHP1, 60000, 1);
+  calculateBoss(currCalcMaxHP2, 60000, 2);
 }
 
 // display new specific boss/version
-bossDropdown.addEventListener("change", () => { changeBoss(); });
-bossVerDropdown1.addEventListener("change", () => {
-  currCalcData1 = hpDataSpecific[currCalcBossID][bossVerDropdown1.selectedIndex];
+calcBossDropdown.addEventListener("change", () => { changeBoss(); });
+calcVerDropdown1.addEventListener("change", () => {
+  currCalcData1 = hpDataSpecific[currCalcBossID][calcVerDropdown1.selectedIndex];
   currCalcVersion1 = currCalcData1[0];
-  currCalcMaxBossHP1 = currCalcData1[1];
-  calculateBoss(currCalcMaxBossHP1, 60000, 1);
+  currCalcMaxHP1 = currCalcData1[1];
+  calculateBoss(currCalcMaxHP1, 60000, 1);
 });
-bossVerDropdown2.addEventListener("change", () => {
-  currCalcData2 = hpDataSpecific[currCalcBossID][bossVerDropdown2.selectedIndex];
+calcVerDropdown2.addEventListener("change", () => {
+  currCalcData2 = hpDataSpecific[currCalcBossID][calcVerDropdown2.selectedIndex];
   currCalcVersion2 = currCalcData2[0];
-  currCalcMaxBossHP2 = currCalcData2[1];
-  calculateBoss(currCalcMaxBossHP2, 60000, 2);
+  currCalcMaxHP2 = currCalcData2[1];
+  calculateBoss(currCalcMaxHP2, 60000, 2);
 });
 
 // display specific boss version hp/score
-bossHPCalc1.addEventListener("change", () => { calculateBoss(parseInt(bossHPCalc1.value.replaceAll(".", "").replaceAll(",", "")), 60000, 1); });
-bossHPCalc2.addEventListener("change", () => { calculateBoss(parseInt(bossHPCalc2.value.replaceAll(".", "").replaceAll(",", "")), 60000, 2); });
-bossScoreCalc1.addEventListener("change", () => { calculateBoss(currCalcMaxBossHP1, parseInt(bossScoreCalc1.value), 1); });
-bossScoreCalc2.addEventListener("change", () => { calculateBoss(currCalcMaxBossHP2, parseInt(bossScoreCalc2.value), 2); });
+calcHP1.addEventListener("change", () => { calculateBoss(parseInt(calcHP1.value.replaceAll(".", "").replaceAll(",", "")), 60000, 1); });
+calcHP2.addEventListener("change", () => { calculateBoss(parseInt(calcHP2.value.replaceAll(".", "").replaceAll(",", "")), 60000, 2); });
+calcScore1.addEventListener("change", () => { calculateBoss(currCalcMaxHP1, parseInt(calcScore1.value), 1); });
+calcScore2.addEventListener("change", () => { calculateBoss(currCalcMaxHP2, parseInt(calcScore2.value), 2); });
 
 // calculate specific boss version hp/score
 function calculateBoss(hp, score, option) {
-  let finalHP = option == 1 ? currCalcMaxBossHP1 : currCalcMaxBossHP2, finalScore = 60000;
-  let bossHP = option == 1 ? bossHPCalc1 : bossHPCalc2;
-  let bossScore = option == 1 ? bossScoreCalc1 : bossScoreCalc2;
+  let finalHP = option == 1 ? currCalcMaxHP1 : currCalcMaxHP2, finalScore = 60000;
+  let bossHP = option == 1 ? calcHP1 : calcHP2;
+  let bossScore = option == 1 ? calcScore1 : calcScore2;
   let bossData = option == 1 ? currCalcData1 : currCalcData2;
 
   if (!Number.isInteger(hp) || !Number.isInteger(score)) { bossHP.value = ""; bossScore.value = ""; return; }
 
   // constrains hp/score within 0-maxHP/0-60000
   if (hp < 0) hp = 0;
-  else if (option == 1 && hp > currCalcMaxBossHP1) hp = currCalcMaxBossHP1;
-  else if (option == 2 && hp > currCalcMaxBossHP2) hp = currCalcMaxBossHP2;
+  else if (option == 1 && hp > currCalcMaxHP1) hp = currCalcMaxHP1;
+  else if (option == 2 && hp > currCalcMaxHP2) hp = currCalcMaxHP2;
   if (score < 0) score = 0;
   else if (score > 60000) score = 60000;
 
-  let bossValues = Array.from({length: 7}, () => Array.from({length: 3}).fill(null));
-  bossValues = [[0, 0, 0], [1200, 4, 4000], [1700, 4, 4800], [2200, 4, 7200], [2500, 4, 9600], [3000, 4, 10400], [5000, 3, 7800], [5000, 6, 16200]];
+  let bossValues = Array.from({length: 8}, () => Array.from({length: 3}).fill(null));
+  bossValues = calcDropdown.value == "Normal Mode" ? [[0, 0, 0], [1200, 4, 4000], [1700, 4, 4800], [2200, 4, 7200], [2500, 4, 9600], [3000, 4, 10400], [5000, 3, 7800], [5000, 6, 16200]] : [[0, 0, 0], [3600, 4, 3000], [3600, 4, 4000], [3600, 2, 3000], [6000, 2, 7000], [6000, 2, 8000], [6000, 10, 35000]];
 
   // calculate hp/score to the floored threshold
   let calcHP = 0, calcScore = 0, threshold;
   let hpToNextThreshold, scoreToNextThreshold;
-  for (threshold = 0; threshold < 8; ++threshold) {
-    hpToNextThreshold = bossValues[threshold][0] * bossValues[threshold][1] * bossData[1] / 874 / 100;
+  for (threshold = 0; threshold < bossValues.length; ++threshold) {
+    hpToNextThreshold = bossValues[threshold][0] * bossValues[threshold][1] * bossData[1] / (calcDropdown.value == "Normal Mode" ? 874 : 1200) / 100;
     scoreToNextThreshold = bossValues[threshold][2];
     if (calcHP + hpToNextThreshold > hp + 1) break;
     if (calcScore + scoreToNextThreshold > score) break;
@@ -614,7 +653,7 @@ function calculateBoss(hp, score, option) {
   }
 
   // add remaining needed hp/score
-  if (threshold < 8) {
+  if (threshold < bossValues.length) {
     finalHP = calcHP + (score - calcScore) / scoreToNextThreshold * hpToNextThreshold;
     finalScore = calcScore + (hp - calcHP) / hpToNextThreshold * bossValues[threshold][2];
   }
@@ -645,7 +684,7 @@ function changeChartPoints(n) {
 function downloadChart() {
   let downloadButton = document.createElement("a");
   downloadButton.href = hpChart.toBase64Image("image/png", 1.0);
-  downloadButton.download = `Deadly Assault HP - ${chartScoreNum} Score`;
+  downloadButton.download = `Deadly Assault HP - ${chartScoreNum == "60k" ? chartScoreNum : document.querySelector(".c-k").innerHTML} Score - ${chartDisplayType}`;
   downloadButton.click();
 }
 
@@ -656,6 +695,10 @@ function generateHPDataset(label, data, color) {
 
 // display chart
 function showHPChart() {
+  // change chart
+  chartDisplayType = chartDropdown.value;
+  document.querySelector(".c-k").innerHTML = chartDisplayType == "Hard Mode" ? "30k" : "20k";
+
   // change color of selected score value
   let chartScoreButtons = document.querySelectorAll(".c-k");
   chartScoreButtons.forEach(btn => btn.classList.toggle("selected", btn.dataset.format == chartScoreNum));
@@ -739,7 +782,7 @@ function showHPChart() {
           },
           y: {
             border: { display: false },
-            grid: { color: function(context) { return context.tick.value % 40000000 == 0 ? "#888888" : "#444444"; } },
+            grid: { color: function(context) { return context.index % 2 == 0 ? "#888888" : "#444444"; } },
             ticks: {
               padding: 15, font: { family: "Inconsolata", size: 12 }, color: "#888888",
               callback: function(value, index) { return index % 2 == 0 ? showNumberFormat(value) : ""; }
@@ -779,15 +822,19 @@ function showHPChart() {
   }
 
   // global chart settings
-  hpChart.data.labels = versionIDs;
+  let newHPData;
+  if (chartDisplayType == "Normal Mode") newHPData = hpData.slice(0, 4);
+  else newHPData = hpData.slice(4, 8).map(row => row.slice(v31 - 1, versionIDs.length));
+
+  hpChart.data.labels = versionIDs.slice(chartDisplayType == "Normal Mode" ? 0 : v31 - 1, versionIDs.length);
   hpChart.data.datasets = [
-    generateHPDataset(`Raw HP`, chartScoreNum == "20k" ? hpData[0] : hpData[1], "#e06666"),
-    generateHPDataset(`Alt HP`, chartScoreNum == "20k" ? hpData[2] : hpData[3], "#f6b26b")
+    generateHPDataset(`Raw HP`, chartScoreNum != "60k" ? newHPData[0] : newHPData[1], "#e06666"),
+    generateHPDataset(`Alt HP`, chartScoreNum != "60k" ? newHPData[2] : newHPData[3], "#f6b26b")
   ];
-  hpChart.options.scales.y.min = chartScoreNum == "20k" ? 40000000 : 120000000;
-  hpChart.options.scales.y.max = chartScoreNum == "20k" ? 280000000 : 840000000;
-  hpChart.options.scales.y.ticks.stepSize = chartScoreNum == "20k" ? 20000000 : 60000000;
-  hpChart.options.plugins.title.text = `Deadly Assault HP - ${chartScoreNum} Score`;
+  hpChart.options.plugins.title.text = `Deadly Assault HP - ${chartScoreNum == "60k" ? chartScoreNum : document.querySelector(".c-k").innerHTML} Score - ${chartDisplayType}`;
+  hpChart.options.scales.y.min = chartScoreNum != "60k" ? 40000000 : 120000000;
+  hpChart.options.scales.y.max = chartScoreNum != "60k" ? 320000000 : 960000000;
+  hpChart.options.scales.y.ticks.stepSize = (hpChart.options.scales.y.max - hpChart.options.scales.y.min) / 14;
   hpChart.update();
   saveProgress();
 }

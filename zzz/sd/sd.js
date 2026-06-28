@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let vLive = 50, vBeta = 51, v25 = 38, v28 = 47, modeNumOld = 4, modeNum = 4;
+let vLive = 51, vBeta = 54, v25 = 38, v28 = 47, modeNumOld = 4, modeNum = 4;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let chartDropdown = document.getElementById("c-dd");
@@ -302,7 +302,7 @@ function showEnemies() {
         if (eTags.length >= 1 && !(eTags.length == 1 && eTags.includes("spoiler"))) {
           let ttHP = document.createElement("div");
           ttHP.className = "tt-e-hp";
-          
+
           if (eTags.includes("hitch")) {
             ttHP.innerHTML = hitch(eHP) + `<br>`;
             enemyHP.innerHTML = showNumberFormat(1);
@@ -738,6 +738,7 @@ function showHPChart() {
           },
           y: {
             border: { display: false },
+            grid: { color: function(context) { return context.index % 2 == 0 ? "#888888" : "#444444"; } },
             ticks: {
               padding: 15, font: { family: "Inconsolata", size: 12 }, color: "#888888",
               callback: function(value, index) { return index % 2 == 0 ? showNumberFormat(value) : ""; }
@@ -788,9 +789,8 @@ function showHPChart() {
     }
     hpChart.options.plugins.title.text = `Shiyu Defense HP - ${versionData[modeNum - 1].name}`;
     hpChart.options.scales.y.min = 0;
-    hpChart.options.scales.y.max = modeNum == 1 ? 6000000 : 16000000;
-    hpChart.options.scales.y.ticks.stepSize = modeNum == 1 ? 500000 : 1000000;
-    hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % (modeNum == 1 ? 1000000 : 2000000) == 0 ? "#888888" : "#444444"; } };
+    hpChart.options.scales.y.max = modeNum == 1 ? 7000000 : 21000000;
+    hpChart.options.scales.y.ticks.stepSize = (hpChart.options.scales.y.max - hpChart.options.scales.y.min) / 14;
   }
   else {
     document.getElementById("c-l").style.display = document.getElementById("c-r").style.display = "flex";
@@ -804,8 +804,7 @@ function showHPChart() {
     hpChart.options.plugins.title.text = `Shiyu Defense HP - Critical Node ${chartNodeNum} HP - ${chartDisplayType}`;
     hpChart.options.scales.y.min = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 0 : 70000000;
     hpChart.options.scales.y.max = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 70000000 : 210000000;
-    hpChart.options.scales.y.ticks.stepSize = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 5000000 : 10000000;
-    hpChart.options.scales.y.grid = { color: function(context) { return (chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? (context.tick.value % 10000000 == 0) : (context.tick.value % 20000000 == 10000000)) ? "#888888" : "#444444"; } };
+    hpChart.options.scales.y.ticks.stepSize = (hpChart.options.scales.y.max - hpChart.options.scales.y.min) / 14;
   }
 
   // global chart settings

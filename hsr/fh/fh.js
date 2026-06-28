@@ -588,6 +588,7 @@ function showHPChart() {
           },
           y: {
             border: { display: false },
+            grid: { color: function(context) { return context.index % 2 == 0 ? "#888888" : "#444444"; } },
             ticks: {
               padding: 15, font: { family: "Inconsolata", size: 12 }, color: "#888888",
               callback: function(value, index) { return index % 2 == 0 ? showNumberFormat(value) : ""; }
@@ -639,13 +640,12 @@ function showHPChart() {
     hpChart.options.scales.y.min = 0;
     hpChart.options.scales.y.max = modeNum == 1 ? 300000 : 3200000;
     hpChart.options.scales.y.ticks.stepSize = modeNum == 1 ? 25000 : 200000;
-    hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % (modeNum == 1 ? 50000 : 400000) == 0 ? "#888888" : "#444444"; } };
   }
   else {
     document.getElementById("c-l").style.display = document.getElementById("c-r").style.display = "flex";
     let startChartVersion = chartNodeNum <= 10 ? 0 : v16 - 1;
     let newHPData = hpData[modeNum - 1][chartNodeNum - 1].map(row => row.slice(startChartVersion, versionIDs[modeNum - 1].length));
-    if (chartNodeNum == 12) { 
+    if (chartNodeNum == 12) {
       let starHPData = hpData[modeNum - 1][12].map(row => row.slice(startChartVersion, versionIDs[modeNum - 1].length));
       rawHPStarData = starHPData[0];
       aoeHPStarData = starHPData[1];
@@ -655,9 +655,8 @@ function showHPChart() {
     aoeHPData = newHPData[1];
     hpChart.options.plugins.title.text = `Forgotten Hall HP - Memory of Chaos Node ${chartNodeNum}`;
     hpChart.options.scales.y.min = 0;
-    hpChart.options.scales.y.max = 50000000;
+    hpChart.options.scales.y.max = 70000000;
     hpChart.options.scales.y.ticks.stepSize = 5000000;
-    hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % 10000000 == 0 ? "#888888" : "#444444"; } };
   }
 
   // global chart settings

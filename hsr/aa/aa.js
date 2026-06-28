@@ -581,6 +581,7 @@ function showHPChart() {
           },
           y: {
             border: { display: false },
+            grid: { color: function(context) { return context.index % 2 == 0 ? "#888888" : "#444444"; } },
             ticks: {
               padding: 15, font: { family: "Inconsolata", size: 12 }, color: "#888888",
               callback: function(value, index) { return index % 2 == 0 ? showNumberFormat(value) : ""; }
@@ -625,9 +626,8 @@ function showHPChart() {
   [ generateHPDataset(`Raw Knight HP`, hpData[2], "#e06666"), generateHPDataset(`Raw Checkmate HP`, hpData[0], "#6d9eeb") ] :
   [ generateHPDataset(`Raw Checkmate: ZZ HP`, hpData[1], "#f6b26b") ];
   hpChart.options.scales.y.min = 0;
-  hpChart.options.scales.y.max = chartDisplayType == "Knight + Checkmate" ? 100000000 : 320000000;
-  hpChart.options.scales.y.ticks.stepSize = chartDisplayType == "Knight + Checkmate" ? 10000000 : 40000000;
-  hpChart.options.scales.y.grid = { color: function(context) { return context.tick.value % (chartDisplayType == "Knight + Checkmate" ? 20000000 : 80000000) == 0 ? "#888888" : "#444444"; } };
+  hpChart.options.scales.y.max = chartDisplayType == "Knight + Checkmate" ? 120000000 : 360000000;
+  hpChart.options.scales.y.ticks.stepSize = chartDisplayType == "Knight + Checkmate" ? 10000000 : 30000000;
   hpChart.options.plugins.title.text = `Anomaly Arbitration HP - ${chartDisplayType}`;
   hpChart.update();
   saveProgress();

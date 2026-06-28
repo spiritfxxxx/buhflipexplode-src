@@ -129,10 +129,18 @@ li {
   flex: 1;
 }
 /* trait display */
+#t {
+  margin-top: 15px;
+  padding: 15px;
+  width: 40vw;
+  border-radius: 4px;
+  background-color: #27363e;
+  text-align: left;
+}
 .t {
   padding: 15px;
   width: 100%;
-  min-height: 484px;
+  min-height: 567px;
   border-radius: 4px;
   background-color: #27363e;
   text-align: left;
@@ -151,7 +159,7 @@ li {
   user-select: all;
 }
 /* trait text */
-.t-title {
+.t-title, #t-title {
   margin-bottom: 15px;
   color: #f29e38;
   font-weight: bold;
@@ -159,7 +167,7 @@ li {
   text-align: right;
 }
 /* buff/trait text */
-.bt-desc {
+.bt-desc, #t-desc {
   margin-top: 7.5px;
   font-size: 12px;
   text-align: left;
@@ -170,7 +178,7 @@ li {
 
 /* hp display */
 #v-hp {
-  margin: 15px 27.5vw;
+  margin: 15px 17.5vw;
   padding: 10px;
   gap: 60px;
   border-radius: 4px;
@@ -181,12 +189,12 @@ li {
 }
 
 /* boss hp display */
-#v-hp-raw-20000, #v-hp-raw-60000 {
+#v-hp-raw-20000-norm, #v-hp-raw-60000-norm, #v-hp-raw-20000-hard, #v-hp-raw-60000-hard {
   color: #e06666;
   font-weight: bold;
   user-select: all;
 }
-#v-hp-alt-20000, #v-hp-alt-60000 {
+#v-hp-alt-20000-norm, #v-hp-alt-60000-norm, #v-hp-alt-20000-hard, #v-hp-alt-60000-hard {
   color: #f6b26b;
   font-weight: bold;
   user-select: all;
@@ -195,11 +203,19 @@ li {
 /* ------------------------------------------------------------------------ SIDE ------------------------------------------------------------------------ */
 
 /* side display */
-#s {
+#s-h, #s-n {
   margin: 15px;
   gap: 15px;
   display: flex;
   justify-content: center;
+}
+#sh {
+  margin-top: 15px;
+  width: 250px;
+  min-height: 468.5px;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
 }
 #s1, #s2, #s3 {
   margin-top: 15px;
@@ -856,6 +872,7 @@ input:checked + #lt, input:checked + #st {
   flex-direction: column;
 }
 #cc-c {
+  position: relative;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -863,6 +880,16 @@ input:checked + #lt, input:checked + #st {
   justify-content: center;
   overflow-y: auto;
   overscroll-behavior: contain;
+}
+
+/* calculator gamemode/revamp dropdown */
+#cc-dd {
+  top: 15px;
+  left: 15px;
+  position: absolute;
+  font-family: "Inconsolata", monospace;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 /* calculator boss */
@@ -1006,13 +1033,15 @@ input:checked + #lt, input:checked + #st {
 }
 @media (max-width: 1360px) {
   #b1, #b2, #b3 { min-height: 260.5px; }
-  .t { min-height: 588px; }
+  .t { min-height: 713px; }
 }
 @media (max-width: 1080px) {
   #v-hp { margin: 15px; }
   #b { flex-direction: column; }
   #b1, #b2, #b3, .t { min-height: 0px; }
-  #s { flex-direction: column; }
+  #t { width: auto; }
+  #s-h { margin-bottom: 75px; flex-direction: column; align-items: center; }
+  #s-n { flex-direction: column; }
   #s2, #s3 { margin-top: 75px; }
   .vg-c { width: 150px; }
   #cc-c { justify-content: flex-start; padding: 50px 0px; }

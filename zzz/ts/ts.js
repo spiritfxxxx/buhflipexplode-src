@@ -359,14 +359,14 @@ function showEnemies() {
               ttHP.innerHTML += instant(color, "PURIFIED!!", currEnemyID == "25300" ? 3 : currEnemyID == "26202" ? 2 : 1) + `<br>`;
             }
             if (eTags.includes("shutdown")) {
-              eHPNew -= eHP * (currEnemyID[2] != "3" ? 0.15 : (currEnemyID == "28300" ? 0.02 : currEnemyID == "27300" ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015));
+              eHPNew -= eHP * (currEnemyID == "28300" ? 0.02 : (currEnemyID == "27300" || currEnemyID == "31300") ? 0.025 : currEnemyID == "26300" ? 0.04 : 0.015);
               color = "#b47ede";
               ttHP.innerHTML += instant(color, "SHUTDOWN!!", currEnemyID == "26300" ? 2 : 1) + `<br>`;
             }
             if (eTags.includes("convert")) {
-              eHPNew += eHP * (currEnemyID[2] != "3" ? 0.05 : (currEnemyID == "30300" ? 0.09 : 0.003));
+              eHPNew += eHP * (currEnemyID[2] != "3" ? 0.05 : currEnemyID == "31300" ? 0.01 : currEnemyID == "30300" ? 0.045 : 0.003);
               color = "#007bb8";
-              ttHP.innerHTML += instant(color, "CONVERT!!", currEnemyID == "30300" ? 2 : 1) + `<br>`;
+              ttHP.innerHTML += instant(color, "CONVERT!!", 1) + `<br>`;
             }
 
             // display tooltip text
@@ -380,7 +380,7 @@ function showEnemies() {
             ttHP.style.fontSize = "32px";
             ttHP.querySelector(".tt-text").style.bottom = "42.5px";
           }
-          
+
           hp.appendChild(ttHP);
         }
 
@@ -417,6 +417,8 @@ function showEnemies() {
         if (s == 1) {
           enemyImg.style.height = enemyHover.style.height = "192px";
           enemyName.style.fontSize = enemyHP.style.fontSize = enemyDEF.style.fontSize = "14px";
+          waveEnemies.style.minHeight = "403.5px";
+          waveEnemies.style.marginTop = "0px";
         }
 
         // add enemy stage description
@@ -426,7 +428,7 @@ function showEnemies() {
           traitTitle.innerHTML = `Final BATTLE ${Math.min(nodeNum, nodeMax)}${modeNum != 2 || nodeNum < nodeMax ? `` : `.${nodeNum - nodeMax + 1}`}${s != 1 ? `-${s - 1}` : ``} Boss Traits`;
           traitDesc.innerHTML = eTags.includes("spoiler") && !spoilersToggle.checked ? `${currEnemyData.spoilerDesc}<br>${currEnemyData.spoilerPerf}` : `${currEnemyData.desc[currEnemyType]}<br>${currEnemyData.perf[currEnemyType]}`;
           traitDesc.innerHTML += `<li>When an extra score multiplier is active in this stage, the <span style="color:#ffaf2c;font-weight:bold;">Performance Points</span> cap will increase accordingly.</li>`;
-          traitDesc.innerHTML += `${currEnemyID[0] == "2" || currEnemyID == "14303" || (currEnemyID == "14302") ? `<br>${currEnemyData.misc}` : ``}`;
+          traitDesc.innerHTML += (currEnemyID[0] == "2" || currEnemyID == "14303" || currEnemyID == "14302") ? `<br>${currEnemyData.misc}` : ``;
         }
       }
       wave.appendChild(waveEnemies);

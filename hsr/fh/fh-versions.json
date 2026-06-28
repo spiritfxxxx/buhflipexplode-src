@@ -3996,13 +3996,13 @@
                       { "enemies":[ {"id":"40101"}, {"id":"22102"} ] },
                       { "enemies":[ {"id":"42200", "phase":2} ] } ] } ] },
                   { "sides":[
-                    { "sideElementMult":[1.2, 1.2, 1.2, 1.0, 1.2, 1.0, 1.2], "sideHPMult":620, "waves":[
+                    { "sideElementMult":[1.2, 1.2, 1.2, 1.0, 1.2, 1.0, 1.2], "sideHPMult":650, "waves":[
                       { "enemies":[ {"id":"21100"}, {"id":"10106"} ] },
                       { "enemies":[ {"id":"20201", "phase":1} ] } ] },
-                    { "sideElementMult":[1.2, 1.0, 1.2, 1.2, 1.2, 1.2, 1.0], "sideHPMult":620, "waves":[
+                    { "sideElementMult":[1.2, 1.0, 1.2, 1.2, 1.2, 1.2, 1.0], "sideHPMult":650, "waves":[
                       { "enemies":[ {"id":"41100"}, {"id":"41102"} ] },
                       { "enemies":[ {"id":"41200", "phase":2} ] } ] },
-                    { "sideElementMult":[1.0, 1.0, 1.2, 1.2, 1.2, 1.2, 1.2], "sideHPMult":770, "waves":[
+                    { "sideElementMult":[1.0, 1.0, 1.2, 1.2, 1.2, 1.2, 1.2], "sideHPMult":740, "waves":[
                       { "enemies":[ {"id":"22101"}, {"id":"22102"}, {"id":"22100"} ] },
                       { "enemies":[ {"id":"38200", "phase":1} ] } ] } ] }
                 ]

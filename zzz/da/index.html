@@ -78,12 +78,16 @@
     <div id="c">
       <div id="c-bar">
         <div id="c-x" onclick="toggleChart()">✖</div>
-        <div class="c-k" data-format="20k" onclick="changeChartPoints(`20k`)">20k</div>
+        <div class="c-k" data-format="!60k" onclick="changeChartPoints(`!60k`)">20k</div>
         <div id="c-download-btn" onclick="downloadChart()"></div>
         <div class="c-k" data-format="60k" onclick="changeChartPoints(`60k`)">60k</div>
         <div id="c-btn-open" onclick="toggleChart()"></div>
       </div>
       <div id="c-g">
+        <select id="c-dd" onclick="showHPChart()">
+          <option value="Normal Mode">Normal Mode</option>
+          <option value="Hard Mode">Hard Mode</option>
+        </select>
         <canvas id="hpChart"></canvas>
       </div>
     </div>
@@ -93,6 +97,10 @@
         <div id="cc-btn-open" onclick="toggleCalc()"></div>
       </div>
       <div id="cc-c">
+        <select id="cc-dd" onclick="showHPCalc()">
+          <option value="Normal Mode">Normal Mode</option>
+          <option value="Hard Mode">Hard Mode</option>
+        </select>
         <div id="cc-b">
           <image id="cc-b-img"></image>
           <div id="cc-b-dd-resize"></div>
@@ -128,15 +136,15 @@
         <div id="v-r" onclick="changeVersion(1)">▷</div>
       </div>
       <div id="v-hp">
-        <div id="v-hp-raw">
-          <div><span><span style="color:#e06666;font-weight:bold;">Raw</span> HP</span><span class="tt-v-hp">� <span class="tt-text">sum of all boss HP</span></span></div>
-          <div>20000 Score: <span id="v-hp-raw-20000"></span></div>
-          <div>60000 Score: <span id="v-hp-raw-60000"></span></div>
+        <div id="v-hp-norm">
+          <div><span><span id="norm">(Normal) </span><span style="color:#e06666;font-weight:bold;">Raw</span> / <span><span style="color:#f29e38;font-weight:bold;">Alt</span> HP</span></div>
+          <div>20000 Score: <span id="v-hp-raw-20000-norm"></span> / <span id="v-hp-alt-20000-norm"></span></div>
+          <div>60000 Score: <span id="v-hp-raw-60000-norm"></span> / <span id="v-hp-alt-60000-norm"></span></div>
         </div>
-        <div id="v-hp-alt">
-          <div><span><span style="color:#f29e38;font-weight:bold;">Alt</span> HP</span><span class="tt-v-hp">� <span class="tt-text">raw hp & boss mechanic interaction<br>(+ normalized for lower DEF)</span></span></div>
-          <div>20000 Score: <span id="v-hp-alt-20000"></span></div>
-          <div>60000 Score: <span id="v-hp-alt-60000"></span></div>
+        <div id="v-hp-hard" style="flex-direction:column">
+          <div><span>(Hard) <span style="color:#e06666;font-weight:bold;">Raw</span></span><span class="tt-v-hp">� <span class="tt-text">sum of all boss HP</span></span> / <span><span style="color:#f29e38;font-weight:bold;">Alt</span> HP<span class="tt-v-hp">� <span class="tt-text">raw hp & boss mechanic interaction<br>(+ normalized for lower DEF)</span></span></span></div>
+          <div>30000 Score: <span id="v-hp-raw-20000-hard"></span> / <span id="v-hp-alt-20000-hard"></span></div>
+          <div>60000 Score: <span id="v-hp-raw-60000-hard"></span> / <span id="v-hp-alt-60000-hard"></span></div>
         </div>
       </div>
       <div id="b">
@@ -144,7 +152,14 @@
         <div id="b2"></div>
         <div id="b3"></div>
       </div>
-      <div id="s">
+      <div id="s-h">
+        <div id="sh"></div>
+        <div id="t">
+          <div id="t-title"></div>
+          <div id="t-desc"></div>
+        </div>
+      </div>
+      <div id="s-n">
         <div id="s1"></div>
         <div id="s2"></div>
         <div id="s3"></div>

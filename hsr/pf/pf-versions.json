@@ -1116,15 +1116,15 @@
                     { "enemies":[ {"id":"22100.2", "count":1}, {"id":"31002", "count":20}, {"id":"10009", "count":20} ] },
                     { "enemies":[ {"id":"24100.3", "count":1}, {"id":"40005", "count":20}, {"id":"10016", "count":20} ] } ] } ] },
                 { "sides":[
-                  { "sideElementMult":[1.0, 1.2, 1.2, 1.2, 1.2, 1.2, 1.0], "sideHPMult":[450, 900, 3700], "waves":[
+                  { "sideElementMult":[1.0, 1.2, 1.2, 1.2, 1.2, 1.2, 1.0], "sideHPMult":[500, 1000, 4000], "waves":[
                     { "enemies":[ {"id":"40006.1", "count":2}, {"id":"40005", "count":12}, {"id":"40009", "count":11} ] },
                     { "enemies":[ {"id":"31101.2", "count":1}, {"id":"13000", "count":20}, {"id":"10023", "count":20} ] },
                     { "enemies":[ {"id":"10203.6", "count":1, "phase":1}, {"id":"30004", "count":20}, {"id":"10011", "count":20} ] } ] },
-                  { "sideElementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.2], "sideHPMult":[450, 900, 3400], "waves":[
+                  { "sideElementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.2], "sideHPMult":[500, 1000, 3600], "waves":[
                     { "enemies":[ {"id":"40006.1", "count":2}, {"id":"33000", "count":11}, {"id":"20007", "count":12} ] },
                     { "enemies":[ {"id":"35100.1", "count":1}, {"id":"37002", "count":20}, {"id":"40000", "count":20} ] },
                     { "enemies":[ {"id":"41200.1", "count":1, "phase":1}, {"id":"33000", "count":20}, {"id":"41000", "count":20} ] } ] },
-                  { "sideElementMult":[1.2, 1.0, 1.2, 1.2, 1.2, 1.0, 1.2], "sideHPMult":[450, 1200, 4500], "waves":[
+                  { "sideElementMult":[1.2, 1.0, 1.2, 1.2, 1.2, 1.0, 1.2], "sideHPMult":[550, 1300, 5000], "waves":[
                     { "enemies":[ {"id":"40006.1", "count":2}, {"id":"31001", "count":11}, {"id":"10020", "count":12} ] },
                     { "enemies":[ {"id":"31100.2", "count":1}, {"id":"22000", "count":20}, {"id":"12002", "count":20} ] },
                     { "enemies":[ {"id":"10200.3", "count":1, "phase":1}, {"id":"10029", "count":20}, {"id":"10030", "count":20} ] } ] } ] }

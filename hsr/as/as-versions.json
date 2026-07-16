@@ -217,7 +217,7 @@
           },
 
   "4.4.1":{ "versionName":"Vanguard Knight",
-            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionTime":"20/07/2026 - 31/08/2026",
             "versionBuffIDs":[ ["30000017"], ["31000063", "31000064", "31000078"], ["31000056", "31000065", "31000069"], ["31000066", "31000068", "31000071"] ],
             "versionHPMult":[ [40, 80, 140, 680], [20, 40, 55, 190], [0, 0, 0, 650] ],
             "versionEnemies":{
@@ -225,6 +225,19 @@
                 { "enemies":[ {"id":"23401", "phase":2} ] },
                 { "enemies":[ {"id":"40400", "phase":2} ] },
                 { "enemies":[ {"id":"27400", "phase":2} ] }
+              ]
+            }
+          },
+
+  "4.5.1":{ "versionName":"Celestial Lupine",
+            "versionTime":"xx/xx/20xx - xx/xx/20xx",
+            "versionBuffIDs":[ ["30000018"], ["31000079", "31000080", "31000075"], ["31000063", "31000067", "31000078"], ["31000075", "31000065", "31000054"] ],
+            "versionHPMult":[ [40, 80, 140, 200], [25, 50, 90, 190], [0, 0, 0, 500] ],
+            "versionEnemies":{
+              "sides":[
+                { "enemies":[ {"id":"45400", "phase":2} ] },
+                { "enemies":[ {"id":"35400", "phase":2} ] },
+                { "enemies":[ {"id":"42400", "phase":2} ] }
               ]
             }
           }

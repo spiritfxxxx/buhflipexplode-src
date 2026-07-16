@@ -189,12 +189,12 @@ li {
 }
 
 /* boss hp display */
-#v-hp-raw-20000-norm, #v-hp-raw-60000-norm, #v-hp-raw-20000-hard, #v-hp-raw-60000-hard {
+#v-hp-raw-20000-tri, #v-hp-raw-60000-tri, #v-hp-raw-20000-adv, #v-hp-raw-60000-adv {
   color: #e06666;
   font-weight: bold;
   user-select: all;
 }
-#v-hp-alt-20000-norm, #v-hp-alt-60000-norm, #v-hp-alt-20000-hard, #v-hp-alt-60000-hard {
+#v-hp-alt-20000-tri, #v-hp-alt-60000-tri, #v-hp-alt-20000-adv, #v-hp-alt-60000-adv {
   color: #f6b26b;
   font-weight: bold;
   user-select: all;

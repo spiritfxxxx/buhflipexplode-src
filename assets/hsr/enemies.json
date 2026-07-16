@@ -384,16 +384,20 @@
   "41103":{"name":"Daybreak Squadron: Dawnlance",                              "baseHP":15,          "baseSPD":120,        "toughness":"160",                        "image":"dawnlance",                            "elementMult":[1.0, 1.0, 1.2, 1.2, 1.2, 1.0, 1.8],             "tags":[],                  "mods":[]                   },
   "41200":{"name":"Alloy Mechatron: King Pom-Pom",                             "baseHP":37.5,        "baseSPD":120,        "toughness":"240",                        "image":"king-pom-pom",                         "elementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.0],             "tags":[],                  "mods":["adv50"]            },
     "41200.1":{"name":"Alloy Mechatron: King Pom-Pom",                         "baseHP":82.5,        "baseSPD":120,        "toughness":"200",                        "image":"king-pom-pom",                         "elementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.0],             "tags":[],                  "mods":["adv50"]            },
-  "42000":{"name":"Magical Girl Troupe",                                       "baseHP":3,           "baseSPD":100,        "toughness":"30",                         "image":"magical-girl-troupe",                  "elementMult":[1.0, 1.0, 1.0, 1.2, 1.2, 1.2, 1.2],             "tags":[],                  "mods":[]                   },
+  "42000":{"name":"Illwish Lotus",                                             "baseHP":3.6,         "baseSPD":150,        "toughness":"30",                         "image":"illwish-lotus",                        "elementMult":[1.2, 1.0, 1.0, 1.2, 1.2, 1.2, 1.0],             "tags":[],                  "mods":[]                   },
+  "42001":{"name":"Magical Girl Troupe",                                       "baseHP":3,           "baseSPD":100,        "toughness":"30",                         "image":"magical-girl-troupe",                  "elementMult":[1.0, 1.0, 1.0, 1.2, 1.2, 1.2, 1.2],             "tags":[],                  "mods":[]                   },
   "42100":{"name":"Joy Ascendant",                                             "baseHP":6,           "baseSPD":144,        "toughness":"140",                        "image":"joy-ascendant",                        "elementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.0],             "tags":[],                  "mods":[]                   },
-  "42200":{"name":"Paramount Bliss Inverted: Illwish Archlotus",               "baseHP":48,          "baseSPD":144,        "toughness":"240",                        "image":"illwish-lotus",                        "elementMult":[1.0, 1.4, 1.4, 1.0, 1.4, 1.4, 1.0],             "tags":[],                  "mods":["adv50"]            },
+  "42200":{"name":"Paramount Bliss Inverted: Illwish Archlotus",               "baseHP":48,          "baseSPD":144,        "toughness":"240",                        "image":"illwish-archlotus",                    "elementMult":[1.0, 1.4, 1.4, 1.0, 1.4, 1.4, 1.0],             "tags":[],                  "mods":["adv50"]            },
+    "42200.1":{"name":"Paramount Bliss Inverted: Illwish Archlotus",           "baseHP":82.5,        "baseSPD":144,        "toughness":"240",                        "image":"illwish-archlotus",                    "elementMult":[1.0, 1.4, 1.4, 1.0, 1.4, 1.4, 1.0],             "tags":[],                  "mods":["adv50"]            },
   "43100":{"name":"God-Devourer Offspring",                                    "baseHP":16,          "baseSPD":120,        "toughness":"180",                        "image":"god-devourer-offspring",               "elementMult":[1.2, 1.0, 1.2, 1.0, 1.2, 1.2, 1.0],             "tags":[],                  "mods":[]                   },
   "43200":{"name":"Murata Graphia, Founding Artist",                           "baseHP":32.5,        "baseSPD":120,        "toughness":"360",                        "image":"graphia",                              "elementMult":[1.4, 1.0, 1.4, 1.0, 1.4, 1.0, 1.4],             "tags":[],                  "mods":[]                   },
     "43200.1":{"name":"Murata Graphia, Founding Artist",                       "baseHP":44,          "baseSPD":135,        "toughness":"360",                        "image":"graphia",                              "elementMult":[1.4, 1.0, 1.4, 1.0, 1.4, 1.0, 1.4],             "tags":[],                  "mods":[]                   },
-  "44000":{"name":"Comediologist",                                             "baseHP":3,           "baseSPD":167,        "toughness":"30",                         "image":"comediologist",                        "elementMult":[1.0, 1.0, 1.2, 1.2, 1.2, 1.2, 1.0],             "tags":["spoiler"],         "mods":[]                   },
-  "44300":{"name":"TBD",                                                       "baseHP":160,         "baseSPD":140,        "toughness":"360",                        "image":"idk1",                                 "elementMult":[1.2, 1.0, 1.2, 1.2, 1.0, 1.2, 1.0],             "tags":["spoiler"],         "mods":[]                   },
-  "44301":{"name":"TBD",                                                       "baseHP":160,         "baseSPD":140,        "toughness":"360",                        "image":"idk2",                                 "elementMult":[1.2, 1.0, 1.2, 1.2, 1.0, 1.2, 1.0],             "tags":["spoiler"],         "mods":[]                   },
-  "44302":{"name":"TBD",                                                       "baseHP":160,         "baseSPD":130,        "toughness":"360",                        "image":"idk3",                                 "elementMult":[1.2, 1.0, 1.2, 1.2, 1.0, 1.2, 1.0],             "tags":["spoiler"],         "mods":[]                   },
+  "44000":{"name":"Comediologist",                                             "baseHP":3,           "baseSPD":167,        "toughness":"30",                         "image":"comediologist",                        "elementMult":[1.0, 1.0, 1.2, 1.2, 1.2, 1.2, 1.0],             "tags":[],                  "mods":[]                   },
+  "44300":{"name":"Lord of Saṃvartasthāyi, Asat Pramad",                       "baseHP":160,         "baseSPD":140,        "toughness":"400",                        "image":"asat-pramad1",                         "elementMult":[1.2, 1.0, 1.2, 1.2, 1.0, 1.2, 1.0],             "tags":[],                  "mods":[]                   },
+  "44301":{"name":"Lord of Saṃvartasthāyi, Asat Pramad: \"Decay\"",            "baseHP":160,         "baseSPD":140,        "toughness":"400",                        "image":"asat-pramad2",                         "elementMult":[1.2, 1.0, 1.2, 1.2, 1.0, 1.2, 1.0],             "tags":[],                  "mods":[]                   },
+  "44302":{"name":"Lord of Saṃvartasthāyi, Asat Pramad: \"Existence\"",        "baseHP":160,         "baseSPD":140,        "toughness":"360",                        "image":"asat-pramad3",                         "elementMult":[1.2, 1.0, 1.2, 1.2, 1.0, 1.2, 1.0],             "tags":[],                  "mods":[]                   },
+  "45000":{"name":"Astropolis Sentinel",                                       "baseHP":1.5,         "baseSPD":110,        "toughness":"30",                         "image":"astropolis-sentinel",                  "elementMult":[1.2, 1.2, 1.2, 1.2, 1.0, 1.0, 1.2],             "tags":[],                  "mods":[]                   },
+  "45100":{"name":"Lighthouse",                                                "baseHP":13,          "baseSPD":144,        "toughness":"160",                        "image":"lighthouse",                           "elementMult":[1.2, 1.0, 1.2, 1.2, 1.0, 1.0, 1.2],             "tags":[],                  "mods":[]                   },
 
 
 
@@ -699,5 +703,24 @@
                           "",
 
                           ""]
+           },
+
+  "45400":{"name":"Unwaning Ageless Immortal",                                 "baseHP":262.5,       "baseSPD":120,        "toughness":["200", "200", "200", "200"],                  "image":"abundant-ebon-deer",    "elementMult":[1.0, 1.0, 1.0, 1.4, 1.4, 1.0, 1.4],             "tags":[],                  "mods":[],
+            "traitNames":["Steadfast Safeguard", "Bountiful Prosperity", "Like a Deer With Wings", "Dazzling Aura"],
+            "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, action gets additionally delayed and DMG taken increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
+
+                          "When the Boss Mirage's summons are defeated, it deals minor True DMG to this unit and reduces its <span style='color:#f08b83;font-weight:bold;'>Toughness</span> by a minor amount. If the defeated target is an Elite Enemy, it instead deals massive True DMG to this unit and reduces its <span style='color:#f08b83;font-weight:bold;'>Toughness</span> by a massive amount. Then, it immediately summons new summons.",
+
+                          "The initial action value of the summons summoned via <span style='font-weight:bold;'>Heavenbound One And All</span> and <span style='font-weight:bold;'>Heavenbound One And All — Enhanced</span> is greatly advanced.",
+
+                          "While any type of <span style='font-weight:bold;text-decoration:underline;'>Plot Armor</span> effect is active, all enemy targets that are not Weakness Broken take reduced DMG and deal increased DMG."],
+            "extraNames":["", "", "", "Plot Armor"],
+            "extraDescs":["",
+
+                          "",
+
+                          "",
+
+                          "Plot Armor effects remain active on specific units on the field. Multiple identical Plot Armor effects are not subject to Layering."]
            }
 }

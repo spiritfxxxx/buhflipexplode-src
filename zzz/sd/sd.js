@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ MAIN PAGE ----------------------------------------------------------------------- */
 
-let vLive = 51, vBeta = 54, v25 = 38, v28 = 47, modeNumOld = 4, modeNum = 4;
+let vLive = 52, vBeta = 54, v25 = 38, v28 = 47, modeNumOld = 4, modeNum = 4;
 let leaksToggle = document.getElementById("lks");
 let spoilersToggle = document.getElementById("spl");
 let chartDropdown = document.getElementById("c-dd");
@@ -643,7 +643,7 @@ function toggleChart() {
 function downloadChart() {
   let downloadButton = document.createElement("a");
   downloadButton.href = hpChart.toBase64Image("image/png", 1.0);
-  downloadButton.download = `Shiyu Defense HP - ${versionData[modeNum - 1].name}` + (modeNum == 4 ? ` ${chartNodeNum} ${chartDisplayType}` : ``);
+  downloadButton.download = `Shiyu Defense HP - ${versionData[modeNum - 1].name}` + (modeNum == 4 ? ` ${chartNodeNum} - ${chartDisplayType}` : ``);
   downloadButton.click();
 }
 
@@ -801,7 +801,7 @@ function showHPChart() {
     rawHPData = newHPData[0];
     aoeHPData = newHPData[1];
     altHPData = newHPData[2];
-    hpChart.options.plugins.title.text = `Shiyu Defense HP - Critical Node ${chartNodeNum} HP - ${chartDisplayType}`;
+    hpChart.options.plugins.title.text = `Shiyu Defense HP - Critical Node ${chartNodeNum} - ${chartDisplayType}`;
     hpChart.options.scales.y.min = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 0 : 70000000;
     hpChart.options.scales.y.max = chartDisplayType == "Pre 2.5" || chartNodeNum < 5 ? 70000000 : 210000000;
     hpChart.options.scales.y.ticks.stepSize = (hpChart.options.scales.y.max - hpChart.options.scales.y.min) / 14;

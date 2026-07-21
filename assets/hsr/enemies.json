@@ -709,18 +709,18 @@
             "traitNames":["Steadfast Safeguard", "Bountiful Prosperity", "Like a Deer With Wings", "Dazzling Aura"],
             "traitDescs":["Boss Mirage takes <span style='color:#f29e38;font-weight:bold;'>50%</span> less DMG. After Weakness is <span style='color:#f08b83;font-weight:bold;'>Broken</span>, action gets additionally delayed and DMG taken increases by <span style='color:#f29e38;font-weight:bold;'>100%</span>.",
 
-                          "When the Boss Mirage's summons are defeated, it deals minor True DMG to this unit and reduces its <span style='color:#f08b83;font-weight:bold;'>Toughness</span> by a minor amount. If the defeated target is an Elite Enemy, it instead deals massive True DMG to this unit and reduces its <span style='color:#f08b83;font-weight:bold;'>Toughness</span> by a massive amount. Then, it immediately summons new summons.",
+                          "When the Boss Mirage's summons are defeated, it deals minor True DMG to this unit and slightly reduces its <span style='color:#f08b83;font-weight:bold;'>Toughness</span>. If the defeated target is an Elite Enemy, it instead deals massive True DMG to this unit and massively reduces its <span style='color:#f08b83;font-weight:bold;'>Toughness</span>. Then, it immediately summons new summons.",
 
-                          "The initial action value of the summons summoned via <span style='font-weight:bold;'>Heavenbound One And All</span> and <span style='font-weight:bold;'>Heavenbound One And All — Enhanced</span> is greatly advanced.",
+                          "The initial action value of the summons summoned via <span style='font-weight:bold;'>Heavenbound One And All</span> and <span style='font-weight:bold;'>Heavenbound One And All: Enhanced</span> is greatly advanced.",
 
-                          "While any type of <span style='font-weight:bold;text-decoration:underline;'>Plot Armor</span> effect is active, all enemy targets that are not Weakness Broken take reduced DMG and deal increased DMG."],
-            "extraNames":["", "", "", "Plot Armor"],
+                          "While any type of <span style='font-weight:bold;text-decoration:underline;'>Halo</span> effect is active, all enemy targets that are not Weakness Broken take reduced DMG and deal increased DMG."],
+            "extraNames":["", "", "", "Halo"],
             "extraDescs":["",
 
                           "",
 
                           "",
 
-                          "Plot Armor effects remain active on specific units on the field. Multiple identical Plot Armor effects are not subject to Layering."]
+                          "<span style='font-weight:bold;'>Halo</span> effects remain active on specific units on the field. Multiple identical <span style='font-weight:bold;'>Halo</span> effects are not subject to Layering."]
            }
 }

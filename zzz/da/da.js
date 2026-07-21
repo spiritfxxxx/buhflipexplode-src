@@ -45,7 +45,7 @@ function loadHPData() {
       let currEnemyType = currEnemy.type;
       let currEnemyHPMult = currEnemy.hpMult ? currEnemy.hpMult : sideHPMult;
       let currEnemyData = enemyData[currEnemyID];
-      let eHP = currEnemyData.baseHP[currEnemyType] * 24795 * currEnemyHPMult * (s != 4 ? 8.74 : 14.2) / 10000;
+      let eHP = currEnemyData.baseHP[currEnemyType] * 24795 * currEnemyHPMult * (s != 4 ? 8.74 : 15.8) / 10000;
       let eTags = currEnemyData.tags;
 
       // calculate boss raw hp
@@ -165,7 +165,7 @@ function showEnemies() {
     let eImg = showEnemySpoilers ? `../../assets/zzz/enemies/${currEnemyData.image}.webp` : `../../assets/zzz/enemies/doppelganger-i.webp`;
 
     // define enemy stats
-    let eHP = Math.floor((s != 4 ? 8.74 : 14.2) * sideHPMult * currEnemyData.baseHP[currEnemyType] * 24795 / 10000);
+    let eHP = Math.floor((s != 4 ? 8.74 : 15.8) * sideHPMult * currEnemyData.baseHP[currEnemyType] * 24795 / 10000);
     let eDEF = Math.ceil(currEnemyData.baseDEF[currEnemyType] * 1588 / 100);
     let eDaze = currEnemyData.baseDaze[currEnemyType] * 2.35;
     let eStunMult = currEnemyData.stunMult;
@@ -644,7 +644,7 @@ function calculateBoss(hp, score, option) {
   let calcHP = 0, calcScore = 0, threshold;
   let hpToNextThreshold, scoreToNextThreshold;
   for (threshold = 0; threshold < bossValues.length; ++threshold) {
-    hpToNextThreshold = bossValues[threshold][0] * bossValues[threshold][1] * bossData[1] / (calcDropdown.value == "Trials" ? 874 : 1420) / 100;
+    hpToNextThreshold = bossValues[threshold][0] * bossValues[threshold][1] * bossData[1] / (calcDropdown.value == "Trials" ? 874 : 1580) / 100;
     scoreToNextThreshold = bossValues[threshold][2];
     if (calcHP + hpToNextThreshold > hp + 1) break;
     if (calcScore + scoreToNextThreshold > score) break;
